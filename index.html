@@ -49,6 +49,19 @@
       width: 100% !important;
       scroll-padding-top: 80px;
     }
+    /* Bande passante fluide (Continuous Marquee) */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
       height: 22px;
@@ -63,13 +76,34 @@
 </head>
 <body class="bg-white text-neutral-900 font-sans antialiased selection:bg-pin-soft selection:text-pin">
 
-  <!-- ================= BANNER TOP (Court & Explicite) ================= -->
-  <div class="bg-pin text-white text-[11px] sm:text-xs font-semibold py-1.5 sm:py-2 px-3 sm:px-4 text-center sticky top-0 z-50 flex items-center justify-center gap-1.5 overflow-hidden">
-    <span class="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold bg-white text-pin uppercase shrink-0">Loi 2026</span>
-    <span class="truncate">Déficit foncier doublé à <strong>21 400 € / an</strong> jusqu'au 31/12/2027.</span>
+  <!-- ================= BANDE ROUGE PASSANTE (TICKER CONTINU) ================= -->
+  <div class="bg-pin text-white py-2 overflow-hidden whitespace-nowrap sticky top-0 z-50 shadow-sm border-b border-pin-hover select-none">
+    <div class="animate-marquee text-xs font-bold uppercase tracking-wider flex items-center gap-6">
+      <span>🔴 LOI DE FINANCES 2026 : Déficit foncier doublé à 21 400 € / an jusqu'au 31/12/2027</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>LOI CLIMAT : Logements G interdits depuis 2025 · Logements F interdits 1er janv. 2028</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>100 % SÉCURISÉ : Fonds consignés sur compte séquestre bancaire ACPR</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>ARCHITECTES INDÉPENDANTS agréés Mon Accompagnateur Rénov'</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>SUBVENTIONS ÉTAT : Jusqu'à 80 % financés (MaPrimeRénov' 2026)</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <!-- Répétition pour la boucle infinie -->
+      <span>🔴 LOI DE FINANCES 2026 : Déficit foncier doublé à 21 400 € / an jusqu'au 31/12/2027</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>LOI CLIMAT : Logements G interdits depuis 2025 · Logements F interdits 1er janv. 2028</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>100 % SÉCURISÉ : Fonds consignés sur compte séquestre bancaire ACPR</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>ARCHITECTES INDÉPENDANTS agréés Mon Accompagnateur Rénov'</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+      <span>SUBVENTIONS ÉTAT : Jusqu'à 80 % financés (MaPrimeRénov' 2026)</span>
+      <span class="text-pin-soft opacity-60">✦</span>
+    </div>
   </div>
 
-  <!-- ================= HEADER (Menu Épuré, Zéro Fluff) ================= -->
+  <!-- ================= HEADER (4 Liens Max, Court, Zéro Fluff) ================= -->
   <header class="bg-white/95 backdrop-blur-md border-b border-neutral-100 sticky top-8 z-40">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
       
@@ -86,29 +120,29 @@
         </span>
       </a>
 
-      <!-- Menu Très Court -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-neutral-600">
-        <a href="#solution" class="hover:text-pin transition-colors">Solution</a>
-        <a href="#loi" class="hover:text-pin transition-colors">Loi & Aides</a>
-        <a href="#simulateur" class="hover:text-pin transition-colors">Simulateur</a>
-        <a href="#faq" class="hover:text-pin transition-colors">FAQ</a>
+      <!-- Menu : Exactement 4 Liens Courts Sans Retours à la Ligne -->
+      <nav class="hidden md:flex items-center gap-4 lg:gap-8 text-xs lg:text-sm font-semibold text-neutral-600">
+        <a href="#solution" class="whitespace-nowrap hover:text-pin transition-colors">Solution</a>
+        <a href="#loi" class="whitespace-nowrap hover:text-pin transition-colors">Loi &amp; Aides</a>
+        <a href="#simulateur" class="whitespace-nowrap hover:text-pin transition-colors">Simulateur</a>
+        <a href="#faq" class="whitespace-nowrap hover:text-pin transition-colors">FAQ</a>
       </nav>
 
       <!-- Boutons Actions Header -->
       <div class="flex items-center gap-2 shrink-0">
-        <button onclick="openArchiModal()" class="hidden md:inline-flex text-xs font-bold text-neutral-700 hover:text-pin px-3.5 py-2 rounded-full border border-neutral-200 hover:border-pin transition-all">
+        <button onclick="openArchiModal()" class="hidden lg:inline-flex text-xs font-bold text-neutral-700 hover:text-pin px-3.5 py-2 rounded-full border border-neutral-200 hover:border-pin transition-all whitespace-nowrap">
           Accès Architectes
         </button>
-        <button onclick="openProprioModal()" class="hidden sm:inline-flex text-xs font-bold bg-pin hover:bg-pin-hover text-white px-4 py-2 rounded-full shadow-sm transition-all shrink-0">
-          Estimer mon projet gratuitement
+        <button onclick="openProprioModal()" class="hidden sm:inline-flex text-xs font-bold bg-pin hover:bg-pin-hover text-white px-4 py-2 rounded-full shadow-sm transition-all shrink-0 whitespace-nowrap">
+          Estimer mon projet
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= HERO SECTION (Phrases Courtes, Titres Sans Coupures) ================= -->
-  <section class="pt-12 pb-16 sm:pt-16 sm:pb-20 bg-gradient-to-b from-neutral-50/60 to-white">
+  <!-- ================= HERO SECTION (Phrases Courtes, Titres Sans Vaguelettes) ================= -->
+  <section class="pt-10 pb-16 sm:pt-16 sm:pb-20 bg-gradient-to-b from-neutral-50/60 to-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
       
       <!-- Badge Simple -->
@@ -116,21 +150,20 @@
         <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Marketplace Tiers de Confiance
       </div>
 
-      <!-- Titre Percutant (Pas de coupure bizarre) -->
-      <h1 class="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
+      <!-- Titre Net (Sans aucune vaguelette ni coupure) -->
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
         Rénovez sans risque.
       </h1>
-      <p class="font-display text-lg sm:text-3xl md:text-4xl font-extrabold text-pin mt-1.5 tracking-tight px-2">
-        Séquestre bancaire <br class="sm:hidden">& Architectes agréés.
+      <p class="font-display text-xl sm:text-3xl md:text-4xl font-extrabold text-pin mt-2 tracking-tight">
+        Séquestre bancaire <span class="text-neutral-900">&amp;</span> Architectes agréés.
       </p>
 
-      <!-- Sous-titre Court -->
-      <p class="mt-5 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        Sortez votre bien du statut de passoire thermique (F ou G). 
-        Vos fonds restent protégés en banque jusqu’à la livraison du DPE conforme.
+      <!-- Sous-titre Court & Percutant -->
+      <p class="mt-4 text-sm sm:text-base md:text-lg text-neutral-600 max-w-xl mx-auto leading-relaxed">
+        Sortez votre bien du statut passoire thermique (G ou F). Vos fonds restent protégés sur compte séquestre jusqu'à la délivrance du DPE conforme.
       </p>
 
-      <!-- Deux Boutons Distincts Hero -->
+      <!-- Deux Boutons Distincts (Proprio vs Archi) -->
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <button onclick="openProprioModal()" class="w-full sm:w-auto text-sm font-bold bg-pin hover:bg-pin-hover text-white px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
           <i data-lucide="home" class="w-4 h-4"></i>
@@ -142,26 +175,26 @@
         </button>
       </div>
 
-      <!-- 4 Chiffres Clés Nets & Explicites -->
-      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left">
+      <!-- 4 Chiffres Clés Nets Sans Fioritures -->
+      <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-left">
         <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display">100 %</div>
-          <div class="text-xs font-bold text-pin uppercase mt-0.5">Fonds Séquestrés</div>
+          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display whitespace-nowrap">100&nbsp;%</div>
+          <div class="text-[11px] font-bold text-pin uppercase mt-0.5">Fonds Séquestrés</div>
           <div class="text-xs text-neutral-500 mt-1">Compte bloqué ACPR</div>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-pin font-display">21 400 €</div>
-          <div class="text-xs font-bold text-neutral-800 uppercase mt-0.5">Déficit Foncier / an</div>
+          <div class="text-xl sm:text-2xl font-black text-pin font-display whitespace-nowrap">21&nbsp;400&nbsp;€</div>
+          <div class="text-[11px] font-bold text-neutral-800 uppercase mt-0.5">Déficit Foncier / an</div>
           <div class="text-xs text-neutral-500 mt-1">Prorogé fin 2027</div>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display">Jusqu'à 80 %</div>
-          <div class="text-xs font-bold text-pin uppercase mt-0.5">Subventions Anah</div>
+          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display whitespace-nowrap">Jusqu'à 80&nbsp;%</div>
+          <div class="text-[11px] font-bold text-pin uppercase mt-0.5">Subventions Anah</div>
           <div class="text-xs text-neutral-500 mt-1">MaPrimeRénov' 2026</div>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-emerald-600 font-display">Note C ou D</div>
-          <div class="text-xs font-bold text-neutral-800 uppercase mt-0.5">DPE Garanti</div>
+          <div class="text-xl sm:text-2xl font-black text-emerald-600 font-display whitespace-nowrap">Note C ou D</div>
+          <div class="text-[11px] font-bold text-neutral-800 uppercase mt-0.5">DPE Garanti</div>
           <div class="text-xs text-neutral-500 mt-1">Attestation officielle</div>
         </div>
       </div>
@@ -169,15 +202,15 @@
     </div>
   </section>
 
-  <!-- ================= SOLUTION : 2 CARTES CLAIRES (PROPRIOS VS ARCHIS) ================= -->
+  <!-- ================= SOLUTION : 2 CARTES PROPRIO & ARCHI ================= -->
   <section id="solution" class="py-14 sm:py-16 bg-white border-y border-neutral-100">
     <div class="max-w-5xl mx-auto px-4">
       
-      <div class="text-center max-w-xl mx-auto mb-10 px-4">
-        <h2 class="font-display text-xl sm:text-3xl font-extrabold text-neutral-900">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
           La marketplace en 2 profils
         </h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-2 max-w-md mx-auto">
+        <p class="text-xs sm:text-sm text-neutral-500 mt-2">
           Un tiers de confiance unique reliant propriétaires et architectes agréés.
         </p>
       </div>
@@ -261,7 +294,7 @@
     </div>
   </section>
 
-  <!-- ================= LOI & AIDES : 4 BLOCS NETS ================= -->
+  <!-- ================= LOI & AIDES : 4 BLOCS NETS SANS COUPOIR ================= -->
   <section id="loi" class="py-14 sm:py-16 bg-neutral-50/50">
     <div class="max-w-5xl mx-auto px-4">
       
@@ -269,48 +302,44 @@
         <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
           Ce que la loi impose et finance
         </h2>
-        <p class="text-sm text-neutral-500 mt-2">
-          Les sanctions d'interdiction et vos opportunités fiscales réelles.
+        <p class="text-xs sm:text-sm text-neutral-500 mt-1">
+          Calendrier officiel et dispositifs fiscaux vérifiés.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <!-- Bloc 1 -->
         <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
           <div class="text-xs font-bold text-rose-600 uppercase mb-1">Loi Climat</div>
           <div class="text-base font-bold text-neutral-900">Interdiction de louer</div>
-          <div class="mt-3 space-y-1.5 text-xs text-neutral-600 font-medium">
-            <div class="text-rose-600 font-bold">Classe G : Interdit (depuis 2025)</div>
-            <div class="text-amber-700 font-bold">Classe F : Interdit 1er janv. 2028</div>
-            <div class="text-neutral-500">Classe E : Horizon 2034</div>
+          <div class="mt-3 space-y-1 text-xs text-neutral-600 font-medium">
+            <div class="text-rose-600 font-bold">G : Interdit depuis 2025</div>
+            <div class="text-amber-700 font-bold">F : Interdit au 1er janv. 2028</div>
+            <div class="text-neutral-500">E : Horizon 2034</div>
           </div>
         </div>
 
-        <!-- Bloc 2 -->
         <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
           <div class="text-xs font-bold text-pin uppercase mb-1">Fiscalité 2026-2027</div>
           <div class="text-base font-bold text-neutral-900">Déficit Foncier ×2</div>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Plafond doublé à <strong>21 400 € / an</strong> déductible sur vos revenus jusqu'au 31 décembre 2027.
+            Plafond porté à <strong>21 400 € / an</strong> déductible jusqu'au 31 décembre 2027.
           </p>
         </div>
 
-        <!-- Bloc 3 -->
         <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
           <div class="text-xs font-bold text-emerald-600 uppercase mb-1">Aides Anah</div>
           <div class="text-base font-bold text-neutral-900">MaPrimeRénov'</div>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Jusqu'à <strong>80 % de subventions</strong> (assiette 40 000 € HT) pour 2 sauts de classes DPE.
+            Jusqu'à <strong>80 % d'aides</strong> (assiette 40 000 € HT) pour 2 sauts de classes DPE.
           </p>
         </div>
 
-        <!-- Bloc 4 -->
         <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
           <div class="text-xs font-bold text-blue-600 uppercase mb-1">Financement</div>
           <div class="text-base font-bold text-neutral-900">Éco-PTZ & TVA 5,5%</div>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Prêt à taux zéro jusqu'à <strong>50 000 €</strong> sur 20 ans cumulable avec la TVA à taux réduit.
+            Prêt à taux zéro jusqu'à <strong>50 000 €</strong> cumulable avec la TVA réduite.
           </p>
         </div>
 
@@ -327,8 +356,8 @@
         <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
           Simulateur Express
         </h2>
-        <p class="text-sm text-neutral-500 mt-1">
-          Calculez vos subventions et votre déduction fiscale en direct.
+        <p class="text-xs sm:text-sm text-neutral-500 mt-1">
+          Calculez vos aides et votre avantage fiscal en direct.
         </p>
       </div>
 
@@ -336,7 +365,6 @@
         
         <div class="space-y-6">
           
-          <!-- Slider Surface -->
           <div>
             <div class="flex justify-between items-center mb-2">
               <label class="text-xs font-bold text-neutral-700 uppercase">Surface du logement</label>
@@ -345,7 +373,6 @@
             <input type="range" id="inputSurface" min="20" max="150" step="5" value="65" class="w-full accent-pin cursor-pointer">
           </div>
 
-          <!-- Choix DPE -->
           <div>
             <label class="block text-xs font-bold text-neutral-700 uppercase mb-2">DPE Actuel</label>
             <div class="grid grid-cols-3 gap-2">
@@ -361,7 +388,6 @@
             </div>
           </div>
 
-          <!-- Résultats Nets -->
           <div class="bg-neutral-900 text-white p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
             <div>
               <div class="text-[11px] text-neutral-400 uppercase font-semibold">Travaux Estimés</div>
@@ -377,7 +403,6 @@
             </div>
           </div>
 
-          <!-- Bouton CTA Simulateur -->
           <button onclick="openProprioModal()" class="w-full text-xs sm:text-sm font-bold bg-pin hover:bg-pin-hover text-white py-3.5 rounded-full transition-all text-center">
             Estimer mon projet gratuitement
           </button>
@@ -389,7 +414,7 @@
     </div>
   </section>
 
-  <!-- ================= FAQ (Ultra-Courte, 4 Questions Clés) ================= -->
+  <!-- ================= FAQ (Ultra-Courte) ================= -->
   <section id="faq" class="py-14 sm:py-16 bg-neutral-50/50 border-t border-neutral-100">
     <div class="max-w-2xl mx-auto px-4">
       
@@ -403,7 +428,7 @@
         <div class="bg-white p-4 rounded-2xl border border-neutral-200">
           <div class="font-bold text-sm text-neutral-900 mb-1">Comment le séquestre me protège-t-il ?</div>
           <p class="text-xs text-neutral-600 leading-relaxed">
-            Vos fonds sont consignés sur un compte bancaire bloqué. Les artisans sont rémunérés uniquement après validation de chaque jalon par votre architecte.
+            Vos fonds sont consignés sur un compte bancaire bloqué. Les artisans sont rémunérés uniquement après validation de chaque étape par votre architecte.
           </p>
         </div>
 
@@ -460,7 +485,7 @@
   <!-- ================= MODAL PROPRIÉTAIRE ================= -->
   <div id="proprioModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
-      <button onclick="closeProprioModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700">
+      <button onclick="closeProprioModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700" aria-label="Fermer">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
@@ -501,7 +526,7 @@
   <!-- ================= MODAL ARCHITECTE ================= -->
   <div id="archiModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
-      <button onclick="closeArchiModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700">
+      <button onclick="closeArchiModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700" aria-label="Fermer">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
@@ -539,11 +564,10 @@
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT SIMPLE & LÉGER ================= -->
+  <!-- ================= JAVASCRIPT ================= -->
   <script>
     lucide.createIcons();
 
-    // Modale Propriétaire
     function openProprioModal() {
       document.getElementById('proprioModal').classList.remove('hidden');
     }
@@ -551,7 +575,6 @@
       document.getElementById('proprioModal').classList.add('hidden');
     }
 
-    // Modale Architecte
     function openArchiModal() {
       document.getElementById('archiModal').classList.remove('hidden');
     }
@@ -571,7 +594,6 @@
       closeArchiModal();
     }
 
-    // Simulateur Express
     const inputSurface = document.getElementById('inputSurface');
     const simSurface = document.getElementById('simSurface');
     const resBudget = document.getElementById('resBudget');
