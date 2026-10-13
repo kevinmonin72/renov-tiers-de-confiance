@@ -130,9 +130,10 @@
 
       <!-- Boutons Actions Header -->
       <div class="flex items-center gap-2 shrink-0">
-        <button onclick="openArchiModal()" class="hidden lg:inline-flex text-xs font-bold text-neutral-700 hover:text-pin px-3.5 py-2 rounded-full border border-neutral-200 hover:border-pin transition-all whitespace-nowrap">
-          Accès Architectes
-        </button>
+        <a href="app.html" class="inline-flex text-xs font-bold bg-neutral-900 hover:bg-neutral-800 text-white px-3.5 py-2 rounded-full shadow-sm transition-all shrink-0 whitespace-nowrap items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Espace SaaS</span>
+        </a>
         <button onclick="openProprioModal()" class="hidden sm:inline-flex text-xs font-bold bg-pin hover:bg-pin-hover text-white px-4 py-2 rounded-full shadow-sm transition-all shrink-0 whitespace-nowrap">
           Estimer mon projet
         </button>
@@ -163,15 +164,19 @@
         Sortez votre bien du statut passoire thermique (G ou F). Vos fonds restent protégés sur compte séquestre jusqu'à la délivrance du DPE conforme.
       </p>
 
-      <!-- Deux Boutons Distincts (Proprio vs Archi) -->
+      <!-- Boutons Actions & Accès SaaS -->
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <button onclick="openProprioModal()" class="w-full sm:w-auto text-sm font-bold bg-pin hover:bg-pin-hover text-white px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+        <a href="app.html" class="w-full sm:w-auto text-sm font-bold bg-neutral-950 hover:bg-neutral-800 text-white px-6 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+          <i data-lucide="layout-grid" class="w-4 h-4 text-emerald-400"></i>
+          <span>Accéder au SaaS &amp; Marketplace</span>
+        </a>
+        <button onclick="openProprioModal()" class="w-full sm:w-auto text-sm font-bold bg-pin hover:bg-pin-hover text-white px-6 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
           <i data-lucide="home" class="w-4 h-4"></i>
-          <span>Estimer mon projet gratuitement</span>
+          <span>Estimer mon projet</span>
         </button>
-        <button onclick="openArchiModal()" class="w-full sm:w-auto text-sm font-bold bg-white hover:bg-neutral-50 text-neutral-800 px-6 py-3.5 rounded-full border border-neutral-300 shadow-sm transition-all flex items-center justify-center gap-2">
+        <button onclick="openArchiModal()" class="w-full sm:w-auto text-sm font-bold bg-white hover:bg-neutral-50 text-neutral-800 px-5 py-3.5 rounded-full border border-neutral-300 shadow-sm transition-all flex items-center justify-center gap-2">
           <i data-lucide="compass" class="w-4 h-4 text-pin"></i>
-          <span>Rejoindre le réseau d'architectes</span>
+          <span>Rejoindre le réseau</span>
         </button>
       </div>
 

@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Rénov.Confiance · Plateforme SaaS Marketplace & Espace Architectes</title>
+  <meta name="description" content="Plateforme SaaS de mise en relation sécurisée entre propriétaires bailleurs et architectes Mon Accompagnateur Rénov' (MAR) sous séquestre bancaire ACPR.">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E60023'/%3E%3Cpath d='M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M18 23.5L21 26.5L26.5 20.5' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pin: {
+              DEFAULT: '#E60023',
+              hover: '#BD081C',
+              dark: '#8C0816',
+              light: '#FFF1F2',
+              soft: '#FFE4E6'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+    }
+    /* Scrollbar discrète */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F3F4F6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+  </style>
+</head>
+<body class="bg-[#F8F9FA] text-neutral-900 font-sans antialiased min-h-screen flex flex-col selection:bg-pin-soft selection:text-pin">
+
+  <!-- ================= TOP BAR : SWITCHER DE RÔLE (PARTICULIER vs ARCHITECTE) ================= -->
+  <div class="bg-neutral-950 text-white text-xs py-2.5 px-4 sticky top-0 z-50 border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Logo & Environnement -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <div class="w-7 h-7 rounded-lg bg-pin flex items-center justify-center text-white shrink-0">
+            <svg viewBox="0 0 44 44" fill="none" class="w-4 h-4">
+              <path d="M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
+              <path d="M18 23.5L21 26.5L26.5 20.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="font-display font-extrabold text-sm tracking-tight">Rénov<span class="text-pin">.Confiance</span></span>
+        </a>
+        <span class="hidden sm:inline-block text-neutral-500">|</span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 font-semibold text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Séquestre ACPR Actif
+        </span>
+      </div>
+
+      <!-- SÉLECTEUR DE RÔLE PRINCIPAL -->
+      <div class="flex items-center gap-2 bg-neutral-900 p-1 rounded-full border border-neutral-800">
+        <button id="btnRoleClient" onclick="switchRole('client')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs transition-all bg-pin text-white shadow-sm">
+          <i data-lucide="user" class="w-3.5 h-3.5"></i>
+          <span>Côté Particulier / Bailleur</span>
+        </button>
+        <button id="btnRoleArchi" onclick="switchRole('archi')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs transition-all text-neutral-400 hover:text-white">
+          <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+          <span>Côté Architecte Pro</span>
+        </button>
+      </div>
+
+      <!-- ACTIONS SECONDAIRES & RETOUR LANDING -->
+      <div class="flex items-center gap-2 text-[11px]">
+        <button onclick="resetData()" title="Réinitialiser les données de démo" class="text-neutral-400 hover:text-white px-2 py-1 rounded hover:bg-neutral-800 transition-colors flex items-center gap-1">
+          <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+          <span class="hidden md:inline">Reset Démo</span>
+        </button>
+        <a href="index.html" class="text-neutral-400 hover:text-white px-2.5 py-1 rounded hover:bg-neutral-800 transition-colors flex items-center gap-1">
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+          <span class="hidden sm:inline">Landing Page</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= SUB-HEADER CONTEXTUEL ================= -->
+  <header class="bg-white border-b border-neutral-200 sticky top-11 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Titre de la vue active -->
+      <div id="subHeaderTitleBlock">
+        <!-- Dynamisé par JS -->
+      </div>
+
+      <!-- Sous-navigation dynamique -->
+      <div id="subHeaderNavBlock" class="flex items-center gap-2">
+        <!-- Dynamisé par JS -->
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= CONTENU PRINCIPAL (SPA) ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1 : CÔTÉ PARTICULIER (MARKETPLACE MALT/FIVERR STYLE) -->
+    <!-- ========================================================================= -->
+    <div id="viewClient" class="space-y-8">
+      
+      <!-- SUB-TAB 1 : EXPLORATEUR DE TALENTS MAR (MARKETPLACE) -->
+      <div id="clientTabMarketplace" class="space-y-6">
+        
+        <!-- BANNIÈRE DE RECHERCHE & FILTRES RAPIDES -->
+        <div class="bg-white rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-neutral-100">
+            <div>
+              <h1 class="font-display text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight">
+                Trouvez votre Architecte <span class="text-pin">Mon Accompagnateur Rénov'</span>
+              </h1>
+              <p class="text-xs sm:text-sm text-neutral-500 mt-1">
+                Professionnels vérifiés par l'Ordre des Architectes & agréés France Rénov'. Fonds 100 % sous séquestre bancaire.
+              </p>
+            </div>
+            
+            <div class="flex items-center gap-2 text-xs font-semibold">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Garantie Saut DPE C ou D
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pin-light text-pin border border-pin-soft">
+                <i data-lucide="lock" class="w-3.5 h-3.5"></i> Séquestre ACPR
+              </span>
+            </div>
+          </div>
+
+          <!-- BARRE DE RECHERCHE ET FILTRES -->
+          <div class="pt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            
+            <!-- Recherche texte -->
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="filterSearch" oninput="renderMarketplace()" placeholder="Nom, spécialité, ville..." class="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-pin">
+            </div>
+
+            <!-- Filtre Ville -->
+            <div>
+              <select id="filterCity" onchange="renderMarketplace()" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs sm:text-sm bg-white focus:outline-none focus:ring-2 focus:ring-pin">
+                <option value="">Toutes les régions</option>
+                <option value="Paris">Paris & Île-de-France</option>
+                <option value="Lyon">Lyon & Auvergne-Rhône-Alpes</option>
+                <option value="Bordeaux">Bordeaux & Nouvelle-Aquitaine</option>
+              </select>
+            </div>
+
+            <!-- Filtre Spécialité -->
+            <div>
+              <select id="filterTag" onchange="renderMarketplace()" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs sm:text-sm bg-white focus:outline-none focus:ring-2 focus:ring-pin">
+                <option value="">Toutes spécialités</option>
+                <option value="Haussmannien">Haussmannien & Ancien</option>
+                <option value="Passoire G & F">Passoires G & F (Loi Climat)</option>
+                <option value="Copropriété">Copropriété & Rénov Globale</option>
+                <option value="Éco-matériaux">Biosourcé & Pierre de taille</option>
+              </select>
+            </div>
+
+            <!-- Filtre Note -->
+            <div>
+              <select id="filterRating" onchange="renderMarketplace()" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-xs sm:text-sm bg-white focus:outline-none focus:ring-2 focus:ring-pin">
+                <option value="0">Toutes les notes</option>
+                <option value="4.9">⭐ 4.9 et plus</option>
+                <option value="4.8">⭐ 4.8 et plus</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- FILTRES PILLS RAPIDES -->
+          <div class="mt-4 flex flex-wrap items-center gap-2 pt-3 border-t border-neutral-100 text-xs">
+            <span class="text-neutral-500 font-semibold mr-1">Filtres rapides :</span>
+            <button onclick="applyQuickFilter('Haussmannien')" class="px-2.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors">🏢 Haussmannien</button>
+            <button onclick="applyQuickFilter('Passoire G & F')" class="px-2.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors">🔴 Passoire G/F</button>
+            <button onclick="applyQuickFilter('Déficit Foncier')" class="px-2.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors">💰 Déficit 21 400 €</button>
+            <button onclick="applyQuickFilter('Éco-matériaux')" class="px-2.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors">🌿 Biosourcé</button>
+            <button onclick="resetFilters()" class="text-pin font-bold hover:underline ml-auto">Réinitialiser filtres</button>
+          </div>
+
+        </div>
+
+        <!-- LISTE DES ARCHITECTES (MALT/FIVERR PRO STYLE) -->
+        <div id="architectsList" class="space-y-5">
+          <!-- Dynamisé par JS -->
+        </div>
+
+      </div>
+
+      <!-- SUB-TAB 2 : SUIVI DE CHANTIER CLIENT (SÉQUESTRE & PROJET EN COURS) -->
+      <div id="clientTabTracker" class="hidden space-y-6">
+        <!-- Dynamisé par JS -->
+      </div>
+
+      <!-- SUB-TAB 3 : SIMULATEUR EXPRESS AIDES & FISCALITÉ -->
+      <div id="clientTabSimulator" class="hidden space-y-6">
+        <!-- Dynamisé par JS -->
+      </div>
+
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2 : CÔTÉ ARCHITECTE PRO (DASHBOARD, GESTION PORTFOLIO, TARIFS) -->
+    <!-- ========================================================================= -->
+    <div id="viewArchi" class="hidden space-y-8">
+      
+      <!-- HEADER PRO & SÉLECTION D'ARCHITECTE TESTEUR -->
+      <div class="bg-neutral-900 text-white rounded-3xl p-6 sm:p-8 border border-neutral-800 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-neutral-800">
+          
+          <div class="flex items-center gap-4">
+            <img id="proHeaderAvatar" src="" alt="Avatar" class="w-16 h-16 rounded-2xl object-cover ring-2 ring-pin shadow-md">
+            <div>
+              <div class="flex items-center gap-2">
+                <h1 id="proHeaderName" class="font-display text-xl sm:text-2xl font-extrabold tracking-tight">--</h1>
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold">
+                  <i data-lucide="check" class="w-3 h-3"></i> Agréé MAR Officiel
+                </span>
+              </div>
+              <p id="proHeaderTitle" class="text-xs sm:text-sm text-neutral-400 mt-0.5">--</p>
+              <p id="proHeaderMeta" class="text-[11px] text-neutral-500 mt-1">--</p>
+            </div>
+          </div>
+
+          <!-- SÉLECTION DU PROFIL DE TEST -->
+          <div class="bg-neutral-800/80 p-3 rounded-2xl border border-neutral-700/80 shrink-0">
+            <label class="block text-[11px] font-bold text-neutral-300 uppercase mb-1">Changer d'architecte testeur :</label>
+            <select id="selectArchiTester" onchange="changeActiveArchi(this.value)" class="bg-neutral-900 text-white border border-neutral-700 rounded-xl px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pin">
+              <!-- Dynamisé par JS -->
+            </select>
+          </div>
+
+        </div>
+
+        <!-- STATS CLÉS DU DASHBOARD PRO -->
+        <div class="pt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-neutral-800/50 p-4 rounded-2xl border border-neutral-700/50">
+            <div class="text-[11px] font-bold text-neutral-400 uppercase">Fonds Séquestrés en Attente</div>
+            <div class="text-xl sm:text-2xl font-black text-emerald-400 font-display mt-1">28 400 €</div>
+            <div class="text-[11px] text-neutral-500 mt-1">Consignés sur compte BNP/ACPR</div>
+          </div>
+          <div class="bg-neutral-800/50 p-4 rounded-2xl border border-neutral-700/50">
+            <div class="text-[11px] font-bold text-neutral-400 uppercase">Chantiers Livrés</div>
+            <div id="statCompletedProjects" class="text-xl sm:text-2xl font-black text-white font-display mt-1">--</div>
+            <div class="text-[11px] text-emerald-400 mt-1">100 % sorties de passoire</div>
+          </div>
+          <div class="bg-neutral-800/50 p-4 rounded-2xl border border-neutral-700/50">
+            <div class="text-[11px] font-bold text-neutral-400 uppercase">Note Malt / Marketplace</div>
+            <div id="statRating" class="text-xl sm:text-2xl font-black text-pin font-display mt-1">⭐ --</div>
+            <div id="statReviewCount" class="text-[11px] text-neutral-400 mt-1">-- avis certifiés</div>
+          </div>
+          <div class="bg-neutral-800/50 p-4 rounded-2xl border border-neutral-700/50">
+            <div class="text-[11px] font-bold text-neutral-400 uppercase">Délai Réponse Moyen</div>
+            <div id="statResponseTime" class="text-xl sm:text-2xl font-black text-white font-display mt-1">--</div>
+            <div class="text-[11px] text-neutral-500 mt-1">Top Prestataire 2026</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ONGLETS DU DASHBOARD ARCHITECTE -->
+      <div class="bg-white rounded-3xl border border-neutral-200 overflow-hidden shadow-sm">
+        
+        <div class="flex items-center border-b border-neutral-200 bg-neutral-50/50 px-6 overflow-x-auto">
+          <button id="tabBtnProfile" onclick="switchArchiTab('profile')" class="py-4 px-4 font-bold text-xs sm:text-sm border-b-2 border-pin text-pin transition-all flex items-center gap-2 whitespace-nowrap">
+            <i data-lucide="user-cog" class="w-4 h-4"></i>
+            <span>Modifier mon Profil & Tarifs</span>
+          </button>
+          <button id="tabBtnPortfolio" onclick="switchArchiTab('portfolio')" class="py-4 px-4 font-bold text-xs sm:text-sm border-b-2 border-transparent text-neutral-600 hover:text-neutral-900 transition-all flex items-center gap-2 whitespace-nowrap">
+            <i data-lucide="briefcase" class="w-4 h-4"></i>
+            <span>Gérer mon Portfolio (<span id="proPortfolioBadge">0</span>)</span>
+          </button>
+          <button id="tabBtnRequests" onclick="switchArchiTab('requests')" class="py-4 px-4 font-bold text-xs sm:text-sm border-b-2 border-transparent text-neutral-600 hover:text-neutral-900 transition-all flex items-center gap-2 whitespace-nowrap">
+            <i data-lucide="inbox" class="w-4 h-4"></i>
+            <span>Demandes Bailleurs & Jalons Séquestre</span>
+          </button>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          
+          <!-- CONTENU ONGLET 1 : ÉDITION DU PROFIL & TARIFS -->
+          <div id="archiTabContentProfile" class="space-y-6">
+            
+            <form id="formEditProfile" onsubmit="saveProfileChanges(event)" class="space-y-6">
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Colonne Gauche : Identité & Photo -->
+                <div class="space-y-4">
+                  <h3 class="text-sm font-bold text-neutral-900 uppercase tracking-wider flex items-center gap-2">
+                    <i data-lucide="badge-check" class="w-4 h-4 text-pin"></i> Identité & Agrément
+                  </h3>
+                  
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Nom complet</label>
+                    <input type="text" id="editName" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Titre Professionnel</label>
+                    <input type="text" id="editTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Ville & Secteur d'intervention</label>
+                    <input type="text" id="editLocation" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Photo de profil (URL)</label>
+                    <div class="flex items-center gap-3">
+                      <input type="url" id="editAvatar" required onchange="previewNewAvatar(this.value)" class="flex-1 px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                      <img id="avatarPreviewBox" src="" alt="preview" class="w-10 h-10 rounded-xl object-cover ring-1 ring-neutral-300">
+                    </div>
+                    <p class="text-[11px] text-neutral-500 mt-1">Vous pouvez coller l'URL d'une photo Unsplash, LinkedIn ou hébergée.</p>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">N° Agrément MAR</label>
+                      <input type="text" id="editMarId" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Ordre des Architectes</label>
+                      <input type="text" id="editOrderMatricule" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Colonne Droite : Tarifs & Bio -->
+                <div class="space-y-4">
+                  <h3 class="text-sm font-bold text-neutral-900 uppercase tracking-wider flex items-center gap-2">
+                    <i data-lucide="calculator" class="w-4 h-4 text-pin"></i> Tarification & Conditions
+                  </h3>
+
+                  <div class="grid grid-cols-3 gap-3">
+                    <div>
+                      <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Pack Audit MAR (€)</label>
+                      <input type="number" id="editAuditPrice" required min="400" max="3000" class="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-sm font-bold text-pin focus:ring-2 focus:ring-pin">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">TJM (€/j)</label>
+                      <input type="number" id="editTjm" required min="300" max="2000" class="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-sm font-bold text-neutral-800 focus:ring-2 focus:ring-pin">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Maîtrise d'œuvre (%)</label>
+                      <input type="number" step="0.1" id="editMoeRate" required min="3" max="15" class="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-sm font-bold text-neutral-800 focus:ring-2 focus:ring-pin">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Spécialités & Mots-clés (séparés par virgules)</label>
+                    <input type="text" id="editTags" placeholder="Haussmannien, Passoire G, Déficit Foncier" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Présentation professionnelle / Bio</label>
+                    <textarea id="editBio" rows="4" required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-300 text-sm focus:ring-2 focus:ring-pin leading-relaxed"></textarea>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="pt-4 border-t border-neutral-200 flex items-center justify-between">
+                <span class="text-xs text-neutral-500">
+                  <i data-lucide="info" class="w-3.5 h-3.5 inline text-pin"></i> Toute modification est immédiatement synchronisée dans la Marketplace Client !
+                </span>
+                <button type="submit" class="px-6 py-3 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2">
+                  <i data-lucide="save" class="w-4 h-4"></i>
+                  <span>Sauvegarder mon profil</span>
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+
+          <!-- CONTENU ONGLET 2 : GESTION DU PORTFOLIO -->
+          <div id="archiTabContentPortfolio" class="hidden space-y-8">
+            
+            <!-- FORMULAIRE D'AJOUT D'UN NOUVEAU PROJET -->
+            <div class="bg-neutral-50 rounded-2xl p-6 border border-neutral-200">
+              <h3 class="text-sm font-bold text-neutral-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-pin"></i> Ajouter une nouvelle rénovation au portfolio
+              </h3>
+
+              <form id="formAddProject" onsubmit="addNewProject(event)" class="space-y-4">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div class="lg:col-span-2">
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Titre de la réalisation</label>
+                    <input type="text" id="projTitle" required placeholder="ex: Appartement Haussmannien 85m² – Passage G vers C" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Ville / Quartier</label>
+                    <input type="text" id="projCity" required placeholder="Paris 9e, Lyon 6e..." class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">DPE Initial (Avant)</label>
+                    <select id="projDpeBefore" class="w-full px-3 py-2 rounded-xl border border-neutral-300 text-xs font-bold bg-white text-rose-600">
+                      <option value="G">Passoire G</option>
+                      <option value="F">Passoire F</option>
+                      <option value="E">Passoire E</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">DPE Final (Après)</label>
+                    <select id="projDpeAfter" class="w-full px-3 py-2 rounded-xl border border-neutral-300 text-xs font-bold bg-white text-emerald-600">
+                      <option value="C">Classe C (Conforme)</option>
+                      <option value="B">Classe B (Très Haute Performance)</option>
+                      <option value="D">Classe D (Autorisé)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Budget Travaux (€)</label>
+                    <input type="number" id="projBudget" required placeholder="45000" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Aides Anah (€)</label>
+                    <input type="number" id="projAides" required placeholder="22000" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Photo du projet (URL)</label>
+                    <input type="url" id="projPhoto" required placeholder="https://images.unsplash.com/..." class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Déficit foncier imputé (optionnel)</label>
+                    <input type="text" id="projDeficit" placeholder="21 400 € / an" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Description des travaux & Scénario thermique</label>
+                  <textarea id="projDesc" rows="2" required placeholder="Isolation intérieure mince, menuiseries bois double vitrage, VMC double flux..." class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white"></textarea>
+                </div>
+
+                <div class="text-right">
+                  <button type="submit" class="px-5 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs shadow-md transition-all">
+                    Publier ce projet au portfolio
+                  </button>
+                </div>
+
+              </form>
+            </div>
+
+            <!-- LISTE DES PROJETS ACTUELS DU PORTFOLIO -->
+            <div>
+              <h3 class="text-sm font-bold text-neutral-900 uppercase tracking-wider mb-4">Projets actuellement en ligne dans votre profil</h3>
+              <div id="proPortfolioGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Dynamisé par JS -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CONTENU ONGLET 3 : DEMANDES & DÉBLOCAGE SÉQUESTRE -->
+          <div id="archiTabContentRequests" class="hidden space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-neutral-200">
+              <div>
+                <h3 class="font-bold text-neutral-900 text-base">Missions sous Séquestre Bancaire ACPR</h3>
+                <p class="text-xs text-neutral-500">Chaque euro est préalablement consigné avant le démarrage du chantier.</p>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Zéro risque d'impayé</span>
+            </div>
+
+            <div id="proRequestsList" class="space-y-4">
+              <!-- Dynamisé par JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= MODAL 1 : DÉTAIL COMPLET ARCHITECTE (PROFIL CLIENT) ================= -->
+  <div id="modalArchiProfile" class="fixed inset-0 z-50 hidden bg-neutral-950/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full my-auto overflow-hidden shadow-2xl relative border border-neutral-100 max-h-[92vh] flex flex-col">
+      
+      <!-- Bouton Fermer -->
+      <button onclick="closeModal('modalArchiProfile')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-neutral-700 shadow-md flex items-center justify-center transition-all" aria-label="Fermer">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Scrollable content -->
+      <div id="modalArchiProfileContent" class="overflow-y-auto flex-1 p-6 sm:p-8 space-y-6">
+        <!-- Dynamisé par JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2 : DEMANDE DE DEVIS & SÉQUESTRE ================= -->
+  <div id="modalBooking" class="fixed inset-0 z-50 hidden bg-neutral-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-neutral-100">
+      
+      <button onclick="closeModal('modalBooking')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center" aria-label="Fermer">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-[11px] font-bold text-pin uppercase tracking-wider">Demande Sécurisée sous Séquestre</span>
+        <h3 class="text-xl font-extrabold text-neutral-950 font-display mt-0.5" id="bookingTargetName">Réserver un Audit MAR</h3>
+        <p class="text-xs text-neutral-500 mt-1">Vos fonds ne sont prélevés qu'après acceptation de votre dossier par l'architecte.</p>
+      </div>
+
+      <form onsubmit="submitBooking(event)" class="space-y-3.5">
+        
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Adresse ou Ville du bien</label>
+          <input type="text" required id="bookAddress" placeholder="ex: 14 rue de Rivoli, 75004 Paris" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Surface (m²)</label>
+            <input type="number" required id="bookSurface" placeholder="75" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">DPE Actuel</label>
+            <select id="bookDpe" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm bg-white font-bold text-rose-600">
+              <option value="G">Passoire G (Urgent)</option>
+              <option value="F">Passoire F (Échéance 2028)</option>
+              <option value="E">Classe E</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Nom complet</label>
+          <input type="text" required id="bookName" placeholder="Marc V. (Bailleur)" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Email</label>
+            <input type="email" required id="bookEmail" placeholder="bailleur@email.fr" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Téléphone</label>
+            <input type="tel" required id="bookPhone" placeholder="06 12 34 56 78" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
+          </div>
+        </div>
+
+        <!-- Encadré Réassurance Séquestre -->
+        <div class="p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-[11px] text-neutral-600 space-y-1">
+          <div class="font-bold text-neutral-900 flex items-center gap-1.5">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Protection Séquestre Bancaire ACPR
+          </div>
+          <div>• Audit thermique conforme aux exigences Anah 2026.</div>
+          <div>• Scénarios officiels de sortie de passoire (saut garanti vers C ou D).</div>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all mt-2">
+          Envoyer ma demande à l'architecte
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ================= FOOTER DISCRET ================= -->
+  <footer class="bg-white border-t border-neutral-200 py-6 text-center text-xs text-neutral-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-neutral-800">Rénov.Confiance SaaS</span>
+        <span>·</span>
+        <span>Agrément France Rénov' Mon Accompagnateur Rénov' (MAR)</span>
+      </div>
+      <div>
+        Loi Climat 2026-2028 · Séquestre Bancaire ACPR · Déficit Foncier 21 400 € (LF 2026)
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ET MOTEUR REACTIF LOCALSTORAGE ================= -->
+  <script>
+    // --- 1. JEU DE DONNÉES INITIAL DES 3 ARCHITECTES TESTEURS ---
+    const INITIAL_ARCHITECTS = [
+      {
+        id: "archi-1",
+        name: "Claire Delaunay",
+        title: "Architecte DPLG & Mon Accompagnateur Rénov' (MAR)",
+        location: "Paris & Île-de-France (Paris 11e)",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        rating: 4.95,
+        reviewCount: 48,
+        completedProjects: 58,
+        successRate: "100%",
+        responseTime: "< 2h",
+        tjm: 750,
+        auditPrice: 1150,
+        moeRate: 7.5,
+        marId: "FR-MAR-75-0142",
+        orderMatricule: "#084920",
+        decennale: "MMA Pro BTP #98234-A (À jour 2026)",
+        tags: ["Haussmannien", "Passoire G & F", "Déficit Foncier", "Paris & Petite Couronne", "Audit MAR Officiel"],
+        bio: "Architecte diplômée de Paris-Belleville avec 12 ans d'expérience. Spécialisée dans la rénovation thermique des immeubles anciens parisiens (Haussmannien, pierre de taille, faubourien). J'accompagne les bailleurs et syndics dans la sortie définitive des passoires G et F sans dénaturer le cachet d'origine (moulures, parquets point de Hongrie, cheminées). Séquestre bancaire systématique pour protéger votre investissement.",
+        portfolio: [
+          {
+            id: "proj-101",
+            title: "Haussmannien 84 m² – Rue La Fayette (Paris 9e)",
+            city: "Paris 9e",
+            dpeBefore: "G",
+            dpeAfter: "C",
+            budget: 48500,
+            aides: 24000,
+            deficit: "21 400 € / an (LF 2026)",
+            photo: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+            desc: "Isolation intérieure mince sous vide pour préserver les moulures, remplacement des 5 menuiseries bois double vitrage acoustique 4/16/4, PAC air/air gainée réversible. Requalification immédiate pour relocation."
+          },
+          {
+            id: "proj-102",
+            title: "Loft Canut Faubourien 62 m² – Canal Saint-Martin",
+            city: "Paris 10e",
+            dpeBefore: "F",
+            dpeAfter: "C",
+            budget: 36200,
+            aides: 18500,
+            deficit: "17 700 € / an",
+            photo: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+            desc: "Isolation des combles et rampants en laine de bois 240mm, VMC double flux connectée ultra-silencieuse, pompe à chaleur air-eau avec régulation connectée."
+          }
+        ],
+        reviews: [
+          {
+            author: "Marc V. (Directeur Gestion Locative, 450 lots)",
+            rating: 5,
+            date: "Il y a 3 semaines",
+            comment: "Claire gère désormais tous les dossiers F et G de notre cabinet. 6 chantiers livrés en 2025-2026 sans aucun retard, séquestre bancaire libéré au centime près après délivrance du DPE C. Une bouffée d'oxygène pour nos gestionnaires !"
+          },
+          {
+            author: "Sophie G. (Conseillère en Gestion de Patrimoine)",
+            rating: 5,
+            date: "Il y a 1 mois",
+            comment: "Dossier fiscal parfait pour mes clients bailleurs : déficit foncier doublé à 21 400 € validé par les impôts. Son audit thermique MAR est d'une rigueur chirurgicale."
+          },
+          {
+            author: "Jean-Luc D. (Propriétaire bailleur)",
+            rating: 5,
+            date: "Il y a 2 mois",
+            comment: "J'avais une peur panique des abandons de chantier après une mauvaise expérience. Le compte séquestre Rénov.Confiance + le pilotage de Claire ont tout sécurisé."
+          }
+        ]
+      },
+      {
+        id: "archi-2",
+        name: "Thomas Benhamou",
+        title: "Architecte HMONP & Ingénieur Thermicien MAR",
+        location: "Lyon & Auvergne-Rhône-Alpes (Lyon 6e)",
+        avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+        rating: 4.92,
+        reviewCount: 34,
+        completedProjects: 41,
+        successRate: "100%",
+        responseTime: "< 1h",
+        tjm: 690,
+        auditPrice: 980,
+        moeRate: 7.0,
+        marId: "FR-MAR-69-0287",
+        orderMatricule: "#079311",
+        decennale: "AXA Assurances Rénov #44591-B",
+        tags: ["Copropriété", "Audit Thermique Instrumenté", "Pompe à Chaleur", "Lyon & Rhône", "Ingénieur Thermicien"],
+        bio: "Double cursus Architecte HMONP et Ingénieur INSA Lyon. Expert en thermique du bâtiment et rénovation globale de copropriétés et appartements de caractère. Je conçois des scénarios de travaux optimisés au kilowatt-heure près pour maximiser les subventions MaPrimeRénov' et l'Éco-PTZ tout en garantissant le saut de 2 à 3 classes énergétiques.",
+        portfolio: [
+          {
+            id: "proj-201",
+            title: "T3 Presqu'île 71 m² – Lyon 2e",
+            city: "Lyon 2e",
+            dpeBefore: "G",
+            dpeAfter: "B",
+            budget: 52000,
+            aides: 26000,
+            deficit: "21 400 € / an (LF 2026)",
+            photo: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+            desc: "Rénovation thermique globale : ITE sur cour intérieure, isolation plancher bas en sous-face, chaudière hybride biomasse. Note DPE passée de G à B !"
+          },
+          {
+            id: "proj-202",
+            title: "Plateau Canut Croix-Rousse 95 m²",
+            city: "Lyon 4e",
+            dpeBefore: "F",
+            dpeAfter: "C",
+            budget: 44000,
+            aides: 21000,
+            deficit: "21 400 € / an",
+            photo: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
+            desc: "Chantier mené en 8 semaines avec 3 artisans RGE lyonnais sous séquestre bancaire. Factures libérées par tranches après inspection vidéo des réseaux."
+          }
+        ],
+        reviews: [
+          {
+            author: "Antoine M. (Président Conseil Syndical, 24 lots)",
+            rating: 5,
+            date: "Il y a 2 semaines",
+            comment: "Thomas allie la vision spatiale de l'architecte et la précision mathématique du thermicien. Zéro surprise sur le devis final et subventions Anah touchées à 100%."
+          },
+          {
+            author: "Valérie B. (Investisseuse locative)",
+            rating: 5,
+            date: "Il y a 1 mois",
+            comment: "Audit MAR délivré en 48 heures. Il a débloqué une aide locale complémentaire de la Métropole de Lyon que mon notaire ignorait."
+          }
+        ]
+      },
+      {
+        id: "archi-3",
+        name: "Sarah Meyer",
+        title: "Architecte d'Intérieur CFAI & Accompagnatrice Rénov' MAR",
+        location: "Bordeaux & Nouvelle-Aquitaine (Triangle d'Or)",
+        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
+        rating: 4.98,
+        reviewCount: 29,
+        completedProjects: 36,
+        successRate: "100%",
+        responseTime: "< 3h",
+        tjm: 680,
+        auditPrice: 950,
+        moeRate: 8.0,
+        marId: "FR-MAR-33-0419",
+        orderMatricule: "#CFAI-9124",
+        decennale: "Allianz Pro Immo #12093-C",
+        tags: ["Pierre de Taille", "Éco-matériaux", "Biosourcé", "Bordeaux & Bassin", "Architecture Intérieure"],
+        bio: "Passionnée par le bâti ancien en pierre bordelaise et l'éco-conception. Je transforme les passoires thermiques en éco-lodges et appartements locatifs haut de gamme. Utilisation exclusive de matériaux biosourcés (chaux-chanvre, ouate de cellulose, liège expansé) qui respectent la perspirance de la pierre sans humidité résiduelle.",
+        portfolio: [
+          {
+            id: "proj-301",
+            title: "Échoppe Bordelaise 110 m² – Quartier Saint-Seurin",
+            city: "Bordeaux",
+            dpeBefore: "G",
+            dpeAfter: "C",
+            budget: 61000,
+            aides: 31000,
+            deficit: "21 400 € / an (LF 2026)",
+            photo: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+            desc: "Correction thermique par enduit chaux-chanvre intérieur, réfection toiture avec sarking fibre de bois 200 mm, poêle à granulés canalisable."
+          },
+          {
+            id: "proj-302",
+            title: "Appartement Chartrons 54 m²",
+            city: "Bordeaux Chartrons",
+            dpeBefore: "F",
+            dpeAfter: "C",
+            budget: 31000,
+            aides: 16200,
+            deficit: "14 800 € / an",
+            photo: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+            desc: "Chantier éco-rénové avec plan 3D et suivi hebdomadaire sur l'application. Travaux terminés 4 jours avant l'échéance convenue."
+          }
+        ],
+        reviews: [
+          {
+            author: "David L. (Bailleur Bordeaux)",
+            rating: 5,
+            date: "Il y a 1 mois",
+            comment: "Sarah a su préserver les magnifiques pierres apparentes tout en atteignant l'étiquette C requise. Mon locataire a vu ses factures divisées par 3 !"
+          },
+          {
+            author: "Éléonore K. (Cabinet Gestion Patrimoine)",
+            rating: 5,
+            date: "Il y a 2 mois",
+            comment: "Le top du professionnalisme. Transparence absolue sur les coûts et communication fluide via le compte séquestre."
+          }
+        ]
+      }
+    ];
+
+    // --- 2. GESTION DE L'ÉTAT LOCAL (LOCALSTORAGE) ---
+    const STORAGE_KEY = "renov_saas_architects_v1";
+    const ACTIVE_ARCHI_KEY = "renov_saas_active_archi_id";
+    const CURRENT_ROLE_KEY = "renov_saas_current_role";
+
+    let architects = [];
+    let currentRole = localStorage.getItem(CURRENT_ROLE_KEY) || "client";
+    let activeArchiId = localStorage.getItem(ACTIVE_ARCHI_KEY) || "archi-1";
+    let currentClientSubTab = "marketplace";
+    let currentArchiSubTab = "profile";
+
+    function loadData() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          architects = JSON.parse(stored);
+        } catch(e) {
+          architects = JSON.parse(JSON.stringify(INITIAL_ARCHITECTS));
+        }
+      } else {
+        architects = JSON.parse(JSON.stringify(INITIAL_ARCHITECTS));
+        saveData();
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(architects));
+    }
+
+    function resetData() {
+      if (confirm("Réinitialiser les données des architectes avec le profil par défaut ?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        loadData();
+        renderAll();
+        alert("Données réinitialisées avec succès !");
+      }
+    }
+
+    // --- 3. SWITCHER DE RÔLE (CLIENT vs ARCHITECTE) ---
+    function switchRole(role) {
+      currentRole = role;
+      localStorage.setItem(CURRENT_ROLE_KEY, role);
+      
+      const btnClient = document.getElementById("btnRoleClient");
+      const btnArchi = document.getElementById("btnRoleArchi");
+      const viewClient = document.getElementById("viewClient");
+      const viewArchi = document.getElementById("viewArchi");
+
+      if (role === "client") {
+        btnClient.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs transition-all bg-pin text-white shadow-sm";
+        btnArchi.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs transition-all text-neutral-400 hover:text-white";
+        viewClient.classList.remove("hidden");
+        viewArchi.classList.add("hidden");
+      } else {
+        btnArchi.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs transition-all bg-pin text-white shadow-sm";
+        btnClient.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-bold text-xs transition-all text-neutral-400 hover:text-white";
+        viewClient.classList.add("hidden");
+        viewArchi.classList.remove("hidden");
+      }
+
+      renderSubHeader();
+      renderAll();
+      lucide.createIcons();
+    }
+
+    function renderSubHeader() {
+      const titleBlock = document.getElementById("subHeaderTitleBlock");
+      const navBlock = document.getElementById("subHeaderNavBlock");
+
+      if (currentRole === "client") {
+        titleBlock.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-pin"></span>
+            <span class="text-xs font-bold uppercase text-neutral-400">Espace Bailleur & Particulier</span>
+          </div>
+          <div class="font-display font-extrabold text-base sm:text-lg text-neutral-900">
+            Marketplace Mon Accompagnateur Rénov'
+          </div>
+        `;
+        navBlock.innerHTML = `
+          <button onclick="switchClientSubTab('marketplace')" id="btnClientTabMarketplace" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${currentClientSubTab === 'marketplace' ? 'bg-pin text-white shadow-sm' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'}">
+            <i data-lucide="compass" class="w-3.5 h-3.5 inline mr-1"></i> Explorer les Architectes
+          </button>
+          <button onclick="switchClientSubTab('tracker')" id="btnClientTabTracker" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${currentClientSubTab === 'tracker' ? 'bg-pin text-white shadow-sm' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'}">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 inline mr-1"></i> Mon Chantier en Cours
+          </button>
+          <button onclick="switchClientSubTab('simulator')" id="btnClientTabSimulator" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${currentClientSubTab === 'simulator' ? 'bg-pin text-white shadow-sm' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'}">
+            <i data-lucide="calculator" class="w-3.5 h-3.5 inline mr-1"></i> Simulateur Aides
+          </button>
+        `;
+      } else {
+        const active = getActiveArchi();
+        titleBlock.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span class="text-xs font-bold uppercase text-neutral-400">Espace Architecte Pro</span>
+          </div>
+          <div class="font-display font-extrabold text-base sm:text-lg text-neutral-900">
+            Tableau de Bord · ${active.name}
+          </div>
+        `;
+        navBlock.innerHTML = `
+          <span class="text-xs text-neutral-500 hidden sm:inline">Agrément France Rénov' vérifié</span>
+          <button onclick="switchRole('client')" class="px-3 py-1.5 rounded-full border border-neutral-300 text-xs font-bold text-neutral-700 hover:border-pin hover:text-pin transition-all flex items-center gap-1">
+            <i data-lucide="eye" class="w-3.5 h-3.5"></i> Voir mon profil côté client
+          </button>
+        `;
+      }
+    }
+
+    function switchClientSubTab(tab) {
+      currentClientSubTab = tab;
+      document.getElementById("clientTabMarketplace").classList.toggle("hidden", tab !== "marketplace");
+      document.getElementById("clientTabTracker").classList.toggle("hidden", tab !== "tracker");
+      document.getElementById("clientTabSimulator").classList.toggle("hidden", tab !== "simulator");
+      renderSubHeader();
+      if (tab === "tracker") renderClientTracker();
+      if (tab === "simulator") renderClientSimulator();
+      lucide.createIcons();
+    }
+
+    function switchArchiTab(tab) {
+      currentArchiSubTab = tab;
+      
+      const tabBtnProfile = document.getElementById("tabBtnProfile");
+      const tabBtnPortfolio = document.getElementById("tabBtnPortfolio");
+      const tabBtnRequests = document.getElementById("tabBtnRequests");
+
+      tabBtnProfile.className = `py-4 px-4 font-bold text-xs sm:text-sm border-b-2 ${tab === 'profile' ? 'border-pin text-pin' : 'border-transparent text-neutral-600 hover:text-neutral-900'} transition-all flex items-center gap-2 whitespace-nowrap`;
+      tabBtnPortfolio.className = `py-4 px-4 font-bold text-xs sm:text-sm border-b-2 ${tab === 'portfolio' ? 'border-pin text-pin' : 'border-transparent text-neutral-600 hover:text-neutral-900'} transition-all flex items-center gap-2 whitespace-nowrap`;
+      tabBtnRequests.className = `py-4 px-4 font-bold text-xs sm:text-sm border-b-2 ${tab === 'requests' ? 'border-pin text-pin' : 'border-transparent text-neutral-600 hover:text-neutral-900'} transition-all flex items-center gap-2 whitespace-nowrap`;
+
+      document.getElementById("archiTabContentProfile").classList.toggle("hidden", tab !== "profile");
+      document.getElementById("archiTabContentPortfolio").classList.toggle("hidden", tab !== "portfolio");
+      document.getElementById("archiTabContentRequests").classList.toggle("hidden", tab !== "requests");
+
+      lucide.createIcons();
+    }
+
+    // --- 4. GESTION DE L'ARCHITECTE ACTIF EN TEST ---
+    function getActiveArchi() {
+      return architects.find(a => a.id === activeArchiId) || architects[0];
+    }
+
+    function changeActiveArchi(id) {
+      activeArchiId = id;
+      localStorage.setItem(ACTIVE_ARCHI_KEY, id);
+      renderArchiDashboard();
+      renderSubHeader();
+      lucide.createIcons();
+    }
+
+    // --- 5. RENDU CÔTÉ PARTICULIER (MARKETPLACE MALT/FIVERR STYLE) ---
+    function renderMarketplace() {
+      const container = document.getElementById("architectsList");
+      if (!container) return;
+
+      const filterSearch = (document.getElementById("filterSearch")?.value || "").toLowerCase();
+      const filterCity = document.getElementById("filterCity")?.value || "";
+      const filterTag = document.getElementById("filterTag")?.value || "";
+      const filterRating = parseFloat(document.getElementById("filterRating")?.value || "0");
+
+      const filtered = architects.filter(archi => {
+        if (filterSearch) {
+          const matchName = archi.name.toLowerCase().includes(filterSearch);
+          const matchTitle = archi.title.toLowerCase().includes(filterSearch);
+          const matchLoc = archi.location.toLowerCase().includes(filterSearch);
+          const matchTags = archi.tags.some(t => t.toLowerCase().includes(filterSearch));
+          if (!matchName && !matchTitle && !matchLoc && !matchTags) return false;
+        }
+        if (filterCity && !archi.location.includes(filterCity)) return false;
+        if (filterTag && !archi.tags.includes(filterTag)) return false;
+        if (filterRating && archi.rating < filterRating) return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-3xl p-12 text-center border border-neutral-200">
+            <i data-lucide="search-x" class="w-10 h-10 text-neutral-300 mx-auto mb-3"></i>
+            <h3 class="font-bold text-neutral-800 text-lg">Aucun architecte ne correspond à vos filtres</h3>
+            <p class="text-xs text-neutral-500 mt-1">Essayez d'élargir votre recherche ou de réinitialiser les critères.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 rounded-full bg-neutral-900 text-white text-xs font-bold">Réinitialiser les filtres</button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map(archi => `
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200/90 hover:border-neutral-300 shadow-sm hover:shadow-md transition-all flex flex-col lg:flex-row gap-6">
+          
+          <!-- Colonne Profil Gauche -->
+          <div class="flex-1 space-y-4">
+            
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              
+              <!-- Avatar avec badge vérifié -->
+              <div class="relative shrink-0">
+                <img src="${archi.avatar}" alt="${archi.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover ring-2 ring-neutral-100 shadow-sm">
+                <span class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white text-[11px]" title="MAR Agréé France Rénov'">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+
+              <!-- Infos principales -->
+              <div class="space-y-1">
+                <div class="flex flex-wrap items-center gap-2">
+                  <h2 class="font-display text-xl sm:text-2xl font-black text-neutral-950 tracking-tight hover:text-pin cursor-pointer transition-colors" onclick="openArchiProfileModal('${archi.id}')">
+                    ${archi.name}
+                  </h2>
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-pin-light text-pin text-[11px] font-bold">
+                    <i data-lucide="award" class="w-3 h-3"></i> Top Prestataire MAR
+                  </span>
+                </div>
+
+                <p class="text-xs sm:text-sm font-semibold text-neutral-700">${archi.title}</p>
+                
+                <div class="flex flex-wrap items-center gap-3 text-xs text-neutral-500 pt-0.5">
+                  <span class="flex items-center gap-1 font-medium"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-neutral-400"></i> ${archi.location}</span>
+                  <span>·</span>
+                  <span class="flex items-center gap-1 font-bold text-amber-600">
+                    <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i> ${archi.rating}
+                    <span class="font-medium text-neutral-500">(${archi.reviewCount} avis certifiés)</span>
+                  </span>
+                  <span>·</span>
+                  <span class="text-neutral-600 font-semibold">${archi.completedProjects} chantiers livrés</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Bio courte -->
+            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-2">
+              ${archi.bio}
+            </p>
+
+            <!-- Tags Spécialités -->
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              ${archi.tags.map(t => `<span class="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-semibold">${t}</span>`).join('')}
+            </div>
+
+            <!-- Mini Galerie Portfolio Avant/Après -->
+            <div class="pt-2">
+              <div class="text-[11px] font-bold text-neutral-400 uppercase tracking-wider mb-2 flex items-center justify-between">
+                <span>Dernières Réalisations (Passoires traitées)</span>
+                <button onclick="openArchiProfileModal('${archi.id}', 'portfolio')" class="text-pin font-bold hover:underline normal-case">Voir les ${archi.portfolio.length} projets</button>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-2 gap-3">
+                ${archi.portfolio.slice(0, 2).map(p => `
+                  <div onclick="openArchiProfileModal('${archi.id}', 'portfolio')" class="group relative rounded-2xl overflow-hidden border border-neutral-200 cursor-pointer bg-neutral-100 aspect-[16/9]">
+                    <img src="${p.photo}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/20 to-transparent p-2.5 flex flex-col justify-between">
+                      <div class="flex items-center gap-1 self-start">
+                        <span class="px-1.5 py-0.5 rounded bg-rose-600 text-white font-extrabold text-[10px]">DPE ${p.dpeBefore}</span>
+                        <span class="text-white text-[10px]">➔</span>
+                        <span class="px-1.5 py-0.5 rounded bg-emerald-500 text-white font-extrabold text-[10px]">DPE ${p.dpeAfter}</span>
+                      </div>
+                      <div class="text-white text-xs font-bold truncate">${p.title}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Colonne Tarifs & Action Droite (Malt / Fiverr Box) -->
+          <div class="lg:w-72 bg-neutral-50/80 rounded-2xl p-5 border border-neutral-200 flex flex-col justify-between shrink-0 space-y-4">
+            
+            <div class="space-y-3">
+              <div class="text-[11px] font-bold text-neutral-400 uppercase tracking-wider">Tarifs Indicatifs</div>
+              
+              <div class="bg-white p-3 rounded-xl border border-neutral-200">
+                <div class="text-[11px] text-neutral-500">Pack Audit MAR + Scénarios C/D</div>
+                <div class="text-xl font-black text-pin font-display mt-0.5">${archi.auditPrice} €</div>
+                <div class="text-[10px] text-emerald-700 font-semibold mt-0.5">Éligible MaPrimeRénov' (prise en charge jusqu'à 80%)</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="bg-white p-2.5 rounded-xl border border-neutral-200">
+                  <div class="text-[10px] text-neutral-400 uppercase font-bold">TJM Pro</div>
+                  <div class="font-bold text-neutral-900 mt-0.5">${archi.tjm} € / jour</div>
+                </div>
+                <div class="bg-white p-2.5 rounded-xl border border-neutral-200">
+                  <div class="text-[10px] text-neutral-400 uppercase font-bold">Maîtrise d'œuvre</div>
+                  <div class="font-bold text-neutral-900 mt-0.5">${archi.moeRate} % travaux</div>
+                </div>
+              </div>
+
+              <!-- Éléments de confiance séquestre -->
+              <div class="space-y-1.5 pt-1 text-[11px] text-neutral-600">
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                  <span>Séquestre bancaire ACPR inclus</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-neutral-500 shrink-0"></i>
+                  <span>Répond sous ${archi.responseTime}</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="file-check" class="w-3.5 h-3.5 text-neutral-500 shrink-0"></i>
+                  <span>Décennale & MAR vérifiés</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="space-y-2 pt-2">
+              <button onclick="openBookingModal('${archi.id}')" class="w-full py-3 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs shadow-sm transition-all text-center flex items-center justify-center gap-2">
+                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                <span>Demander un devis séquestré</span>
+              </button>
+              <button onclick="openArchiProfileModal('${archi.id}')" class="w-full py-2.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-800 font-bold text-xs border border-neutral-300 transition-all text-center">
+                Voir le profil complet
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function applyQuickFilter(tag) {
+      const select = document.getElementById("filterTag");
+      if (select) {
+        select.value = tag;
+        renderMarketplace();
+      }
+    }
+
+    function resetFilters() {
+      const search = document.getElementById("filterSearch");
+      const city = document.getElementById("filterCity");
+      const tag = document.getElementById("filterTag");
+      const rating = document.getElementById("filterRating");
+      if (search) search.value = "";
+      if (city) city.value = "";
+      if (tag) tag.value = "";
+      if (rating) rating.value = "0";
+      renderMarketplace();
+    }
+
+    // --- 6. SUIVI DE CHANTIER CÔTÉ PARTICULIER ---
+    function renderClientTracker() {
+      const container = document.getElementById("clientTabTracker");
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200 shadow-sm space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-200">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Chantier en cours d'exécution
+              </span>
+              <h2 class="font-display text-xl sm:text-2xl font-extrabold text-neutral-900 mt-2">
+                Appartement 78 m² · Passage G ➔ C (Paris 11e)
+              </h2>
+              <p class="text-xs text-neutral-500 mt-0.5">Architecte MAR responsable : <strong>Claire Delaunay</strong> · Réf dossier #MAR-2026-7819</p>
+            </div>
+
+            <div class="bg-neutral-900 text-white p-4 rounded-2xl shrink-0 text-right">
+              <div class="text-[11px] font-bold text-neutral-400 uppercase">Fonds Consignés Séquestre ACPR</div>
+              <div class="text-2xl font-black text-emerald-400 font-display mt-0.5">38 500 €</div>
+              <div class="text-[10px] text-neutral-400">Compte BNP escrow #FR76-3000...</div>
+            </div>
+          </div>
+
+          <!-- PARCOURS EN 5 JALONS DU CHANTIER -->
+          <div class="space-y-4">
+            <h3 class="text-xs font-bold uppercase text-neutral-400 tracking-wider">État d'avancement des jalons financiers & techniques</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+              
+              <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 space-y-1">
+                <div class="text-emerald-700 font-bold text-xs flex items-center gap-1.5">
+                  <i data-lucide="check-circle-2" class="w-4 h-4"></i> Jalon 1 Validé
+                </div>
+                <div class="font-bold text-neutral-900 text-sm">Audit MAR Officiel</div>
+                <div class="text-[11px] text-neutral-500">Scénario C validé par l'Anah</div>
+                <div class="text-xs font-extrabold text-neutral-700 mt-2">1 150 € libérés</div>
+              </div>
+
+              <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 space-y-1">
+                <div class="text-emerald-700 font-bold text-xs flex items-center gap-1.5">
+                  <i data-lucide="check-circle-2" class="w-4 h-4"></i> Jalon 2 Validé
+                </div>
+                <div class="font-bold text-neutral-900 text-sm">Dépôt Séquestre</div>
+                <div class="text-[11px] text-neutral-500">Fonds bailleur cantonnés</div>
+                <div class="text-xs font-extrabold text-neutral-700 mt-2">38 500 € sécurisés</div>
+              </div>
+
+              <div class="bg-pin-light p-4 rounded-2xl border border-pin/30 space-y-1 ring-2 ring-pin/20">
+                <div class="text-pin font-bold text-xs flex items-center gap-1.5">
+                  <i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Jalon 3 En Cours
+                </div>
+                <div class="font-bold text-neutral-900 text-sm">Gros Œuvre & Menuiseries</div>
+                <div class="text-[11px] text-neutral-500">Isolation ITI sous vide + 5 fenêtres</div>
+                <div class="text-xs font-extrabold text-pin mt-2">Tranche : 16 000 €</div>
+              </div>
+
+              <div class="bg-neutral-50 p-4 rounded-2xl border border-neutral-200 space-y-1 opacity-60">
+                <div class="text-neutral-400 font-bold text-xs">Jalon 4 À Venir</div>
+                <div class="font-bold text-neutral-700 text-sm">PAC & VMC Double Flux</div>
+                <div class="text-[11px] text-neutral-500">Installation pompe à chaleur</div>
+                <div class="text-xs font-extrabold text-neutral-700 mt-2">Tranche : 14 000 €</div>
+              </div>
+
+              <div class="bg-neutral-50 p-4 rounded-2xl border border-neutral-200 space-y-1 opacity-60">
+                <div class="text-neutral-400 font-bold text-xs">Jalon 5 Final</div>
+                <div class="font-bold text-neutral-700 text-sm">DPE C Délivré & Solde</div>
+                <div class="text-[11px] text-neutral-500">Attestation DPE + libération solde</div>
+                <div class="text-xs font-extrabold text-neutral-700 mt-2">Solde : 7 350 €</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- DOCUMENTS OFFICIELS DU COFFRE-FORT -->
+          <div class="pt-4 border-t border-neutral-200">
+            <h3 class="text-xs font-bold uppercase text-neutral-400 tracking-wider mb-3">Coffre-fort numérique & attestations légales</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="p-3.5 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="file-text" class="w-4 h-4 text-pin"></i>
+                  <div>
+                    <div class="text-xs font-bold text-neutral-900">Audit_Thermique_MAR.pdf</div>
+                    <div class="text-[10px] text-neutral-500">Certifié France Rénov'</div>
+                  </div>
+                </div>
+                <button onclick="alert('Téléchargement du rapport officiel...')" class="text-xs font-bold text-pin hover:underline">Voir</button>
+              </div>
+
+              <div class="p-3.5 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+                  <div>
+                    <div class="text-xs font-bold text-neutral-900">Attestation_Séquestre_ACPR.pdf</div>
+                    <div class="text-[10px] text-neutral-500">Fonds consignés BNP</div>
+                  </div>
+                </div>
+                <button onclick="alert('Téléchargement de l\'attestation séquestre bancaire...')" class="text-xs font-bold text-emerald-700 hover:underline">Voir</button>
+              </div>
+
+              <div class="p-3.5 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="badge-percent" class="w-4 h-4 text-blue-600"></i>
+                  <div>
+                    <div class="text-xs font-bold text-neutral-900">Déficit_Foncier_2026.pdf</div>
+                    <div class="text-[10px] text-neutral-500">Bordereau fiscal 21 400 €</div>
+                  </div>
+                </div>
+                <button onclick="alert('Téléchargement du bordereau fiscal...')" class="text-xs font-bold text-blue-700 hover:underline">Voir</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // --- 7. SIMULATEUR CLIENT INTÉGRÉ ---
+    function renderClientSimulator() {
+      const container = document.getElementById("clientTabSimulator");
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200 shadow-sm max-w-3xl mx-auto space-y-6">
+          <div class="text-center max-w-xl mx-auto">
+            <h2 class="font-display text-2xl font-extrabold text-neutral-900">Simulateur Aides & Super Déficit Foncier</h2>
+            <p class="text-xs text-neutral-500 mt-1">Calculez instantanément les aides MaPrimeRénov' 2026 et l'avantage fiscal de 21 400 €.</p>
+          </div>
+
+          <div class="bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-5">
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label class="text-xs font-bold text-neutral-700 uppercase">Surface du logement à rénover</label>
+                <span class="text-base font-black text-pin" id="simLiveSurface">70 m²</span>
+              </div>
+              <input type="range" id="simRangeSurface" min="20" max="160" step="5" value="70" oninput="updateSimTab()" class="w-full accent-pin cursor-pointer">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">DPE Actuel</label>
+                <select id="simDpeTab" onchange="updateSimTab()" class="w-full p-2.5 rounded-xl border border-neutral-300 text-xs font-bold bg-white text-rose-600">
+                  <option value="G">Passoire G (Interdit de location)</option>
+                  <option value="F">Passoire F (Interdit 2028)</option>
+                  <option value="E">Classe E (Interdit 2034)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Objectif Après Travaux</label>
+                <select id="simTargetTab" onchange="updateSimTab()" class="w-full p-2.5 rounded-xl border border-neutral-300 text-xs font-bold bg-white text-emerald-600">
+                  <option value="C">Classe C (Garantie Rénov.Confiance)</option>
+                  <option value="B">Classe B (Très Haute Performance)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="bg-neutral-900 text-white p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
+              <div>
+                <div class="text-[11px] font-bold text-neutral-400 uppercase">Budget Estimé Travaux</div>
+                <div id="simTabBudget" class="text-xl font-bold text-white mt-0.5">38 500 €</div>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-neutral-400 uppercase">Aides Anah (Parcours MAR)</div>
+                <div id="simTabAides" class="text-xl font-bold text-emerald-400 mt-0.5">23 100 €</div>
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-neutral-400 uppercase">Déficit Foncier Déductible</div>
+                <div id="simTabDeficit" class="text-xl font-bold text-pin mt-0.5">21 400 € / an</div>
+              </div>
+            </div>
+
+            <button onclick="switchClientSubTab('marketplace')" class="w-full py-3.5 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all">
+              Choisir un architecte MAR pour valider ces chiffres
+            </button>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function updateSimTab() {
+      const surface = parseInt(document.getElementById("simRangeSurface")?.value || "70", 10);
+      document.getElementById("simLiveSurface").textContent = surface + " m²";
+      const dpe = document.getElementById("simDpeTab")?.value || "G";
+      const pricePerSqm = dpe === "G" ? 560 : 500;
+      const budget = surface * pricePerSqm;
+      const aides = Math.min(Math.round(budget * 0.60), 28000);
+      const deficit = Math.min(budget - aides, 21400);
+
+      document.getElementById("simTabBudget").textContent = budget.toLocaleString("fr-FR") + " €";
+      document.getElementById("simTabAides").textContent = aides.toLocaleString("fr-FR") + " €";
+      document.getElementById("simTabDeficit").textContent = deficit.toLocaleString("fr-FR") + " € / an";
+    }
+
+    // --- 8. DASHBOARD ARCHITECTE PRO (MODIFICATION PROFIL, PORTFOLIO & DEMANDES) ---
+    function renderArchiDashboard() {
+      const active = getActiveArchi();
+      if (!active) return;
+
+      // Selecteur d'architecte testeur
+      const select = document.getElementById("selectArchiTester");
+      if (select) {
+        select.innerHTML = architects.map(a => `
+          <option value="${a.id}" ${a.id === active.id ? 'selected' : ''}>${a.name} (${a.location.split(' ')[0]})</option>
+        `).join('');
+      }
+
+      // Header Pro
+      document.getElementById("proHeaderAvatar").src = active.avatar;
+      document.getElementById("proHeaderName").textContent = active.name;
+      document.getElementById("proHeaderTitle").textContent = active.title;
+      document.getElementById("proHeaderMeta").textContent = `${active.location} · Ordre des Architectes ${active.orderMatricule} · Agrément MAR ${active.marId}`;
+
+      // Stats
+      document.getElementById("statCompletedProjects").textContent = active.completedProjects;
+      document.getElementById("statRating").textContent = `⭐ ${active.rating}`;
+      document.getElementById("statReviewCount").textContent = `${active.reviewCount} avis certifiés`;
+      document.getElementById("statResponseTime").textContent = active.responseTime;
+
+      // Badges
+      const pBadge = document.getElementById("proPortfolioBadge");
+      if (pBadge) pBadge.textContent = active.portfolio.length;
+
+      // Formulaire édition
+      document.getElementById("editName").value = active.name;
+      document.getElementById("editTitle").value = active.title;
+      document.getElementById("editLocation").value = active.location;
+      document.getElementById("editAvatar").value = active.avatar;
+      document.getElementById("avatarPreviewBox").src = active.avatar;
+      document.getElementById("editMarId").value = active.marId;
+      document.getElementById("editOrderMatricule").value = active.orderMatricule;
+      document.getElementById("editAuditPrice").value = active.auditPrice;
+      document.getElementById("editTjm").value = active.tjm;
+      document.getElementById("editMoeRate").value = active.moeRate;
+      document.getElementById("editTags").value = active.tags.join(", ");
+      document.getElementById("editBio").value = active.bio;
+
+      // Portfolio Grid
+      renderProPortfolioGrid(active);
+
+      // Requests List
+      renderProRequests(active);
+    }
+
+    function previewNewAvatar(url) {
+      if (url) {
+        document.getElementById("avatarPreviewBox").src = url;
+      }
+    }
+
+    function renderProPortfolioGrid(active) {
+      const grid = document.getElementById("proPortfolioGrid");
+      if (!grid) return;
+
+      grid.innerHTML = active.portfolio.map(p => `
+        <div class="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-200 p-4 space-y-3 relative group">
+          <div class="relative rounded-xl overflow-hidden aspect-[16/9] bg-neutral-200">
+            <img src="${p.photo}" alt="${p.title}" class="w-full h-full object-cover">
+            <div class="absolute top-2 left-2 flex items-center gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-extrabold text-[10px]">DPE ${p.dpeBefore}</span>
+              <span class="text-white text-xs">➔</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500 text-white font-extrabold text-[10px]">DPE ${p.dpeAfter}</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-bold text-neutral-900 text-sm">${p.title}</h4>
+            <p class="text-xs text-neutral-500 mt-0.5">${p.desc}</p>
+          </div>
+          <div class="flex items-center justify-between text-xs pt-2 border-t border-neutral-200">
+            <span class="font-bold text-neutral-700">Budget : ${p.budget.toLocaleString('fr-FR')} €</span>
+            <button onclick="deleteProject('${p.id}')" class="text-xs font-bold text-rose-600 hover:underline">Supprimer</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderProRequests(active) {
+      const container = document.getElementById("proRequestsList");
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="bg-neutral-50 rounded-2xl p-5 border border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">Séquestre 16 000 € Actif</span>
+              <span class="text-xs text-neutral-500">Reçu hier</span>
+            </div>
+            <div class="font-bold text-neutral-900 text-sm">Appartement Haussmannien 85 m² · M. Marc V. (Directeur Gestion)</div>
+            <p class="text-xs text-neutral-500">Jalon en cours : Validation fin de pose menuiseries double vitrage & contrôle étanchéité à l'air.</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="alert('Rapport photo envoyé ! La tranche de 16 000 € sous séquestre est libérée vers les artisans.')" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all">
+              Valider Jalon & Libérer Tranche
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-neutral-50 rounded-2xl p-5 border border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-pin-light text-pin text-[10px] font-extrabold">Nouvelle Demande d'Audit</span>
+              <span class="text-xs text-neutral-500">Il y a 3 heures</span>
+            </div>
+            <div class="font-bold text-neutral-900 text-sm">T3 68 m² Passoire G · Sophie G. (Bailleur Investisseur)</div>
+            <p class="text-xs text-neutral-500">Souhaite une visite sur site pour montage MaPrimeRénov' 2026 et déficit foncier 21 400 €.</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="alert('Visite programmée sous séquestre ! Client notifié.')" class="px-4 py-2 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs shadow-sm transition-all">
+              Accepter & Programmer Visite
+            </button>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // --- 9. ACTIONS ÉDITION PROFIL & PORTFOLIO ---
+    function saveProfileChanges(e) {
+      e.preventDefault();
+      const active = getActiveArchi();
+      if (!active) return;
+
+      active.name = document.getElementById("editName").value.trim();
+      active.title = document.getElementById("editTitle").value.trim();
+      active.location = document.getElementById("editLocation").value.trim();
+      active.avatar = document.getElementById("editAvatar").value.trim();
+      active.marId = document.getElementById("editMarId").value.trim();
+      active.orderMatricule = document.getElementById("editOrderMatricule").value.trim();
+      active.auditPrice = parseInt(document.getElementById("editAuditPrice").value, 10);
+      active.tjm = parseInt(document.getElementById("editTjm").value, 10);
+      active.moeRate = parseFloat(document.getElementById("editMoeRate").value);
+      active.tags = document.getElementById("editTags").value.split(",").map(t => t.trim()).filter(Boolean);
+      active.bio = document.getElementById("editBio").value.trim();
+
+      saveData();
+      renderArchiDashboard();
+      renderMarketplace();
+      renderSubHeader();
+      alert("✅ Profil et tarifs mis à jour avec succès ! Les modifications sont immédiatement visibles côté Particulier / Marketplace.");
+    }
+
+    function addNewProject(e) {
+      e.preventDefault();
+      const active = getActiveArchi();
+      if (!active) return;
+
+      const newProj = {
+        id: "proj-" + Date.now(),
+        title: document.getElementById("projTitle").value.trim(),
+        city: document.getElementById("projCity").value.trim(),
+        dpeBefore: document.getElementById("projDpeBefore").value,
+        dpeAfter: document.getElementById("projDpeAfter").value,
+        budget: parseInt(document.getElementById("projBudget").value, 10),
+        aides: parseInt(document.getElementById("projAides").value, 10),
+        deficit: document.getElementById("projDeficit").value.trim() || "21 400 € / an",
+        photo: document.getElementById("projPhoto").value.trim(),
+        desc: document.getElementById("projDesc").value.trim()
+      };
+
+      active.portfolio.unshift(newProj);
+      active.completedProjects += 1;
+      saveData();
+
+      document.getElementById("formAddProject").reset();
+      renderArchiDashboard();
+      renderMarketplace();
+      alert("🎉 Nouveau projet ajouté au portfolio avec succès ! Il apparaît maintenant dans la galerie du profil public.");
+    }
+
+    function deleteProject(projId) {
+      const active = getActiveArchi();
+      if (!active) return;
+      if (confirm("Supprimer ce projet de votre portfolio ?")) {
+        active.portfolio = active.portfolio.filter(p => p.id !== projId);
+        saveData();
+        renderArchiDashboard();
+        renderMarketplace();
+      }
+    }
+
+    // --- 10. MODAL PROFIL COMPLET (VUE CLIENT DÉTAILLÉE) ---
+    function openArchiProfileModal(archiId, defaultTab = 'about') {
+      const archi = architects.find(a => a.id === archiId);
+      if (!archi) return;
+
+      const modal = document.getElementById("modalArchiProfile");
+      const content = document.getElementById("modalArchiProfileContent");
+
+      content.innerHTML = `
+        <!-- HEADER MODAL PROFIL -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pb-6 border-b border-neutral-200">
+          
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <img src="${archi.avatar}" alt="${archi.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover ring-2 ring-neutral-200 shadow-sm">
+              <span class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center ring-2 ring-white text-xs">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="font-display text-2xl font-black text-neutral-950">${archi.name}</h2>
+                <span class="px-2 py-0.5 rounded-full bg-pin-light text-pin text-xs font-bold">Agréé MAR</span>
+              </div>
+              <p class="text-xs sm:text-sm font-semibold text-neutral-600 mt-0.5">${archi.title}</p>
+              <div class="flex items-center gap-3 text-xs text-neutral-500 mt-1">
+                <span><i data-lucide="map-pin" class="w-3.5 h-3.5 inline"></i> ${archi.location}</span>
+                <span>·</span>
+                <span class="text-amber-600 font-bold"><i data-lucide="star" class="w-3.5 h-3.5 inline fill-amber-400"></i> ${archi.rating} (${archi.reviewCount} avis)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="closeModal('modalArchiProfile'); openBookingModal('${archi.id}');" class="px-6 py-3 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+              <span>Réserver mon Audit (${archi.auditPrice} €)</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- CERTIFICATIONS LÉGALES & SÉQUESTRE -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-neutral-50 p-4 rounded-2xl border border-neutral-200 text-xs">
+          <div>
+            <div class="text-[10px] font-bold text-neutral-400 uppercase">Agrément MAR</div>
+            <div class="font-bold text-neutral-900 mt-0.5">${archi.marId}</div>
+          </div>
+          <div>
+            <div class="text-[10px] font-bold text-neutral-400 uppercase">Ordre Architectes</div>
+            <div class="font-bold text-neutral-900 mt-0.5">${archi.orderMatricule}</div>
+          </div>
+          <div>
+            <div class="text-[10px] font-bold text-neutral-400 uppercase">Garantie Décennale</div>
+            <div class="font-bold text-emerald-700 mt-0.5">${archi.decennale}</div>
+          </div>
+          <div>
+            <div class="text-[10px] font-bold text-neutral-400 uppercase">Séquestre Bancaire</div>
+            <div class="font-bold text-pin mt-0.5">100% Sécurisé ACPR</div>
+          </div>
+        </div>
+
+        <!-- ONGLETS MODAL -->
+        <div class="border-b border-neutral-200 flex items-center gap-4 text-xs font-bold">
+          <button onclick="switchModalTab('about')" id="modalTabBtnAbout" class="pb-3 border-b-2 border-pin text-pin">À Propos & Tarifs</button>
+          <button onclick="switchModalTab('portfolio')" id="modalTabBtnPortfolio" class="pb-3 border-b-2 border-transparent text-neutral-600 hover:text-neutral-900">Portfolio Avant / Après (${archi.portfolio.length})</button>
+          <button onclick="switchModalTab('reviews')" id="modalTabBtnReviews" class="pb-3 border-b-2 border-transparent text-neutral-600 hover:text-neutral-900">Avis Clients (${archi.reviews.length})</button>
+        </div>
+
+        <!-- CONTENU ONGLET ABOUT -->
+        <div id="modalTabContentAbout" class="space-y-6">
+          <div>
+            <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Présentation</h3>
+            <p class="text-xs sm:text-sm text-neutral-700 leading-relaxed">${archi.bio}</p>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Spécialités</h3>
+            <div class="flex flex-wrap gap-2">
+              ${archi.tags.map(t => `<span class="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-xs font-semibold">${t}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="bg-neutral-50 p-5 rounded-2xl border border-neutral-200 space-y-3">
+            <h3 class="text-xs font-bold text-neutral-900 uppercase tracking-wider">Détail des Tarifs & Prestations</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-white p-3 rounded-xl border border-neutral-200">
+                <div class="text-neutral-500">Pack Audit MAR Officiel</div>
+                <div class="text-lg font-black text-pin mt-1">${archi.auditPrice} €</div>
+                <div class="text-[10px] text-neutral-400 mt-0.5">Scénarios C/D + subventions Anah</div>
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-neutral-200">
+                <div class="text-neutral-500">Taux Maîtrise d'Œuvre</div>
+                <div class="text-lg font-black text-neutral-900 mt-1">${archi.moeRate} %</div>
+                <div class="text-[10px] text-neutral-400 mt-0.5">Sur le montant des travaux HT</div>
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-neutral-200">
+                <div class="text-neutral-500">Taux Journalier Moyen (TJM)</div>
+                <div class="text-lg font-black text-neutral-900 mt-1">${archi.tjm} € / jour</div>
+                <div class="text-[10px] text-neutral-400 mt-0.5">Expertise technique ponctuelle</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENU ONGLET PORTFOLIO -->
+        <div id="modalTabContentPortfolio" class="hidden space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${archi.portfolio.map(p => `
+              <div class="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-200 space-y-3 p-4">
+                <div class="relative rounded-xl overflow-hidden aspect-[16/9] bg-neutral-200">
+                  <img src="${p.photo}" alt="${p.title}" class="w-full h-full object-cover">
+                  <div class="absolute top-2 left-2 flex items-center gap-1.5">
+                    <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-extrabold text-[10px]">DPE ${p.dpeBefore}</span>
+                    <span class="text-white text-xs">➔</span>
+                    <span class="px-2 py-0.5 rounded bg-emerald-500 text-white font-extrabold text-[10px]">DPE ${p.dpeAfter}</span>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-bold text-neutral-900 text-sm">${p.title}</h4>
+                  <p class="text-xs text-neutral-600 mt-1 leading-relaxed">${p.desc}</p>
+                </div>
+                <div class="pt-3 border-t border-neutral-200 grid grid-cols-3 gap-2 text-center text-xs">
+                  <div>
+                    <div class="text-[10px] text-neutral-400 uppercase font-bold">Travaux</div>
+                    <div class="font-bold text-neutral-900 mt-0.5">${p.budget.toLocaleString('fr-FR')} €</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-neutral-400 uppercase font-bold">Aides Anah</div>
+                    <div class="font-bold text-emerald-600 mt-0.5">${p.aides.toLocaleString('fr-FR')} €</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-neutral-400 uppercase font-bold">Déficit ×2</div>
+                    <div class="font-bold text-pin mt-0.5">${p.deficit}</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- CONTENU ONGLET REVIEWS -->
+        <div id="modalTabContentReviews" class="hidden space-y-4">
+          <div class="flex items-center justify-between p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl font-black text-amber-600">⭐ ${archi.rating}</span>
+              <span class="text-xs text-neutral-700 font-semibold">Note moyenne calculée sur ${archi.reviewCount} chantiers vérifiés</span>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-white text-amber-700 text-xs font-bold shadow-sm">100% Avis Vérifiés</span>
+          </div>
+
+          <div class="space-y-3">
+            ${archi.reviews.map(r => `
+              <div class="bg-neutral-50 p-4 rounded-2xl border border-neutral-200 space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <div class="font-bold text-neutral-900">${r.author}</div>
+                  <div class="text-neutral-400">${r.date}</div>
+                </div>
+                <div class="flex text-amber-400 text-xs">
+                  ${'★'.repeat(r.rating)}
+                </div>
+                <p class="text-xs text-neutral-700 leading-relaxed">${r.comment}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove("hidden");
+      switchModalTab(defaultTab);
+      lucide.createIcons();
+    }
+
+    function switchModalTab(tab) {
+      const btnAbout = document.getElementById("modalTabBtnAbout");
+      const btnPort = document.getElementById("modalTabBtnPortfolio");
+      const btnRev = document.getElementById("modalTabBtnReviews");
+
+      if (btnAbout) btnAbout.className = `pb-3 border-b-2 ${tab === 'about' ? 'border-pin text-pin' : 'border-transparent text-neutral-600 hover:text-neutral-900'}`;
+      if (btnPort) btnPort.className = `pb-3 border-b-2 ${tab === 'portfolio' ? 'border-pin text-pin' : 'border-transparent text-neutral-600 hover:text-neutral-900'}`;
+      if (btnRev) btnRev.className = `pb-3 border-b-2 ${tab === 'reviews' ? 'border-pin text-pin' : 'border-transparent text-neutral-600 hover:text-neutral-900'}`;
+
+      document.getElementById("modalTabContentAbout")?.classList.toggle("hidden", tab !== "about");
+      document.getElementById("modalTabContentPortfolio")?.classList.toggle("hidden", tab !== "portfolio");
+      document.getElementById("modalTabContentReviews")?.classList.toggle("hidden", tab !== "reviews");
+      lucide.createIcons();
+    }
+
+    // --- 11. MODAL RÉSERVATION / DEVIS SÉQUESTRÉ ---
+    let currentBookingArchiId = null;
+
+    function openBookingModal(archiId) {
+      currentBookingArchiId = archiId;
+      const archi = architects.find(a => a.id === archiId);
+      if (!archi) return;
+
+      document.getElementById("bookingTargetName").textContent = `Audit MAR avec ${archi.name}`;
+      document.getElementById("modalBooking").classList.remove("hidden");
+      lucide.createIcons();
+    }
+
+    function submitBooking(e) {
+      e.preventDefault();
+      const archi = architects.find(a => a.id === currentBookingArchiId);
+      const name = document.getElementById("bookName").value;
+      const addr = document.getElementById("bookAddress").value;
+      const dpe = document.getElementById("bookDpe").value;
+
+      alert(`✅ Demande transmise avec succès à ${archi ? archi.name : "l'architecte"} !\n\nUn compte séquestre bancaire provisoire a été pré-ouvert pour votre bien (${addr}, DPE ${dpe}). ${archi ? archi.name : "L'architecte"} vous contactera sous 2 heures.`);
+      closeModal("modalBooking");
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId)?.classList.add("hidden");
+    }
+
+    // --- 12. INITIALISATION GÉNÉRALE ---
+    function renderAll() {
+      renderSubHeader();
+      renderMarketplace();
+      renderArchiDashboard();
+      lucide.createIcons();
+    }
+
+    // Lancement au chargement
+    window.addEventListener("DOMContentLoaded", () => {
+      loadData();
+      switchRole(currentRole);
+    });
+  </script>
+</body>
+</html>
