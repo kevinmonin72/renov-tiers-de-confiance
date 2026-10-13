@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Rénov Tiers de Confiance | La Marketplace Sécurisée de Rénovation Énergétique</title>
-  <meta name="description" content="Plateforme tiers de confiance connectant propriétaires bailleurs, particuliers et architectes agréés MAR. Travaux sécurisés sous compte séquestre bancaire et conformité DPE C/D garantie.">
+  <title>Rénov Tiers de Confiance | Marketplace Rénovation Énergétique</title>
+  <meta name="description" content="Marketplace sécurisée de rénovation énergétique. Compte séquestre bancaire, architectes agréés MAR et artisans RGE.">
   
   <!-- Favicon SVG -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E60023'/%3E%3Cpath d='M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='%23E60023'/%3E%3Cpath d='M22 13L15 18.2V24C15 28.5 18 31.8 22 33.2C26 31.8 29 28.5 29 24V18.2L22 13Z' fill='%23FFFFFF' fill-opacity='0.2' stroke='%23FFFFFF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 23.5L21 26.5L26.5 20.5' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E60023'/%3E%3Cpath d='M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M18 23.5L21 26.5L26.5 20.5' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -29,21 +29,12 @@
               hover: '#BD081C',
               dark: '#8C0816',
               light: '#FFF1F2',
-              soft: '#FFE4E6',
-              surface: '#FFF8F8',
-              gray: '#767676',
-              darkgray: '#111111',
-              border: '#F3E8E8'
+              soft: '#FFE4E6'
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-            display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif']
-          },
-          boxShadow: {
-            'pin': '0 2px 20px 0 rgba(0, 0, 0, 0.06)',
-            'pin-hover': '0 12px 32px -4px rgba(230, 0, 35, 0.16)',
-            'card': '0 4px 24px -2px rgba(17, 17, 17, 0.05)'
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
           }
         }
       }
@@ -51,1134 +42,573 @@
   </script>
   
   <style>
-    html {
-      overflow-x: hidden;
-      scroll-padding-top: 100px;
-    }
-    body {
-      overflow-x: hidden;
-      width: 100%;
-    }
-    .bg-dot-pattern {
-      background-image: radial-gradient(#E60023 0.65px, transparent 0.65px);
-      background-size: 24px 24px;
-      background-color: #FFFFFF;
+    * { box-sizing: border-box; }
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+      scroll-padding-top: 80px;
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 24px;
-      width: 24px;
+      height: 22px;
+      width: 22px;
       border-radius: 50%;
       background: #E60023;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(230, 0, 35, 0.45);
+      box-shadow: 0 0 8px rgba(230, 0, 35, 0.4);
       border: 3px solid #ffffff;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
   </style>
 </head>
-<body class="bg-[#FCFCFC] text-pin-darkgray font-sans antialiased selection:bg-pin-soft selection:text-pin min-w-[320px]">
+<body class="bg-white text-neutral-900 font-sans antialiased selection:bg-pin-soft selection:text-pin">
 
-  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
-  <div class="bg-pin text-white text-[11px] sm:text-xs md:text-sm font-semibold py-2 px-3 sm:px-4 text-center sticky top-0 z-50 shadow-sm flex items-center justify-center gap-1.5 sm:gap-2 leading-tight">
-    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-white text-pin shrink-0 uppercase tracking-wide">
-      Loi de Finances 2026
-    </span>
-    <span class="truncate sm:overflow-visible sm:whitespace-normal">
-      Déficit foncier doublé à <strong>21 400 € / an</strong> prorogé jusqu'au 31 décembre 2027 pour vos passoires rénovées.
-    </span>
+  <!-- ================= BANNER TOP (Court & Explicite) ================= -->
+  <div class="bg-pin text-white text-xs font-semibold py-2 px-4 text-center sticky top-0 z-50 flex items-center justify-center gap-2">
+    <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-white text-pin uppercase">Loi 2026</span>
+    <span>Déficit foncier doublé (<strong>21 400 € / an</strong>) prorogé jusqu'au 31/12/2027.</span>
   </div>
 
-  <!-- ================= NAVIGATION (ZERO LOGIN / ZERO AUTH) ================= -->
-  <header class="bg-white/95 backdrop-blur-md border-b border-neutral-150 sticky top-8 sm:top-9 z-40 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-3">
+  <!-- ================= HEADER (Menu Épuré, Zéro Fluff) ================= -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-neutral-100 sticky top-8 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
       
-      <!-- Brand Logo (Vector SVG Architecture + Trust Shield) -->
-      <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-pin flex items-center justify-center shadow-md shadow-pin/30 group-hover:scale-105 transition-transform shrink-0">
-          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7">
-            <path d="M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M22 13L15 18.2V24C15 28.5 18 31.8 22 33.2C26 31.8 29 28.5 29 24V18.2L22 13Z" fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M18 23.5L21 26.5L26.5 20.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="leading-none">
-          <div class="font-display font-black text-base sm:text-xl tracking-tight text-neutral-900 flex items-center gap-1">
-            <span>Rénov</span><span class="text-pin">·</span><span class="hidden sm:inline">Tiers de Confiance</span><span class="sm:hidden text-pin">Confiance</span>
-          </div>
-          <span class="text-[10px] sm:text-[11px] font-bold text-neutral-500 uppercase tracking-wider block mt-1">
-            Marketplace de Rénovation Énergétique
-          </span>
-        </div>
-      </a>
-
-      <!-- Desktop Nav Anchors -->
-      <nav class="hidden lg:flex items-center gap-1 bg-neutral-100/90 p-1 rounded-full text-xs font-semibold text-neutral-700">
-        <a href="#marketplace" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Comment ça marche</a>
-        <a href="#loi-climat" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Loi Climat & Fiscalité</a>
-        <a href="#simulateur" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Simulateur d'aides</a>
-        <a href="#garanties" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Séquestre Bancaire</a>
-        <a href="#etapes" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Les 4 étapes</a>
-        <a href="#faq" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">FAQ</a>
-      </nav>
-
-      <!-- Pin Counter & Header CTA -->
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <div class="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pin-light text-pin text-xs font-bold border border-pin-soft" title="Épingles enregistrées">
-          <i data-lucide="pin" class="w-3.5 h-3.5"></i>
-          <span id="savedPinsCounter">4</span> épingles
-        </div>
-
-        <!-- Mobile Drawer Trigger -->
-        <button onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors" aria-label="Menu">
-          <i data-lucide="menu" class="w-5 h-5"></i>
-        </button>
-
-        <!-- SINGLE CTA BUTTON -->
-        <button onclick="openProjectModal()" class="cta-single-button hidden sm:inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-xs sm:text-sm font-bold px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-full shadow-md hover:shadow-lg hover:shadow-pin/25 active:scale-95 transition-all shrink-0">
-          <i data-lucide="calculator" class="w-4 h-4 shrink-0"></i>
-          <span class="whitespace-nowrap">Estimer mon projet gratuitement</span>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobileNavDrawer" class="hidden lg:hidden border-t border-neutral-150 bg-white px-4 py-3 space-y-2 text-sm font-semibold text-neutral-800">
-      <div class="grid grid-cols-2 gap-2 text-xs">
-        <a href="#marketplace" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-neutral-50 hover:bg-pin-light hover:text-pin flex items-center gap-2"><i data-lucide="store" class="w-4 h-4 text-pin"></i> La Solution</a>
-        <a href="#loi-climat" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-neutral-50 hover:bg-pin-light hover:text-pin flex items-center gap-2"><i data-lucide="scale" class="w-4 h-4 text-pin"></i> Loi & Aides</a>
-        <a href="#simulateur" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-neutral-50 hover:bg-pin-light hover:text-pin flex items-center gap-2"><i data-lucide="calculator" class="w-4 h-4 text-pin"></i> Simulateur</a>
-        <a href="#garanties" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-neutral-50 hover:bg-pin-light hover:text-pin flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-pin"></i> Séquestre</a>
-        <a href="#etapes" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-neutral-50 hover:bg-pin-light hover:text-pin flex items-center gap-2"><i data-lucide="workflow" class="w-4 h-4 text-pin"></i> 4 Étapes</a>
-        <a href="#faq" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-neutral-50 hover:bg-pin-light hover:text-pin flex items-center gap-2"><i data-lucide="help-circle" class="w-4 h-4 text-pin"></i> Questions</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ================= HERO SECTION (COMMERCIAL & USER-CENTRIC) ================= -->
-  <section class="relative pt-8 sm:pt-12 md:pt-16 pb-16 sm:pb-20 md:pb-24 overflow-hidden bg-dot-pattern">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Pinterest Pills Strip -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-5 sm:mb-6 text-center max-w-4xl mx-auto">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin text-white text-[11px] sm:text-xs font-bold tracking-wide shadow-sm">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> LA MARKETPLACE TIERS DE CONFIANCE
-        </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200 text-neutral-800 text-[11px] sm:text-xs font-semibold shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Architectes Mon Accompagnateur Rénov' (MAR)
-        </span>
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin-light text-pin border border-pin-soft text-[11px] sm:text-xs font-semibold">
-          <i data-lucide="lock" class="w-3.5 h-3.5"></i> Sécurisation sous Compte Séquestre Bancaire
-        </span>
-      </div>
-
-      <!-- Main Commercial Headline -->
-      <div class="max-w-4xl mx-auto text-center mb-6 sm:mb-8">
-        <h1 class="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-neutral-900 tracking-tight leading-[1.2] sm:leading-[1.15] break-words">
-          Rénovez votre bien en toute sérénité. <span class="text-pin underline decoration-pin/30 decoration-wavy decoration-2">Zéro arnaque, zéro stress.</span>
-        </h1>
-        <p class="mt-4 sm:mt-6 text-sm sm:text-lg md:text-xl text-neutral-600 font-medium leading-relaxed max-w-3xl mx-auto px-2">
-          Particuliers & Propriétaires Bailleurs : sortez votre logement du statut de passoire thermique (F ou G). 
-          Nous mobilisons jusqu’à <strong>80 % de subventions de l'État</strong> et consignons vos fonds sur un <strong>compte séquestre bancaire</strong> jusqu’à la délivrance de votre attestation DPE C ou D.
-        </p>
-      </div>
-
-      <!-- Hero Call-To-Action (Stacked on mobile, row on tablet/desktop) -->
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-14 max-w-lg sm:max-w-none mx-auto">
-        <!-- SINGLE CTA BUTTON -->
-        <button onclick="openProjectModal()" class="cta-single-button w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-pin hover:bg-pin-hover text-white text-sm sm:text-base md:text-lg font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-pin/30 active:scale-95 transition-all text-center">
-          <i data-lucide="sparkles" class="w-5 h-5 shrink-0"></i>
-          <span>Estimer mon projet gratuitement</span>
-        </button>
-        <a href="#marketplace" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-neutral-800 text-sm sm:text-base font-semibold px-6 sm:px-7 py-3.5 sm:py-4 rounded-full border border-neutral-200 shadow-sm transition-all text-center">
-          <i data-lucide="info" class="w-5 h-5 text-pin shrink-0"></i>
-          <span>Découvrir la plateforme</span>
-        </a>
-      </div>
-
-      <!-- 4 Reassurance Metrics -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto">
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200 shadow-card hover:border-pin-soft transition-all">
-          <div class="text-[10px] sm:text-xs font-bold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <i data-lucide="lock" class="w-3.5 h-3.5 text-pin shrink-0"></i> Sécurité Fonds
-          </div>
-          <div class="text-xl sm:text-2xl md:text-3xl font-black text-neutral-900 font-display">100 % Séquestre</div>
-          <div class="text-[11px] sm:text-xs text-neutral-600 mt-1 font-medium">Fonds bloqués et libérés par jalons validés</div>
-        </div>
-
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200 shadow-card hover:border-pin-soft transition-all">
-          <div class="text-[10px] sm:text-xs font-bold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <i data-lucide="coins" class="w-3.5 h-3.5 text-pin shrink-0"></i> Déficit Foncier
-          </div>
-          <div class="text-xl sm:text-2xl md:text-3xl font-black text-pin font-display">21 400 € / an</div>
-          <div class="text-[11px] sm:text-xs text-neutral-600 mt-1 font-medium">Prorogé LF 2026 jusqu'au 31/12/2027</div>
-        </div>
-
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200 shadow-card hover:border-pin-soft transition-all">
-          <div class="text-[10px] sm:text-xs font-bold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <i data-lucide="award" class="w-3.5 h-3.5 text-pin shrink-0"></i> Maîtrise d'Œuvre
-          </div>
-          <div class="text-xl sm:text-2xl md:text-3xl font-black text-neutral-900 font-display">Architectes MAR</div>
-          <div class="text-[11px] sm:text-xs text-neutral-600 mt-1 font-medium">Tiers de confiance agréés France Rénov'</div>
-        </div>
-
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200 shadow-card hover:border-pin-soft transition-all">
-          <div class="text-[10px] sm:text-xs font-bold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-pin shrink-0"></i> Risque Client
-          </div>
-          <div class="text-xl sm:text-2xl md:text-3xl font-black text-emerald-600 font-display">0 € Perdu</div>
-          <div class="text-[11px] sm:text-xs text-neutral-600 mt-1 font-medium">Protection anti-abandon et anti-malfaçons</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= SECTION MARKETPLACE : POUR PARTICULIERS & ARCHITECTES ================= -->
-  <section id="marketplace" class="py-14 sm:py-20 bg-white border-y border-neutral-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
-          La Plateforme Tiers de Confiance
-        </span>
-        <h2 class="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-black text-neutral-900 leading-tight">
-          La marketplace qui réconcilie propriétaires et professionnels
-        </h2>
-        <p class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-neutral-600">
-          Nous supprimons les intermédiaires douteux et sécurisons chaque euro investi pour garantir la sortie des passoires thermiques.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
-        
-        <!-- Carte Pour les Particuliers / Bailleurs -->
-        <div class="bg-gradient-to-br from-white to-pin-surface rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 border-pin/30 shadow-card flex flex-col justify-between relative overflow-hidden">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-pin text-white flex items-center justify-center font-bold text-xl shadow-md shadow-pin/30 shrink-0">
-                <i data-lucide="home" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <h3 class="text-lg sm:text-xl font-bold text-neutral-900">Vous êtes Propriétaire ou Bailleur</h3>
-                <span class="text-xs text-neutral-500 font-semibold">Rénovation globale clé en main sans risque</span>
-              </div>
-            </div>
-
-            <p class="text-xs sm:text-sm text-neutral-600 mb-6 leading-relaxed">
-              Fini l'angoisse des devis opaques et des chantiers inachevés. Nous orchestrons votre rénovation de A à Z avec un interlocuteur technique unique.
-            </p>
-
-            <ul class="space-y-3.5 text-xs sm:text-sm text-neutral-800 font-medium">
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-pin stroke-[3]"></i>
-                <span><strong>Architecte MAR dédié :</strong> Audit thermique officiel et scénario sur-mesure pour atteindre la classe C ou D.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-pin stroke-[3]"></i>
-                <span><strong>Compte séquestre bancaire :</strong> Vos fonds ne sont versés aux artisans qu'après chaque étape contrôlée et validée.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-pin stroke-[3]"></i>
-                <span><strong>Aides & Fiscalité maximisées :</strong> MaPrimeRénov' jusqu'à 80 % et Déficit Foncier doublé à 21 400 € / an jusqu'en 2027.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-8 pt-5 border-t border-pin-soft flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            <span class="text-xs text-neutral-500 font-bold">Audit & simulation sans engagement</span>
-            <!-- SINGLE CTA BUTTON -->
-            <button onclick="openProjectModal()" class="cta-single-button text-xs font-bold text-white bg-pin hover:bg-pin-hover px-4 py-2.5 rounded-full shadow-sm active:scale-95 transition-all text-center">
-              Estimer mon projet gratuitement
-            </button>
-          </div>
-        </div>
-
-        <!-- Carte Pour les Architectes & Artisans RGE -->
-        <div class="bg-neutral-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-neutral-200 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-12 h-12 rounded-2xl bg-neutral-900 text-white flex items-center justify-center font-bold text-xl shadow-sm shrink-0">
-                <i data-lucide="compass" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <h3 class="text-lg sm:text-xl font-bold text-neutral-900">Vous êtes Architecte ou Artisan RGE</h3>
-                <span class="text-xs text-neutral-500 font-semibold">Chantiers qualifiés & paiements garantis</span>
-              </div>
-            </div>
-
-            <p class="text-xs sm:text-sm text-neutral-600 mb-6 leading-relaxed">
-              Concentrez-vous sur l'expertise technique et la qualité d'exécution. Nous vous apportons des projets qualifiés et sécurisons vos rémunérations.
-            </p>
-
-            <ul class="space-y-3.5 text-xs sm:text-sm text-neutral-700 font-medium">
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 stroke-[3]"></i>
-                <span><strong>Zéro impayé :</strong> Le budget de chaque tranche de travaux est consigné en amont sur le compte séquestre bancaire.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 stroke-[3]"></i>
-                <span><strong>Dossiers techniques pré-qualifiés :</strong> Plans de financement validés et aides Anah pré-instruites.</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 shrink-0 mt-0.5 text-emerald-600 stroke-[3]"></i>
-                <span><strong>Indépendance déontologique respectée :</strong> Rémunération claire et transparence absolue vis-à-vis du client.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="mt-8 pt-5 border-t border-neutral-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            <span class="text-xs text-neutral-500 font-bold">Réseau d'excellence certifié</span>
-            <!-- SINGLE CTA BUTTON -->
-            <button onclick="openProjectModal()" class="cta-single-button text-xs font-bold text-white bg-pin hover:bg-pin-hover px-4 py-2.5 rounded-full shadow-sm active:scale-95 transition-all text-center">
-              Estimer mon projet gratuitement
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= PINTEREST BOARD : LOI CLIMAT, AIDES & SÉCURITÉ ================= -->
-  <section id="loi-climat" class="py-16 sm:py-20 bg-[#FBFBFC]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
-        <div>
-          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-pin mb-1">
-            <i data-lucide="layout-grid" class="w-4 h-4"></i> Tableau des Épingles · Loi Climat & Fiscalité 2026
-          </div>
-          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-black text-neutral-900 leading-tight">
-            Toutes les règles du jeu & vos avantages légaux
-          </h2>
-          <p class="text-neutral-600 mt-2 text-sm sm:text-base">
-            Les échéances officielles d'interdiction de louer et les leviers d'aide à mobiliser.
-          </p>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button onclick="filterPins('all')" id="tab-all" class="pin-filter active px-4 py-2 rounded-full text-xs font-bold bg-neutral-900 text-white transition-all shrink-0">Tout afficher</button>
-          <button onclick="filterPins('fiscal')" id="tab-fiscal" class="pin-filter px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-pin hover:text-pin transition-all shrink-0">Fiscalité 2026</button>
-          <button onclick="filterPins('sequestre')" id="tab-sequestre" class="pin-filter px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-pin hover:text-pin transition-all shrink-0">Séquestre & MAR</button>
-          <button onclick="filterPins('marche')" id="tab-marche" class="pin-filter px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-pin hover:text-pin transition-all shrink-0">Calendrier DPE</button>
-        </div>
-      </div>
-
-      <!-- Responsive Grid of Pinterest-style Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-start" id="pinBoard">
-
-        <!-- PIN 1: DÉFICIT FONCIER 2026 -->
-        <div class="pin-card" data-category="fiscal">
-          <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Loi de Finances 2026
-              </span>
-              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors" title="Épingler">
-                <i data-lucide="bookmark" class="w-4 h-4"></i>
-              </button>
-            </div>
-            
-            <div class="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-pin-light to-transparent border border-emerald-150 mb-4">
-              <div class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">Super Déficit Foncier Doublé</div>
-              <div class="text-2xl sm:text-3xl font-black text-neutral-900 font-display mt-1">21 400 € <span class="text-xs font-medium text-neutral-500">/ an</span></div>
-              <p class="text-xs text-neutral-700 mt-2 font-medium">
-                Prorogé par la loi de finances 2026 pour les dépenses payées jusqu'au <strong>31 décembre 2027</strong>.
-              </p>
-            </div>
-
-            <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">Un levier fiscal massif pour les bailleurs</h4>
-            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-4">
-              Imputez le double du plafond ordinaire (10 700 € → 21 400 €) directement sur votre revenu global pour tous travaux de rénovation énergétique permettant à votre logement de sortir du statut passoire (classes F ou G) vers les classes A, B, C ou D.
-            </p>
-
-            <div class="flex items-center justify-between pt-4 border-t border-neutral-100 text-xs text-neutral-500">
-              <span>Source : CGI art. 156 & LF 2026</span>
-              <span class="font-bold text-pin">Économie d'impôt</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIN 2: CALENDRIER LOI CLIMAT -->
-        <div class="pin-card" data-category="marche">
-          <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-[11px] font-bold border border-rose-200">
-                <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Calendrier d'Interdiction
-              </span>
-              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors" title="Épingler">
-                <i data-lucide="bookmark" class="w-4 h-4"></i>
-              </button>
-            </div>
-
-            <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">60 % des logements construits avant 1974</h4>
-            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-4">
-              Avant la première réglementation thermique de 1974, les logements étaient bâtis sans aucune isolation. En France, <strong>91 % des passoires thermiques</strong> locatives datent d'avant 1974.
-            </p>
-
-            <div class="space-y-2.5 my-4 bg-neutral-50 p-3.5 rounded-2xl border border-neutral-150 text-xs font-semibold">
-              <div class="flex items-center justify-between text-rose-700">
-                <span class="flex items-center gap-1.5"><i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Depuis le 1er janv. 2025</span>
-                <span>Logements G interdits</span>
-              </div>
-              <div class="flex items-center justify-between text-amber-700">
-                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 1er janvier 2028</span>
-                <span>Logements F interdits</span>
-              </div>
-              <div class="flex items-center justify-between text-neutral-600">
-                <span class="flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> 1er janvier 2034</span>
-                <span>Logements E interdits</span>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-              <span>Sanction : loyer bloqué & inlouable</span>
-              <span class="font-bold text-rose-600">3,9M de biens</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIN 3: SÉQUESTRE BANCAIRE -->
-        <div id="garanties" class="pin-card" data-category="sequestre">
-          <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-[11px] font-bold border border-pin-soft">
-                <i data-lucide="lock" class="w-3.5 h-3.5"></i> Sécurité Maximale
-              </span>
-              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors" title="Épingler">
-                <i data-lucide="bookmark" class="w-4 h-4"></i>
-              </button>
-            </div>
-
-            <div class="w-10 h-10 rounded-2xl bg-pin/10 text-pin flex items-center justify-center mb-3">
-              <i data-lucide="wallet" class="w-5 h-5"></i>
-            </div>
-
-            <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">Compte Séquestre Bancaire Régulé ACPR</h4>
-            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-4">
-              Votre argent n'est pas versé directement à une entreprise sans garantie : il est consigné sur un compte séquestre bancaire indépendant. 
-              <strong>Aucun risque d'artisan en faillite ou d'abandon de chantier.</strong>
-            </p>
-
-            <div class="p-3 bg-neutral-50 rounded-xl text-xs text-neutral-700 font-medium space-y-1.5 mb-4">
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-pin shrink-0"></i> Déblocage des fonds par jalons validés</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-pin shrink-0"></i> Contrôle systématique des assurances décennales</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-pin shrink-0"></i> Solde payé uniquement après DPE conforme</div>
-            </div>
-
-            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-              <span>Établissement bancaire agréé</span>
-              <span class="font-bold text-pin">Garantie 100%</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIN 4: ARCHITECTES MAR INDÉPENDANTS -->
-        <div class="pin-card" data-category="sequestre">
-          <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold border border-blue-200">
-                <i data-lucide="compass" class="w-3.5 h-3.5"></i> Éthique & Neutralité
-              </span>
-              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors" title="Épingler">
-                <i data-lucide="bookmark" class="w-4 h-4"></i>
-              </button>
-            </div>
-
-            <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">Architectes Mon Accompagnateur Rénov'</h4>
-            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-4">
-              Pour respecter la réglementation Anah et éliminer tout conflit d'intérêts, votre architecte MAR est totalement indépendant des entreprises qui réalisent les travaux.
-            </p>
-
-            <div class="space-y-2 mb-4 text-xs text-neutral-700">
-              <div class="flex items-start gap-2">
-                <i data-lucide="badge-check" class="w-4 h-4 text-pin shrink-0 mt-0.5"></i>
-                <span>Audit thermique certifié et scénarios personnalisés.</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i data-lucide="badge-check" class="w-4 h-4 text-pin shrink-0 mt-0.5"></i>
-                <span>Suivi rigoureux du chantier avec rapports photo réguliers.</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <i data-lucide="badge-check" class="w-4 h-4 text-pin shrink-0 mt-0.5"></i>
-                <span>Validation technique obligatoire avant chaque paiement.</span>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-              <span>Agrément officiel France Rénov'</span>
-              <span class="font-bold text-neutral-800">Tiers de confiance</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIN 5: MAPRIMERÉNOV' 2026 -->
-        <div class="pin-card" data-category="fiscal">
-          <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold">
-                Barème Officiel 2026
-              </span>
-              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors" title="Épingler">
-                <i data-lucide="bookmark" class="w-4 h-4"></i>
-              </button>
-            </div>
-
-            <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">MaPrimeRénov' Parcours Accompagné 2026</h4>
-            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-4">
-              En 2026, l'assiette éligible du parcours accompagné est de <strong>40 000 € HT</strong> (jusqu'à 80 % de prise en charge pour les rénovations permettant 2 sauts de classe DPE).
-            </p>
-
-            <div class="p-3 bg-pin-light/60 rounded-xl border border-pin-soft text-xs text-neutral-800 mb-4">
-              <p><strong>Bailleurs à revenus élevés :</strong> Mobilisez directement le <strong>Déficit Foncier doublé (21 400 € / an)</strong> sans plafond de revenus.</p>
-            </div>
-
-            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-              <span>Éco-PTZ jusqu'à 50 000 €</span>
-              <span class="font-bold text-pin">TVA réduite à 5,5 %</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIN 6: ENGAGEMENT DPE CERTIFIÉ -->
-        <div class="pin-card" data-category="sequestre">
-          <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-3">
-              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin text-white text-[11px] font-bold">
-                Garantie de Résultat
-              </span>
-              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors" title="Épingler">
-                <i data-lucide="bookmark" class="w-4 h-4"></i>
-              </button>
-            </div>
-
-            <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">Attestation DPE C ou D Délivrée</h4>
-            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-4">
-              Votre objectif n'est pas simplement de faire des travaux, mais d'obtenir la conformité légale permettant de relouer immédiatement et sans décote.
-            </p>
-
-            <div class="p-3.5 bg-neutral-50 rounded-2xl border border-neutral-200 text-xs text-neutral-700 font-medium mb-4">
-              <strong class="text-neutral-900 block mb-1">DPE de fin de chantier :</strong>
-              Le diagnostiqueur et l'architecte délivrent le DPE officiel attestant de la sortie définitive de passoire thermique.
-            </div>
-
-            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-              <span>Valorisation patrimoniale</span>
-              <span class="font-bold text-emerald-600">+15 % à +25 %</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Action Banner under pins -->
-      <div class="mt-10 sm:mt-12 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-neutral-200 shadow-card text-center max-w-3xl mx-auto">
-        <h3 class="text-lg sm:text-2xl font-black text-neutral-900 mb-2">Votre logement est actuellement classé G ou F ?</h3>
-        <p class="text-neutral-600 text-xs sm:text-base mb-6">
-          Calculez vos subventions et votre saut énergétique en moins de 2 minutes.
-        </p>
-        <!-- SINGLE CTA BUTTON -->
-        <button onclick="openProjectModal()" class="cta-single-button inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-xs sm:text-base font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full shadow-md hover:shadow-lg hover:shadow-pin/25 transition-all text-center">
-          <i data-lucide="calculator" class="w-4 h-4 shrink-0"></i>
-          <span>Estimer mon projet gratuitement</span>
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= SIMULATEUR CLIENT : CALCULATEUR DE PROJET ================= -->
-  <section id="simulateur" class="py-16 sm:py-20 bg-white border-t border-neutral-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
-          Simulateur Propriétaire & Bailleur
-        </span>
-        <h2 class="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-black text-neutral-900 leading-tight">
-          Simulez votre rénovation & vos aides 2026
-        </h2>
-        <p class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-neutral-600">
-          Ajustez la surface et l'étiquette actuelle de votre bien pour estimer le budget travaux, les aides publiques et votre déficit foncier.
-        </p>
-      </div>
-
-      <div class="max-w-4xl mx-auto bg-gradient-to-b from-neutral-50 to-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-neutral-200 shadow-card">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          
-          <!-- Sliders and Inputs -->
-          <div class="space-y-5 sm:space-y-6">
-            
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <label class="text-xs font-bold text-neutral-700 uppercase tracking-wider">Surface habitable du bien</label>
-                <span class="text-sm sm:text-base font-black text-pin font-display" id="valSurface">65 m²</span>
-              </div>
-              <input type="range" id="sliderSurface" min="20" max="180" step="5" value="65" class="w-full accent-pin cursor-pointer">
-              <div class="flex justify-between text-[10px] sm:text-[11px] text-neutral-400 mt-1">
-                <span>20 m²</span>
-                <span>180 m²</span>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-2">Étiquette DPE Actuelle</label>
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="selectDPE('G')" id="btnDPE-G" class="dpe-btn active p-2.5 rounded-xl border-2 border-pin bg-pin-light text-pin text-xs font-bold text-center transition-all">
-                  Passoire G <span class="block text-[10px] font-normal text-rose-600 mt-0.5">Interdit</span>
-                </button>
-                <button type="button" onclick="selectDPE('F')" id="btnDPE-F" class="dpe-btn p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 text-xs font-bold text-center hover:border-pin transition-all">
-                  Passoire F <span class="block text-[10px] font-normal text-amber-600 mt-0.5">Fin 2027</span>
-                </button>
-                <button type="button" onclick="selectDPE('E')" id="btnDPE-E" class="dpe-btn p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 text-xs font-bold text-center hover:border-pin transition-all">
-                  Classe E <span class="block text-[10px] font-normal text-neutral-500 mt-0.5">Horizon 2034</span>
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-2">Type d'Usage</label>
-              <div class="grid grid-cols-2 gap-2">
-                <button type="button" onclick="selectUsage('locatif')" id="btnUsage-locatif" class="usage-btn active p-2.5 rounded-xl border-2 border-pin bg-pin-light text-pin text-xs font-bold text-center transition-all">
-                  Propriétaire Bailleur
-                </button>
-                <button type="button" onclick="selectUsage('occupant')" id="btnUsage-occupant" class="usage-btn p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 text-xs font-bold text-center hover:border-pin transition-all">
-                  Propriétaire Occupant
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Dynamic Results Card -->
-          <div class="bg-neutral-900 rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-white flex flex-col justify-between shadow-xl">
-            <div>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white text-[11px] font-semibold mb-4 sm:mb-6">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-pin"></i> Estimation personnalisée
-              </div>
-
-              <div class="mb-4 sm:mb-5">
-                <div class="text-[11px] font-bold text-neutral-400 uppercase tracking-wider">Budget Travaux Estimé</div>
-                <div class="text-2xl sm:text-3xl font-black text-white font-display mt-1" id="resBudget">32 500 € TTC</div>
-                <p class="text-[11px] text-neutral-400 mt-0.5">Isolation, ventilation & système thermique certifié</p>
-              </div>
-
-              <div class="mb-4 sm:mb-5 pt-4 border-t border-neutral-800">
-                <div class="text-[11px] font-bold text-neutral-400 uppercase tracking-wider">Subventions Estimées (MaPrimeRénov')</div>
-                <div class="text-xl sm:text-2xl font-black text-emerald-400 font-display mt-1" id="resAides">Jusqu'à 19 500 €</div>
-                <p class="text-[11px] text-neutral-400 mt-0.5">Parcours accompagné + TVA 5,5 %</p>
-              </div>
-
-              <div class="pt-4 border-t border-neutral-800">
-                <div class="text-[11px] font-bold text-neutral-400 uppercase tracking-wider">Déficit Foncier Mobilisable</div>
-                <div class="text-lg sm:text-xl font-bold text-pin font-display mt-1" id="resDeficitClient">21 400 € / an</div>
-                <p class="text-[10px] sm:text-[11px] text-neutral-400 mt-0.5">Plafond doublé prorogé au 31 décembre 2027</p>
-              </div>
-            </div>
-
-            <div class="mt-5 pt-4">
-              <!-- SINGLE CTA BUTTON -->
-              <button onclick="openProjectModal()" class="cta-single-button w-full inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-xs sm:text-sm font-bold px-4 py-3 rounded-full shadow-md active:scale-95 transition-all text-center">
-                <i data-lucide="calculator" class="w-4 h-4 shrink-0"></i>
-                <span>Estimer mon projet gratuitement</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="text-center text-[11px] text-neutral-500 border-t border-neutral-200 pt-3">
-          Estimation indicative sans valeur contractuelle · Analyse approfondie réalisée avec votre architecte MAR partenaire.
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= SECTION 4 ÉTAPES UTILISATEUR ================= -->
-  <section id="etapes" class="py-16 sm:py-20 bg-[#FBFBFC] border-t border-neutral-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-wider">
-          Parcours Client Transparent
-        </span>
-        <h2 class="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-black text-neutral-900 leading-tight">
-          Comment se déroule votre projet
-        </h2>
-        <p class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-neutral-600">
-          De la première estimation jusqu’à la remise du DPE conforme, vous avancez l'esprit tranquille.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
-        
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card">
-          <div class="w-10 h-10 rounded-2xl bg-neutral-900 text-white font-black text-sm flex items-center justify-center mb-4">
-            01
-          </div>
-          <h4 class="font-bold text-neutral-900 text-base mb-2">Estimation en Ligne</h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Renseignez l'adresse de votre logement, sa surface et vos factures pour obtenir votre premier diagnostic d'aides.
-          </p>
-          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-neutral-500 flex items-center gap-1.5">
-            <i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Gratuit en 2 min
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card">
-          <div class="w-10 h-10 rounded-2xl bg-neutral-900 text-white font-black text-sm flex items-center justify-center mb-4">
-            02
-          </div>
-          <h4 class="font-bold text-neutral-900 text-base mb-2">Visite & Audit MAR</h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Un architecte indépendant visite votre bien, réalise l'audit officiel et définit le scénario garantissant la note C ou D.
-          </p>
-          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-neutral-500 flex items-center gap-1.5">
-            <i data-lucide="compass" class="w-3.5 h-3.5 text-pin"></i> Audit certifié Anah
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card">
-          <div class="w-10 h-10 rounded-2xl bg-pin text-white font-black text-sm flex items-center justify-center mb-4 shadow-sm shadow-pin/30">
-            03
-          </div>
-          <h4 class="font-bold text-neutral-900 text-base mb-2">Séquestre & Artisans</h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Vos fonds sont déposés sur compte séquestre bancaire. Les artisans RGE exécutent les travaux sous la supervision de l'architecte.
-          </p>
-          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-neutral-500 flex items-center gap-1.5">
-            <i data-lucide="lock" class="w-3.5 h-3.5 text-pin"></i> 0 risque d'abandon
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200 shadow-card">
-          <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-white font-black text-sm flex items-center justify-center mb-4">
-            04
-          </div>
-          <h4 class="font-bold text-neutral-900 text-base mb-2">DPE Conforme & Livraison</h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Délivrance de votre attestation DPE C ou D. Les fonds séquestrés sont libérés et votre logement est prêt à être loué ou habité.
-          </p>
-          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-emerald-600 flex items-center gap-1.5">
-            <i data-lucide="key" class="w-3.5 h-3.5"></i> Conforme Loi Climat
-          </div>
-        </div>
-
-      </div>
-
-      <div class="mt-10 sm:mt-12 text-center">
-        <!-- SINGLE CTA BUTTON -->
-        <button onclick="openProjectModal()" class="cta-single-button inline-flex items-center justify-center gap-2.5 bg-pin hover:bg-pin-hover text-white text-xs sm:text-base font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-pin/25 transition-all text-center">
-          <i data-lucide="sparkles" class="w-5 h-5 shrink-0"></i>
-          <span>Estimer mon projet gratuitement</span>
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= FAQ CLIENTS & BAILLEURS ================= -->
-  <section id="faq" class="py-16 sm:py-20 bg-white border-t border-neutral-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center mb-10 sm:mb-14">
-        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
-          Vos Questions Fréquentes
-        </span>
-        <h2 class="mt-3 font-display text-2xl sm:text-3xl md:text-4xl font-black text-neutral-900 leading-tight">
-          Tout savoir sur notre accompagnement
-        </h2>
-        <p class="mt-3 text-sm sm:text-base text-neutral-600">
-          Sécurité des fonds, aides de l'État et rôle de l'architecte : les réponses à vos interrogations.
-        </p>
-      </div>
-
-      <div class="space-y-3 sm:space-y-4">
-        
-        <div class="bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-sm">
-          <h4 class="font-bold text-neutral-900 text-sm sm:text-base mb-2 flex items-center justify-between gap-2">
-            <span>Comment le compte séquestre bancaire protège-t-il mon argent ?</span>
-            <i data-lucide="shield-check" class="w-4 h-4 text-pin shrink-0"></i>
-          </h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Plutôt que d'avancer des acomptes directs risqués aux artisans, vos fonds sont consignés auprès d'un établissement bancaire régulé par l'ACPR. Ils ne sont débloqués aux entreprises qu'au fur et à mesure de l'avancement, uniquement lorsque l'architecte indépendant valide chaque jalon technique. En cas de défaillance, votre argent est intact.
-          </p>
-        </div>
-
-        <div class="bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-sm">
-          <h4 class="font-bold text-neutral-900 text-sm sm:text-base mb-2 flex items-center justify-between gap-2">
-            <span>Quel est le rôle exact de l'architecte Mon Accompagnateur Rénov' (MAR) ?</span>
-            <i data-lucide="compass" class="w-4 h-4 text-pin shrink-0"></i>
-          </h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            L'architecte MAR est un professionnel assermenté et agréé par l'Anah. Il intervient en totale indépendance des entreprises de travaux pour réaliser l'audit thermique obligatoire, monter votre dossier d'aides publiques, sélectionner les entreprises RGE et contrôler la conformité de chaque étape sur le chantier.
-          </p>
-        </div>
-
-        <div class="bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-sm">
-          <h4 class="font-bold text-neutral-900 text-sm sm:text-base mb-2 flex items-center justify-between gap-2">
-            <span>Comment fonctionne le super déficit foncier prorogé par la loi de finances 2026 ?</span>
-            <i data-lucide="percent" class="w-4 h-4 text-pin shrink-0"></i>
-          </h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            La loi de finances 2026 a officiellement reconduit le doublement du plafond d'imputation sur le revenu global (porté à 21 400 € / an au lieu de 10 700 €) pour toutes les dépenses payées jusqu'au 31 décembre 2027. Ce dispositif fiscal s'applique aux logements loués nus qui passent d'une étiquette passoire (F ou G) aux classes A, B, C ou D.
-          </p>
-        </div>
-
-        <div class="bg-neutral-50 rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-sm">
-          <h4 class="font-bold text-neutral-900 text-sm sm:text-base mb-2 flex items-center justify-between gap-2">
-            <span>Quelles sont les aides financières cumulables en 2026 ?</span>
-            <i data-lucide="coins" class="w-4 h-4 text-pin shrink-0"></i>
-          </h4>
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Vous pouvez cumuler MaPrimeRénov' Parcours Accompagné (jusqu'à 80 % sur un plafond de 40 000 € HT), l'Éco-Prêt à Taux Zéro (Éco-PTZ) jusqu'à 50 000 € remboursable sur 20 ans, le taux de TVA réduit à 5,5 %, et le Déficit Foncier doublé sur vos impôts sur le revenu.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= FINAL CTA HERO BANNER ================= -->
-  <section class="py-16 sm:py-20 bg-gradient-to-br from-neutral-900 via-pin-dark to-neutral-950 text-white relative overflow-hidden">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      
-      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 text-pin-soft border border-white/20 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-5">
-        <i data-lucide="sparkles" class="w-4 h-4 text-pin"></i> Estimation Gratuite & Sans Engagement
-      </span>
-
-      <h2 class="font-display text-2xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight max-w-3xl mx-auto mb-5">
-        Prêt à valoriser votre logement et sortir du statut passoire ?
-      </h2>
-
-      <p class="text-xs sm:text-base md:text-lg text-neutral-300 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-        Découvrez immédiatement le montant de vos subventions et sécurisez votre rénovation avec nos architectes MAR agréés.
-      </p>
-
-      <!-- SINGLE CTA BUTTON -->
-      <button onclick="openProjectModal()" class="cta-single-button inline-flex items-center justify-center gap-3 bg-pin hover:bg-pin-hover text-white text-xs sm:text-base font-bold px-7 sm:px-10 py-4 sm:py-4.5 rounded-full shadow-2xl hover:shadow-pin/50 hover:scale-105 active:scale-95 transition-all text-center">
-        <i data-lucide="calculator" class="w-5 h-5 shrink-0"></i>
-        <span>Estimer mon projet gratuitement</span>
-      </button>
-
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] sm:text-xs text-neutral-400">
-        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> 100 % Séquestre Bancaire</span>
-        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Architectes MAR Agréés</span>
-        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Artisans RGE Certifiés</span>
-        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Zéro avance à risque</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="bg-white border-t border-neutral-200 py-10 text-xs text-neutral-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
-      
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-xl bg-pin flex items-center justify-center shrink-0">
-          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+      <!-- Logo Minimaliste -->
+      <a href="#" class="flex items-center gap-2.5 shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-pin flex items-center justify-center text-white shrink-0 shadow-sm">
+          <svg viewBox="0 0 44 44" fill="none" class="w-5 h-5">
             <path d="M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
             <path d="M18 23.5L21 26.5L26.5 20.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
           </svg>
         </div>
-        <div>
-          <span class="font-display font-black text-neutral-900 text-sm">
-            Rénov<span class="text-pin">·Tiers de Confiance</span>
-          </span>
-          <span class="text-neutral-400 block sm:inline sm:ml-2">· La Marketplace Sécurisée de Rénovation Énergétique</span>
-        </div>
-      </div>
+        <span class="font-display font-extrabold text-lg tracking-tight text-neutral-950">
+          Rénov<span class="text-pin">.Confiance</span>
+        </span>
+      </a>
 
-      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] sm:text-xs">
-        <span>Conforme Loi Climat & Résilience</span>
-        <span>Loi de Finances 2026 (Art. 156 CGI)</span>
-        <span>Mentions Légales & Confidentialité</span>
-      </div>
+      <!-- Menu Très Court -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-neutral-600">
+        <a href="#solution" class="hover:text-pin transition-colors">Solution</a>
+        <a href="#loi" class="hover:text-pin transition-colors">Loi & Aides</a>
+        <a href="#simulateur" class="hover:text-pin transition-colors">Simulateur</a>
+        <a href="#faq" class="hover:text-pin transition-colors">FAQ</a>
+      </nav>
 
-    </div>
-  </footer>
-
-  <!-- ================= STICKY BOTTOM ACTION BAR (MOBILE & DESKTOP) ================= -->
-  <div class="fixed bottom-3 left-3 right-3 sm:bottom-4 sm:left-auto sm:right-6 z-40 max-w-md ml-auto">
-    <div class="bg-neutral-900/95 backdrop-blur-md text-white p-2.5 sm:p-3 rounded-2xl sm:rounded-full shadow-2xl border border-neutral-800 flex items-center justify-between gap-2.5">
-      <div class="hidden sm:flex items-center gap-2 pl-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="text-xs font-semibold">Simulateur :</span>
-        <span class="text-xs font-bold text-pin-soft">Aides 2026</span>
-      </div>
-      <!-- SINGLE CTA BUTTON -->
-      <button onclick="openProjectModal()" class="cta-single-button w-full sm:w-auto text-xs font-bold bg-pin hover:bg-pin-hover text-white px-4 sm:px-5 py-2.5 rounded-full shadow-md active:scale-95 transition-all text-center flex items-center justify-center gap-1.5 shrink-0">
-        <i data-lucide="calculator" class="w-3.5 h-3.5 shrink-0"></i>
-        <span>Estimer mon projet gratuitement</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- ================= MODAL D'ESTIMATION CLIENT ================= -->
-  <div id="projectModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-neutral-100 relative my-4 sm:my-8 animate-in fade-in zoom-in-95 duration-200 max-h-[95vh] overflow-y-auto">
-      
-      <!-- Close button -->
-      <button onclick="closeProjectModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 flex items-center justify-center transition-colors" aria-label="Fermer">
-        <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-      </button>
-
-      <!-- Modal Header -->
-      <div class="mb-5 sm:mb-6 pr-6">
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin-light text-pin text-[11px] font-bold mb-2">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Estimation Immédiate Gratuite
-        </div>
-        <h3 class="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 leading-tight">Estimer mon projet de rénovation</h3>
-        <p class="text-xs sm:text-sm text-neutral-600 mt-1">
-          Recevez votre diagnostic d'aides et entrez en relation avec un architecte MAR agréé.
-        </p>
-      </div>
-
-      <!-- Form (No login required) -->
-      <form id="projectForm" onsubmit="handleProjectSubmit(event)" class="space-y-3 sm:space-y-4">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Type de bien *</label>
-            <select required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin bg-white">
-              <option value="appartement">Appartement</option>
-              <option value="maison">Maison individuelle</option>
-              <option value="immeuble">Immeuble entier / Plusieurs lots</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">DPE actuel estimé *</label>
-            <select required class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin bg-white">
-              <option value="G">Classe G (Interdit à la location)</option>
-              <option value="F">Classe F (Interdit au 1er janv. 2028)</option>
-              <option value="E">Classe E (Interdit en 2034)</option>
-              <option value="inconnu">Je ne sais pas exactement</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Surface (m²) *</label>
-            <input type="number" required placeholder="Ex: 65" min="15" max="1000" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Code Postal du bien *</label>
-            <input type="text" required placeholder="Ex: 75011" maxlength="5" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Nom et Prénom *</label>
-          <input type="text" required placeholder="Alexandre Martin" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Email *</label>
-            <input type="email" required placeholder="alexandre@domaine.fr" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
-          </div>
-          <div>
-            <label class="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Téléphone *</label>
-            <input type="tel" required placeholder="06 12 34 56 78" class="w-full px-3.5 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
-          </div>
-        </div>
-
-        <!-- Single Identical CTA Button inside Modal -->
-        <div class="pt-2">
-          <button type="submit" class="cta-single-button w-full inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-sm sm:text-base font-bold py-3.5 rounded-full shadow-lg hover:shadow-pin/25 active:scale-95 transition-all text-center">
-            <i data-lucide="check" class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"></i>
-            <span>Estimer mon projet gratuitement</span>
-          </button>
-        </div>
-
-        <p class="text-[11px] text-center text-neutral-500 mt-2">
-          🔒 Données sécurisées · Aucun spam · Mise en relation directe avec un architecte MAR indépendant.
-        </p>
-
-      </form>
-
-      <!-- Confirmation view -->
-      <div id="projectSuccess" class="hidden text-center py-6">
-        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-          <i data-lucide="check-check" class="w-7 h-7 sm:w-8 sm:h-8 stroke-[2.5]"></i>
-        </div>
-        <h4 class="text-xl sm:text-2xl font-bold text-neutral-900 mb-2">Estimation en cours !</h4>
-        <p class="text-xs sm:text-sm text-neutral-600 mb-6 max-w-sm mx-auto">
-          Votre synthèse personnalisée d'aides et le contact de votre architecte MAR partenaire vous ont été transmis. Un conseiller vous contactera sous 2 heures ouvrées.
-        </p>
-        <button onclick="closeProjectModal()" class="px-6 py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold hover:bg-neutral-800 transition-colors">
-          Fermer la fenêtre
+      <!-- Boutons Actions Header -->
+      <div class="flex items-center gap-2">
+        <button onclick="openArchiModal()" class="hidden sm:inline-flex text-xs font-bold text-neutral-700 hover:text-pin px-3.5 py-2 rounded-full border border-neutral-200 hover:border-pin transition-all">
+          Accès Architectes
+        </button>
+        <button onclick="openProprioModal()" class="text-xs font-bold bg-pin hover:bg-pin-hover text-white px-4 py-2 rounded-full shadow-sm transition-all">
+          Estimer mon projet gratuitement
         </button>
       </div>
 
     </div>
+  </header>
+
+  <!-- ================= HERO SECTION (Phrases Courtes, Titres Sans Coupures) ================= -->
+  <section class="pt-12 pb-16 sm:pt-16 sm:pb-20 bg-gradient-to-b from-neutral-50/60 to-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      
+      <!-- Badge Simple -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold mb-6">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Marketplace Tiers de Confiance
+      </div>
+
+      <!-- Titre Percutant (Pas de coupure bizarre) -->
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
+        Rénovez sans risque.
+      </h1>
+      <p class="font-display text-2xl sm:text-4xl font-extrabold text-pin mt-1 tracking-tight">
+        Séquestre bancaire & Architectes agréés.
+      </p>
+
+      <!-- Sous-titre Court -->
+      <p class="mt-5 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        Sortez votre bien du statut de passoire thermique (F ou G). 
+        Vos fonds restent protégés en banque jusqu’à la livraison du DPE conforme.
+      </p>
+
+      <!-- Deux Boutons Distincts Hero -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button onclick="openProprioModal()" class="w-full sm:w-auto text-sm font-bold bg-pin hover:bg-pin-hover text-white px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+          <i data-lucide="home" class="w-4 h-4"></i>
+          <span>Estimer mon projet gratuitement</span>
+        </button>
+        <button onclick="openArchiModal()" class="w-full sm:w-auto text-sm font-bold bg-white hover:bg-neutral-50 text-neutral-800 px-6 py-3.5 rounded-full border border-neutral-300 shadow-sm transition-all flex items-center justify-center gap-2">
+          <i data-lucide="compass" class="w-4 h-4 text-pin"></i>
+          <span>Rejoindre le réseau d'architectes</span>
+        </button>
+      </div>
+
+      <!-- 4 Chiffres Clés Nets & Explicites -->
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left">
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display">100 %</div>
+          <div class="text-xs font-bold text-pin uppercase mt-0.5">Fonds Séquestrés</div>
+          <div class="text-xs text-neutral-500 mt-1">Compte bloqué ACPR</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xl sm:text-2xl font-black text-pin font-display">21 400 €</div>
+          <div class="text-xs font-bold text-neutral-800 uppercase mt-0.5">Déficit Foncier / an</div>
+          <div class="text-xs text-neutral-500 mt-1">Prorogé fin 2027</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display">Jusqu'à 80 %</div>
+          <div class="text-xs font-bold text-pin uppercase mt-0.5">Subventions Anah</div>
+          <div class="text-xs text-neutral-500 mt-1">MaPrimeRénov' 2026</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xl sm:text-2xl font-black text-emerald-600 font-display">Note C ou D</div>
+          <div class="text-xs font-bold text-neutral-800 uppercase mt-0.5">DPE Garanti</div>
+          <div class="text-xs text-neutral-500 mt-1">Attestation officielle</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SOLUTION : 2 CARTES CLAIRES (PROPRIOS VS ARCHIS) ================= -->
+  <section id="solution" class="py-14 sm:py-16 bg-white border-y border-neutral-100">
+    <div class="max-w-5xl mx-auto px-4">
+      
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
+          La marketplace en 2 profils
+        </h2>
+        <p class="text-sm text-neutral-500 mt-2">
+          Un tiers de confiance unique qui relie l'exigence des propriétaires et l'expertise des architectes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- CARTE PROPRIÉTAIRE -->
+        <div class="bg-neutral-50 rounded-3xl p-6 sm:p-8 border border-neutral-200 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-pin text-white flex items-center justify-center mb-4">
+              <i data-lucide="home" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-900 mb-1">Pour les Propriétaires & Bailleurs</h3>
+            <p class="text-xs text-neutral-500 mb-6">Éliminez vos passoires thermiques sans risque d'abandon de chantier.</p>
+
+            <ul class="space-y-3 text-sm text-neutral-700 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
+                <span>Architecte MAR dédié (audit officiel)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
+                <span>Artisans RGE certifiés & audités</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
+                <span>Argent bloqué sous séquestre bancaire</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
+                <span>Nouveau DPE C ou D garanti</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-neutral-200">
+            <button onclick="openProprioModal()" class="w-full text-xs font-bold bg-pin hover:bg-pin-hover text-white py-3 rounded-full transition-all text-center">
+              Estimer mon projet gratuitement
+            </button>
+          </div>
+        </div>
+
+        <!-- CARTE ARCHITECTE -->
+        <div class="bg-neutral-50 rounded-3xl p-6 sm:p-8 border border-neutral-200 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center mb-4">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-900 mb-1">Pour les Architectes & Artisans</h3>
+            <p class="text-xs text-neutral-500 mb-6">Recevez des chantiers cadrés et garantissez 100 % de vos paiements.</p>
+
+            <ul class="space-y-3 text-sm text-neutral-700 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Chantiers qualifiés et pré-financés</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Zéro impayé : budget séquestré en amont</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Indépendance déontologique MAR respectée</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Déblocage direct par jalons validés</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-neutral-200">
+            <button onclick="openArchiModal()" class="w-full text-xs font-bold bg-neutral-900 hover:bg-neutral-800 text-white py-3 rounded-full transition-all text-center">
+              Rejoindre le réseau d'architectes
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= LOI & AIDES : 4 BLOCS NETS ================= -->
+  <section id="loi" class="py-14 sm:py-16 bg-neutral-50/50">
+    <div class="max-w-5xl mx-auto px-4">
+      
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
+          Ce que la loi impose et finance
+        </h2>
+        <p class="text-sm text-neutral-500 mt-2">
+          Les sanctions d'interdiction et vos opportunités fiscales réelles.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Bloc 1 -->
+        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xs font-bold text-rose-600 uppercase mb-1">Loi Climat</div>
+          <div class="text-base font-bold text-neutral-900">Interdiction de louer</div>
+          <div class="mt-3 space-y-1.5 text-xs text-neutral-600 font-medium">
+            <div class="text-rose-600 font-bold">Classe G : Interdit (depuis 2025)</div>
+            <div class="text-amber-700 font-bold">Classe F : Interdit 1er janv. 2028</div>
+            <div class="text-neutral-500">Classe E : Horizon 2034</div>
+          </div>
+        </div>
+
+        <!-- Bloc 2 -->
+        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xs font-bold text-pin uppercase mb-1">Fiscalité 2026-2027</div>
+          <div class="text-base font-bold text-neutral-900">Déficit Foncier ×2</div>
+          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
+            Plafond doublé à <strong>21 400 € / an</strong> déductible sur vos revenus jusqu'au 31 décembre 2027.
+          </p>
+        </div>
+
+        <!-- Bloc 3 -->
+        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xs font-bold text-emerald-600 uppercase mb-1">Aides Anah</div>
+          <div class="text-base font-bold text-neutral-900">MaPrimeRénov'</div>
+          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
+            Jusqu'à <strong>80 % de subventions</strong> (assiette 40 000 € HT) pour 2 sauts de classes DPE.
+          </p>
+        </div>
+
+        <!-- Bloc 4 -->
+        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
+          <div class="text-xs font-bold text-blue-600 uppercase mb-1">Financement</div>
+          <div class="text-base font-bold text-neutral-900">Éco-PTZ & TVA 5,5%</div>
+          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
+            Prêt à taux zéro jusqu'à <strong>50 000 €</strong> sur 20 ans cumulable avec la TVA à taux réduit.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SIMULATEUR EXPRESS ================= -->
+  <section id="simulateur" class="py-14 sm:py-16 bg-white border-t border-neutral-100">
+    <div class="max-w-3xl mx-auto px-4">
+      
+      <div class="text-center mb-8">
+        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
+          Simulateur Express
+        </h2>
+        <p class="text-sm text-neutral-500 mt-1">
+          Calculez vos subventions et votre déduction fiscale en direct.
+        </p>
+      </div>
+
+      <div class="bg-neutral-50 rounded-3xl p-6 sm:p-8 border border-neutral-200">
+        
+        <div class="space-y-6">
+          
+          <!-- Slider Surface -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-neutral-700 uppercase">Surface du logement</label>
+              <span class="text-base font-black text-pin" id="simSurface">65 m²</span>
+            </div>
+            <input type="range" id="inputSurface" min="20" max="150" step="5" value="65" class="w-full accent-pin cursor-pointer">
+          </div>
+
+          <!-- Choix DPE -->
+          <div>
+            <label class="block text-xs font-bold text-neutral-700 uppercase mb-2">DPE Actuel</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" onclick="setDpe('G')" id="dpeG" class="py-2 rounded-xl text-xs font-bold border-2 border-pin bg-pin-light text-pin">
+                Passoire G
+              </button>
+              <button type="button" onclick="setDpe('F')" id="dpeF" class="py-2 rounded-xl text-xs font-bold border border-neutral-300 bg-white text-neutral-700">
+                Passoire F
+              </button>
+              <button type="button" onclick="setDpe('E')" id="dpeE" class="py-2 rounded-xl text-xs font-bold border border-neutral-300 bg-white text-neutral-700">
+                Classe E
+              </button>
+            </div>
+          </div>
+
+          <!-- Résultats Nets -->
+          <div class="bg-neutral-900 text-white p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
+            <div>
+              <div class="text-[11px] text-neutral-400 uppercase font-semibold">Travaux Estimés</div>
+              <div class="text-xl font-bold text-white mt-0.5" id="resBudget">32 500 €</div>
+            </div>
+            <div>
+              <div class="text-[11px] text-neutral-400 uppercase font-semibold">Aides Anah Max</div>
+              <div class="text-xl font-bold text-emerald-400 mt-0.5" id="resAides">19 500 €</div>
+            </div>
+            <div>
+              <div class="text-[11px] text-neutral-400 uppercase font-semibold">Déficit Foncier</div>
+              <div class="text-xl font-bold text-pin mt-0.5" id="resDeficit">21 400 € / an</div>
+            </div>
+          </div>
+
+          <!-- Bouton CTA Simulateur -->
+          <button onclick="openProprioModal()" class="w-full text-xs sm:text-sm font-bold bg-pin hover:bg-pin-hover text-white py-3.5 rounded-full transition-all text-center">
+            Estimer mon projet gratuitement
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FAQ (Ultra-Courte, 4 Questions Clés) ================= -->
+  <section id="faq" class="py-14 sm:py-16 bg-neutral-50/50 border-t border-neutral-100">
+    <div class="max-w-2xl mx-auto px-4">
+      
+      <div class="text-center mb-8">
+        <h2 class="font-display text-2xl font-extrabold text-neutral-900">
+          Questions Fréquentes
+        </h2>
+      </div>
+
+      <div class="space-y-3">
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
+          <div class="font-bold text-sm text-neutral-900 mb-1">Comment le séquestre me protège-t-il ?</div>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Vos fonds sont consignés sur un compte bancaire bloqué. Les artisans sont rémunérés uniquement après validation de chaque jalon par votre architecte.
+          </p>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
+          <div class="font-bold text-sm text-neutral-900 mb-1">Qui est l'architecte MAR ?</div>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            C'est un professionnel agréé par France Rénov' et indépendant des entreprises de travaux. Il réalise l'audit, monte vos aides et pilote le chantier.
+          </p>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
+          <div class="font-bold text-sm text-neutral-900 mb-1">Le déficit foncier à 21 400 € est-il confirmé ?</div>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Oui. La loi de finances 2026 proroge expressément le doublement du plafond jusqu'au 31 décembre 2027 pour les passoires thermiques rénovées.
+          </p>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
+          <div class="font-bold text-sm text-neutral-900 mb-1">Combien coûte l'estimation ?</div>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            L'estimation de votre projet et la simulation de vos aides sont 100 % gratuites et sans engagement.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BANDEAU FINAL ================= -->
+  <section class="py-14 bg-neutral-950 text-white text-center">
+    <div class="max-w-xl mx-auto px-4">
+      <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
+        Prêt à rénover sans stress ?
+      </h2>
+      <p class="text-xs sm:text-sm text-neutral-400 mt-2 mb-6">
+        Obtenez votre estimation d'aides et votre audit sous 48h.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button onclick="openProprioModal()" class="w-full sm:w-auto text-xs font-bold bg-pin hover:bg-pin-hover text-white px-6 py-3 rounded-full transition-all">
+          Estimer mon projet gratuitement
+        </button>
+        <button onclick="openArchiModal()" class="w-full sm:w-auto text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-white px-5 py-3 rounded-full transition-all">
+          Rejoindre le réseau d'architectes
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-6 border-t border-neutral-200 text-center text-xs text-neutral-500 bg-white">
+    <p>Rénov Tiers de Confiance · Conforme Loi Climat & Loi de Finances 2026</p>
+  </footer>
+
+  <!-- ================= MODAL PROPRIÉTAIRE ================= -->
+  <div id="proprioModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeProprioModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-4">
+        <span class="text-[11px] font-bold text-pin uppercase">Propriétaire & Bailleur</span>
+        <h3 class="text-xl font-bold text-neutral-900 mt-0.5">Estimer mon projet</h3>
+      </div>
+
+      <form onsubmit="handleProprioSubmit(event)" class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Surface (m²)</label>
+          <input type="number" required placeholder="65" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Code postal du bien</label>
+          <input type="text" required placeholder="75011" maxlength="5" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Nom complet</label>
+          <input type="text" required placeholder="Votre nom" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Email</label>
+          <input type="email" required placeholder="email@domaine.fr" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Téléphone</label>
+          <input type="tel" required placeholder="06 12 34 56 78" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+
+        <button type="submit" class="w-full text-xs font-bold bg-pin text-white py-3 rounded-full mt-2 shadow-md">
+          Estimer mon projet gratuitement
+        </button>
+      </form>
+    </div>
   </div>
 
-  <!-- ================= JAVASCRIPT INTERACTIONS ================= -->
+  <!-- ================= MODAL ARCHITECTE ================= -->
+  <div id="archiModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeArchiModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="mb-4">
+        <span class="text-[11px] font-bold text-neutral-800 uppercase">Architecte & Artisan</span>
+        <h3 class="text-xl font-bold text-neutral-900 mt-0.5">Rejoindre le réseau</h3>
+      </div>
+
+      <form onsubmit="handleArchiSubmit(event)" class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Nom du cabinet / Entreprise</label>
+          <input type="text" required placeholder="Atelier Architecture" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Statut</label>
+          <select class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm bg-white">
+            <option>Architecte agréé MAR</option>
+            <option>Architecte DPLG / HMONP</option>
+            <option>Artisan certifié RGE</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Ville d'intervention</label>
+          <input type="text" required placeholder="Paris & IDF" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Email pro</label>
+          <input type="email" required placeholder="contact@atelier.fr" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
+        </div>
+
+        <button type="submit" class="w-full text-xs font-bold bg-neutral-900 text-white py-3 rounded-full mt-2 shadow-md">
+          Rejoindre le réseau d'architectes
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT SIMPLE & LÉGER ================= -->
   <script>
     lucide.createIcons();
 
-    // Mobile Navigation Drawer Toggle
-    function toggleMobileNav() {
-      const drawer = document.getElementById('mobileNavDrawer');
-      drawer.classList.toggle('hidden');
-      lucide.createIcons();
+    // Modale Propriétaire
+    function openProprioModal() {
+      document.getElementById('proprioModal').classList.remove('hidden');
+    }
+    function closeProprioModal() {
+      document.getElementById('proprioModal').classList.add('hidden');
     }
 
-    // Modal Logic
-    function openProjectModal() {
-      document.getElementById('projectModal').classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
+    // Modale Architecte
+    function openArchiModal() {
+      document.getElementById('archiModal').classList.remove('hidden');
+    }
+    function closeArchiModal() {
+      document.getElementById('archiModal').classList.add('hidden');
     }
 
-    function closeProjectModal() {
-      document.getElementById('projectModal').classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-      setTimeout(() => {
-        document.getElementById('projectForm').classList.remove('hidden');
-        document.getElementById('projectSuccess').classList.add('hidden');
-      }, 300);
-    }
-
-    document.getElementById('projectModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeProjectModal();
-      }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeProjectModal();
-      }
-    });
-
-    function handleProjectSubmit(e) {
+    function handleProprioSubmit(e) {
       e.preventDefault();
-      document.getElementById('projectForm').classList.add('hidden');
-      document.getElementById('projectSuccess').classList.remove('hidden');
-      lucide.createIcons();
+      alert('Merci ! Votre estimation est enregistrée. Un conseiller vous contacte sous 2 heures.');
+      closeProprioModal();
     }
 
-    // Customer Simulator Logic
-    const sliderSurface = document.getElementById('sliderSurface');
-    const valSurface = document.getElementById('valSurface');
+    function handleArchiSubmit(e) {
+      e.preventDefault();
+      alert('Candidature reçue ! Notre équipe partenariat vous recontacte.');
+      closeArchiModal();
+    }
+
+    // Simulateur Express
+    const inputSurface = document.getElementById('inputSurface');
+    const simSurface = document.getElementById('simSurface');
     const resBudget = document.getElementById('resBudget');
     const resAides = document.getElementById('resAides');
-    const resDeficitClient = document.getElementById('resDeficitClient');
+    const resDeficit = document.getElementById('resDeficit');
+    let currentDpe = 'G';
 
-    let currentDPE = 'G';
-    let currentUsage = 'locatif';
-
-    function selectDPE(dpe) {
-      currentDPE = dpe;
-      document.querySelectorAll('.dpe-btn').forEach(b => {
-        b.classList.remove('border-2', 'border-pin', 'bg-pin-light', 'text-pin');
-        b.classList.add('border-neutral-200', 'bg-white', 'text-neutral-700');
-      });
-      const activeBtn = document.getElementById('btnDPE-' + dpe);
-      activeBtn.classList.remove('border-neutral-200', 'bg-white', 'text-neutral-700');
-      activeBtn.classList.add('border-2', 'border-pin', 'bg-pin-light', 'text-pin');
-      updateCustomerSimulator();
-    }
-
-    function selectUsage(usage) {
-      currentUsage = usage;
-      document.querySelectorAll('.usage-btn').forEach(b => {
-        b.classList.remove('border-2', 'border-pin', 'bg-pin-light', 'text-pin');
-        b.classList.add('border-neutral-200', 'bg-white', 'text-neutral-700');
-      });
-      const activeBtn = document.getElementById('btnUsage-' + usage);
-      activeBtn.classList.remove('border-neutral-200', 'bg-white', 'text-neutral-700');
-      activeBtn.classList.add('border-2', 'border-pin', 'bg-pin-light', 'text-pin');
-      updateCustomerSimulator();
-    }
-
-    function updateCustomerSimulator() {
-      const surface = parseInt(sliderSurface.value, 10);
-      valSurface.textContent = surface + ' m²';
-
-      // Cost calculation base ~500€/m² for global thermal renovation
-      let costPerSqm = 500;
-      if (currentDPE === 'G') costPerSqm = 550;
-      if (currentDPE === 'E') costPerSqm = 420;
-
-      const budget = surface * costPerSqm;
-      resBudget.textContent = budget.toLocaleString('fr-FR') + ' € TTC';
-
-      // MaPrimeRénov calculation (capped at 40 000 € HT in 2026, up to 60-80%)
-      const maxSubsidized = Math.min(budget, 40000);
-      const aides = Math.round(maxSubsidized * 0.60);
-      resAides.textContent = "Jusqu'à " + aides.toLocaleString('fr-FR') + " €";
-
-      // Deficit Foncier (applicable to locatif)
-      if (currentUsage === 'locatif') {
-        const remainingToDeduct = Math.min(budget - aides, 21400);
-        resDeficitClient.textContent = remainingToDeduct.toLocaleString('fr-FR') + " € / an";
-      } else {
-        resDeficitClient.textContent = "Éco-PTZ jusqu'à 50 000 €";
-      }
-    }
-
-    sliderSurface.addEventListener('input', updateCustomerSimulator);
-    updateCustomerSimulator();
-
-    // Pinterest Pin Filters
-    function filterPins(cat) {
-      const pins = document.querySelectorAll('.pin-card');
-      const tabs = document.querySelectorAll('.pin-filter');
-
-      tabs.forEach(tab => {
-        tab.classList.remove('bg-neutral-900', 'text-white');
-        tab.classList.add('bg-white', 'text-neutral-700');
-      });
-
-      const currentTab = document.getElementById('tab-' + cat);
-      if (currentTab) {
-        currentTab.classList.remove('bg-white', 'text-neutral-700');
-        currentTab.classList.add('bg-neutral-900', 'text-white');
-      }
-
-      pins.forEach(pin => {
-        if (cat === 'all' || pin.getAttribute('data-category') === cat) {
-          pin.classList.remove('hidden');
+    function setDpe(letter) {
+      currentDpe = letter;
+      ['G', 'F', 'E'].forEach(l => {
+        const btn = document.getElementById('dpe' + l);
+        if (l === letter) {
+          btn.className = 'py-2 rounded-xl text-xs font-bold border-2 border-pin bg-pin-light text-pin';
         } else {
-          pin.classList.add('hidden');
+          btn.className = 'py-2 rounded-xl text-xs font-bold border border-neutral-300 bg-white text-neutral-700';
         }
       });
+      calcSim();
     }
 
-    // Pinterest Pin Save Micro-Interaction
-    let savedCount = 4;
-    function toggleSavePin(btn) {
-      if (btn.classList.contains('saved')) {
-        btn.classList.remove('saved', 'bg-pin', 'text-white');
-        btn.classList.add('bg-neutral-100', 'text-neutral-600');
-        savedCount--;
-      } else {
-        btn.classList.add('saved', 'bg-pin', 'text-white');
-        btn.classList.remove('bg-neutral-100', 'text-neutral-600');
-        savedCount++;
-      }
-      const counter = document.getElementById('savedPinsCounter');
-      if (counter) counter.textContent = savedCount;
+    function calcSim() {
+      const surface = parseInt(inputSurface.value, 10);
+      simSurface.textContent = surface + ' m²';
+
+      let pricePerSqm = currentDpe === 'G' ? 550 : (currentDpe === 'F' ? 500 : 420);
+      const budget = surface * pricePerSqm;
+      resBudget.textContent = budget.toLocaleString('fr-FR') + ' €';
+
+      const aides = Math.min(Math.round(budget * 0.60), 24000);
+      resAides.textContent = aides.toLocaleString('fr-FR') + ' €';
+
+      const deficit = Math.min(budget - aides, 21400);
+      resDeficit.textContent = deficit.toLocaleString('fr-FR') + ' € / an';
     }
+
+    inputSurface.addEventListener('input', calcSim);
+    calcSim();
   </script>
 </body>
 </html>
