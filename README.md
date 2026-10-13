@@ -1,56 +1,48 @@
-# Rénov Tiers de Confiance 🏛️🔒
+# Rénov.Confiance 🏛️🔒
 
-> **Plateforme B2B2C de Rénovation Énergétique Clé en Main pour Administrateurs de Biens & Cabinets de Gestion de Patrimoine (CGP)**  
-> *Projet Rocket Founders Startup Week 2026 (Rocket School × Change Conseil)*
+> **Marketplace Tiers de Confiance de Rénovation Énergétique**  
+> Séquestre bancaire ACPR · Architectes indépendants agréés Mon Accompagnateur Rénov' (MAR) · Artisans RGE certifiés
 
-🌐 **Landing Page en ligne :** [https://theriderymarketing.github.io/renov-tiers-de-confiance/](https://theriderymarketing.github.io/renov-tiers-de-confiance/)
+🌐 **Landing Page en ligne :** [https://kevinmonin72.github.io/renov-tiers-de-confiance/](https://kevinmonin72.github.io/renov-tiers-de-confiance/)
 
 ![Aperçu Landing Page](preview.png)
 
 ---
 
-## 🎯 Proposition de Valeur & Le Pivot B2B2C
+## 🎯 Proposition de Valeur
 
-* **Le Problème :** Le mur réglementaire de la Loi Climat :
-  * **1er janvier 2025 :** Interdiction totale de louer les passoires thermiques classées **G**.
-  * **1er janvier 2028 :** Interdiction étendue aux logements classés **F**.
-  * **1er janvier 2034 :** Interdiction étendue aux logements classés **E**.
-  * **60 % du parc résidentiel français** date d'avant 1974 (sans isolation initiale).
-  * Risque direct pour les gestionnaires : **perte sèche de leurs 6 % à 8 % d'honoraires de gestion locative**.
-* **Le Cœur du Pitch (Pivot B2B2C vs Hemea) :**
-  * Hemea adresse le grand public (B2C) avec un coût d'acquisition client (CAC) unitaire très élevé (plusieurs centaines d'euros par lead).
-  * En pivotant vers le B2B (cabinets d'administration de biens, syndics, CGP), **1 seul contrat signé avec une agence débloque entre 50 et 500 projets de rénovation potentiels**.
-* **Nos Piliers Différenciants :**
-  1. **0 € de coût** pour le cabinet gestionnaire (gratuité totale et convention stricte de non-démarchage locatif).
-  2. **Compte séquestre bancaire régulé ACPR** (zéro avance à risque, déblocage par étapes validées, garantie anti-abandon de chantier).
-  3. **Architectes indépendants agréés Mon Accompagnateur Rénov' (MAR)** (garantie de neutralité déontologique sans conflit d'intérêts et éligibilité aux aides publiques Anah).
-  4. **Super Déficit Foncier doublé (21 400 € / an)** : prorogé par la loi de finances 2026 pour les dépenses payées jusqu'au 31 décembre 2027.
+* **Pour les Propriétaires & Bailleurs :**
+  * Éliminez le risque d'abandon de chantier et les passoires thermiques (G, F).
+  * 100 % des fonds consignés sous séquestre bancaire régulé ACPR : déblocage par étapes validées.
+  * Architecte MAR dédié, audit thermique officiel et nouveau DPE garanti C ou D.
+  * Mobilisation du **Déficit Foncier doublé à 21 400 € / an** (prorogé Loi de Finances 2026 jusqu'au 31/12/2027) et jusqu'à 80 % d'aides MaPrimeRénov'.
+  * **CTA :** `Estimer mon projet gratuitement`
+
+* **Pour les Architectes & Artisans RGE :**
+  * Chantiers qualifiés, cadrés et pré-financés.
+  * Zéro impayé : budget séquestré en amont auprès de la banque.
+  * Indépendance déontologique MAR respectée sans lien capitalistique avec les entreprises de travaux.
+  * **CTA :** `Rejoindre le réseau d'architectes`
 
 ---
 
-## 👥 Personas Cibles
+## ⚖️ Contexte Réglementaire & Fiscal 2026
 
-* **Marc, 42 ans – Directeur de Gestion Locative (ADB) :**
-  * Gère 850 lots locatifs diffus, dont 18 % classés F ou G (~150 logements menacés).
-  * Gain : Zéro temps passé pour ses collaborateurs, conformité DPE C/D certifiée, préservation de ses mandats de gestion.
-* **Sophie, 38 ans – Conseillère en Gestion de Patrimoine (CGP) :**
-  * Accompagne 120 familles d'investisseurs multipropriétaires.
-  * Gain : Protection contre la décote passoire (-15 % à -25 %), saut de classe DPE garanti et optimisation fiscale via le déficit foncier doublé (21 400 €).
-
----
-
-## 🔄 Parcours Client MVP en 4 Temps
-
-1. **Détection du lot :** L'administrateur de biens renseigne l'adresse ou importe son listing de logements F/G.
-2. **Audit & Scénario MAR :** Un architecte indépendant modélise le scénario garantissant la note C ou D.
-3. **Séquestre & Artisans :** Le propriétaire consigne les fonds sous compte séquestre bancaire, les artisans RGE agréés exécutent les travaux sous maîtrise d'œuvre.
-4. **DPE C/D & Relocation :** Délivrance du nouveau DPE conforme, libération des fonds et remise immédiate en location par l'agence.
+* **Loi Climat & Résilience :**
+  * **2025 :** Interdiction des logements G.
+  * **1er janvier 2028 :** Interdiction des logements F.
+  * **2034 :** Interdiction des logements E.
+* **Loi de Finances 2026 :**
+  * Prorogation du super déficit foncier doublé (21 400 € / an contre 10 700 € en droit commun) pour tous travaux de rénovation énergétique sur passoires thermiques jusqu'au 31 décembre 2027.
+* **MaPrimeRénov' Parcours Accompagné 2026 :**
+  * Jusqu'à 80 % de subventions pour 2 sauts de classe DPE (plafond 40 000 € HT).
 
 ---
 
-## 🛠️ Stack Technique
+## 🛠️ Stack & Interface
 
-* **Design :** Direction artistique « Blanc & Rouge » inspiration Pinterest (grille masonry, coins arrondis, badges interactifs, ombres douces).
-* **Call To Action (CTA) Unique :** « *Réserver mon audit de parc gratuit* » dupliqué sur toute la page.
-* **Simulateur Interactif :** Calcul en direct des lots à risque, des honoraires préservés et du volume de déficit foncier.
-* **Technologies :** HTML5, Tailwind CSS, JavaScript Vanilla, Lucide Icons.
+* **DA :** Palette Blanc & Rouge Pinterest (`#E60023`), typographie moderne Plus Jakarta Sans & Space Grotesk.
+* **Bande passante supérieure (Marquee) :** Défilement continu fluide des alertes réglementaires.
+* **Menu épuré (4 items) :** Solution, Loi & Aides, Simulateur, FAQ.
+* **Simulateur Express :** Calcul direct du budget, des aides Anah et du déficit foncier déductible.
+* **Zero friction :** 100 % responsive (mobile, tablette, desktop), sans login ni formulaires superflus.
