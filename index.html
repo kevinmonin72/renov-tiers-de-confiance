@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rénov Tiers de Confiance | Plateforme B2B2C de Rénovation Énergétique</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pin: {
+              DEFAULT: '#E60023',
+              hover: '#BD081C',
+              dark: '#930B1C',
+              light: '#FFF1F2',
+              soft: '#FFE4E6',
+              surface: '#FFF8F8',
+              gray: '#767676',
+              darkgray: '#111111',
+              border: '#F3E8E8'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif']
+          },
+          boxShadow: {
+            'pin': '0 1px 20px 0 rgba(0, 0, 0, 0.08)',
+            'pin-hover': '0 8px 30px -4px rgba(230, 0, 35, 0.18)',
+            'card': '0 4px 24px -2px rgba(17, 17, 17, 0.06)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Pinterest-like Masonry Columns & Smooth Transitions */
+    .masonry-grid {
+      column-count: 1;
+      column-gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .masonry-grid { column-count: 2; }
+    }
+    @media (min-width: 1024px) {
+      .masonry-grid { column-count: 3; }
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+    }
+    .badge-blur {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    /* Subtle dot grid pattern */
+    .bg-dot-pattern {
+      background-image: radial-gradient(#E60023 0.65px, transparent 0.65px);
+      background-size: 24px 24px;
+      background-color: #FFFFFF;
+    }
+    /* Range slider custom styling */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: #E60023;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(230, 0, 35, 0.4);
+      border: 3px solid #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-[#FCFCFC] text-pin-darkgray font-sans antialiased selection:bg-pin-soft selection:text-pin">
+
+  <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
+  <div class="bg-pin text-white text-xs md:text-sm font-medium py-2.5 px-4 text-center sticky top-0 z-50 shadow-sm flex items-center justify-center gap-2">
+    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-white text-pin">Loi de Finances 2026</span>
+    <span>Déficit foncier doublé à <strong>21 400 €/an</strong> prorogé jusqu'au 31 décembre 2027 pour les passoires thermiques rénovées.</span>
+  </div>
+
+  <!-- ================= NAVIGATION ================= -->
+  <header class="bg-white/90 backdrop-blur-md border-b border-neutral-150 sticky top-10 z-40 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-pin flex items-center justify-center shadow-md shadow-pin/30 text-white font-bold text-xl group-hover:scale-105 transition-transform">
+          <i data-lucide="shield-check" class="w-6 h-6 stroke-[2.5]"></i>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-xl tracking-tight text-neutral-900 block leading-tight">
+            Rénov<span class="text-pin">.Tiers de Confiance</span>
+          </span>
+          <span class="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider block">
+            Plateforme B2B2C · Administrateurs de Biens & CGP
+          </span>
+        </div>
+      </a>
+
+      <!-- Pinterest-style quick filter / breadcrumb -->
+      <nav class="hidden md:flex items-center gap-1 bg-neutral-100 p-1.5 rounded-full text-xs font-semibold text-neutral-700">
+        <a href="#marche" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Loi Climat</a>
+        <a href="#pivot" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Pivot B2B2C</a>
+        <a href="#simulateur" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Simulateur</a>
+        <a href="#personas" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Personas</a>
+        <a href="#parcours" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">Parcours MVP</a>
+        <a href="#faq" class="px-3.5 py-1.5 rounded-full hover:bg-white hover:shadow-sm transition-all text-neutral-800">FAQ</a>
+      </nav>
+
+      <!-- Pin Counter & Primary CTA -->
+      <div class="flex items-center gap-3">
+        <div class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pin-light text-pin text-xs font-bold border border-pin-soft" title="Épingles sauvegardées">
+          <i data-lucide="pin" class="w-3.5 h-3.5"></i>
+          <span id="savedPinsCounter">4</span> épingles
+        </div>
+        <!-- SINGLE CTA BUTTON -->
+        <button onclick="openAuditModal()" class="cta-single-button inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-3 rounded-full shadow-md hover:shadow-lg hover:shadow-pin/25 active:scale-95 transition-all">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>Réserver mon audit de parc gratuit</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (PINTEREST EDITORIAL STYLE) ================= -->
+  <section class="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-dot-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Pills & Pitch tag -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 mb-6 text-center">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-pin text-white text-xs font-bold tracking-wide shadow-sm">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i> LE PIVOT B2B2C IMMOBILIER
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-800 text-xs font-semibold shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 1 Contrat Agence = 50 à 500 Chantiers Potentiels
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-pin-light text-pin border border-pin-soft text-xs font-semibold">
+          <i data-lucide="shield" class="w-3.5 h-3.5"></i> Compte Séquestre & Architectes MAR Indépendants
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="max-w-4xl mx-auto text-center mb-8">
+        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-neutral-900 tracking-tight leading-[1.15]">
+          Sauvez <span class="text-pin underline decoration-pin/30 decoration-wavy decoration-2">100 % de vos mandats</span> de gestion locative face au mur du DPE.
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-neutral-600 font-medium leading-relaxed max-w-3xl mx-auto">
+          Gestionnaires locatifs & Cabinets CGP : prenez une longueur d’avance sur la Loi Climat. 
+          Nous prenons en charge l’intégralité des chantiers de vos propriétaires sans mobiliser vos équipes, avec un <strong>compte séquestre bancaire</strong> et des <strong>architectes agréés Mon Accompagnateur Rénov'</strong>.
+        </p>
+      </div>
+
+      <!-- Hero Actions & Guaranteed Proof -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        <!-- SINGLE CTA BUTTON -->
+        <button onclick="openAuditModal()" class="cta-single-button w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-pin hover:bg-pin-hover text-white text-base sm:text-lg font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-pin/30 active:scale-95 transition-all">
+          <i data-lucide="calendar-check" class="w-5 h-5"></i>
+          <span>Réserver mon audit de parc gratuit</span>
+        </button>
+        <a href="#simulateur" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-neutral-800 text-base font-semibold px-7 py-4 rounded-full border border-neutral-200 shadow-sm transition-all">
+          <i data-lucide="calculator" class="w-5 h-5 text-pin"></i>
+          <span>Calculer mes honoraires préservés</span>
+        </a>
+      </div>
+
+      <!-- Fast Proof Badges / KPI Strip (Pinterest Board Highlights) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div class="bg-white rounded-3xl p-5 border border-neutral-150 shadow-card hover:border-pin-soft transition-all">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i data-lucide="ban" class="w-4 h-4 text-pin"></i> Statut DPE G
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-neutral-900 font-display">Interdit</div>
+          <div class="text-xs text-neutral-600 mt-1 font-medium">À la location depuis le 1er janvier 2025</div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 border border-neutral-150 shadow-card hover:border-pin-soft transition-all">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i data-lucide="hourglass" class="w-4 h-4 text-pin"></i> Échéance DPE F
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-neutral-900 font-display">1er Janv. 2028</div>
+          <div class="text-xs text-neutral-600 mt-1 font-medium">Interdiction stricte des passoires classe F</div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 border border-neutral-150 shadow-card hover:border-pin-soft transition-all">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i data-lucide="coins" class="w-4 h-4 text-pin"></i> Déficit Foncier
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-pin font-display">21 400 € / an</div>
+          <div class="text-xs text-neutral-600 mt-1 font-medium">Prorogé LF 2026 jusqu'au 31/12/2027</div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 border border-neutral-150 shadow-card hover:border-pin-soft transition-all">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i data-lucide="badge-percent" class="w-4 h-4 text-pin"></i> Coût Agence
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-600 font-display">0 €</div>
+          <div class="text-xs text-neutral-600 mt-1 font-medium">Gratuit & sans risque pour le cabinet</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= THE CORE VALUE COMPARISON: B2B2C PIVOT VS HEMEA ================= -->
+  <section id="pivot" class="py-16 bg-white border-y border-neutral-150">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
+          Le Cœur du Pitch
+        </span>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-neutral-900">
+          Pourquoi le modèle B2B2C résout l'impasse d'Hemea
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-neutral-600">
+          Hemea a démontré la force du séquestre bancaire mais s'épuise sur le B2C. En signant directement avec les cabinets d'administration de biens et les CGP, nous réglons définitivement le problème du coût d'acquisition.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Card 1: Le Modèle B2C Classique (Hemea) -->
+        <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full bg-neutral-200 text-neutral-700 text-xs font-bold">Modèle B2C Conventionnel (Hemea)</span>
+            <i data-lucide="alert-circle" class="w-5 h-5 text-neutral-400"></i>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-900 mb-2">Acquisition Propriétaire par Propriétaire</h3>
+          <p class="text-sm text-neutral-600 mb-6">
+            Dépenses publicitaires massives (Google Ads, Meta) pour convaincre un propriétaire à la fois. Cycle de négociation dispersé, CAC explosif, marge compressée.
+          </p>
+          <ul class="space-y-3 text-sm text-neutral-700 font-medium">
+            <li class="flex items-center gap-2.5 text-rose-600">
+              <i data-lucide="x" class="w-4 h-4 shrink-0"></i> CAC très élevé (300 € à 700 € par lead propriétaire)
+            </li>
+            <li class="flex items-center gap-2.5 text-rose-600">
+              <i data-lucide="x" class="w-4 h-4 shrink-0"></i> 1 client conquis = seulement 1 seul chantier unitaire
+            </li>
+            <li class="flex items-center gap-2.5 text-rose-600">
+              <i data-lucide="x" class="w-4 h-4 shrink-0"></i> Propriétaires stressés et hésitants, abandon de panier fréquent
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Notre Pivot B2B2C (Rénov Tiers de Confiance) -->
+        <div class="bg-gradient-to-br from-white to-pin-surface rounded-3xl p-8 border-2 border-pin shadow-card relative overflow-hidden">
+          <div class="absolute -right-12 -top-12 w-32 h-32 bg-pin/10 rounded-full blur-2xl"></div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full bg-pin text-white text-xs font-bold shadow-sm">Notre Modèle B2B2C Tiers de Confiance</span>
+            <i data-lucide="check-circle-2" class="w-6 h-6 text-pin"></i>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-900 mb-2">1 Partenariat Agence = 50 à 500 Chantiers</h3>
+          <p class="text-sm text-neutral-600 mb-6">
+            L'administrateur de biens ou le CGP a une obligation légale de conseil et un intérêt financier direct : préserver ses 6 % à 8 % d'honoraires de gestion locative menacés d'extinction.
+          </p>
+          <ul class="space-y-3 text-sm text-neutral-800 font-medium">
+            <li class="flex items-center gap-2.5 text-pin font-bold">
+              <i data-lucide="check" class="w-4 h-4 shrink-0 text-pin stroke-[3]"></i> CAC quasi nul : mutualisé sur l'ensemble du parc de l'agence
+            </li>
+            <li class="flex items-center gap-2.5 text-pin font-bold">
+              <i data-lucide="check" class="w-4 h-4 shrink-0 text-pin stroke-[3]"></i> Réassurance maximale : le bailleur fait confiance à son gestionnaire
+            </li>
+            <li class="flex items-center gap-2.5 text-pin font-bold">
+              <i data-lucide="check" class="w-4 h-4 shrink-0 text-pin stroke-[3]"></i> Séquestre bancaire + Architecte MAR indépendant : zéro litige
+            </li>
+          </ul>
+          <div class="mt-6 pt-5 border-t border-pin-soft flex items-center justify-between">
+            <span class="text-xs text-neutral-500 font-semibold">Prêt à auditer votre portefeuille ?</span>
+            <!-- SINGLE CTA BUTTON -->
+            <button onclick="openAuditModal()" class="cta-single-button text-xs font-bold text-white bg-pin hover:bg-pin-hover px-4 py-2.5 rounded-full shadow-sm active:scale-95 transition-all">
+              Réserver mon audit de parc gratuit
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PINTEREST MASONRY BOARD: TOUS LES ÉLÉMENTS CLÉS ================= -->
+  <section class="py-20 bg-[#FBFBFC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Pinterest Board Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-pin mb-1">
+            <i data-lucide="layout-grid" class="w-4 h-4"></i> Tableau Officiel · Épingles Clés du Projet
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-neutral-900">
+            Les piliers opérationnels & réglementaires
+          </h2>
+          <p class="text-neutral-600 mt-2 text-base">
+            Parcourez les données vérifiées, les protocoles techniques et les atouts fiscaux 2026.
+          </p>
+        </div>
+
+        <!-- Pinterest Category Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="filterPins('all')" id="tab-all" class="pin-filter active px-4 py-2 rounded-full text-xs font-bold bg-neutral-900 text-white transition-all">Tout voir</button>
+          <button onclick="filterPins('fiscal')" id="tab-fiscal" class="pin-filter px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-pin hover:text-pin transition-all">Fiscalité 2026</button>
+          <button onclick="filterPins('sequestre')" id="tab-sequestre" class="pin-filter px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-pin hover:text-pin transition-all">Séquestre & MAR</button>
+          <button onclick="filterPins('marche')" id="tab-marche" class="pin-filter px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-700 border border-neutral-200 hover:border-pin hover:text-pin transition-all">Loi Climat</button>
+        </div>
+      </div>
+
+      <!-- Masonry Grid of Pins -->
+      <div class="masonry-grid" id="pinBoard">
+
+        <!-- PIN 1: LEVIER FISCAL DÉFICIT FONCIER 2026 -->
+        <div class="masonry-item pin-card" data-category="fiscal">
+          <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300 relative group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
+                <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Validé Loi de Finances 2026
+              </span>
+              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+            
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-pin-light to-transparent border border-emerald-150 mb-4">
+              <div class="text-xs font-semibold text-emerald-800 uppercase tracking-wider">Super Déficit Foncier Doublé</div>
+              <div class="text-3xl font-extrabold text-neutral-900 font-display mt-1">21 400 € <span class="text-sm font-medium text-neutral-500">/ an</span></div>
+              <p class="text-xs text-neutral-700 mt-2 font-medium">
+                Prorogé par la loi de finances 2026 pour les dépenses payées jusqu'au <strong>31 décembre 2027</strong>.
+              </p>
+            </div>
+
+            <h4 class="font-bold text-neutral-900 text-lg mb-2">L'arme absolue des CGP & Conseillers Patrimoine</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+              Permet aux propriétaires bailleurs d'imputer le double du plafond ordinaire (10 700 € → 21 400 €) sur leur revenu global pour tous travaux permettant de faire passer un logement de passoire thermique (F ou G) aux classes A, B, C ou D.
+            </p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-neutral-100 text-xs text-neutral-500">
+              <span>Source : CGI art. 156 & LF 2026</span>
+              <span class="font-bold text-pin">Atout Sophie CGP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIN 2: LE MUR DU DPE ET L'URGENCE DU PARC ANCIEN -->
+        <div class="masonry-item pin-card" data-category="marche">
+          <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300 relative group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-[11px] font-bold border border-rose-200">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Urgence Réglementaire
+              </span>
+              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h4 class="font-bold text-neutral-900 text-lg mb-2">60 % du parc bâti avant 1974</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+              La première réglementation thermique date de 1974. Plus de 20 millions de logements en France ont été construits sans aucune isolation initiale. 
+              <strong>91 % des passoires thermiques</strong> du parc locatif privé sont nées avant 1974.
+            </p>
+
+            <!-- Timeline visual -->
+            <div class="space-y-2.5 my-4 bg-neutral-50 p-4 rounded-2xl border border-neutral-150">
+              <div class="flex items-center justify-between text-xs font-semibold text-rose-700">
+                <span class="flex items-center gap-1.5"><i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Depuis le 1er janv. 2025</span>
+                <span class="font-bold">Logements G interdits</span>
+              </div>
+              <div class="flex items-center justify-between text-xs font-semibold text-amber-700">
+                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> 1er janvier 2028</span>
+                <span class="font-bold">Logements F interdits</span>
+              </div>
+              <div class="flex items-center justify-between text-xs font-semibold text-neutral-600">
+                <span class="flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> 1er janvier 2034</span>
+                <span class="font-bold">Logements E interdits</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+              <span>Risque immédiat : perte des mandats</span>
+              <span class="font-bold text-rose-600">3,9M de passoires</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIN 3: SÉQUESTRE BANCAIRE & TIERS DE CONFIANCE -->
+        <div class="masonry-item pin-card" data-category="sequestre">
+          <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300 relative group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-[11px] font-bold border border-pin-soft">
+                <i data-lucide="lock" class="w-3.5 h-3.5"></i> Réassurance Hemea
+              </span>
+              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="w-12 h-12 rounded-2xl bg-pin/10 text-pin flex items-center justify-center mb-4">
+              <i data-lucide="wallet" class="w-6 h-6"></i>
+            </div>
+
+            <h4 class="font-bold text-neutral-900 text-lg mb-2">Compte Séquestre Bancaire Régulé ACPR</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+              Inspiré du mécanisme d'Hemea qui rassure 94 % des porteurs de projet : l'argent du bailleur est consigné sur un compte séquestre indépendant. 
+              <strong>Aucun acompte perdu, zéro risque de faillite d'artisan.</strong>
+            </p>
+
+            <div class="p-3 bg-neutral-50 rounded-xl text-xs text-neutral-700 font-medium space-y-1.5 mb-4">
+              <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Déblocage des fonds par tranches validées</div>
+              <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Vérification systématique des assurances décennales</div>
+              <div class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-pin"></i> Solde débloqué uniquement après délivrance du DPE C/D</div>
+            </div>
+
+            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+              <span>Partenaire escrow certifié</span>
+              <span class="font-bold text-pin">Protection 100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIN 4: ARCHITECTES MAR INDÉPENDANTS (DÉONTOLOGIE SANS CONFLIT D'INTÉRÊTS) -->
+        <div class="masonry-item pin-card" data-category="sequestre">
+          <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300 relative group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold border border-blue-200">
+                <i data-lucide="compass" class="w-3.5 h-3.5"></i> Éthique & Agrément
+              </span>
+              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h4 class="font-bold text-neutral-900 text-lg mb-2">Architectes Mon Accompagnateur Rénov' (MAR)</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+              Pour respecter scrupuleusement la réglementation Anah et éliminer tout risque de conflit d'intérêts, nos architectes MAR opèrent en <strong>totale indépendance</strong> des entreprises de travaux.
+            </p>
+
+            <div class="space-y-2 mb-4">
+              <div class="flex items-start gap-2 text-xs text-neutral-700">
+                <i data-lucide="badge-check" class="w-4 h-4 text-pin shrink-0 mt-0.5"></i>
+                <span>Audit thermique officiel et scénarios de travaux optimisés.</span>
+              </div>
+              <div class="flex items-start gap-2 text-xs text-neutral-700">
+                <i data-lucide="badge-check" class="w-4 h-4 text-pin shrink-0 mt-0.5"></i>
+                <span>Maîtrise d'œuvre technique rigoureuse avec rapports photo réguliers.</span>
+              </div>
+              <div class="flex items-start gap-2 text-xs text-neutral-700">
+                <i data-lucide="badge-check" class="w-4 h-4 text-pin shrink-0 mt-0.5"></i>
+                <span>3 570 architectes mobilisables immédiatement face à la baisse du neuf.</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+              <span>Agrément officiel France Rénov'</span>
+              <span class="font-bold text-neutral-800">Neutralité garantie</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIN 5: MAPRIMERÉNOV' 2026 ACTUALISÉE -->
+        <div class="masonry-item pin-card" data-category="fiscal">
+          <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300 relative group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-neutral-100 text-neutral-700 text-[11px] font-bold">
+                Barème Officiel 2026
+              </span>
+              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h4 class="font-bold text-neutral-900 text-lg mb-2">MaPrimeRénov' Parcours Accompagné 2026</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+              En 2026, l'assiette du parcours accompagné est calibrée à <strong>40 000 € HT</strong> (jusqu'à 80 % d'aides pour les ménages éligibles réalisant 2 sauts de classe DPE). 
+            </p>
+
+            <div class="p-3 bg-pin-light/60 rounded-xl border border-pin-soft text-xs text-neutral-800 space-y-1.5 mb-4">
+              <p><strong>Pour les profils patrimoniaux (catégorie rose) :</strong> le levier prioritaire activé est le <strong>Déficit Foncier doublé (21 400 €)</strong> sans plafond de ressources.</p>
+            </div>
+
+            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+              <span>Cumul Éco-PTZ jusqu'à 50 000 €</span>
+              <span class="font-bold text-pin">TVA 5,5 %</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIN 6: CONVENTION STRICTE DE NON-DÉMARCHAGE AGENCES -->
+        <div class="masonry-item pin-card" data-category="sequestre">
+          <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-card hover:shadow-pin-hover hover:-translate-y-1 transition-all duration-300 relative group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin text-white text-[11px] font-bold">
+                Engagement Partenaire
+              </span>
+              <button onclick="toggleSavePin(this)" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-pin hover:text-white text-neutral-600 flex items-center justify-center transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <h4 class="font-bold text-neutral-900 text-lg mb-2">Clause Contractuelle de Non-Désintermédiation</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mb-4">
+              L'objection n°1 d'un administrateur de biens : <em>« Allez-vous me voler mes clients bailleurs ? »</em>.
+            </p>
+            <div class="p-3.5 bg-neutral-50 rounded-2xl border border-neutral-200 text-xs text-neutral-700 font-medium mb-4">
+              <span class="text-neutral-900 font-bold block mb-1">Clause miroir signée :</span>
+              Rénov Tiers de Confiance s'interdit formellement toute activité de gestion locative ou de transaction. Dès l'achèvement et l'obtention du DPE C/D, le bien est immédiatement remis à votre agence pour relocation.
+            </div>
+
+            <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+              <span>Vos mandats restent à 100% vôtres</span>
+              <span class="font-bold text-emerald-600">Sérénité totale</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pinterest Grid Footer Callout with Single Button -->
+      <div class="mt-12 bg-white rounded-3xl p-8 border border-neutral-200 shadow-card text-center max-w-3xl mx-auto">
+        <h3 class="text-xl sm:text-2xl font-extrabold text-neutral-900 mb-2">Vous gérez plus de 150 lots locatifs ?</h3>
+        <p class="text-neutral-600 text-sm sm:text-base mb-6">
+          Nous vous livrons une cartographie thermique gratuite de votre parc sous 48 heures.
+        </p>
+        <!-- SINGLE CTA BUTTON -->
+        <button onclick="openAuditModal()" class="cta-single-button inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-sm sm:text-base font-bold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg hover:shadow-pin/25 transition-all">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>Réserver mon audit de parc gratuit</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PERSONAS SECTION: MARC & SOPHIE ================= -->
+  <section id="personas" class="py-20 bg-white border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
+          Personas Validés sur le Terrain
+        </span>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-neutral-900">
+          Conçu sur-mesure pour Marc & Sophie
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-neutral-600">
+          Deux profils de professionnels sous tension réglementaire, un seul tiers de confiance pour débloquer leurs chantiers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        
+        <!-- PERSONA 1 : MARC -->
+        <div class="bg-neutral-50/80 rounded-3xl p-8 border border-neutral-200 hover:border-pin-soft transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-neutral-900 text-white flex items-center justify-center font-display font-black text-2xl shadow-sm">
+                M
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-xl font-bold text-neutral-900">Marc, 42 ans</h3>
+                  <span class="px-2.5 py-0.5 rounded-full bg-neutral-200 text-neutral-700 text-[11px] font-bold">ADB</span>
+                </div>
+                <p class="text-xs text-neutral-600 font-semibold mt-0.5">Directeur de Gestion Locative · 850 appartements</p>
+              </div>
+            </div>
+
+            <div class="space-y-4 text-sm">
+              <div class="p-3.5 bg-white rounded-2xl border border-neutral-150">
+                <span class="text-xs font-bold text-rose-600 uppercase tracking-wide block mb-1">Enjeu Vital</span>
+                <p class="text-neutral-700 font-medium">
+                  <strong>18 % de son parc en étiquette F ou G (150 logements menacés)</strong>. Chaque logement vacant représente une perte directe de 6 % à 8 % d'honoraires de gestion.
+                </p>
+              </div>
+
+              <div class="p-3.5 bg-white rounded-2xl border border-neutral-150">
+                <span class="text-xs font-bold text-neutral-500 uppercase tracking-wide block mb-1">Frustration Majeure</span>
+                <p class="text-neutral-700 font-medium">
+                  Ses gestionnaires n'ont pas les compétences pour comparer les devis d'isolation ou de PAC. Peur des abandons de chantier qui bloquent les relocations.
+                </p>
+              </div>
+
+              <div class="p-3.5 bg-pin-light/50 rounded-2xl border border-pin-soft">
+                <span class="text-xs font-bold text-pin uppercase tracking-wide block mb-1">Bénéfice Rénov Tiers de Confiance</span>
+                <p class="text-neutral-800 font-medium">
+                  Zéro temps passé pour ses équipes, zéro coût pour son cabinet, mandats conservés et conformité DPE C/D certifiée pour relocation immédiate.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-neutral-200 flex items-center justify-between">
+            <span class="text-xs text-neutral-500 font-semibold">Profil Administrateur</span>
+            <!-- SINGLE CTA BUTTON -->
+            <button onclick="openAuditModal()" class="cta-single-button text-xs font-bold text-white bg-pin hover:bg-pin-hover px-4 py-2.5 rounded-full shadow-sm active:scale-95 transition-all">
+              Réserver mon audit de parc gratuit
+            </button>
+          </div>
+        </div>
+
+        <!-- PERSONA 2 : SOPHIE -->
+        <div class="bg-neutral-50/80 rounded-3xl p-8 border border-neutral-200 hover:border-pin-soft transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-pin text-white flex items-center justify-center font-display font-black text-2xl shadow-sm">
+                S
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-xl font-bold text-neutral-900">Sophie, 38 ans</h3>
+                  <span class="px-2.5 py-0.5 rounded-full bg-pin-light text-pin text-[11px] font-bold">CGP</span>
+                </div>
+                <p class="text-xs text-neutral-600 font-semibold mt-0.5">Conseillère en Gestion de Patrimoine · 120 familles d'investisseurs</p>
+              </div>
+            </div>
+
+            <div class="space-y-4 text-sm">
+              <div class="p-3.5 bg-white rounded-2xl border border-neutral-150">
+                <span class="text-xs font-bold text-rose-600 uppercase tracking-wide block mb-1">Enjeu Vital</span>
+                <p class="text-neutral-700 font-medium">
+                  Éviter la <strong>décote de -15 % à -25 % à la revente</strong> des passoires thermiques de ses clients et transformer la contrainte réglementaire en opportunité d'optimisation fiscale.
+                </p>
+              </div>
+
+              <div class="p-3.5 bg-white rounded-2xl border border-neutral-150">
+                <span class="text-xs font-bold text-neutral-500 uppercase tracking-wide block mb-1">Frustration Majeure</span>
+                <p class="text-neutral-700 font-medium">
+                  Manque d'un interlocuteur unique capable de chiffrer précisément les travaux garantissant un saut de classe DPE sans mettre en jeu la responsabilité civile du cabinet.
+                </p>
+              </div>
+
+              <div class="p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200">
+                <span class="text-xs font-bold text-emerald-800 uppercase tracking-wide block mb-1">Bénéfice Rénov Tiers de Confiance</span>
+                <p class="text-neutral-800 font-medium">
+                  Mobilisation du <strong>Déficit Foncier doublé à 21 400 €</strong> (prorogé 2026-2027), sécurisation financière sous séquestre bancaire et audit par architecte MAR certifié.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-neutral-200 flex items-center justify-between">
+            <span class="text-xs text-neutral-500 font-semibold">Profil Conseil Patrimonial</span>
+            <!-- SINGLE CTA BUTTON -->
+            <button onclick="openAuditModal()" class="cta-single-button text-xs font-bold text-white bg-pin hover:bg-pin-hover px-4 py-2.5 rounded-full shadow-sm active:scale-95 transition-all">
+              Réserver mon audit de parc gratuit
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PARCOURS CLIENT & MVP SIMPLE (ANTI-PIÈGE DU JOUR) ================= -->
+  <section id="parcours" class="py-20 bg-[#FBFBFC] border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-wider">
+          MVP Hackathon Conforme au Piège du Jour
+        </span>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-neutral-900">
+          Un parcours en 4 étapes simples et ultra-testable
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-neutral-600">
+          Zéro sur-ingénierie, pas de logiciels 3D superflus : une exécution directe et efficace pour régler le problème réel dès aujourd'hui.
+        </p>
+      </div>
+
+      <!-- 4 Steps Flowchart -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        
+        <!-- Step 1 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200 shadow-card relative">
+          <div class="w-10 h-10 rounded-2xl bg-neutral-900 text-white font-black text-sm flex items-center justify-center mb-4">
+            01
+          </div>
+          <h4 class="font-bold text-neutral-900 text-base mb-2">Détection du Lot</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            L'administrateur de biens renseigne l'adresse ou importe son listing des lots DPE F ou G depuis un tableau simple.
+          </p>
+          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-neutral-500 flex items-center gap-1.5">
+            <i data-lucide="upload-cloud" class="w-3.5 h-3.5 text-pin"></i> Import en 2 minutes
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200 shadow-card relative">
+          <div class="w-10 h-10 rounded-2xl bg-neutral-900 text-white font-black text-sm flex items-center justify-center mb-4">
+            02
+          </div>
+          <h4 class="font-bold text-neutral-900 text-base mb-2">Audit & Scénario MAR</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Un architecte indépendant agréé Mon Accompagnateur Rénov' modélise le scénario garantissant la note C ou D et les subventions.
+          </p>
+          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-neutral-500 flex items-center gap-1.5">
+            <i data-lucide="file-check" class="w-3.5 h-3.5 text-pin"></i> Scénario certifié
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200 shadow-card relative">
+          <div class="w-10 h-10 rounded-2xl bg-pin text-white font-black text-sm flex items-center justify-center mb-4 shadow-sm shadow-pin/30">
+            03
+          </div>
+          <h4 class="font-bold text-neutral-900 text-base mb-2">Séquestre & Artisans</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Le bailleur valide et cantonne les fonds sous séquestre bancaire. Les artisans RGE labellisés réalisent les travaux sous contrôle.
+          </p>
+          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-neutral-500 flex items-center gap-1.5">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-pin"></i> 0 risque d'abandon
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white rounded-3xl p-6 border border-neutral-200 shadow-card relative">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-white font-black text-sm flex items-center justify-center mb-4">
+            04
+          </div>
+          <h4 class="font-bold text-neutral-900 text-base mb-2">DPE C/D & Relocation</h4>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Attestation DPE conforme délivrée. Les fonds sont libérés aux artisans. L'agence reloue immédiatement le bien sans vacance.
+          </p>
+          <div class="mt-4 pt-3 border-t border-neutral-100 text-[11px] font-semibold text-emerald-600 flex items-center gap-1.5">
+            <i data-lucide="key" class="w-3.5 h-3.5"></i> Mandat préservé
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action banner under steps -->
+      <div class="mt-12 text-center">
+        <!-- SINGLE CTA BUTTON -->
+        <button onclick="openAuditModal()" class="cta-single-button inline-flex items-center justify-center gap-2.5 bg-pin hover:bg-pin-hover text-white text-sm sm:text-base font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-pin/25 transition-all">
+          <i data-lucide="calendar" class="w-5 h-5"></i>
+          <span>Réserver mon audit de parc gratuit</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE SIMULATOR FOR PROPERTY MANAGERS ================= -->
+  <section id="simulateur" class="py-20 bg-white border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
+          Simulateur d'Impact Financier
+        </span>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-neutral-900">
+          Calculez les honoraires sauvés pour votre cabinet
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-neutral-600">
+          Ajustez les curseurs pour modéliser le volume de logements concernés et la valeur patrimoniale préservée.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-gradient-to-b from-neutral-50 to-white rounded-3xl p-6 sm:p-10 border border-neutral-200 shadow-card">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          
+          <!-- Sliders -->
+          <div class="space-y-6">
+            <!-- Slider 1: Total Lots -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-bold text-neutral-700 uppercase tracking-wider">Portefeuille total de l'agence</label>
+                <span class="text-base font-extrabold text-pin font-display" id="valLots">850 lots</span>
+              </div>
+              <input type="range" id="sliderLots" min="100" max="3000" step="50" value="850" class="w-full accent-pin cursor-pointer">
+              <div class="flex justify-between text-[11px] text-neutral-400 mt-1">
+                <span>100 lots</span>
+                <span>3 000 lots</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: % Passoires F/G -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-bold text-neutral-700 uppercase tracking-wider">Part estimée de passoires F & G</label>
+                <span class="text-base font-extrabold text-pin font-display" id="valPassoires">18 %</span>
+              </div>
+              <input type="range" id="sliderPassoires" min="5" max="40" step="1" value="18" class="w-full accent-pin cursor-pointer">
+              <div class="flex justify-between text-[11px] text-neutral-400 mt-1">
+                <span>5 % (Parc récent)</span>
+                <span>40 % (Bâti ancien Paris/Lyon)</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Loyer moyen -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-bold text-neutral-700 uppercase tracking-wider">Loyer moyen mensuel</label>
+                <span class="text-base font-extrabold text-pin font-display" id="valLoyer">850 € / mois</span>
+              </div>
+              <input type="range" id="sliderLoyer" min="400" max="2500" step="50" value="850" class="w-full accent-pin cursor-pointer">
+              <div class="flex justify-between text-[11px] text-neutral-400 mt-1">
+                <span>400 €</span>
+                <span>2 500 €</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div class="bg-neutral-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold mb-6">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-pin"></i> Diagnostic instantané
+              </div>
+
+              <div class="mb-6">
+                <div class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Lots à sauver d'urgence</div>
+                <div class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1" id="resLotsPassoires">153 logements</div>
+                <p class="text-xs text-neutral-400 mt-1">G interdits (2025) & F interdits (2028)</p>
+              </div>
+
+              <div class="mb-6 pt-5 border-t border-neutral-800">
+                <div class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Honoraires de gestion protégés</div>
+                <div class="text-2xl sm:text-3xl font-extrabold text-pin font-display mt-1" id="resHonoraires">109 242 € / an</div>
+                <p class="text-xs text-neutral-400 mt-1">Calculé sur une commission standard de 7 % des loyers</p>
+              </div>
+
+              <div class="pt-5 border-t border-neutral-800">
+                <div class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Déficit foncier mobilisable pour vos bailleurs</div>
+                <div class="text-xl sm:text-2xl font-bold text-emerald-400 font-display mt-1" id="resDeficit">Jusqu'à 3,27 M€</div>
+                <p class="text-[11px] text-neutral-400 mt-0.5">Plafond 21 400 €/lot prorogé jusqu'au 31/12/2027</p>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-5">
+              <!-- SINGLE CTA BUTTON -->
+              <button onclick="openAuditModal()" class="cta-single-button w-full inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-sm font-bold px-6 py-3.5 rounded-full shadow-md active:scale-95 transition-all">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Réserver mon audit de parc gratuit</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center text-xs text-neutral-500 border-t border-neutral-200 pt-4">
+          Modélisation indicative pour administrateurs de biens et syndics · Zéro facturation pour le cabinet partenaire.
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FAQ PROFESSIONNELLE ================= -->
+  <section id="faq" class="py-20 bg-[#FBFBFC] border-t border-neutral-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-14">
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold uppercase tracking-wider">
+          Réponses aux Décideurs
+        </span>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-neutral-900">
+          Foire aux questions des professionnels
+        </h2>
+        <p class="mt-4 text-base text-neutral-600">
+          Les éclaircissements indispensables pour les administrateurs de biens et conseillers en gestion de patrimoine.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-neutral-200 shadow-sm">
+          <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2 flex items-center justify-between">
+            <span>Pourquoi ce service est-il 100 % gratuit pour notre cabinet ?</span>
+            <i data-lucide="check-circle" class="w-5 h-5 text-pin shrink-0"></i>
+          </h4>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            Notre modèle économique repose sur la sécurisation des flux de travaux : nous percevons une commission d'apport d'affaires et de gestion de séquestre directement sur les flux de chantier validés. Pour vous, l'outil est un service à valeur ajoutée qui sauve vos mandats sans impacter vos coûts fixes.
+          </p>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-neutral-200 shadow-sm">
+          <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2 flex items-center justify-between">
+            <span>Y a-t-il un risque de démarchage de nos clients bailleurs ?</span>
+            <i data-lucide="shield" class="w-5 h-5 text-pin shrink-0"></i>
+          </h4>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            Absolument aucun. Une convention-cadre stricte de partenariat est signée, incluant une clause pénale de non-démarchage et d'exclusivité de gestion locative au profit de votre cabinet. Dès que l'attestation DPE C/D est validée, le bien est immédiatement remis à votre agence pour relocation.
+          </p>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-neutral-200 shadow-sm">
+          <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2 flex items-center justify-between">
+            <span>Comment garantissez-vous l'indépendance de l'architecte MAR ?</span>
+            <i data-lucide="compass" class="w-5 h-5 text-pin shrink-0"></i>
+          </h4>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            La déontologie de l'agrément Mon Accompagnateur Rénov' (MAR) exige une indépendance stricte vis-à-vis des artisans exécutant les travaux. L'architecte partenaire intervient en tiers de confiance neutre pour auditer, conseiller et suivre la conformité technique, garantissant l'absence de conflit d'intérêts et l'éligibilité aux subventions publiques Anah.
+          </p>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-neutral-200 shadow-sm">
+          <h4 class="font-bold text-neutral-900 text-base sm:text-lg mb-2 flex items-center justify-between">
+            <span>Comment s'applique le super déficit foncier prorogé par la loi de finances 2026 ?</span>
+            <i data-lucide="percent" class="w-5 h-5 text-pin shrink-0"></i>
+          </h4>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            Le doublement du plafond d'imputation sur le revenu global (porté à 21 400 €/an au lieu de 10 700 €) a été officiellement prorogé par la loi de finances 2026 pour toutes les dépenses de rénovation énergétique payées jusqu'au 31 décembre 2027, dès lors qu'elles permettent à une passoire thermique F ou G d'atteindre au minimum la classe D au DPE.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA HERO BANNER ================= -->
+  <section class="py-20 bg-gradient-to-br from-neutral-900 via-pin-dark to-neutral-950 text-white relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 text-pin-soft border border-white/20 text-xs font-bold uppercase tracking-wider mb-6">
+        <i data-lucide="shield-check" class="w-4 h-4 text-pin"></i> Audit de Portefeuille Gratuit & Sans Engagement
+      </span>
+
+      <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto mb-6">
+        Protégez vos lots dès aujourd'hui contre l'interdiction de louer.
+      </h2>
+
+      <p class="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+        15 minutes d'échange avec notre équipe pour analyser votre stock de passoires et mettre en place votre dispositif tiers de confiance.
+      </p>
+
+      <!-- SINGLE CTA BUTTON -->
+      <button onclick="openAuditModal()" class="cta-single-button inline-flex items-center justify-center gap-3 bg-pin hover:bg-pin-hover text-white text-base sm:text-lg font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-pin/50 hover:scale-105 active:scale-95 transition-all">
+        <i data-lucide="calendar" class="w-5 h-5"></i>
+        <span>Réserver mon audit de parc gratuit</span>
+      </button>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-neutral-400">
+        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-pin"></i> Gratuit pour le cabinet</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-pin"></i> Séquestre régulé ACPR</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-pin"></i> Architectes MAR indépendants</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-pin"></i> Clause stricte de non-démarchage</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-neutral-200 py-12 text-xs text-neutral-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-pin flex items-center justify-center text-white font-bold">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+        </div>
+        <span class="font-display font-extrabold text-neutral-900 text-sm">
+          Rénov<span class="text-pin">.Tiers de Confiance</span>
+        </span>
+        <span class="text-neutral-400">· Projet Startup Week Rocket School 2026</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <span>Conforme Loi Climat & Résilience</span>
+        <span>Loi de Finances 2026 (Art. 156 CGI)</span>
+        <span>Mentions Légales</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= STICKY MOBILE/DESKTOP QUICK BAR ================= -->
+  <div class="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 z-40 max-w-md ml-auto">
+    <div class="bg-neutral-900/95 backdrop-blur-md text-white p-3 sm:p-3.5 rounded-2xl sm:rounded-full shadow-2xl border border-neutral-800 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 pl-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-xs font-semibold hidden sm:inline">Créneaux d'audit ouverts :</span>
+        <span class="text-xs font-bold text-pin-soft">15 min cadrage</span>
+      </div>
+      <!-- SINGLE CTA BUTTON -->
+      <button onclick="openAuditModal()" class="cta-single-button text-xs font-bold bg-pin hover:bg-pin-hover text-white px-5 py-2.5 rounded-full shadow-md active:scale-95 transition-all shrink-0">
+        Réserver mon audit de parc gratuit
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DE RÉSERVATION (15 MIN AUDIT) ================= -->
+  <div id="auditModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-neutral-100 relative my-8 animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Close button -->
+      <button onclick="closeAuditModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="mb-6">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold mb-2">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Cadrage Diagnostic 15 min
+        </div>
+        <h3 class="text-2xl font-display font-extrabold text-neutral-900">Réserver mon audit de parc gratuit</h3>
+        <p class="text-xs sm:text-sm text-neutral-600 mt-1">
+          Échange confidentiel réservé aux directeurs de gestion locative, administrateurs de biens et cabinets CGP.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form id="auditForm" onsubmit="handleAuditSubmit(event)" class="space-y-4">
+        
+        <div>
+          <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1">Nom et Prénom *</label>
+          <input type="text" required placeholder="Marc Dupont" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1">Cabinet / Agence *</label>
+            <input type="text" required placeholder="Cabinet Haussmann Immo" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1">Votre Rôle *</label>
+            <select required class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin bg-white">
+              <option value="adb">Directeur Gestion Locative (ADB)</option>
+              <option value="cgp">Conseiller Gestion Patrimoine (CGP)</option>
+              <option value="syndic">Syndic de Copropriété</option>
+              <option value="autre">Autre professionnel de l'immo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1">Email Professionnel *</label>
+            <input type="email" required placeholder="marc@agence-immo.fr" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1">Téléphone *</label>
+            <input type="tel" required placeholder="06 12 34 56 78" class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider mb-1">Taille estimée du parc géré</label>
+          <select class="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-pin focus:border-pin bg-white">
+            <option>Entre 50 et 200 lots</option>
+            <option selected>Entre 200 et 800 lots (Cœur de cible)</option>
+            <option>Plus de 800 lots</option>
+          </select>
+        </div>
+
+        <!-- Single Identical CTA Button inside Modal -->
+        <div class="pt-3">
+          <button type="submit" class="cta-single-button w-full inline-flex items-center justify-center gap-2 bg-pin hover:bg-pin-hover text-white text-sm sm:text-base font-bold py-3.5 rounded-full shadow-lg hover:shadow-pin/25 active:scale-95 transition-all">
+            <i data-lucide="check" class="w-5 h-5"></i>
+            <span>Réserver mon audit de parc gratuit</span>
+          </button>
+        </div>
+
+        <p class="text-[11px] text-center text-neutral-500 mt-2">
+          🔒 Données strictement confidentielles · Garantie de non-démarchage contractuelle.
+        </p>
+
+      </form>
+
+      <!-- Confirmation view (hidden by default) -->
+      <div id="modalSuccess" class="hidden text-center py-6">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="check-check" class="w-8 h-8 stroke-[2.5]"></i>
+        </div>
+        <h4 class="text-2xl font-bold text-neutral-900 mb-2">Demande enregistrée !</h4>
+        <p class="text-sm text-neutral-600 mb-6">
+          Un consultant dédié vous contactera sous 2 heures ouvrées pour convenir du créneau de 15 minutes et cadrer le volume de lots concernés.
+        </p>
+        <button onclick="closeAuditModal()" class="px-6 py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold hover:bg-neutral-800 transition-colors">
+          Fermer la fenêtre
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT INTERACTIONS ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Unified Modal Logic
+    function openAuditModal() {
+      document.getElementById('auditModal').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeAuditModal() {
+      document.getElementById('auditModal').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      // Reset form view
+      setTimeout(() => {
+        document.getElementById('auditForm').classList.remove('hidden');
+        document.getElementById('modalSuccess').classList.add('hidden');
+      }, 300);
+    }
+
+    // Close on Escape or click outside
+    document.getElementById('auditModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAuditModal();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAuditModal();
+      }
+    });
+
+    function handleAuditSubmit(e) {
+      e.preventDefault();
+      document.getElementById('auditForm').classList.add('hidden');
+      document.getElementById('modalSuccess').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // 2. Interactive Calculator / Simulator
+    const sliderLots = document.getElementById('sliderLots');
+    const sliderPassoires = document.getElementById('sliderPassoires');
+    const sliderLoyer = document.getElementById('sliderLoyer');
+
+    const valLots = document.getElementById('valLots');
+    const valPassoires = document.getElementById('valPassoires');
+    const valLoyer = document.getElementById('valLoyer');
+
+    const resLotsPassoires = document.getElementById('resLotsPassoires');
+    const resHonoraires = document.getElementById('resHonoraires');
+    const resDeficit = document.getElementById('resDeficit');
+
+    function updateSimulator() {
+      const lots = parseInt(sliderLots.value, 10);
+      const pct = parseInt(sliderPassoires.value, 10);
+      const loyer = parseInt(sliderLoyer.value, 10);
+
+      valLots.textContent = lots.toLocaleString('fr-FR') + ' lots';
+      valPassoires.textContent = pct + ' %';
+      valLoyer.textContent = loyer.toLocaleString('fr-FR') + ' € / mois';
+
+      const nbPassoires = Math.round(lots * (pct / 100));
+      resLotsPassoires.textContent = nbPassoires.toLocaleString('fr-FR') + ' logements';
+
+      // Honoraires sauvés : 7% sur le loyer annuel par logement
+      const honorairesAnnuels = Math.round(nbPassoires * (loyer * 12) * 0.07);
+      resHonoraires.textContent = honorairesAnnuels.toLocaleString('fr-FR') + ' € / an';
+
+      // Déficit foncier cumulable : 21 400 € max par logement
+      const deficitTotal = (nbPassoires * 21400);
+      if (deficitTotal >= 1000000) {
+        resDeficit.textContent = "Jusqu'à " + (deficitTotal / 1000000).toFixed(2).replace('.', ',') + " M€";
+      } else {
+        resDeficit.textContent = "Jusqu'à " + deficitTotal.toLocaleString('fr-FR') + " €";
+      }
+    }
+
+    sliderLots.addEventListener('input', updateSimulator);
+    sliderPassoires.addEventListener('input', updateSimulator);
+    sliderLoyer.addEventListener('input', updateSimulator);
+    updateSimulator();
+
+    // 3. Pinterest Board Filters
+    function filterPins(cat) {
+      const pins = document.querySelectorAll('.pin-card');
+      const tabs = document.querySelectorAll('.pin-filter');
+
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-neutral-900', 'text-white');
+        tab.classList.add('bg-white', 'text-neutral-700');
+      });
+
+      const currentTab = document.getElementById('tab-' + cat);
+      if (currentTab) {
+        currentTab.classList.remove('bg-white', 'text-neutral-700');
+        currentTab.classList.add('bg-neutral-900', 'text-white');
+      }
+
+      pins.forEach(pin => {
+        if (cat === 'all' || pin.getAttribute('data-category') === cat) {
+          pin.style.display = 'block';
+        } else {
+          pin.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. Pinterest Save Micro-Interaction
+    let savedCount = 4;
+    function toggleSavePin(btn) {
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('saved')) {
+        btn.classList.remove('saved', 'bg-pin', 'text-white');
+        btn.classList.add('bg-neutral-100', 'text-neutral-600');
+        savedCount--;
+      } else {
+        btn.classList.add('saved', 'bg-pin', 'text-white');
+        btn.classList.remove('bg-neutral-100', 'text-neutral-600');
+        savedCount++;
+      }
+      document.getElementById('savedPinsCounter').textContent = savedCount;
+    }
+  </script>
+</body>
+</html>
