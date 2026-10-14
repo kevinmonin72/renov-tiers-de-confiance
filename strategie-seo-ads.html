@@ -503,63 +503,159 @@
       </div>
 
       <!-- EMAIL 1 : PROSPECTION B2B AGENCES LOCATIVES & ADB -->
-      <div id="emailPreviewAdb" class="bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-4">
+      <div id="emailPreviewAdb" class="bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-5">
         
-        <!-- Fiche d'identité de l'email -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Cible Principale</span>
-            <span class="font-bold text-neutral-800 text-xs">Directeurs d'agences &amp; Gestionnaires locatifs</span>
+        <!-- Fiche d'identité commerciale de l'email -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Cible Décisionnaire</span>
+            <span class="font-bold text-neutral-900 text-xs">Directeurs d'agences &amp; Resp. Gestion Locative (ADB)</span>
           </div>
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Objectif &amp; Angle</span>
-            <span class="font-bold text-neutral-800 text-xs">Sauvegarde des honoraires (6-8%) sans surcharge</span>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Douleur Majeure</span>
+            <span class="font-bold text-rose-700 text-xs">Perte sèche de mandats &amp; gestionnaires saturés</span>
           </div>
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Performance Visée</span>
-            <span class="font-bold text-emerald-600 text-xs">48 % ouverture · 7 % prise de RDV</span>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Proposition de Valeur</span>
+            <span class="font-bold text-emerald-700 text-xs">Sauvegarde 100% des honoraires sans charge de travail</span>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">KPIs Commerciaux Visés</span>
+            <span class="font-bold text-neutral-900 text-xs">52 % ouverture · 8,5 % de RDV qualifiés</span>
+          </div>
+        </div>
+
+        <!-- Variantes d'Objets A/B Testing -->
+        <div class="bg-white p-4 rounded-xl border border-neutral-200 text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-neutral-800 text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+              <i data-lucide="split" class="w-3.5 h-3.5 text-emerald-600"></i>
+              Objets Testés (A/B Testing Commercial)
+            </span>
+            <span class="text-[10px] text-neutral-500 font-mono">Délivrabilité testée &gt; 99% (SPF / DKIM / DMARC)</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]">
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[9px] shrink-0">A (Gagnant)</span>
+              <span>[Gestion Locative] Sécurisation de vos mandats G/F : audit offert pour vos bailleurs</span>
+            </div>
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-neutral-200 text-neutral-700 font-bold text-[9px] shrink-0">B (Douleur)</span>
+              <span>18 % de lots G/F dans votre portefeuille : comment éviter la fuite de mandats ?</span>
+            </div>
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-neutral-200 text-neutral-700 font-bold text-[9px] shrink-0">C (Direct)</span>
+              <span>Partenariat Gestion : zéro gestion de chantier, 100 % de vos honoraires préservés</span>
+            </div>
           </div>
         </div>
 
         <!-- Interface Client Email Stylisée -->
         <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden text-xs">
-          <div class="bg-neutral-100 px-4 py-3 border-b border-neutral-200 flex flex-col gap-1.5 font-mono text-[11px] text-neutral-600">
-            <div><strong class="text-neutral-800">De :</strong> Thomas Martin · Rénov Tiers de Confiance &lt;partenaires@renov-confiance.fr&gt;</div>
-            <div><strong class="text-neutral-800">À :</strong> [Nom du Directeur] &lt;direction@[agence-immobiliere].fr&gt;</div>
-            <div><strong class="text-neutral-800">Objet :</strong> <span class="text-neutral-900 font-bold font-sans text-xs">[Audit gratuit] 15 % de votre parc locatif menacé d'interdiction de louer ?</span></div>
+          <div class="bg-neutral-100 px-5 py-3.5 border-b border-neutral-200 flex flex-col gap-1.5 font-mono text-[11.5px] text-neutral-600">
+            <div><strong class="text-neutral-900">De :</strong> Alexandre Delaunay · Direction des Partenariats B2B &lt;partenariats@renov-confiance.fr&gt;</div>
+            <div><strong class="text-neutral-900">À :</strong> [Prénom] [Nom] &lt;direction@[agence-immobiliere].fr&gt;</div>
+            <div><strong class="text-neutral-900">Objet :</strong> <span class="text-neutral-950 font-bold font-sans text-xs sm:text-[13px]">[Gestion Locative] Sécurisation de vos mandats G/F : audit offert pour vos bailleurs</span></div>
           </div>
           
-          <div class="p-5 sm:p-6 space-y-3.5 text-neutral-800 leading-relaxed font-sans text-xs sm:text-[13px]">
+          <div class="p-6 sm:p-7 space-y-4 text-neutral-800 leading-relaxed font-sans text-xs sm:text-[13px]">
             <p>Bonjour [Prénom],</p>
+            
             <p>
-              Avec le calendrier de la Loi Climat, environ <strong>15 à 20 % des logements sous mandat de gestion</strong> basculent sous interdiction de louer (DPE G et F).
+              Si votre cabinet gère un portefeuille locatif à [Ville], vous faites très certainement face à cette équation critique : <strong>15 à 20 % de vos logements sous mandat sont classés F ou G</strong>, désormais frappés ou directement menacés d'interdiction de relocation.
             </p>
+            
             <p>
-              Pour votre agence, cela représente <strong>6 % à 8 % d'honoraires de gestion menacés de disparition</strong>, et une relation délicate avec des propriétaires désemparés face aux devis artisans et aux démarches d'aides.
+              Pour votre agence, l'impact commercial est direct et mesurable :
             </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-2">
+              <div class="p-3 rounded-xl bg-rose-50 border border-rose-200/80 text-rose-950 text-xs">
+                <span class="font-bold block text-rose-900 mb-1">📉 Risque Financier Direct</span>
+                Perte de <strong>800 € à 1 400 € / an d'honoraires récurrents</strong> par lot en cas de résiliation de mandat ou de vente précipitée par un bailleur démuni.
+              </div>
+              <div class="p-3 rounded-xl bg-amber-50 border border-amber-200/80 text-amber-950 text-xs">
+                <span class="font-bold block text-amber-900 mb-1">⏱️ Surcharge Gestionnaire</span>
+                Vos gestionnaires gèrent déjà 250 lots au quotidien : ils n'ont <strong>ni le temps ni la responsabilité légale</strong> de piloter des chantiers thermiques ou d'arbitrer des devis d'artisans.
+              </div>
+            </div>
+
             <p>
-              Avec <strong>Rénov Tiers de Confiance</strong>, nous débloquons ces dossiers sans aucune charge de travail pour vos équipes :
+              C'est pour régler définitivement ce problème que nous avons créé le programme partenaire <strong>Rénov.Confiance Gestion</strong> :
             </p>
-            <ul class="space-y-1.5 pl-3 border-l-2 border-emerald-500 text-neutral-700">
-              <li>• <strong>Architecte dédié :</strong> Réalisation de l'audit thermique, scénario de travaux conforme et montage du dossier MaPrimeRénov'.</li>
-              <li>• <strong>Séquestre bancaire certifié ACPR :</strong> L'argent du bailleur est sécurisé en banque. L'artisan n'est payé qu'une fois le chantier validé par l'architecte.</li>
-              <li>• <strong>Clause stricte de non-démarchage :</strong> Nous ne faisons aucune gestion locative. Vos mandats restent protégés à 100 %.</li>
-            </ul>
+
+            <div class="space-y-2.5 p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-neutral-800">
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5">1</div>
+                <div>
+                  <strong class="text-neutral-900">Délégation technique intégrale par Architecte DE/HMONP :</strong>
+                  <span class="text-neutral-600 block mt-0.5">Audit énergétique officiel, scénario de travaux certifié et montage exhaustif des dossiers de subventions (MaPrimeRénov' Parcours Accompagné &amp; CEE). Vos équipes n'ont rien à gérer.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5">2</div>
+                <div>
+                  <strong class="text-neutral-900">Séquestre bancaire indépendant agréé ACPR (Banque de France) :</strong>
+                  <span class="text-neutral-600 block mt-0.5">L'argent du bailleur est cantonné en banque. L'artisan (sélectionné RGE) n'est rémunéré qu'après visa formel de chaque jalon par l'architecte. Zéro centime évaporé, zéro risque d'abandon de chantier.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5">3</div>
+                <div>
+                  <strong class="text-neutral-900">Convention stricte de non-démarchage &amp; sanctuarisation du mandat :</strong>
+                  <span class="text-neutral-600 block mt-0.5">Nous signons un engagement contractuel bilatéral : nous n'exerçons aucune activité de transaction ni de gestion locative. Dès la réception sans réserve, nous vous restituons le logement clé en main avec son DPE conforme (C ou D) pour relocation immédiate par vos soins.</span>
+                </div>
+              </div>
+            </div>
+
             <p>
-              Nous offrons ce mois-ci une <strong>cartographie thermique gratuite</strong> de votre parc locatif sous gestion (analyse confidentielle sous 48h).
+              🎁 <strong>Notre proposition sans engagement pour démarrer :</strong><br>
+              Nous offrons à votre cabinet un <strong>audit de conformité offert sur 2 ou 3 lots prioritaires</strong> de votre portefeuille. En 48h, nous remettons à votre gestionnaire une fiche d'arbitrage claire (reste à charge réel après aides, planning de chantier et revalorisation du loyer) qu'il peut présenter directement au propriétaire.
             </p>
+
             <p>
-              Auriez-vous 10 minutes ce jeudi ou vendredi pour un rapide échange téléphonique ?
+              Auriez-vous 10 minutes ce <strong>jeudi ou vendredi matin</strong> pour un rapide échange téléphonique de cadrage ?
             </p>
-            <div class="pt-2">
-              <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-pin text-white font-bold text-xs hover:bg-pin-hover transition-all">
-                <span>Programmer un échange de 10 min</span>
+
+            <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-pin text-white font-bold text-xs hover:bg-pin-hover transition-all shadow-sm">
+                <span>Choisir un créneau de 10 min (Calendly)</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </a>
+              <span class="text-neutral-500 text-[11px]">ou par réponse directe à ce message</span>
             </div>
-            <div class="pt-4 border-t border-neutral-100 text-neutral-500 text-[11px]">
-              Thomas Martin · Responsable Partenariats Agences<br>
-              Rénov Tiers de Confiance · 01 89 45 22 10
+
+            <div class="pt-5 border-t border-neutral-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-neutral-600 text-[11px]">
+              <div>
+                <strong class="text-neutral-900 font-bold block text-xs">Alexandre Delaunay</strong>
+                Directeur du Développement Partenariats B2B &amp; Administrateurs de Biens<br>
+                <strong>Rénov Tiers de Confiance</strong> · 📞 01 89 45 22 10 · ✉️ partenariats@renov-confiance.fr
+              </div>
+              <div class="text-[10px] text-neutral-400 font-mono bg-neutral-50 px-2.5 py-1.5 rounded-lg border border-neutral-200">
+                Agrément Tiers Séquestre ACPR · Réseau Ordre des Architectes
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiche Réflexe Commerciale (Aide à la vente pour l'appel de closing) -->
+        <div class="p-4 rounded-xl bg-white border border-neutral-200 text-xs space-y-2">
+          <div class="font-bold text-neutral-900 flex items-center gap-2 text-[11px]">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-500"></i>
+            <span>Guide d'Entretien Commercial &amp; Réponses aux Objections B2B Agence :</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] text-neutral-600 pt-1">
+            <div>
+              <strong class="text-neutral-800 block">Objection : "Mes gestionnaires n'ont pas le temps"</strong>
+              <span>Réponse : C'est précisément l'objectif. L'architecte gère 100% de la technique et des devis. Le gestionnaire ne fait que transmettre les coordonnées du bailleur.</span>
+            </div>
+            <div>
+              <strong class="text-neutral-800 block">Objection : "Peur que vous démarchiez mes clients"</strong>
+              <span>Réponse : Notre convention cadre interdit toute vente de mandat ou de transaction, assortie d'une pénalité contractuelle de 50 000 €. Notre métier est 100% axé travaux.</span>
+            </div>
+            <div>
+              <strong class="text-neutral-800 block">Objection : "Combien ça coûte à l'agence ?"</strong>
+              <span>Réponse : 0 € de frais pour l'agence. La plateforme est rémunérée par une commission transparente sur les travaux négociés sans surcoût pour le bailleur.</span>
             </div>
           </div>
         </div>
@@ -567,126 +663,280 @@
       </div>
 
       <!-- EMAIL 2 : CONSEILLERS EN GESTION DE PATRIMOINE & NOTAIRES -->
-      <div id="emailPreviewCgp" class="hidden bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-4">
+      <div id="emailPreviewCgp" class="hidden bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-5">
         
-        <!-- Fiche d'identité de l'email -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Cible Principale</span>
-            <span class="font-bold text-neutral-800 text-xs">Cabinets de CGP, Notaires &amp; Family Offices</span>
+        <!-- Fiche d'identité commerciale de l'email -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Cible Décisionnaire</span>
+            <span class="font-bold text-neutral-900 text-xs">Cabinets de CGP / CIF, Notaires &amp; Family Offices</span>
           </div>
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Objectif &amp; Angle</span>
-            <span class="font-bold text-neutral-800 text-xs">Levier Déficit Foncier doublé à 21 400 € / an</span>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Douleur Majeure</span>
+            <span class="font-bold text-amber-700 text-xs">Aversion au risque de travaux &amp; fin du Pinel</span>
           </div>
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Performance Visée</span>
-            <span class="font-bold text-amber-600 text-xs">44 % ouverture · 8 % de demandes fiches</span>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Proposition de Valeur</span>
+            <span class="font-bold text-indigo-700 text-xs">Déficit Foncier 21 400 € clé en main &amp; sécurisé</span>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">KPIs Commerciaux Visés</span>
+            <span class="font-bold text-neutral-900 text-xs">46 % ouverture · 11 % de téléchargements fiches</span>
+          </div>
+        </div>
+
+        <!-- Variantes d'Objets A/B Testing -->
+        <div class="bg-white p-4 rounded-xl border border-neutral-200 text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-neutral-800 text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+              <i data-lucide="split" class="w-3.5 h-3.5 text-amber-600"></i>
+              Objets Testés (A/B Testing Commercial Patrimoine)
+            </span>
+            <span class="text-[10px] text-neutral-500 font-mono">Délivrabilité testée &gt; 99% (Ciblage Nominatif LinkedIn Sales Nav)</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]">
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[9px] shrink-0">A (Patrimonial)</span>
+              <span>[Partenariat Cabinet] Déficit foncier 21 400 € : sécuriser l'exécution des travaux de vos clients</span>
+            </div>
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-neutral-200 text-neutral-700 font-bold text-[9px] shrink-0">B (Technique)</span>
+              <span>Comment lever le risque de chantier sur le déficit foncier de vos investisseurs ?</span>
+            </div>
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-neutral-200 text-neutral-700 font-bold text-[9px] shrink-0">C (Fiche Outil)</span>
+              <span>Matrice fiscale 2026/2027 : simulation déficit foncier &amp; tiers séquestre pour vos clients</span>
+            </div>
           </div>
         </div>
 
         <!-- Interface Client Email Stylisée -->
         <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden text-xs">
-          <div class="bg-neutral-100 px-4 py-3 border-b border-neutral-200 flex flex-col gap-1.5 font-mono text-[11px] text-neutral-600">
-            <div><strong class="text-neutral-800">De :</strong> Département Ingénierie Patrimoniale &lt;cgp@renov-confiance.fr&gt;</div>
-            <div><strong class="text-neutral-800">À :</strong> [Nom du Conseiller / Notaire] &lt;contact@[cabinet-patrimoine].fr&gt;</div>
-            <div><strong class="text-neutral-800">Objet :</strong> <span class="text-neutral-900 font-bold font-sans text-xs">Déficit foncier doublé à 21 400 € : opportunité fiscale pour vos clients bailleurs</span></div>
+          <div class="bg-neutral-100 px-5 py-3.5 border-b border-neutral-200 flex flex-col gap-1.5 font-mono text-[11.5px] text-neutral-600">
+            <div><strong class="text-neutral-900">De :</strong> Julien Caron · Direction Ingénierie Patrimoniale &lt;patrimoine@renov-confiance.fr&gt;</div>
+            <div><strong class="text-neutral-900">À :</strong> [Nom du Conseiller / Maître] &lt;contact@[cabinet-patrimoine].fr&gt;</div>
+            <div><strong class="text-neutral-900">Objet :</strong> <span class="text-neutral-950 font-bold font-sans text-xs sm:text-[13px]">[Partenariat Cabinet] Déficit foncier 21 400 € : sécuriser l'exécution des travaux de vos clients</span></div>
           </div>
           
-          <div class="p-5 sm:p-6 space-y-3.5 text-neutral-800 leading-relaxed font-sans text-xs sm:text-[13px]">
-            <p>Cher(e) Conseiller(e), Cher(e) Maître,</p>
+          <div class="p-6 sm:p-7 space-y-4 text-neutral-800 leading-relaxed font-sans text-xs sm:text-[13px]">
+            <p>Cher(e) Confrère, Cher(e) Maître,</p>
+            
             <p>
-              La Loi de Finances a confirmé la prorogation du <strong>doublement du déficit foncier à 21 400 € / an</strong> pour les travaux de rénovation énergétique sur les biens classés E, F ou G (valable jusqu'au 31 décembre 2027).
+              Depuis l'extinction des régimes fiscaux traditionnels et la confirmation de la prorogation du <strong>doublement du Déficit Foncier à 21 400 € / an jusqu'au 31 décembre 2027</strong>, la réhabilitation thermique d'actifs anciens s'impose comme le levier fiscal d'optimisation le plus puissant du marché pour vos clients soumis aux TMI 30 %, 41 % ou 45 %.
             </p>
+            
             <p>
-              Pour vos clients investisseurs à forte tranche d'imposition (TMI 30 %, 41 % ou 45 %), il s'agit d'une des dernières opportunités directes de <strong>défiscalisation sur le revenu global</strong> tout en revalorisant immédiatement leur patrimoine immobilier.
+              Sur une opération type de 45 000 € de rénovation globale, le cumul de la déduction sur les revenus fonciers existants et de l'imputation sur le revenu global permet fréquemment <strong>d'autofinancer plus de 50 % des travaux par l'économie fiscale immédiate</strong> (IR + 17,2 % de prélèvements sociaux).
             </p>
+
+            <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 text-amber-950 text-xs">
+              <strong class="text-amber-900 block mb-0.5">Le point de blocage que vous observez :</strong>
+              Vos clients investisseurs refusent souvent d'arbitrer vers ces actifs en raison de <strong>l'aversion au risque opérationnel</strong> : peur des malfaçons, défaillance d'entreprises non assurées, retards pénalisants ou facturations non conformes rejetées lors du contrôle de la déclaration 2044.
+            </div>
+
             <p>
-              Le principal frein exprimé par les investisseurs patrimoniaux reste le risque opérationnel (abandons de chantier, malfaçons, artisans non qualifiés). Nous l'annulons totalement :
+              <strong>Rénov Tiers de Confiance</strong> intervient comme le tiers de confiance technique et juridique qui neutralise l'intégralité de ces aléas pour votre cabinet :
             </p>
-            <ul class="space-y-1.5 pl-3 border-l-2 border-amber-500 text-neutral-700">
-              <li>• <strong>Coordination par Architectes diplômés :</strong> Cahier des charges rigoureux, assurances décennales vérifiées et suivi hebdomadaire.</li>
-              <li>• <strong>Séquestre bancaire indépendant certifié ACPR :</strong> Les fonds de travaux sont cantonnés. Aucun paiement anticipé sans validation formelle des jalons.</li>
-              <li>• <strong>Dossier fiscal clé en main :</strong> Facturation détaillée éligible à la déduction fiscale pour la déclaration 2044.</li>
-            </ul>
+
+            <div class="space-y-2.5 p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-neutral-800">
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5">1</div>
+                <div>
+                  <strong class="text-neutral-900">Maîtrise d'œuvre contractuelle par Architectes :</strong>
+                  <span class="text-neutral-600 block mt-0.5">Cahier des charges conforme aux exigences de l'administration fiscale, contrôle des attestations d'assurances décennales et PV de réception d'étape contradictoire.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5">2</div>
+                <div>
+                  <strong class="text-neutral-900">Séquestre bancaire indépendant certifié ACPR :</strong>
+                  <span class="text-neutral-600 block mt-0.5">Les capitaux de travaux sont cantonnés sur un compte séquestre dédié auprès d'un établissement agréé Banque de France. Zéro avance de trésorerie non garantie, déblocage strict à l'avancement.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] mt-0.5">3</div>
+                <div>
+                  <strong class="text-neutral-900">Liasse fiscale conforme Déclaration 2044 &amp; BOFiP :</strong>
+                  <span class="text-neutral-600 block mt-0.5">Ventilation analytique certifiée des dépenses déductibles (entretien/réparation vs amélioration au sens de l'art. 31 du CGI) transmise directement à votre cabinet ou à l'expert-comptable du client.</span>
+                </div>
+              </div>
+            </div>
+
             <p>
-              Nous mettons à votre disposition notre <strong>fiche pratique d'optimisation fiscale 2026</strong> à destination de vos clients investisseurs.
+              📊 <strong>Outil mis à disposition de votre cabinet :</strong><br>
+              Nous avons développé une <strong>Matrice de Simulation Déficit Foncier 2026/2027 &amp; Fiche d'Arbitrage Client (Format Excel &amp; Note de Synthèse PDF personnalisable)</strong> pour calculer en direct le gain net pour vos clients.
             </p>
-            <div class="pt-2">
-              <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900 text-white font-bold text-xs hover:bg-neutral-800 transition-all">
-                <span>Télécharger la fiche technique CGP (PDF)</span>
+
+            <p>
+              Seriez-vous disponible la semaine prochaine pour un rapide échange téléphonique de 15 minutes afin d'échanger sur les synergies potentielles avec votre cabinet ?
+            </p>
+
+            <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 text-white font-bold text-xs hover:bg-neutral-800 transition-all shadow-sm">
+                <span>Télécharger la Matrice Fiscale &amp; Planifier un échange</span>
                 <i data-lucide="download" class="w-3.5 h-3.5"></i>
               </a>
+              <span class="text-neutral-500 text-[11px]">Transmission immédiate et sans frais</span>
             </div>
-            <div class="pt-4 border-t border-neutral-100 text-neutral-500 text-[11px]">
-              Cellule Partenariats Patrimoine · Rénov Tiers de Confiance
+
+            <div class="pt-5 border-t border-neutral-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-neutral-600 text-[11px]">
+              <div>
+                <strong class="text-neutral-900 font-bold block text-xs">Julien Caron</strong>
+                Responsable Partenariats Institutionnels &amp; Gestion de Patrimoine<br>
+                <strong>Rénov Tiers de Confiance</strong> · 📞 01 89 45 22 15 · ✉️ patrimoine@renov-confiance.fr
+              </div>
+              <div class="text-[10px] text-neutral-400 font-mono bg-neutral-50 px-2.5 py-1.5 rounded-lg border border-neutral-200">
+                Tiers de Confiance Agréé ACPR · Liasse fiscale BOFiP CGI art. 31
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiche Réflexe Commerciale CGP -->
+        <div class="p-4 rounded-xl bg-white border border-neutral-200 text-xs space-y-2">
+          <div class="font-bold text-neutral-900 flex items-center gap-2 text-[11px]">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-indigo-600"></i>
+            <span>Guide d'Entretien Commercial &amp; Réponses aux Objections Cabinets de Patrimoine :</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] text-neutral-600 pt-1">
+            <div>
+              <strong class="text-neutral-800 block">Objection : "Mes clients veulent du clé en main sans risque"</strong>
+              <span>Réponse : C'est précisément pour cela que le séquestre bancaire ACPR bloque les fonds. L'architecte est garant de la conformité juridique et technique de bout en bout.</span>
+            </div>
+            <div>
+              <strong class="text-neutral-800 block">Objection : "Et en cas de redressement fiscal sur la 2044 ?"</strong>
+              <span>Réponse : Nos factures ventilent précisément les travaux déductibles selon la jurisprudence du Conseil d'État et le BOFiP. Tout est justifié et auditable.</span>
+            </div>
+            <div>
+              <strong class="text-neutral-800 block">Objection : "Quelle est la contrepartie pour le cabinet ?"</strong>
+              <span>Réponse : Vous renforcez votre fidélisation client sur une stratégie patrimoniale active tout en bénéficiant d'une convention de partenariat d'apport d'affaires conforme à l'AMF/ORIAS.</span>
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- EMAIL 3 : RELANCE & RÉASSURANCE PROPRIÉTAIRES (SUITE ESTIMATION) -->
-      <div id="emailPreviewB2c" class="hidden bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-4">
+      <!-- EMAIL 3 : RELANCE & RÉASSURANCE PROPRIÉTAIRES BAILLEURS (B2C LEADS ENTRANTS) -->
+      <div id="emailPreviewB2c" class="hidden bg-neutral-50 p-6 rounded-2xl border border-neutral-200 space-y-5">
         
-        <!-- Fiche d'identité de l'email -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Cible Principale</span>
-            <span class="font-bold text-neutral-800 text-xs">Propriétaires ayant estimé leur projet (leads entrants)</span>
+        <!-- Fiche d'identité commerciale de l'email -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Cible Décisionnaire</span>
+            <span class="font-bold text-neutral-900 text-xs">Propriétaires Bailleurs ayant estimé un projet (Lead entrant)</span>
           </div>
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Objectif &amp; Angle</span>
-            <span class="font-bold text-neutral-800 text-xs">Lever la peur des arnaques et de l'abandon de chantier</span>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Douleur Majeure</span>
+            <span class="font-bold text-blue-700 text-xs">Peur de l'acompte perdu et des travaux mal faits</span>
           </div>
-          <div class="p-3 bg-white rounded-xl border border-neutral-200">
-            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Performance Visée</span>
-            <span class="font-bold text-blue-600 text-xs">62 % ouverture · 14 % de RDV confirmés</span>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">Proposition de Valeur</span>
+            <span class="font-bold text-emerald-700 text-xs">Séquestre bancaire ACPR &amp; architecte dédié</span>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-neutral-200 shadow-2xs">
+            <span class="text-[10px] uppercase font-bold text-neutral-400 block">KPIs Commerciaux Visés</span>
+            <span class="font-bold text-neutral-900 text-xs">64 % ouverture · 16 % de RDV confirmés</span>
+          </div>
+        </div>
+
+        <!-- Variantes d'Objets A/B Testing -->
+        <div class="bg-white p-4 rounded-xl border border-neutral-200 text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-neutral-800 text-[11px] uppercase tracking-wide flex items-center gap-1.5">
+              <i data-lucide="split" class="w-3.5 h-3.5 text-blue-600"></i>
+              Objets Testés (A/B Testing Relance Bailleurs)
+            </span>
+            <span class="text-[10px] text-neutral-500 font-mono">Déclenchement : J+1 après simulation sans prise de RDV</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px]">
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[9px] shrink-0">A (Sécurité)</span>
+              <span>Suite à votre estimation travaux : pourquoi votre acompte reste protégé à 100 %</span>
+            </div>
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-neutral-200 text-neutral-700 font-bold text-[9px] shrink-0">B (Rassurant)</span>
+              <span>Rénover sans risquer 1 € : le fonctionnement du compte séquestre bancaire</span>
+            </div>
+            <div class="p-2 rounded-lg bg-neutral-50 border border-neutral-200 font-medium text-neutral-800 flex items-start gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-neutral-200 text-neutral-700 font-bold text-[9px] shrink-0">C (Direct)</span>
+              <span>Votre logement à [Ville] : récapitulatif des aides mobilisables avant le 31 décembre</span>
+            </div>
           </div>
         </div>
 
         <!-- Interface Client Email Stylisée -->
         <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden text-xs">
-          <div class="bg-neutral-100 px-4 py-3 border-b border-neutral-200 flex flex-col gap-1.5 font-mono text-[11px] text-neutral-600">
-            <div><strong class="text-neutral-800">De :</strong> Rénov Tiers de Confiance &lt;conseil@renov-confiance.fr&gt;</div>
-            <div><strong class="text-neutral-800">À :</strong> [Prénom du Bailleur] &lt;[email-client]@gmail.com&gt;</div>
-            <div><strong class="text-neutral-800">Objet :</strong> <span class="text-neutral-900 font-bold font-sans text-xs">Suite à votre estimation travaux : pourquoi votre argent reste protégé à 100 %</span></div>
+          <div class="bg-neutral-100 px-5 py-3.5 border-b border-neutral-200 flex flex-col gap-1.5 font-mono text-[11.5px] text-neutral-600">
+            <div><strong class="text-neutral-900">De :</strong> Claire Moreau · Responsable Accompagnement Bailleurs &lt;conseil@renov-confiance.fr&gt;</div>
+            <div><strong class="text-neutral-900">À :</strong> [Prénom du Bailleur] &lt;[email-client]@gmail.com&gt;</div>
+            <div><strong class="text-neutral-900">Objet :</strong> <span class="text-neutral-950 font-bold font-sans text-xs sm:text-[13px]">Suite à votre estimation travaux : pourquoi votre acompte reste protégé à 100 %</span></div>
           </div>
           
-          <div class="p-5 sm:p-6 space-y-3.5 text-neutral-800 leading-relaxed font-sans text-xs sm:text-[13px]">
+          <div class="p-6 sm:p-7 space-y-4 text-neutral-800 leading-relaxed font-sans text-xs sm:text-[13px]">
             <p>Bonjour [Prénom],</p>
+            
             <p>
-              Vous avez récemment réalisé une estimation de travaux sur notre plateforme pour votre bien situé à [Ville].
+              Vous avez simulé hier une estimation de travaux sur notre plateforme pour votre appartement situé à [Ville].
             </p>
+            
             <p>
-              Nous savons qu'engager 30 000 € ou 50 000 € dans une rénovation énergétique est une décision majeure. C'est normal d'hésiter : <strong>peur des retards, des devis imprévus ou d'un artisan qui ne termine pas le chantier</strong>.
+              Engager 25 000 €, 40 000 € ou 60 000 € dans une rénovation énergétique est une décision patrimoniale majeure. Si vous n'avez pas encore finalisé votre demande, c'est bien normal : <strong>plus de 80 % des bailleurs nous confient leur hantise de verser 30 % d'acompte à un artisan qui ne termine pas le chantier</strong>.
             </p>
+
             <p>
-              C'est la raison pour laquelle notre plateforme fonctionne selon un principe de sécurité absolue :
+              Chez <strong>Rénov Tiers de Confiance</strong>, nous avons justement supprimé ce risque par une barrière bancaire infranchissable :
             </p>
-            <div class="p-3.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 space-y-1.5">
-              <div class="font-bold flex items-center gap-2">
+
+            <div class="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-950 space-y-2">
+              <div class="font-bold flex items-center gap-2 text-blue-900 text-xs sm:text-sm">
                 <i data-lucide="shield-check" class="w-4 h-4 text-blue-600"></i>
-                Le Séquestre Bancaire Protecteur
+                Le Principe du Séquestre Bancaire Protecteur (Agréé ACPR)
               </div>
               <p class="text-xs text-blue-900 leading-relaxed">
-                Votre argent ne va jamais directement à l'artisan. Vos fonds sont bloqués sur un compte séquestre bancaire indépendant agréé par l'ACPR (Banque de France). L'artisan n'est réglé que lorsque notre architecte vérifie et valide chaque étape de vos travaux.
+                Votre argent ne va jamais directement sur le compte de l'artisan. Il est consigné sur un compte séquestre bancaire indépendant certifié par l'Autorité de Contrôle Prudentiel et de Résolution (Banque de France). L'artisan n'est réglé que lorsque notre architecte de secteur vient physiquement vérifier et valider la bonne exécution des travaux.
               </p>
             </div>
+
             <p>
-              Vous bénéficiez également d'un <strong>scénario de travaux certifié</strong> pour garantir le passage en étiquette DPE C ou D et continuer à louer sans risque légal.
+              En passant par notre tiers de confiance, vous bénéficiez de 3 garanties contractuelles exclusives :
             </p>
+
+            <ul class="space-y-2 text-neutral-700 text-xs">
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span><strong>Devis ferme et définitif :</strong> Aucune rallonge imprévue en cours de chantier, validé en amont par notre architecte.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span><strong>Garantie de sortie de passoire thermique :</strong> Engagement formel sur le franchissement de la classe DPE (C ou D) pour louer sans contrainte légale.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span><strong>Versement direct des aides de l'État :</strong> Nous montons votre dossier MaPrimeRénov' pour déduire le montant maximal de votre facture finale.</span>
+              </li>
+            </ul>
+
             <p>
-              Un architecte de votre secteur peut faire le point avec vous lors d'un appel conseil de 15 minutes, gratuit et sans aucun engagement.
+              Un architecte partenaire de votre secteur est disponible pour faire le point avec vous lors d'un <strong>diagnostic téléphonique offert de 15 minutes</strong> (chiffrage précis des aides et faisabilité).
             </p>
-            <div class="pt-2">
-              <a href="#" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-pin text-white font-bold text-xs hover:bg-pin-hover transition-all">
-                <span>Choisir mon créneau d'appel gratuit (15 min)</span>
+
+            <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-pin text-white font-bold text-xs hover:bg-pin-hover transition-all shadow-sm">
+                <span>Choisir mon créneau de rappel gratuit (15 min)</span>
                 <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
               </a>
+              <span class="text-neutral-500 text-[11px]">Sans aucun engagement de votre part</span>
             </div>
-            <div class="pt-4 border-t border-neutral-100 text-neutral-500 text-[11px]">
-              L'équipe Rénov Tiers de Confiance · Tiers de confiance pour vos travaux
+
+            <div class="pt-5 border-t border-neutral-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-neutral-600 text-[11px]">
+              <div>
+                <strong class="text-neutral-900 font-bold block text-xs">Claire Moreau</strong>
+                Pôle Accompagnement Propriétaires Bailleurs<br>
+                <strong>Rénov Tiers de Confiance</strong> · 📞 01 89 45 22 20 · ✉️ conseil@renov-confiance.fr
+              </div>
+              <div class="text-[10px] text-neutral-400 font-mono bg-neutral-50 px-2.5 py-1.5 rounded-lg border border-neutral-200">
+                100% Fonds Sécurisés ACPR · Architectes Agréés France Rénov'
+              </div>
             </div>
           </div>
         </div>
