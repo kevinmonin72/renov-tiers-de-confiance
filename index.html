@@ -1,636 +1,949 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
+  <script src="/analytics.js"></script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>ArchiSimple | Marketplace Rénovation Énergétique</title>
-  <meta name="description" content="Marketplace sécurisée de rénovation énergétique. Compte séquestre bancaire, architectes agréés MAR et artisans RGE.">
-  
-  <!-- Favicon SVG -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E60023'/%3E%3Cpath d='M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M18 23.5L21 26.5L26.5 20.5' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-
-  <!-- Google Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArchiSimple · La rénovation énergétique, simplement</title>
+  <meta name="description" content="ArchiSimple : la rénovation énergétique simple et sécurisée. Compte séquestre bancaire, architectes agréés Mon Accompagnateur Rénov' et artisans RGE.">
+  <meta name="theme-color" content="#121212">
+  <meta property="og:site_name" content="ArchiSimple">
+  <meta property="og:title" content="ArchiSimple">
+  <meta property="og:description" content="ArchiSimple — rénovez sans risque : fonds sous séquestre bancaire, architectes agréés MAR, artisans RGE.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            pin: {
-              DEFAULT: '#E60023',
-              hover: '#BD081C',
-              dark: '#8C0816',
-              light: '#FFF1F2',
-              soft: '#FFE4E6'
-            }
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; }
-    html, body {
-      overflow-x: hidden !important;
-      max-width: 100vw !important;
-      width: 100% !important;
-      scroll-padding-top: 80px;
+    :root {
+      --paper: #F3F1EC;
+      --paper-2: #EAE7E0;
+      --card: #FBFAF7;
+      --ink: #121212;
+      --ink-2: #33322F;
+      --muted: #6D6A64;
+      --faint: #9A968E;
+      --line: #D9D5CC;
+      --line-2: #C7C2B7;
+      --grid: rgba(18,18,18,.055);
+      --red: #E60023;
+      --red-hover: #C4001D;
+      --red-tint: #FBE6E8;
+      --green: #1E8E5A;
+      --green-tint: #E3F1E9;
+      --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+      --wrap: 1200px;
+      --ease: cubic-bezier(.2,.7,.2,1);
     }
-    /* Bande passante fluide (Continuous Marquee) */
-    @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: var(--font); font-size: 16px; line-height: 1.6; font-stretch: 100%;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
-    .animate-marquee {
-      display: inline-flex;
-      white-space: nowrap;
-      animation: marquee 25s linear infinite;
+    img, svg { display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; color: inherit; }
+    h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; font-stretch: 92%; }
+    p { margin: 0; }
+    ::selection { background: var(--ink); color: var(--paper); }
+    :focus-visible { outline: 1.5px solid var(--red); outline-offset: 3px; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+    .mono { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+    .icon { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: square; stroke-linejoin: miter; }
+
+    /* Blueprint grid */
+    .grid-bg {
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(rgba(18,18,18,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18,18,18,.03) 1px, transparent 1px);
+      background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+      background-position: -1px -1px;
     }
-    .animate-marquee:hover {
-      animation-play-state: paused;
+
+    /* Crop marks */
+    .crops { position: relative; }
+    .crops::before, .crops::after, .crops > .crop-b::before, .crops > .crop-b::after {
+      content: ""; position: absolute; width: 14px; height: 14px; border: 0 solid var(--ink); pointer-events: none;
     }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      height: 22px;
-      width: 22px;
-      border-radius: 50%;
-      background: #E60023;
-      cursor: pointer;
-      box-shadow: 0 0 8px rgba(230, 0, 35, 0.4);
-      border: 3px solid #ffffff;
+    .crops::before { top: -7px; left: -7px; border-top-width: 1px; border-left-width: 1px; }
+    .crops::after { top: -7px; right: -7px; border-top-width: 1px; border-right-width: 1px; }
+    .crops > .crop-b::before { bottom: -7px; left: -7px; border-bottom-width: 1px; border-left-width: 1px; }
+    .crops > .crop-b::after { bottom: -7px; right: -7px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* ---------- Ticker ---------- */
+    .ticker { background: var(--ink); color: #CFCBC2; overflow: hidden; height: 34px; display: flex; align-items: center; }
+    .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: marquee 50s linear infinite; padding-left: 48px; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 12px; }
+    .ticker-item b { color: #fff; font-weight: 500; }
+    .ticker-item i { width: 6px; height: 6px; background: var(--red); }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* ---------- Header ---------- */
+    .header { position: sticky; top: 0; z-index: 40; background: rgba(243,241,236,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .header-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-mark { width: 38px; height: 38px; flex: none; }
+    .logo-txt { font-size: 15px; letter-spacing: .16em; text-transform: uppercase; line-height: 1; font-stretch: 110%; }
+    .logo-txt b { font-weight: 700; }
+    .logo-txt span { font-weight: 300; }
+    .logo-sub { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; color: var(--muted); margin-top: 5px; text-transform: uppercase; }
+    .nav { display: flex; gap: 30px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+    .nav a { position: relative; padding: 4px 0; }
+    .nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: currentColor; transition: right .3s var(--ease); }
+    .nav a:hover::after { right: 0; }
+    .nav .nav-app { color: var(--red); }
+    .header-cta { display: flex; gap: 10px; align-items: center; }
+    .menu-btn { display: none; background: none; border: 0; padding: 8px; margin-right: -8px; }
+    .menu-btn .icon { width: 22px; height: 22px; }
+    @media (max-width: 1100px) { .nav { display: none; } .menu-btn { display: block; } }
+    @media (max-width: 900px) { .header-cta .btn-line { display: none; } }
+    @media (max-width: 600px) { .header-cta .btn-red { display: none; } .logo-sub { display: none; } }
+    .mobile-nav { display: none; border-top: 1px solid var(--line); padding: 4px 16px 20px; background: var(--paper); }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a { display: flex; justify-content: space-between; padding: 15px 0; font-weight: 500; border-bottom: 1px solid var(--line); }
+    .mobile-nav .btn { width: 100%; margin-top: 18px; }
+
+    /* ---------- Buttons ---------- */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; border-radius: 2px; font-weight: 500; font-size: 14px; padding: 13px 20px; transition: background .2s, color .2s, border-color .2s; white-space: nowrap; letter-spacing: .01em; }
+    .btn .icon { transition: transform .25s var(--ease); }
+    .btn:hover .icon { transform: translateX(3px); }
+    .btn-sm { padding: 10px 16px; font-size: 13px; }
+    .btn-lg { padding: 17px 26px; font-size: 15px; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-red:hover { background: var(--red-hover); }
+    .btn-ink { background: var(--ink); color: var(--paper); }
+    .btn-ink:hover { background: #000; }
+    .btn-line { border-color: var(--ink); color: var(--ink); background: transparent; }
+    .btn-line:hover { background: var(--ink); color: var(--paper); }
+    .btn-line-w { border-color: rgba(255,255,255,.4); color: #fff; }
+    .btn-line-w:hover { background: #fff; color: var(--ink); border-color: #fff; }
+    .btn-paper { background: var(--paper); color: var(--ink); }
+    .btn-paper:hover { background: #fff; }
+    .btn-block { width: 100%; }
+
+    /* ---------- Hero ---------- */
+    .hero { border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; padding-top: 64px; padding-bottom: 150px; }
+    .hero-meta { display: flex; gap: 14px; align-items: center; color: var(--muted); }
+    .hero-meta i { display: inline-block; width: 28px; height: 1px; background: var(--ink); }
+    .hero h1 { font-size: clamp(46px, 6.6vw, 92px); margin-top: 28px; font-weight: 600; }
+    .hero h1 .r { color: var(--red); }
+    .hero h1 .l { font-weight: 300; font-stretch: 100%; }
+    .hero-lead { margin-top: 28px; font-size: 18px; color: var(--ink-2); max-width: 470px; line-height: 1.55; }
+    .hero-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-specs { margin-top: 44px; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0; border-top: 1px solid var(--line); }
+    .hero-specs div { padding: 14px 28px 0 0; margin-right: 28px; border-right: 1px solid var(--line); }
+    .hero-specs div:last-child { border-right: 0; }
+    .hero-specs b { display: block; font-weight: 600; font-size: 15px; }
+    .hero-specs span { color: var(--muted); font-size: 10.5px; }
+
+    .drawing-wrap { position: relative; }
+    .drawing { background: var(--card); border: 1px solid var(--ink); padding: 18px; position: relative; }
+    .drawing-head { display: flex; justify-content: space-between; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .drawing svg.plan { width: 100%; height: auto; margin-top: 8px; }
+    .plan .s { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+    .plan .t { stroke: var(--ink); stroke-width: .8; fill: none; }
+    .plan .ins { stroke: var(--red); stroke-width: 1.3; fill: none; stroke-dasharray: 5 4; }
+    .plan .hatch { stroke: var(--ink); stroke-width: .6; opacity: .35; }
+    .plan text { font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; fill: var(--ink); text-transform: uppercase; }
+    .plan text.m { fill: var(--muted); }
+    .plan text.r { fill: var(--red); }
+    .plan .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.8s var(--ease) forwards; }
+    .plan .fade { opacity: 0; animation: fade .8s ease forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+    .title-block { display: grid; grid-template-columns: 1fr 1fr 1fr auto; border-top: 1px solid var(--ink); margin: 6px -18px -18px; }
+    .title-block > div { padding: 10px 14px; border-right: 1px solid var(--line); }
+    .title-block > div:last-child { border-right: 0; }
+    .title-block .mono { color: var(--muted); font-size: 9.5px; display: block; }
+    .title-block b { font-weight: 600; font-size: 13px; }
+    .dpe-jump { display: flex; align-items: center; gap: 6px; }
+    .dpe-chip { width: 22px; height: 22px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 12px; flex: none; }
+
+    .escrow { position: absolute; left: -56px; bottom: -112px; width: 290px; background: var(--ink); color: var(--paper); padding: 18px 20px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+    .escrow .mono { color: #9A968E; font-size: 10px; }
+    .escrow-amt { font-size: 30px; font-weight: 600; letter-spacing: -0.03em; margin-top: 2px; font-stretch: 90%; }
+    .escrow-bar { display: grid; grid-template-columns: 3fr 3fr 4fr; gap: 3px; margin: 12px 0 10px; }
+    .escrow-bar i { height: 3px; background: #3A3936; }
+    .escrow-bar i.g { background: #3DDC84; } .escrow-bar i.r { background: var(--red); }
+    .escrow-row { display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 0; color: #CFCBC2; }
+    .escrow-row b { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12px; }
+    .escrow-row.wait { color: #77746E; } .escrow-row.wait b { color: #77746E; }
+    @media (max-width: 1000px) {
+      .hero-grid { grid-template-columns: 1fr; padding-top: 48px; gap: 48px; }
+      .escrow { left: auto; right: 16px; bottom: -110px; }
+      .hero-grid { padding-bottom: 150px; }
     }
+    @media (max-width: 600px) {
+      .hero-actions .btn { width: 100%; }
+      .hero-specs { grid-template-columns: 1fr; }
+      .hero-specs div { border-right: 0; border-bottom: 1px solid var(--line); padding: 12px 0; margin: 0; }
+      .drawing { padding: 12px; }
+      .title-block { grid-template-columns: 1fr 1fr; margin: 6px -12px -12px; }
+      .title-block > div:nth-child(2) { border-right: 0; }
+      .title-block > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .escrow { position: relative; left: 0; right: 0; bottom: 0; width: auto; margin-top: -1px; }
+      .hero-grid { padding-bottom: 56px; }
+    }
+
+    /* ---------- Figures band ---------- */
+    .figures { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+    .fig { padding: 34px 28px 30px; border-right: 1px solid var(--line); }
+    .fig:last-child { border-right: 0; }
+    .fig .mono { color: var(--muted); }
+    .fig-num { font-size: clamp(34px, 3.6vw, 48px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin: 14px 0 10px; font-stretch: 90%; white-space: nowrap; }
+    .fig p { font-size: 14px; color: var(--ink-2); }
+    @media (max-width: 900px) { .figures { grid-template-columns: 1fr 1fr; } .fig:nth-child(2) { border-right: 0; } .fig:nth-child(n+3) { border-top: 1px solid var(--line); } }
+    @media (max-width: 420px) { .fig { padding: 22px 14px; } }
+
+    /* ---------- Sections ---------- */
+    section { padding: 112px 0; border-bottom: 1px solid var(--line); }
+    @media (max-width: 600px) { section { padding: 72px 0; } }
+    .sec-head { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 64px; }
+    .sec-num { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--ink); padding-top: 14px; }
+    .sec-num .n { font-family: var(--mono); font-size: 13px; }
+    .sec-num .mono { color: var(--muted); }
+    .sec-head h2 { font-size: clamp(36px, 4.8vw, 64px); max-width: 820px; }
+    .sec-head h2 .l { font-weight: 300; color: var(--muted); font-stretch: 100%; }
+    .sec-head p { margin-top: 20px; font-size: 17px; color: var(--ink-2); max-width: 560px; }
+    @media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 44px; } .sec-num { flex-direction: row; justify-content: space-between; } }
+
+    /* ---------- Process ---------- */
+    .process { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); }
+    .step { padding: 28px 28px 8px 0; position: relative; }
+    .step + .step { padding-left: 28px; border-left: 1px solid var(--line); }
+    .step::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; background: var(--paper); border: 1px solid var(--ink); }
+    .step + .step::before { left: -5px; }
+    .step:last-child::before { background: var(--red); border-color: var(--red); }
+    .step .mono { color: var(--muted); }
+    .step-ico { width: 44px; height: 44px; border: 1px solid var(--ink); display: grid; place-items: center; margin: 26px 0 24px; transition: background .25s, color .25s; }
+    .step-ico .icon { width: 20px; height: 20px; stroke-width: 1.5; }
+    .step:hover .step-ico { background: var(--ink); color: var(--paper); }
+    .step h3 { font-size: 22px; letter-spacing: -0.02em; }
+    .step p { margin-top: 10px; font-size: 15px; color: var(--ink-2); }
+    @media (max-width: 960px) { .process { grid-template-columns: 1fr 1fr; } .step:nth-child(3) { padding-left: 0; border-left: 0; } .step:nth-child(3)::before { left: 0; } .step:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 24px; } }
+    @media (max-width: 560px) { .process { grid-template-columns: 1fr; } .step, .step + .step { padding: 24px 0 8px; border-left: 0; } .step + .step::before { left: 0; } .step + .step { border-top: 1px solid var(--line); margin-top: 24px; } }
+
+    /* ---------- Audiences ---------- */
+    .duo { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
+    .aud { padding: 48px; display: flex; flex-direction: column; background: var(--card); }
+    .aud-dark { background: var(--ink); color: var(--paper); }
+    .aud .mono { color: var(--muted); display: flex; justify-content: space-between; }
+    .aud-dark .mono { color: #8B887F; }
+    .aud h3 { font-size: clamp(28px, 3vw, 38px); margin-top: 40px; }
+    .aud > p { margin-top: 14px; color: var(--ink-2); font-size: 16px; }
+    .aud-dark > p { color: #B7B3AA; }
+    .spec { list-style: none; padding: 0; margin: 36px 0 44px; border-top: 1px solid var(--line); }
+    .aud-dark .spec { border-color: #33322F; }
+    .spec li { display: grid; grid-template-columns: 44px 1fr; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; font-weight: 500; }
+    .aud-dark .spec li { border-color: #33322F; }
+    .spec li span { font-family: var(--mono); font-size: 11px; color: var(--red); padding-top: 3px; }
+    .aud-dark .spec li span { color: #3DDC84; }
+    .aud-actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 860px) { .duo { grid-template-columns: 1fr; } .aud { padding: 32px 22px; } .aud-actions .btn { flex: 1 1 100%; } }
+
+    /* ---------- Law ---------- */
+    .law { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; border: 1px solid var(--ink); background: var(--card); }
+    .law-left { padding: 40px; border-right: 1px solid var(--ink); }
+    .law-left h3 { font-size: 30px; margin-top: 14px; }
+    .law-left > p { margin-top: 12px; color: var(--ink-2); }
+    .law .mono { color: var(--muted); }
+    .scale { margin-top: 32px; display: grid; gap: 6px; }
+    .scale-row { display: grid; grid-template-columns: 1fr 150px; align-items: center; gap: 16px; }
+    .bar { height: 30px; display: flex; align-items: center; padding: 0 12px; color: #fff; font-weight: 700; font-size: 14px; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); }
+    .bar-a { width: 30%; background: #009C6D; } .bar-b { width: 39%; background: #52B153; } .bar-c { width: 48%; background: #A3CC6E; color: var(--ink); }
+    .bar-d { width: 57%; background: #F2E600; color: var(--ink); } .bar-e { width: 66%; background: #F6B12D; color: var(--ink); }
+    .bar-f { width: 78%; background: #EE7D32; } .bar-g { width: 90%; background: #E2001A; }
+    .scale-row .tag { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    .tag.red { color: var(--red); } .tag.amb { color: #B5650A; } .tag.grey { color: var(--muted); } .tag.ok { color: var(--green); }
+    .law-right { display: grid; grid-template-rows: repeat(3, 1fr); }
+    .law-cell { padding: 32px 36px; border-bottom: 1px solid var(--line); }
+    .law-cell:last-child { border-bottom: 0; }
+    .law-cell .big { font-size: 44px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin: 12px 0 8px; font-stretch: 90%; }
+    .law-cell h4 { margin: 0; font-size: 17px; font-weight: 600; }
+    .law-cell p { font-size: 14.5px; color: var(--ink-2); margin-top: 4px; }
+    @media (max-width: 960px) { .law { grid-template-columns: 1fr; } .law-left { border-right: 0; border-bottom: 1px solid var(--ink); } }
+    @media (max-width: 600px) { .law-left, .law-cell { padding: 26px 18px; } .scale-row { grid-template-columns: 1fr 96px; gap: 10px; } }
+
+    /* ---------- Simulator ---------- */
+    .sim { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
+    .sim-in { padding: 44px; background: var(--card); }
+    .sim-out { padding: 44px; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; }
+    .field + .field { margin-top: 44px; }
+    .field-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
+    .field-top .mono { color: var(--muted); }
+    .field-val { font-size: 40px; font-weight: 600; letter-spacing: -0.04em; font-stretch: 90%; }
+    .range { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: linear-gradient(to right, var(--ink) var(--p, 35%), var(--line-2) var(--p, 35%)); outline: none; }
+    .range::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--red); border: 4px solid var(--card); outline: 1px solid var(--red); cursor: grab; }
+    .range::-moz-range-thumb { width: 14px; height: 14px; background: var(--red); border: 4px solid var(--card); border-radius: 0; cursor: grab; }
+    .ticks { display: flex; justify-content: space-between; margin-top: 10px; color: var(--faint); }
+    .ticks span { font-family: var(--mono); font-size: 10px; }
+    .seg { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--ink); }
+    .seg button { display: flex; align-items: center; gap: 12px; padding: 14px; border: 0; background: transparent; text-align: left; transition: background .2s; }
+    .seg button + button { border-left: 1px solid var(--ink); }
+    .seg button:hover { background: var(--paper-2); }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    .seg .dpe-chip { width: 30px; height: 30px; font-size: 15px; }
+    .seg b { display: block; font-size: 14px; font-weight: 600; }
+    .seg small { font-family: var(--mono); font-size: 10px; text-transform: uppercase; opacity: .65; }
+    .sim-note { margin-top: 36px; font-size: 12.5px; color: var(--muted); }
+    .sim-out .mono { color: #8B887F; }
+    .out-big { font-size: clamp(48px, 5.5vw, 72px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; margin-top: 14px; font-variant-numeric: tabular-nums; font-stretch: 88%; }
+    .out-rows { margin-top: 40px; border-top: 1px solid #33322F; }
+    .out-row { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0; border-bottom: 1px solid #33322F; }
+    .out-row span { color: #B7B3AA; font-size: 15px; }
+    .out-row b { font-family: var(--mono); font-weight: 500; font-size: 15px; font-variant-numeric: tabular-nums; }
+    .out-row .g { color: #3DDC84; } .out-row .r { color: #FF5A6E; }
+    .sim-out .btn { margin-top: auto; }
+    .sim-out .sp { height: 36px; }
+    @media (max-width: 860px) { .sim { grid-template-columns: 1fr; } .sim-in, .sim-out { padding: 30px 20px; } }
+    @media (max-width: 480px) { .seg { grid-template-columns: 1fr; } .seg button + button { border-left: 0; border-top: 1px solid var(--ink); } }
+
+    /* ---------- FAQ ---------- */
+    .faq { border-top: 1px solid var(--ink); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { list-style: none; cursor: pointer; padding: 26px 0; display: grid; grid-template-columns: 60px 1fr 24px; align-items: center; gap: 12px; font-weight: 500; font-size: clamp(18px, 2vw, 22px); letter-spacing: -0.015em; }
+    summary::-webkit-details-marker { display: none; }
+    summary .mono { color: var(--muted); }
+    summary .pm { width: 24px; height: 24px; position: relative; }
+    summary .pm::before, summary .pm::after { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 1.5px; background: var(--ink); transition: transform .3s var(--ease); }
+    summary .pm::after { transform: rotate(90deg); }
+    details[open] summary .pm::after { transform: rotate(0); }
+    details p { padding: 0 48px 28px 72px; color: var(--ink-2); font-size: 16px; max-width: 820px; }
+    @media (max-width: 600px) { summary { grid-template-columns: 36px 1fr 24px; } details p { padding: 0 0 24px 48px; } }
+
+    /* ---------- CTA ---------- */
+    .cta { background-color: var(--ink); color: var(--paper); padding: 120px 0; border-bottom: 0; position: relative; overflow: hidden;
+      background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 120px 120px; }
+    .cta-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; }
+    .cta .mono { color: #8B887F; }
+    .cta h2 { font-size: clamp(44px, 6.4vw, 96px); margin-top: 22px; }
+    .cta h2 .l { font-weight: 300; color: #8B887F; }
+    .cta p { color: #B7B3AA; font-size: 17px; margin-bottom: 28px; }
+    .cta-actions { display: grid; gap: 10px; }
+    @media (max-width: 860px) { .cta { padding: 80px 0; } .cta-inner { grid-template-columns: 1fr; } }
+
+    /* ---------- Footer ---------- */
+    footer { padding: 56px 0 40px; background: var(--paper); }
+    .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+    .foot h5 { margin: 0 0 16px; font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .foot a { display: block; padding: 5px 0; font-size: 15px; }
+    .foot a.logo { display: flex; padding: 0; }
+    .foot a:hover { color: var(--red); }
+    .foot .about { margin-top: 18px; color: var(--ink-2); font-size: 14.5px; max-width: 340px; }
+    .foot-legal { margin-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); }
+    @media (max-width: 760px) { .foot { grid-template-columns: 1fr 1fr; } .foot > div:first-child { grid-column: span 2; } }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .ticker-track { animation: none; }
+      .plan .draw { animation: none; stroke-dashoffset: 0; }
+      .plan .fade { animation: none; opacity: 1; }
+    }
+
+    /* ---------- Modal ---------- */
+    dialog { border: 1px solid var(--ink); padding: 0; border-radius: 0; width: min(480px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); color: var(--ink); background: var(--card); box-shadow: 0 40px 80px -24px rgba(0,0,0,.4); }
+    dialog::backdrop { background: rgba(18,18,18,.6); backdrop-filter: blur(3px); }
+    dialog[open] { animation: pop .25s var(--ease); }
+    @keyframes pop { from { opacity: 0; transform: translateY(10px); } }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+    .modal-head .mono { color: var(--muted); }
+    .modal-close { width: 32px; height: 32px; border: 1px solid var(--line); background: transparent; display: grid; place-items: center; margin-right: -6px; }
+    .modal-close:hover { border-color: var(--ink); }
+    .modal-close .icon { width: 14px; height: 14px; }
+    .modal { padding: 28px 28px 30px; }
+    .modal h3 { font-size: 32px; }
+    .modal-sub { color: var(--ink-2); font-size: 15px; margin-top: 8px; }
+    .form { margin-top: 26px; display: grid; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form label { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .form input, .form select { width: 100%; font: inherit; font-size: 16px; padding: 12px 0; border: 0; border-bottom: 1px solid var(--line-2); border-radius: 0; background: transparent; color: var(--ink); transition: border-color .2s; }
+    .form input::placeholder { color: #B5B1A8; }
+    .form input:focus, .form select:focus { outline: none; border-bottom-color: var(--ink); }
+    .form .btn { margin-top: 10px; }
+    .form-legal { font-size: 12px; color: var(--muted); text-align: center; }
+    .form-error { margin: 0; padding: 10px 12px; background: var(--red-tint); color: var(--red); font-size: 13.5px; font-weight: 500; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .btn[disabled] { opacity: .6; cursor: wait; }
+    .success { text-align: center; padding: 12px 0 0; }
+    .success-ico { width: 64px; height: 64px; border: 1px solid var(--green); color: var(--green); display: grid; place-items: center; margin: 0 auto 22px; }
+    .success-ico .icon { width: 26px; height: 26px; stroke-width: 2; }
+    .success h3 { font-size: 30px; }
+    .success p { color: var(--ink-2); margin: 10px 0 26px; }
+    @media (max-width: 480px) { .modal { padding: 22px 18px 24px; } .form-row { grid-template-columns: 1fr; } }
   </style>
 </head>
-<body class="bg-white text-neutral-900 font-sans antialiased selection:bg-pin-soft selection:text-pin">
+<body>
 
-  <!-- ================= BANDE ROUGE PASSANTE (TICKER CONTINU) ================= -->
-  <div class="bg-pin text-white py-2 overflow-hidden whitespace-nowrap sticky top-0 z-50 shadow-sm border-b border-pin-hover select-none">
-    <div class="animate-marquee text-xs font-bold uppercase tracking-wider flex items-center gap-6">
-      <span>🔴 LOI DE FINANCES 2026 : Déficit foncier doublé à 21 400 € / an jusqu'au 31/12/2027</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>LOI CLIMAT : Logements G interdits depuis 2025 · Logements F interdits 1er janv. 2028</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>100 % SÉCURISÉ : Fonds consignés sur compte séquestre bancaire ACPR</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>ARCHITECTES INDÉPENDANTS agréés Mon Accompagnateur Rénov'</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>SUBVENTIONS ÉTAT : Jusqu'à 80 % financés (MaPrimeRénov' 2026)</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <!-- Répétition pour la boucle infinie -->
-      <span>🔴 LOI DE FINANCES 2026 : Déficit foncier doublé à 21 400 € / an jusqu'au 31/12/2027</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>LOI CLIMAT : Logements G interdits depuis 2025 · Logements F interdits 1er janv. 2028</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>100 % SÉCURISÉ : Fonds consignés sur compte séquestre bancaire ACPR</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>ARCHITECTES INDÉPENDANTS agréés Mon Accompagnateur Rénov'</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>SUBVENTIONS ÉTAT : Jusqu'à 80 % financés (MaPrimeRénov' 2026)</span>
-      <span class="text-pin-soft opacity-60">✦</span>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M5 2h10l4 4v16H5zM14 2v5h5M8 12h8M8 16h8"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="M2 9l10-6 10 6M4 9v10M20 9v10M9 9v10M15 9v10M2 21h20"/></symbol>
+    <symbol id="i-tools" viewBox="0 0 24 24"><path d="M3 21l8-8M14 4l6 6-3 3-6-6zM11 7l-4 4"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><path d="M12 2l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 15.4 6.8 18.1l1-5.8L3.5 8.2l5.9-.9z"/></symbol>
+  </svg>
+
+  <!-- Ticker -->
+  <div class="ticker mono" aria-label="Actualités réglementaires">
+    <div class="ticker-track">
+      <span class="ticker-item"><i></i><b>Loi de finances 2026</b> Déficit foncier doublé à 21 400 € / an jusqu'au 31/12/2027</span>
+      <span class="ticker-item"><i></i><b>Loi Climat</b> Logements G interdits à la location depuis 2025 · F au 1er janvier 2028</span>
+      <span class="ticker-item"><i></i><b>100 % sécurisé</b> Fonds consignés sur compte séquestre bancaire</span>
+      <span class="ticker-item"><i></i><b>Architectes indépendants</b> agréés Mon Accompagnateur Rénov'</span>
+      <span class="ticker-item"><i></i><b>MaPrimeRénov' 2026</b> Jusqu'à 80 % de subventions</span>
+      <span class="ticker-item" aria-hidden="true"><i></i><b>Loi de finances 2026</b> Déficit foncier doublé à 21 400 € / an jusqu'au 31/12/2027</span>
+      <span class="ticker-item" aria-hidden="true"><i></i><b>Loi Climat</b> Logements G interdits à la location depuis 2025 · F au 1er janvier 2028</span>
+      <span class="ticker-item" aria-hidden="true"><i></i><b>100 % sécurisé</b> Fonds consignés sur compte séquestre bancaire</span>
+      <span class="ticker-item" aria-hidden="true"><i></i><b>Architectes indépendants</b> agréés Mon Accompagnateur Rénov'</span>
+      <span class="ticker-item" aria-hidden="true"><i></i><b>MaPrimeRénov' 2026</b> Jusqu'à 80 % de subventions</span>
     </div>
   </div>
 
-  <!-- ================= HEADER (4 Liens Max, Court, Zéro Fluff) ================= -->
-  <header class="bg-white/95 backdrop-blur-md border-b border-neutral-100 sticky top-8 z-40">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-      
-      <!-- Logo Minimaliste -->
-      <a href="#" class="flex items-center gap-2.5 shrink-0">
-        <div class="w-9 h-9 rounded-xl bg-pin flex items-center justify-center text-white shrink-0 shadow-sm">
-          <svg viewBox="0 0 44 44" fill="none" class="w-5 h-5">
-            <path d="M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
-            <path d="M18 23.5L21 26.5L26.5 20.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="font-display font-extrabold text-lg tracking-tight text-neutral-950">
-          Archi<span class="text-pin">Simple</span>
-        </span>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <a href="#" class="logo" aria-label="ArchiSimple — accueil">
+        <img class="logo-mark" src="/favicon.svg" alt="" width="38" height="38">
+        <span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span>
       </a>
-
-      <!-- Menu : Exactement 4 Liens Courts Sans Retours à la Ligne -->
-      <nav class="hidden md:flex items-center gap-4 lg:gap-8 text-xs lg:text-sm font-semibold text-neutral-600">
-        <a href="#solution" class="whitespace-nowrap hover:text-pin transition-colors">Solution</a>
-        <a href="#loi" class="whitespace-nowrap hover:text-pin transition-colors">Loi &amp; Aides</a>
-        <a href="#simulateur" class="whitespace-nowrap hover:text-pin transition-colors">Simulateur</a>
-        <a href="#faq" class="whitespace-nowrap hover:text-pin transition-colors">FAQ</a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#methode">Méthode</a>
+        <a href="#loi">Loi &amp; aides</a>
+        <a href="#simulateur">Simulateur</a>
+        <a href="#faq">FAQ</a>
+        <a href="/app" class="nav-app">Trouver un architecte</a>
       </nav>
-
-      <!-- Boutons Actions Header -->
-      <div class="flex items-center gap-2 shrink-0">
-        <button onclick="openArchiModal()" class="hidden lg:inline-flex text-xs font-bold text-neutral-700 hover:text-pin px-3.5 py-2 rounded-full border border-neutral-200 hover:border-pin transition-all whitespace-nowrap">
-          Accès Architectes
-        </button>
-        <button onclick="openProprioModal()" class="hidden sm:inline-flex text-xs font-bold bg-pin hover:bg-pin-hover text-white px-4 py-2 rounded-full shadow-sm transition-all shrink-0 whitespace-nowrap">
-          Estimer mon projet
-        </button>
+      <div class="header-cta">
+        <a class="btn btn-line btn-sm" href="/app#architecte">Espace architectes</a>
+        <button class="btn btn-red btn-sm" data-open="proprio">Estimer mon projet</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><svg class="icon"><use href="#i-menu"/></svg></button>
       </div>
-
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#methode">Méthode <span class="mono">01</span></a>
+      <a href="#loi">Loi &amp; aides <span class="mono">03</span></a>
+      <a href="#simulateur">Simulateur <span class="mono">04</span></a>
+      <a href="#faq">FAQ <span class="mono">05</span></a>
+      <a href="/app">Trouver un architecte <span class="mono">→</span></a>
+      <a href="/app#architecte">Espace architectes <span class="mono">→</span></a>
+      <button class="btn btn-red" data-open="proprio">Estimer mon projet gratuitement</button>
     </div>
   </header>
 
-  <!-- ================= HERO SECTION (Phrases Courtes, Titres Sans Vaguelettes) ================= -->
-  <section class="pt-10 pb-16 sm:pt-16 sm:pb-20 bg-gradient-to-b from-neutral-50/60 to-white">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      
-      <!-- Badge Simple -->
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin-light text-pin text-xs font-bold mb-6">
-        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Marketplace Tiers de Confiance
-      </div>
-
-      <!-- Titre Net (Sans aucune vaguelette ni coupure) -->
-      <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-neutral-950 tracking-tight leading-tight">
-        Rénovez sans risque.
-      </h1>
-      <p class="font-display text-xl sm:text-3xl md:text-4xl font-extrabold text-pin mt-2 tracking-tight">
-        Séquestre bancaire <span class="text-neutral-900">&amp;</span> Architectes agréés.
-      </p>
-
-      <!-- Sous-titre Court & Percutant -->
-      <p class="mt-4 text-sm sm:text-base md:text-lg text-neutral-600 max-w-xl mx-auto leading-relaxed">
-        Sortez votre bien du statut passoire thermique (G ou F). Vos fonds restent protégés sur compte séquestre jusqu'à la délivrance du DPE conforme.
-      </p>
-
-      <!-- Deux Boutons Distincts (Proprio vs Archi) -->
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <button onclick="openProprioModal()" class="w-full sm:w-auto text-sm font-bold bg-pin hover:bg-pin-hover text-white px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-          <i data-lucide="home" class="w-4 h-4"></i>
-          <span>Estimer mon projet gratuitement</span>
-        </button>
-        <button onclick="openArchiModal()" class="w-full sm:w-auto text-sm font-bold bg-white hover:bg-neutral-50 text-neutral-800 px-6 py-3.5 rounded-full border border-neutral-300 shadow-sm transition-all flex items-center justify-center gap-2">
-          <i data-lucide="compass" class="w-4 h-4 text-pin"></i>
-          <span>Rejoindre le réseau d'architectes</span>
-        </button>
-      </div>
-
-      <!-- 4 Chiffres Clés Nets Sans Fioritures -->
-      <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-left">
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display whitespace-nowrap">100&nbsp;%</div>
-          <div class="text-[11px] font-bold text-pin uppercase mt-0.5">Fonds Séquestrés</div>
-          <div class="text-xs text-neutral-500 mt-1">Compte bloqué ACPR</div>
+  <main>
+    <!-- Hero -->
+    <div class="hero grid-bg">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="hero-meta mono"><i></i>ArchiSimple — Studio de rénovation énergétique</div>
+          <h1>Rénovez<br>sans risque.<br><span class="r">Payez sur</span> <span class="l">résultat.</span></h1>
+          <p class="hero-lead">Sortez votre bien du statut de passoire thermique (G ou F). Vos fonds restent protégés sur compte séquestre jusqu'à la délivrance du DPE conforme.</p>
+          <div class="hero-actions">
+            <button class="btn btn-red btn-lg" data-open="proprio">Estimer mon projet gratuitement <svg class="icon"><use href="#i-arrow"/></svg></button>
+            <a class="btn btn-line btn-lg" href="/app">Trouver un architecte</a>
+          </div>
+          <div class="hero-specs">
+            <div><b>Séquestre</b><span class="mono">Compte bancaire bloqué</span></div>
+            <div><b>Architectes MAR</b><span class="mono">Agréés France Rénov'</span></div>
+            <div><b>Artisans RGE</b><span class="mono">Certifiés &amp; audités</span></div>
+          </div>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-pin font-display whitespace-nowrap">21&nbsp;400&nbsp;€</div>
-          <div class="text-[11px] font-bold text-neutral-800 uppercase mt-0.5">Déficit Foncier / an</div>
-          <div class="text-xs text-neutral-500 mt-1">Prorogé fin 2027</div>
-        </div>
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-neutral-900 font-display whitespace-nowrap">Jusqu'à 80&nbsp;%</div>
-          <div class="text-[11px] font-bold text-pin uppercase mt-0.5">Subventions Anah</div>
-          <div class="text-xs text-neutral-500 mt-1">MaPrimeRénov' 2026</div>
-        </div>
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xl sm:text-2xl font-black text-emerald-600 font-display whitespace-nowrap">Note C ou D</div>
-          <div class="text-[11px] font-bold text-neutral-800 uppercase mt-0.5">DPE Garanti</div>
-          <div class="text-xs text-neutral-500 mt-1">Attestation officielle</div>
-        </div>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- ================= SOLUTION : 2 CARTES PROPRIO & ARCHI ================= -->
-  <section id="solution" class="py-14 sm:py-16 bg-white border-y border-neutral-100">
-    <div class="max-w-5xl mx-auto px-4">
-      
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
-          La marketplace en 2 profils
-        </h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-2">
-          Un tiers de confiance unique reliant propriétaires et architectes agréés.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- CARTE PROPRIÉTAIRE -->
-        <div class="bg-neutral-50 rounded-3xl p-6 sm:p-8 border border-neutral-200 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-pin text-white flex items-center justify-center mb-4">
-              <i data-lucide="home" class="w-5 h-5"></i>
+        <!-- Technical drawing -->
+        <div class="drawing-wrap">
+          <div class="drawing crops"><span class="crop-b"></span>
+            <div class="drawing-head mono"><span>Élévation sud</span><span>Éch. 1:100</span></div>
+            <svg class="plan" viewBox="0 0 520 380" aria-label="Dessin technique : élévation d'une maison rénovée de G à C">
+              <g class="fade" style="animation-delay:.2s">
+                <path class="hatch" d="M40 330l-12 14M60 330l-12 14M80 330l-12 14M100 330l-12 14M120 330l-12 14M140 330l-12 14M160 330l-12 14M180 330l-12 14M200 330l-12 14M220 330l-12 14M240 330l-12 14M260 330l-12 14M280 330l-12 14M300 330l-12 14M320 330l-12 14M340 330l-12 14M360 330l-12 14M380 330l-12 14M400 330l-12 14M420 330l-12 14M440 330l-12 14M460 330l-12 14M480 330l-12 14"/>
+              </g>
+              <line class="s draw" pathLength="1" x1="24" y1="330" x2="496" y2="330"/>
+              <polyline class="s draw" pathLength="1" points="120,330 120,180 400,180 400,330" style="animation-delay:.15s"/>
+              <polyline class="s draw" pathLength="1" points="98,182 260,70 422,182" style="animation-delay:.35s"/>
+              <polyline class="s draw" pathLength="1" points="340,112 340,72 366,72 366,130" style="animation-delay:.5s"/>
+              <rect class="s draw" pathLength="1" x="148" y="214" width="58" height="66" style="animation-delay:.7s"/>
+              <line class="t draw" pathLength="1" x1="177" y1="214" x2="177" y2="280" style="animation-delay:.9s"/>
+              <rect class="s draw" pathLength="1" x="314" y="214" width="58" height="66" style="animation-delay:.75s"/>
+              <line class="t draw" pathLength="1" x1="343" y1="214" x2="343" y2="280" style="animation-delay:.95s"/>
+              <rect class="s draw" pathLength="1" x="236" y="236" width="48" height="94" style="animation-delay:.8s"/>
+              <circle class="s draw" pathLength="1" cx="260" cy="138" r="15" style="animation-delay:.9s"/>
+              <g class="fade" style="animation-delay:1.5s">
+                <polyline class="ins" points="112,180 260,78 408,180"/>
+                <polyline class="ins" points="128,186 128,324"/>
+                <polyline class="ins" points="392,186 392,324"/>
+              </g>
+              <g class="fade" style="animation-delay:1.8s">
+                <line class="t" x1="120" y1="352" x2="400" y2="352"/>
+                <line class="t" x1="120" y1="344" x2="120" y2="360"/><line class="t" x1="400" y1="344" x2="400" y2="360"/>
+                <line class="t" x1="115" y1="357" x2="125" y2="347"/><line class="t" x1="395" y1="357" x2="405" y2="347"/>
+                <text x="260" y="370" text-anchor="middle">12,40 m</text>
+                <line class="t" x1="62" y1="70" x2="62" y2="330"/>
+                <line class="t" x1="54" y1="70" x2="70" y2="70"/><line class="t" x1="54" y1="330" x2="70" y2="330"/>
+                <line class="t" x1="57" y1="75" x2="67" y2="65"/><line class="t" x1="57" y1="335" x2="67" y2="325"/>
+                <text x="48" y="200" text-anchor="middle" transform="rotate(-90 48 200)">7,80 m</text>
+              </g>
+              <g class="fade" style="animation-delay:2.1s">
+                <polyline class="t" points="330,112 352,46 512,46"/>
+                <circle cx="330" cy="112" r="2.5" fill="#E60023"/>
+                <text class="r" x="512" y="40" text-anchor="end">Isolation combles</text>
+                <text class="m" x="512" y="60" text-anchor="end">Laine de bois 300 mm</text>
+                <polyline class="t" points="372,250 404,250 404,220 512,220"/>
+                <circle cx="372" cy="250" r="2.5" fill="#121212"/>
+                <text x="512" y="214" text-anchor="end">Menuiseries</text>
+                <text class="m" x="512" y="234" text-anchor="end">Double vitrage</text>
+                <polyline class="t" points="128,300 84,300 84,276 30,276"/>
+                <circle cx="128" cy="300" r="2.5" fill="#E60023"/>
+                <text class="r" x="30" y="270">ITE 140</text>
+              </g>
+            </svg>
+            <div class="title-block">
+              <div><span class="mono">Projet</span><b>N° 0247</b></div>
+              <div><span class="mono">Surface</span><b>78 m²</b></div>
+              <div><span class="mono">Statut</span><b>Chantier</b></div>
+              <div><span class="mono">DPE</span><span class="dpe-jump"><span class="dpe-chip" style="background:#E2001A">G</span><svg class="icon" style="width:12px"><use href="#i-arrow"/></svg><span class="dpe-chip" style="background:#A3CC6E;color:#121212">C</span></span></div>
             </div>
-            <h3 class="text-xl font-bold text-neutral-900 mb-1">Pour les Propriétaires & Bailleurs</h3>
-            <p class="text-xs text-neutral-500 mb-6">Éliminez vos passoires thermiques sans risque d'abandon de chantier.</p>
+          </div>
 
-            <ul class="space-y-3 text-sm text-neutral-700 font-medium">
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
-                <span>Architecte MAR dédié (audit officiel)</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
-                <span>Artisans RGE certifiés & audités</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
-                <span>Argent bloqué sous séquestre bancaire</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-pin shrink-0"></i>
-                <span>Nouveau DPE C ou D garanti</span>
-              </li>
+          <div class="escrow" aria-label="Exemple de compte séquestre">
+            <div class="mono">Compte séquestre · Projet 0247</div>
+            <div class="escrow-amt">35 750 €</div>
+            <div class="escrow-bar"><i class="g"></i><i class="r"></i><i></i></div>
+            <div class="escrow-row"><span>Audit énergétique</span><b>✓ 10 700</b></div>
+            <div class="escrow-row"><span>Isolation &amp; menuiseries</span><b>◐ 10 700</b></div>
+            <div class="escrow-row wait"><span>DPE final classe C</span><b>▢ 14 350</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Figures -->
+    <div class="wrap">
+      <div class="figures">
+        <div class="fig reveal"><span class="mono">A.1 — Sécurité</span><div class="fig-num">100 %</div><p>Fonds séquestrés sur compte bancaire bloqué</p></div>
+        <div class="fig reveal"><span class="mono">A.2 — Fiscalité</span><div class="fig-num" style="color:var(--red)">21 400 €</div><p>Déficit foncier par an, prorogé fin 2027</p></div>
+        <div class="fig reveal"><span class="mono">A.3 — Aides</span><div class="fig-num">80 %</div><p>Subventions max. MaPrimeRénov' 2026</p></div>
+        <div class="fig reveal"><span class="mono">A.4 — Objectif</span><div class="fig-num" style="color:var(--green)">C / D</div><p>Classe DPE visée, attestation officielle</p></div>
+      </div>
+    </div>
+
+    <!-- 01 Method -->
+    <section id="methode">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-num"><span class="n">01 / 05</span><span class="mono">Méthode</span></div>
+          <div>
+            <h2>Un tiers de confiance <span class="l">entre vous et le chantier.</span></h2>
+            <p>Personne n'est payé avant que le travail soit validé. Ni avance perdue, ni chantier abandonné.</p>
+          </div>
+        </div>
+        <div class="process">
+          <div class="step reveal"><span class="mono">Phase 01</span><div class="step-ico"><svg class="icon"><use href="#i-file"/></svg></div><h3>Audit &amp; aides</h3><p>Un architecte MAR indépendant réalise l'audit et monte votre dossier MaPrimeRénov'.</p></div>
+          <div class="step reveal"><span class="mono">Phase 02</span><div class="step-ico"><svg class="icon"><use href="#i-bank"/></svg></div><h3>Fonds consignés</h3><p>Le budget travaux est déposé sur un compte séquestre bancaire, bloqué et traçable.</p></div>
+          <div class="step reveal"><span class="mono">Phase 03</span><div class="step-ico"><svg class="icon"><use href="#i-tools"/></svg></div><h3>Travaux par jalons</h3><p>Des artisans RGE réalisent le chantier. Chaque étape est contrôlée avant paiement.</p></div>
+          <div class="step reveal"><span class="mono">Phase 04</span><div class="step-ico"><svg class="icon"><use href="#i-award"/></svg></div><h3>DPE conforme</h3><p>Le solde n'est libéré qu'à la délivrance du nouveau DPE, classe C ou D.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Audiences -->
+    <section id="solution">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-num"><span class="n">02 / 05</span><span class="mono">Profils</span></div>
+          <div><h2>ArchiSimple protège <span class="l">chaque partie.</span></h2></div>
+        </div>
+        <div class="duo reveal">
+          <div class="aud">
+            <div class="mono"><span>Profil A</span><span>Propriétaires &amp; bailleurs</span></div>
+            <h3>Éliminez vos passoires thermiques, sans risque.</h3>
+            <p>Plus d'abandon de chantier ni d'acompte envolé.</p>
+            <ul class="spec">
+              <li><span>A.01</span>Architecte MAR dédié (audit officiel)</li>
+              <li><span>A.02</span>Artisans RGE certifiés &amp; audités</li>
+              <li><span>A.03</span>Argent bloqué sous séquestre bancaire</li>
+              <li><span>A.04</span>Nouveau DPE C ou D visé</li>
             </ul>
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-neutral-200">
-            <button onclick="openProprioModal()" class="w-full text-xs font-bold bg-pin hover:bg-pin-hover text-white py-3 rounded-full transition-all text-center">
-              Estimer mon projet gratuitement
-            </button>
-          </div>
-        </div>
-
-        <!-- CARTE ARCHITECTE -->
-        <div class="bg-neutral-50 rounded-3xl p-6 sm:p-8 border border-neutral-200 flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center mb-4">
-              <i data-lucide="compass" class="w-5 h-5"></i>
+            <div class="aud-actions">
+              <button class="btn btn-red" data-open="proprio">Estimer mon projet <svg class="icon"><use href="#i-arrow"/></svg></button>
+              <a class="btn btn-line" href="/app">Voir les architectes</a>
             </div>
-            <h3 class="text-xl font-bold text-neutral-900 mb-1">Pour les Architectes & Artisans</h3>
-            <p class="text-xs text-neutral-500 mb-6">Recevez des chantiers cadrés et garantissez 100 % de vos paiements.</p>
-
-            <ul class="space-y-3 text-sm text-neutral-700 font-medium">
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span>Chantiers qualifiés et pré-financés</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span>Zéro impayé : budget séquestré en amont</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span>Indépendance déontologique MAR respectée</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span>Déblocage direct par jalons validés</span>
-              </li>
+          </div>
+          <div class="aud aud-dark">
+            <div class="mono"><span>Profil B</span><span>Architectes &amp; artisans</span></div>
+            <h3>Des chantiers cadrés, des paiements garantis.</h3>
+            <p>Concentrez-vous sur votre métier, pas sur le recouvrement.</p>
+            <ul class="spec">
+              <li><span>B.01</span>Chantiers qualifiés et pré-financés</li>
+              <li><span>B.02</span>Zéro impayé : budget séquestré en amont</li>
+              <li><span>B.03</span>Indépendance déontologique MAR respectée</li>
+              <li><span>B.04</span>Déblocage direct par jalons validés</li>
             </ul>
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-neutral-200">
-            <button onclick="openArchiModal()" class="w-full text-xs font-bold bg-neutral-900 hover:bg-neutral-800 text-white py-3 rounded-full transition-all text-center">
-              Rejoindre le réseau d'architectes
-            </button>
+            <div class="aud-actions">
+              <button class="btn btn-paper" data-open="archi">Rejoindre le réseau <svg class="icon"><use href="#i-arrow"/></svg></button>
+              <a class="btn btn-line-w" href="/app#architecte">Découvrir l'espace pro</a>
+            </div>
           </div>
         </div>
-
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- ================= LOI & AIDES : 4 BLOCS NETS SANS COUPOIR ================= -->
-  <section id="loi" class="py-14 sm:py-16 bg-neutral-50/50">
-    <div class="max-w-5xl mx-auto px-4">
-      
-      <div class="text-center max-w-xl mx-auto mb-10">
-        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
-          Ce que la loi impose et finance
-        </h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-1">
-          Calendrier officiel et dispositifs fiscaux vérifiés.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xs font-bold text-rose-600 uppercase mb-1">Loi Climat</div>
-          <div class="text-base font-bold text-neutral-900">Interdiction de louer</div>
-          <div class="mt-3 space-y-1 text-xs text-neutral-600 font-medium">
-            <div class="text-rose-600 font-bold">G : Interdit depuis 2025</div>
-            <div class="text-amber-700 font-bold">F : Interdit au 1er janv. 2028</div>
-            <div class="text-neutral-500">E : Horizon 2034</div>
-          </div>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xs font-bold text-pin uppercase mb-1">Fiscalité 2026-2027</div>
-          <div class="text-base font-bold text-neutral-900">Déficit Foncier ×2</div>
-          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Plafond porté à <strong>21 400 € / an</strong> déductible jusqu'au 31 décembre 2027.
-          </p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xs font-bold text-emerald-600 uppercase mb-1">Aides Anah</div>
-          <div class="text-base font-bold text-neutral-900">MaPrimeRénov'</div>
-          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Jusqu'à <strong>80 % d'aides</strong> (assiette 40 000 € HT) pour 2 sauts de classes DPE.
-          </p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm">
-          <div class="text-xs font-bold text-blue-600 uppercase mb-1">Financement</div>
-          <div class="text-base font-bold text-neutral-900">Éco-PTZ & TVA 5,5%</div>
-          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Prêt à taux zéro jusqu'à <strong>50 000 €</strong> cumulable avec la TVA réduite.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= SIMULATEUR EXPRESS ================= -->
-  <section id="simulateur" class="py-14 sm:py-16 bg-white border-t border-neutral-100">
-    <div class="max-w-3xl mx-auto px-4">
-      
-      <div class="text-center mb-8">
-        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-neutral-900">
-          Simulateur Express
-        </h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-1">
-          Calculez vos aides et votre avantage fiscal en direct.
-        </p>
-      </div>
-
-      <div class="bg-neutral-50 rounded-3xl p-6 sm:p-8 border border-neutral-200">
-        
-        <div class="space-y-6">
-          
+    <!-- 03 Law -->
+    <section id="loi">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-num"><span class="n">03 / 05</span><span class="mono">Cadre légal</span></div>
           <div>
-            <div class="flex justify-between items-center mb-2">
-              <label class="text-xs font-bold text-neutral-700 uppercase">Surface du logement</label>
-              <span class="text-base font-black text-pin" id="simSurface">65 m²</span>
-            </div>
-            <input type="range" id="inputSurface" min="20" max="150" step="5" value="65" class="w-full accent-pin cursor-pointer">
+            <h2>Ce que la loi impose <span class="l">— et ce qu'elle finance.</span></h2>
+            <p>Calendrier officiel et dispositifs fiscaux en vigueur.</p>
           </div>
+        </div>
+        <div class="law reveal">
+          <div class="law-left">
+            <span class="mono">Loi Climat &amp; Résilience</span>
+            <h3>Interdiction de louer les passoires</h3>
+            <p>Les logements les plus énergivores sortent progressivement du marché locatif.</p>
+            <div class="scale" aria-label="Étiquette DPE et calendrier">
+              <div class="scale-row"><div class="bar bar-a">A</div><span class="tag ok"></span></div>
+              <div class="scale-row"><div class="bar bar-b">B</div><span class="tag ok"></span></div>
+              <div class="scale-row"><div class="bar bar-c">C</div><span class="tag ok">← Objectif</span></div>
+              <div class="scale-row"><div class="bar bar-d">D</div><span class="tag ok">← Objectif</span></div>
+              <div class="scale-row"><div class="bar bar-e">E</div><span class="tag grey">Interdit 2034</span></div>
+              <div class="scale-row"><div class="bar bar-f">F</div><span class="tag amb">Interdit 2028</span></div>
+              <div class="scale-row"><div class="bar bar-g">G</div><span class="tag red">Interdit depuis 2025</span></div>
+            </div>
+          </div>
+          <div class="law-right">
+            <div class="law-cell"><span class="mono">Fiscalité 2026 – 2027</span><div class="big" style="color:var(--red)">21 400 €</div><h4>Déficit foncier ×2</h4><p>Plafond annuel doublé, déductible jusqu'au 31 décembre 2027.</p></div>
+            <div class="law-cell"><span class="mono">Aides Anah</span><div class="big" style="color:var(--green)">80 %</div><h4>MaPrimeRénov'</h4><p>Jusqu'à 80 % d'aides (assiette 40 000 € HT) pour 2 sauts de classe DPE.</p></div>
+            <div class="law-cell"><span class="mono">Financement</span><div class="big">50 000 €</div><h4>Éco-PTZ &amp; TVA à 5,5 %</h4><p>Prêt à taux zéro cumulable avec la TVA réduite sur les travaux.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- 04 Simulator -->
+    <section id="simulateur">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-num"><span class="n">04 / 05</span><span class="mono">Simulateur</span></div>
           <div>
-            <label class="block text-xs font-bold text-neutral-700 uppercase mb-2">DPE Actuel</label>
-            <div class="grid grid-cols-3 gap-2">
-              <button type="button" onclick="setDpe('G')" id="dpeG" class="py-2 rounded-xl text-xs font-bold border-2 border-pin bg-pin-light text-pin">
-                Passoire G
-              </button>
-              <button type="button" onclick="setDpe('F')" id="dpeF" class="py-2 rounded-xl text-xs font-bold border border-neutral-300 bg-white text-neutral-700">
-                Passoire F
-              </button>
-              <button type="button" onclick="setDpe('E')" id="dpeE" class="py-2 rounded-xl text-xs font-bold border border-neutral-300 bg-white text-neutral-700">
-                Classe E
-              </button>
-            </div>
+            <h2>Estimez vos aides <span class="l">en 10 secondes.</span></h2>
+            <p>Budget travaux, subventions et avantage fiscal, calculés en direct.</p>
           </div>
-
-          <div class="bg-neutral-900 text-white p-5 rounded-2xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
-            <div>
-              <div class="text-[11px] text-neutral-400 uppercase font-semibold">Travaux Estimés</div>
-              <div class="text-xl font-bold text-white mt-0.5" id="resBudget">32 500 €</div>
+        </div>
+        <div class="sim reveal">
+          <div class="sim-in">
+            <div class="field">
+              <div class="field-top"><label class="mono" for="surface">Surface du logement</label><span class="field-val" id="surfaceVal">65 m²</span></div>
+              <input type="range" class="range" id="surface" min="20" max="150" step="5" value="65">
+              <div class="ticks"><span>20</span><span>50</span><span>85</span><span>115</span><span>150 m²</span></div>
             </div>
-            <div>
-              <div class="text-[11px] text-neutral-400 uppercase font-semibold">Aides Anah Max</div>
-              <div class="text-xl font-bold text-emerald-400 mt-0.5" id="resAides">19 500 €</div>
+            <div class="field">
+              <div class="field-top"><span class="mono" id="dpeLabel">DPE actuel</span></div>
+              <div class="seg" role="group" aria-labelledby="dpeLabel">
+                <button type="button" data-dpe="G" aria-pressed="true"><span class="dpe-chip" style="background:#E2001A">G</span><span><b>Passoire</b><small>Interdit</small></span></button>
+                <button type="button" data-dpe="F" aria-pressed="false"><span class="dpe-chip" style="background:#EE7D32">F</span><span><b>Passoire</b><small>Dès 2028</small></span></button>
+                <button type="button" data-dpe="E" aria-pressed="false"><span class="dpe-chip" style="background:#F6B12D;color:#121212">E</span><span><b>Classe E</b><small>Dès 2034</small></span></button>
+              </div>
             </div>
-            <div>
-              <div class="text-[11px] text-neutral-400 uppercase font-semibold">Déficit Foncier</div>
-              <div class="text-xl font-bold text-pin mt-0.5" id="resDeficit">21 400 € / an</div>
-            </div>
+            <p class="sim-note">Estimation indicative, non contractuelle. Le montant réel dépend de l'audit et de vos revenus.</p>
           </div>
-
-          <button onclick="openProprioModal()" class="w-full text-xs sm:text-sm font-bold bg-pin hover:bg-pin-hover text-white py-3.5 rounded-full transition-all text-center">
-            Estimer mon projet gratuitement
-          </button>
-
+          <div class="sim-out" aria-live="polite">
+            <span class="mono">Aides Anah estimées</span>
+            <div class="out-big" id="resAides">19 500 €</div>
+            <div class="out-rows">
+              <div class="out-row"><span>Travaux estimés</span><b id="resBudget">32 500 €</b></div>
+              <div class="out-row"><span>Aides Anah max.</span><b class="g" id="resAides2">19 500 €</b></div>
+              <div class="out-row"><span>Déficit foncier imputable</span><b class="r" id="resDeficit">13 000 € / an</b></div>
+            </div>
+            <div class="sp"></div>
+            <button class="btn btn-red btn-lg btn-block" data-open="proprio">Obtenir mon estimation détaillée <svg class="icon"><use href="#i-arrow"/></svg></button>
+          </div>
         </div>
-
       </div>
+    </section>
 
+    <!-- 05 FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-num"><span class="n">05 / 05</span><span class="mono">Questions</span></div>
+          <div><h2>Questions <span class="l">fréquentes.</span></h2></div>
+        </div>
+        <div class="faq reveal">
+          <details open>
+            <summary><span class="mono">Q.01</span>Comment le séquestre me protège-t-il ?<span class="pm"></span></summary>
+            <p>Vos fonds sont consignés sur un compte bancaire bloqué. Les artisans sont rémunérés uniquement après validation de chaque étape par votre architecte.</p>
+          </details>
+          <details>
+            <summary><span class="mono">Q.02</span>Qui est l'architecte MAR ?<span class="pm"></span></summary>
+            <p>C'est un professionnel agréé Mon Accompagnateur Rénov' par France Rénov', indépendant des entreprises de travaux. Il réalise l'audit, monte vos aides et pilote le chantier.</p>
+          </details>
+          <details>
+            <summary><span class="mono">Q.03</span>Le déficit foncier à 21 400 € est-il confirmé ?<span class="pm"></span></summary>
+            <p>Oui. La loi de finances 2026 proroge le doublement du plafond jusqu'au 31 décembre 2027 pour les travaux de rénovation énergétique faisant sortir un logement du statut de passoire thermique.</p>
+          </details>
+          <details>
+            <summary><span class="mono">Q.04</span>Combien coûte l'estimation ?<span class="pm"></span></summary>
+            <p>L'estimation de votre projet et la simulation de vos aides sont 100 % gratuites et sans engagement.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="wrap cta-inner">
+        <div>
+          <span class="mono">Prochaine étape</span>
+          <h2>Prêt à rénover <span class="l">sans stress ?</span></h2>
+        </div>
+        <div>
+          <p>Obtenez votre estimation d'aides et votre audit sous 48 h.</p>
+          <div class="cta-actions">
+            <button class="btn btn-red btn-lg" data-open="proprio">Estimer mon projet gratuitement <svg class="icon"><use href="#i-arrow"/></svg></button>
+            <button class="btn btn-line-w btn-lg" data-open="archi">Rejoindre le réseau d'architectes</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a href="#" class="logo"><img class="logo-mark" src="/favicon.svg" alt="" width="38" height="38"><span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span></a>
+          <p class="about">La rénovation énergétique, simplement : architectes agréés, artisans RGE et fonds protégés jusqu'au DPE conforme.</p>
+        </div>
+        <div>
+          <h5>Site</h5>
+          <a href="#methode">Méthode</a>
+          <a href="#loi">Loi &amp; aides</a>
+          <a href="#simulateur">Simulateur</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h5>Plateforme</h5>
+          <a href="/app">Trouver un architecte</a>
+          <a href="/app#architecte">Espace architectes</a>
+          <a href="#" data-open="proprio">Estimer mon projet</a>
+        </div>
+      </div>
+      <div class="foot-legal mono"><span>© <span id="year">2026</span> ArchiSimple</span><span>Conforme Loi Climat &amp; Loi de finances 2026</span></div>
     </div>
-  </section>
-
-  <!-- ================= FAQ (Ultra-Courte) ================= -->
-  <section id="faq" class="py-14 sm:py-16 bg-neutral-50/50 border-t border-neutral-100">
-    <div class="max-w-2xl mx-auto px-4">
-      
-      <div class="text-center mb-8">
-        <h2 class="font-display text-2xl font-extrabold text-neutral-900">
-          Questions Fréquentes
-        </h2>
-      </div>
-
-      <div class="space-y-3">
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
-          <div class="font-bold text-sm text-neutral-900 mb-1">Comment le séquestre me protège-t-il ?</div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Vos fonds sont consignés sur un compte bancaire bloqué. Les artisans sont rémunérés uniquement après validation de chaque étape par votre architecte.
-          </p>
-        </div>
-
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
-          <div class="font-bold text-sm text-neutral-900 mb-1">Qui est l'architecte MAR ?</div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            C'est un professionnel agréé par France Rénov' et indépendant des entreprises de travaux. Il réalise l'audit, monte vos aides et pilote le chantier.
-          </p>
-        </div>
-
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
-          <div class="font-bold text-sm text-neutral-900 mb-1">Le déficit foncier à 21 400 € est-il confirmé ?</div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Oui. La loi de finances 2026 proroge expressément le doublement du plafond jusqu'au 31 décembre 2027 pour les passoires thermiques rénovées.
-          </p>
-        </div>
-
-        <div class="bg-white p-4 rounded-2xl border border-neutral-200">
-          <div class="font-bold text-sm text-neutral-900 mb-1">Combien coûte l'estimation ?</div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            L'estimation de votre projet et la simulation de vos aides sont 100 % gratuites et sans engagement.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= BANDEAU FINAL ================= -->
-  <section class="py-14 bg-neutral-950 text-white text-center">
-    <div class="max-w-xl mx-auto px-4">
-      <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
-        Prêt à rénover sans stress ?
-      </h2>
-      <p class="text-xs sm:text-sm text-neutral-400 mt-2 mb-6">
-        Obtenez votre estimation d'aides et votre audit sous 48h.
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <button onclick="openProprioModal()" class="w-full sm:w-auto text-xs font-bold bg-pin hover:bg-pin-hover text-white px-6 py-3 rounded-full transition-all">
-          Estimer mon projet gratuitement
-        </button>
-        <button onclick="openArchiModal()" class="w-full sm:w-auto text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-white px-5 py-3 rounded-full transition-all">
-          Rejoindre le réseau d'architectes
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="py-6 border-t border-neutral-200 text-center text-xs text-neutral-500 bg-white">
-    <p>ArchiSimple · Conforme Loi Climat & Loi de Finances 2026</p>
   </footer>
 
-  <!-- ================= MODAL PROPRIÉTAIRE ================= -->
-  <div id="proprioModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
-      <button onclick="closeProprioModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700" aria-label="Fermer">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-
-      <div class="mb-4">
-        <span class="text-[11px] font-bold text-pin uppercase">Propriétaire & Bailleur</span>
-        <h3 class="text-xl font-bold text-neutral-900 mt-0.5">Estimer mon projet</h3>
+  <!-- Modal: owner -->
+  <dialog id="dlg-proprio" aria-labelledby="t-proprio">
+    <div class="modal-head"><span class="mono">Fiche 01 — Propriétaire &amp; bailleur</span><button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button></div>
+    <div class="modal">
+      <div class="form-view">
+        <h3 id="t-proprio">Estimer mon projet</h3>
+        <p class="modal-sub">Gratuit, sans engagement. Réponse sous 48 h.</p>
+        <form class="form" id="form-proprio" data-subject="Nouvelle estimation propriétaire" data-success="Votre demande est enregistrée. Un conseiller ArchiSimple vous recontacte très rapidement.">
+          <div class="form-row">
+            <div><label for="p-surface">Surface (m²)</label><input id="p-surface" name="Surface (m²)" type="number" min="5" max="2000" required placeholder="65"></div>
+            <div><label for="p-cp">Code postal</label><input id="p-cp" name="Code postal" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required placeholder="75011"></div>
+          </div>
+          <div><label for="p-nom">Nom complet</label><input id="p-nom" name="Nom" type="text" autocomplete="name" required placeholder="Jean Dupont"></div>
+          <div><label for="p-email">Email</label><input id="p-email" name="Email" type="email" autocomplete="email" required placeholder="email@domaine.fr"></div>
+          <div><label for="p-tel">Téléphone</label><input id="p-tel" name="Téléphone" type="tel" autocomplete="tel" required placeholder="06 12 34 56 78"></div>
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="form-error" role="alert" hidden></p>
+          <button type="submit" class="btn btn-red btn-lg btn-block">Estimer mon projet gratuitement</button>
+          <p class="form-legal">Vos données ne sont utilisées que pour traiter votre demande.</p>
+        </form>
       </div>
-
-      <form onsubmit="handleProprioSubmit(event)" class="space-y-3">
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Surface (m²)</label>
-          <input type="number" required placeholder="65" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Code postal du bien</label>
-          <input type="text" required placeholder="75011" maxlength="5" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Nom complet</label>
-          <input type="text" required placeholder="Votre nom" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Email</label>
-          <input type="email" required placeholder="email@domaine.fr" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Téléphone</label>
-          <input type="tel" required placeholder="06 12 34 56 78" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-
-        <button type="submit" class="w-full text-xs font-bold bg-pin text-white py-3 rounded-full mt-2 shadow-md">
-          Estimer mon projet gratuitement
-        </button>
-      </form>
     </div>
-  </div>
+  </dialog>
 
-  <!-- ================= MODAL ARCHITECTE ================= -->
-  <div id="archiModal" class="fixed inset-0 z-50 hidden bg-neutral-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
-      <button onclick="closeArchiModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-700" aria-label="Fermer">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-
-      <div class="mb-4">
-        <span class="text-[11px] font-bold text-neutral-800 uppercase">Architecte & Artisan</span>
-        <h3 class="text-xl font-bold text-neutral-900 mt-0.5">Rejoindre le réseau</h3>
+  <!-- Modal: architect -->
+  <dialog id="dlg-archi" aria-labelledby="t-archi">
+    <div class="modal-head"><span class="mono">Fiche 02 — Architecte &amp; artisan</span><button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button></div>
+    <div class="modal">
+      <div class="form-view">
+        <h3 id="t-archi">Rejoindre le réseau</h3>
+        <p class="modal-sub">Recevez des chantiers qualifiés et pré-financés.</p>
+        <form class="form" data-subject="Nouvelle candidature architecte / artisan" data-success="Candidature reçue ! L'équipe partenariats ArchiSimple vous recontacte.">
+          <div><label for="a-nom">Cabinet / entreprise</label><input id="a-nom" name="Cabinet / entreprise" type="text" autocomplete="organization" required placeholder="Atelier Architecture"></div>
+          <div><label for="a-statut">Statut</label>
+            <select id="a-statut" name="Statut">
+              <option>Architecte agréé MAR</option>
+              <option>Architecte DPLG / HMONP</option>
+              <option>Artisan certifié RGE</option>
+            </select>
+          </div>
+          <div><label for="a-ville">Zone d'intervention</label><input id="a-ville" name="Zone d'intervention" type="text" required placeholder="Paris & Île-de-France"></div>
+          <div><label for="a-email">Email pro</label><input id="a-email" name="Email" type="email" autocomplete="email" required placeholder="contact@atelier.fr"></div>
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="form-error" role="alert" hidden></p>
+          <button type="submit" class="btn btn-ink btn-lg btn-block">Envoyer ma candidature</button>
+        </form>
       </div>
-
-      <form onsubmit="handleArchiSubmit(event)" class="space-y-3">
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Nom du cabinet / Entreprise</label>
-          <input type="text" required placeholder="Atelier Architecture" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Statut</label>
-          <select class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm bg-white">
-            <option>Architecte agréé MAR</option>
-            <option>Architecte DPLG / HMONP</option>
-            <option>Artisan certifié RGE</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Ville d'intervention</label>
-          <input type="text" required placeholder="Paris & IDF" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-        <div>
-          <label class="block text-[11px] font-bold text-neutral-600 uppercase mb-1">Email pro</label>
-          <input type="email" required placeholder="contact@atelier.fr" class="w-full px-3.5 py-2 rounded-xl border border-neutral-200 text-sm focus:ring-2 focus:ring-pin">
-        </div>
-
-        <button type="submit" class="w-full text-xs font-bold bg-neutral-900 text-white py-3 rounded-full mt-2 shadow-md">
-          Rejoindre le réseau d'architectes
-        </button>
-      </form>
     </div>
-  </div>
+  </dialog>
 
-  <!-- ================= JAVASCRIPT ================= -->
   <script>
-    lucide.createIcons();
+    (function () {
+      const fmt = n => n.toLocaleString('fr-FR') + ' €';
 
-    function openProprioModal() {
-      document.getElementById('proprioModal').classList.remove('hidden');
-    }
-    function closeProprioModal() {
-      document.getElementById('proprioModal').classList.add('hidden');
-    }
+      // Mobile menu
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const setMenu = open => { mobileNav.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); };
+      menuBtn.addEventListener('click', () => setMenu(!mobileNav.classList.contains('open')));
+      mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-    function openArchiModal() {
-      document.getElementById('archiModal').classList.remove('hidden');
-    }
-    function closeArchiModal() {
-      document.getElementById('archiModal').classList.add('hidden');
-    }
-
-    function handleProprioSubmit(e) {
-      e.preventDefault();
-      alert('Merci ! Votre estimation est enregistrée. Un conseiller vous contacte sous 2 heures.');
-      closeProprioModal();
-    }
-
-    function handleArchiSubmit(e) {
-      e.preventDefault();
-      alert('Candidature reçue ! Notre équipe partenariat vous recontacte.');
-      closeArchiModal();
-    }
-
-    const inputSurface = document.getElementById('inputSurface');
-    const simSurface = document.getElementById('simSurface');
-    const resBudget = document.getElementById('resBudget');
-    const resAides = document.getElementById('resAides');
-    const resDeficit = document.getElementById('resDeficit');
-    let currentDpe = 'G';
-
-    function setDpe(letter) {
-      currentDpe = letter;
-      ['G', 'F', 'E'].forEach(l => {
-        const btn = document.getElementById('dpe' + l);
-        if (l === letter) {
-          btn.className = 'py-2 rounded-xl text-xs font-bold border-2 border-pin bg-pin-light text-pin';
-        } else {
-          btn.className = 'py-2 rounded-xl text-xs font-bold border border-neutral-300 bg-white text-neutral-700';
-        }
+      // Modals
+      const dialogs = { proprio: document.getElementById('dlg-proprio'), archi: document.getElementById('dlg-archi') };
+      document.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', e => {
+        asTrack('open_form', { form: el.dataset.open });
+        e.preventDefault(); setMenu(false);
+        const d = dialogs[el.dataset.open]; resetDialog(d); d.showModal();
+      }));
+      Object.values(dialogs).forEach(d => {
+        d.querySelector('[data-close]').addEventListener('click', () => d.close());
+        d.addEventListener('click', e => { if (e.target === d) d.close(); });
       });
-      calcSim();
-    }
 
-    function calcSim() {
-      const surface = parseInt(inputSurface.value, 10);
-      simSurface.textContent = surface + ' m²';
+      function resetDialog(d) {
+        const view = d.querySelector('.form-view');
+        const ok = d.querySelector('.success');
+        if (ok) ok.remove();
+        view.hidden = false;
+      }
 
-      let pricePerSqm = currentDpe === 'G' ? 550 : (currentDpe === 'F' ? 500 : 420);
-      const budget = surface * pricePerSqm;
-      resBudget.textContent = budget.toLocaleString('fr-FR') + ' €';
+      // Form submission → email (FormSubmit)
+      const MAIL_TO = 'archisimple13@gmail.com';
+      const MAIL_ENDPOINT = 'https://formsubmit.co/ajax/' + MAIL_TO;
 
-      const aides = Math.min(Math.round(budget * 0.60), 24000);
-      resAides.textContent = aides.toLocaleString('fr-FR') + ' €';
+      document.querySelectorAll('dialog form').forEach(form => form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const d = form.closest('dialog');
+        const btn = form.querySelector('[type=submit]');
+        const err = form.querySelector('.form-error');
+        const label = btn.innerHTML;
+        err.hidden = true;
 
-      const deficit = Math.min(budget - aides, 21400);
-      resDeficit.textContent = deficit.toLocaleString('fr-FR') + ' € / an';
-    }
+        const raw = Object.fromEntries(new FormData(form));
+        if (raw._honey) return;
+        delete raw._honey;
+        // Coordonnées du client en premier dans l'email
+        const data = { 'Nom': raw['Nom'] || raw['Cabinet / entreprise'], 'Email du client': raw['Email'], 'Téléphone du client': raw['Téléphone'] || '—' };
+        Object.entries(raw).forEach(([k, v]) => { if (!['Nom', 'Email', 'Téléphone'].includes(k)) data[k] = v; });
+        if (form.id === 'form-proprio') {
+          data['DPE actuel (simulateur)'] = dpe;
+          data['Estimation simulateur'] = `Travaux ${resBudget.textContent} · Aides ${resAides.textContent} · Déficit foncier ${resDeficit.textContent}`;
+        }
+        data._subject = `ArchiSimple · ${form.dataset.subject} — ${data['Nom']} · ${raw['Téléphone'] ? raw['Téléphone'] + ' · ' : ''}${raw['Email']}`;
+        data._replyto = raw['Email'];
+        data._template = 'table';
+        data._captcha = 'false';
 
-    inputSurface.addEventListener('input', calcSim);
-    calcSim();
+        btn.disabled = true; btn.textContent = 'Envoi en cours…';
+        try {
+          const res = await fetch(MAIL_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'Erreur');
+          asTrack('generate_lead', { form: form.id === 'form-proprio' ? 'estimation_proprietaire' : 'candidature_architecte', page: 'accueil' });
+          showSuccess(d, form);
+        } catch (_) {
+          err.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
+          err.hidden = false;
+        } finally {
+          btn.disabled = false; btn.innerHTML = label;
+        }
+      }));
+
+      function showSuccess(d, form) {
+        const view = d.querySelector('.form-view');
+        view.hidden = true;
+        const ok = document.createElement('div');
+        ok.className = 'success';
+        ok.innerHTML = '<div class="success-ico"><svg class="icon"><use href="#i-check"/></svg></div><h3>Merci !</h3><p></p><button class="btn btn-ink btn-block" type="button">Fermer</button>';
+        ok.querySelector('p').textContent = form.dataset.success;
+        ok.querySelector('button').addEventListener('click', () => d.close());
+        view.after(ok);
+        form.reset();
+      }
+
+      // Simulator
+      const surface = document.getElementById('surface');
+      const surfaceVal = document.getElementById('surfaceVal');
+      const out = { budget: resBudget, aides: resAides, aides2: resAides2, deficit: resDeficit };
+      const pricePerSqm = { G: 550, F: 500, E: 420 };
+      let dpe = 'G';
+
+      document.querySelectorAll('[data-dpe]').forEach(btn => btn.addEventListener('click', () => {
+        dpe = btn.dataset.dpe;
+        document.querySelectorAll('[data-dpe]').forEach(b => b.setAttribute('aria-pressed', b === btn));
+        calc();
+      }));
+
+      const tween = (el, to, suffix = '') => {
+        const from = +el.dataset.v || 0; el.dataset.v = to;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = fmt(to) + suffix; return; }
+        const t0 = performance.now(), dur = 380;
+        cancelAnimationFrame(el._raf);
+        const step = t => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+          el.textContent = fmt(Math.round(from + (to - from) * e)) + suffix; if (k < 1) el._raf = requestAnimationFrame(step); };
+        el._raf = requestAnimationFrame(step);
+      };
+
+      function calc() {
+        const s = +surface.value;
+        surfaceVal.textContent = s + ' m²';
+        surface.style.setProperty('--p', ((s - surface.min) / (surface.max - surface.min) * 100) + '%');
+        const budget = s * pricePerSqm[dpe];
+        const aides = Math.min(Math.round(budget * 0.6), 24000);
+        const deficit = Math.min(budget - aides, 21400);
+        tween(out.budget, budget);
+        tween(out.aides, aides);
+        tween(out.aides2, aides);
+        tween(out.deficit, deficit, ' / an');
+      }
+      surface.addEventListener('input', calc);
+      document.querySelectorAll('[data-open="proprio"]').forEach(el => el.addEventListener('click', () => {
+        document.getElementById('p-surface').value = surface.value;
+      }));
+      calc();
+
+      // Reveal on scroll (staggered within grids)
+      const io = new IntersectionObserver(entries => entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const sibs = [...en.target.parentElement.children].filter(c => c.classList.contains('reveal'));
+        en.target.style.transitionDelay = (Math.max(0, sibs.indexOf(en.target)) * 80) + 'ms';
+        en.target.classList.add('in'); io.unobserve(en.target);
+        setTimeout(() => { en.target.style.transitionDelay = ''; en.target.classList.remove('reveal', 'in'); }, 1400);
+      }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+  <script src="/analytics.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>ArchiSimple · Plateforme SaaS Marketplace & Espace Architectes</title>
-  <meta name="description" content="Plateforme SaaS de mise en relation sécurisée entre propriétaires bailleurs et architectes Mon Accompagnateur Rénov' (MAR) sous séquestre bancaire ACPR.">
+  <title>ArchiSimple · Plateforme</title>
+  <meta name="description" content="ArchiSimple : plateforme de mise en relation sécurisée entre propriétaires bailleurs et architectes Mon Accompagnateur Rénov' (MAR) sous séquestre bancaire ACPR.">
 
   <!-- Favicon SVG -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E60023'/%3E%3Cpath d='M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M18 23.5L21 26.5L26.5 20.5' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@1.57.0/dist/umd/lucide.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -33,8 +34,9 @@
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif']
+            sans: ['"Archivo"', 'Helvetica', 'sans-serif'],
+            display: ['"Archivo"', 'Helvetica', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
           }
         }
       }
@@ -63,9 +65,34 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #9CA3AF;
     }
+    /* ---- Style studio d'architecte ---- */
+    body { background-color: #F3F1EC; background-image: linear-gradient(rgba(18,18,18,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(18,18,18,.045) 1px, transparent 1px); background-size: 120px 120px; }
+    .rounded-3xl, .rounded-2xl, .rounded-xl, .rounded-lg { border-radius: 3px !important; }
+    .rounded-full:not(.w-1\.5):not(.w-2):not(.w-2\.5):not(.w-6) { border-radius: 2px !important; }
+    .font-display { font-stretch: 92%; letter-spacing: -0.03em; font-weight: 600 !important; }
+    .font-black, .font-extrabold { font-weight: 600 !important; }
+    .uppercase { font-family: "JetBrains Mono", monospace; letter-spacing: .06em !important; font-weight: 500 !important; }
+    .shadow-sm, .shadow-md, .shadow-xl { box-shadow: none !important; }
+    .bg-white { background-color: #FBFAF7 !important; }
+    .border-neutral-200, .border-neutral-200\/90 { border-color: #D9D5CC !important; }
+    main .bg-white.border, #modalBooking .bg-white, #modalArchiProfile .bg-white:first-child { border-color: #121212 !important; }
+    .bg-neutral-50, .bg-neutral-50\/80, .bg-neutral-50\/50 { background-color: #F3F1EC !important; }
+    input, select, textarea { border-radius: 2px !important; }
+    .toast { border-radius: 2px !important; font-family: "Archivo", sans-serif; }
+    .toast-wrap { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 100; display: grid; gap: 8px; width: min(440px, calc(100vw - 32px)); pointer-events: none; }
+    .toast { pointer-events: auto; display: flex; gap: 10px; align-items: flex-start; background: #0E0F12; color: #fff; padding: 14px 16px; border-radius: 16px; box-shadow: 0 20px 50px -12px rgba(0,0,0,.45); font-size: 13.5px; line-height: 1.45; font-weight: 600; animation: toastIn .25s ease-out; }
+    .toast.out { animation: toastOut .25s ease-in forwards; }
+    .toast-dot { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; flex: none; background: #10B981; font-size: 12px; }
+    .toast.err .toast-dot { background: #E60023; }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(10px); } }
+    @keyframes toastOut { to { opacity: 0; transform: translateY(10px); } }
+    .modal-card { animation: modalIn .22s ease-out; }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(10px) scale(.985); } }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    button[disabled] { opacity: .65; cursor: wait; }
   </style>
 </head>
-<body class="bg-[#F8F9FA] text-neutral-900 font-sans antialiased min-h-screen flex flex-col selection:bg-pin-soft selection:text-pin">
+<body class="bg-[#F3F1EC] text-neutral-900 font-sans antialiased min-h-screen flex flex-col selection:bg-pin-soft selection:text-pin">
 
   <!-- ================= TOP BAR : SWITCHER DE RÔLE (PARTICULIER vs ARCHITECTE) ================= -->
   <div class="bg-neutral-950 text-white text-xs py-2.5 px-4 sticky top-0 z-50 border-b border-neutral-800">
@@ -73,13 +100,8 @@
       
       <!-- Logo & Environnement -->
       <div class="flex items-center gap-3">
-        <a href="https://kevinmonin72.github.io/archisimple/" class="flex items-center gap-2 hover:opacity-90 transition-opacity" title="Retourner à la Landing Page">
-          <div class="w-7 h-7 rounded-lg bg-pin flex items-center justify-center text-white shrink-0">
-            <svg viewBox="0 0 44 44" fill="none" class="w-4 h-4">
-              <path d="M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z" stroke="#FFFFFF" stroke-width="2.6" fill="none"/>
-              <path d="M18 23.5L21 26.5L26.5 20.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
-            </svg>
-          </div>
+        <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity" title="Retour à l'accueil">
+          <img src="/favicon.svg" alt="" class="w-8 h-8 shrink-0">
           <span class="font-display font-extrabold text-sm tracking-tight">Archi<span class="text-pin">Simple</span></span>
         </a>
         <span class="hidden sm:inline-block text-neutral-500">|</span>
@@ -106,9 +128,9 @@
           <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
           <span class="hidden md:inline">Reset Démo</span>
         </button>
-        <a href="https://kevinmonin72.github.io/archisimple/" class="text-neutral-400 hover:text-white px-2.5 py-1 rounded hover:bg-neutral-800 transition-colors flex items-center gap-1">
+        <a href="/" class="text-neutral-400 hover:text-white px-2.5 py-1 rounded hover:bg-neutral-800 transition-colors flex items-center gap-1">
           <i data-lucide="external-link" class="w-3 h-3"></i>
-          <span class="hidden sm:inline">Landing Page</span>
+          <span class="hidden sm:inline">Accueil</span>
         </a>
       </div>
 
@@ -163,6 +185,11 @@
                 <i data-lucide="lock" class="w-3.5 h-3.5"></i> Séquestre ACPR
               </span>
             </div>
+          </div>
+
+          <div class="mt-4 flex items-start gap-2 text-[11px] sm:text-xs text-neutral-500 bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2">
+            <i data-lucide="info" class="w-3.5 h-3.5 mt-0.5 shrink-0 text-neutral-400"></i>
+            <span>Profils présentés à titre d'exemple. Votre demande est transmise à l'équipe ArchiSimple, qui vous met en relation avec un architecte MAR de votre secteur.</span>
           </div>
 
           <!-- BARRE DE RECHERCHE ET FILTRES -->
@@ -525,7 +552,7 @@
 
   <!-- ================= MODAL 1 : DÉTAIL COMPLET ARCHITECTE (PROFIL CLIENT) ================= -->
   <div id="modalArchiProfile" class="fixed inset-0 z-50 hidden bg-neutral-950/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-4xl w-full my-auto overflow-hidden shadow-2xl relative border border-neutral-100 max-h-[92vh] flex flex-col">
+    <div class="modal-card bg-white rounded-3xl max-w-4xl w-full my-auto overflow-hidden shadow-2xl relative border border-neutral-100 max-h-[92vh] flex flex-col">
       
       <!-- Bouton Fermer -->
       <button onclick="closeModal('modalArchiProfile')" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-neutral-700 shadow-md flex items-center justify-center transition-all" aria-label="Fermer">
@@ -542,19 +569,21 @@
 
   <!-- ================= MODAL 2 : DEMANDE DE DEVIS & SÉQUESTRE ================= -->
   <div id="modalBooking" class="fixed inset-0 z-50 hidden bg-neutral-950/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-neutral-100">
+    <div class="modal-card bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-neutral-100 max-h-[92vh] overflow-y-auto">
       
       <button onclick="closeModal('modalBooking')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center" aria-label="Fermer">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
 
+      <div id="bookingFormView">
       <div class="mb-5">
         <span class="text-[11px] font-bold text-pin uppercase tracking-wider">Demande Sécurisée sous Séquestre</span>
         <h3 class="text-xl font-extrabold text-neutral-950 font-display mt-0.5" id="bookingTargetName">Réserver un Audit MAR</h3>
-        <p class="text-xs text-neutral-500 mt-1">Vos fonds ne sont prélevés qu'après acceptation de votre dossier par l'architecte.</p>
+        <p class="text-xs text-neutral-500 mt-1">Gratuit et sans engagement. Aucun paiement n'est demandé à cette étape.</p>
       </div>
 
-      <form onsubmit="submitBooking(event)" class="space-y-3.5">
+      <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-3.5">
+        <input type="text" id="bookHoney" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         
         <div>
           <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Adresse ou Ville du bien</label>
@@ -564,7 +593,7 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">Surface (m²)</label>
-            <input type="number" required id="bookSurface" placeholder="75" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
+            <input type="number" required min="5" max="2000" id="bookSurface" placeholder="75" class="w-full px-3.5 py-2 rounded-xl border border-neutral-300 text-xs sm:text-sm focus:ring-2 focus:ring-pin">
           </div>
           <div>
             <label class="block text-[11px] font-bold text-neutral-700 uppercase mb-1">DPE Actuel</label>
@@ -601,20 +630,34 @@
           <div>• Scénarios officiels de sortie de passoire (saut garanti vers C ou D).</div>
         </div>
 
-        <button type="submit" class="w-full py-3 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all mt-2">
-          Envoyer ma demande à l'architecte
+        <p id="bookError" class="hidden text-xs font-semibold text-pin bg-pin-light rounded-xl px-3 py-2"></p>
+
+        <button id="bookSubmit" type="submit" class="w-full py-3 rounded-full bg-pin hover:bg-pin-hover text-white font-bold text-xs sm:text-sm shadow-md transition-all mt-2">
+          Envoyer ma demande
         </button>
 
       </form>
+      </div>
+
+      <div id="bookingSuccessView" class="hidden text-center py-6">
+        <div class="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-5">
+          <i data-lucide="check" class="w-8 h-8"></i>
+        </div>
+        <h3 class="font-display text-2xl font-extrabold text-neutral-950">Demande envoyée !</h3>
+        <p id="bookingSuccessText" class="text-sm text-neutral-500 mt-2 mb-6 max-w-sm mx-auto"></p>
+        <button onclick="closeModal('modalBooking')" class="w-full py-3 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-sm transition-all">Fermer</button>
+      </div>
 
     </div>
   </div>
+
+  <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
 
   <!-- ================= FOOTER DISCRET ================= -->
   <footer class="bg-white border-t border-neutral-200 py-6 text-center text-xs text-neutral-500 mt-auto">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-2">
-        <span class="font-bold text-neutral-800">ArchiSimple SaaS</span>
+        <span class="font-bold text-neutral-800">ArchiSimple</span>
         <span>·</span>
         <span>Agrément France Rénov' Mon Accompagnateur Rénov' (MAR)</span>
       </div>
@@ -816,10 +859,21 @@
       }
     ];
 
+    // --- NOTIFICATIONS ---
+    function toast(message, type = "ok") {
+      const wrap = document.getElementById("toastWrap");
+      const el = document.createElement("div");
+      el.className = "toast" + (type === "err" ? " err" : "");
+      el.innerHTML = '<span class="toast-dot">' + (type === "err" ? "!" : "✓") + '</span><span></span>';
+      el.lastChild.textContent = message;
+      wrap.appendChild(el);
+      setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 260); }, 4200);
+    }
+
     // --- 2. GESTION DE L'ÉTAT LOCAL (LOCALSTORAGE) ---
-    const STORAGE_KEY = "renov_saas_architects_v1";
-    const ACTIVE_ARCHI_KEY = "renov_saas_active_archi_id";
-    const CURRENT_ROLE_KEY = "renov_saas_current_role";
+    const STORAGE_KEY = "archisimple_architects_v1";
+    const ACTIVE_ARCHI_KEY = "archisimple_active_archi_id";
+    const CURRENT_ROLE_KEY = "archisimple_current_role";
 
     let architects = [];
     let currentRole = localStorage.getItem(CURRENT_ROLE_KEY) || "client";
@@ -850,7 +904,7 @@
         localStorage.removeItem(STORAGE_KEY);
         loadData();
         renderAll();
-        alert("Données réinitialisées avec succès !");
+        toast("Données de démonstration réinitialisées.");
       }
     }
 
@@ -1252,7 +1306,7 @@
                     <div class="text-[10px] text-neutral-500">Certifié France Rénov'</div>
                   </div>
                 </div>
-                <button onclick="alert('Téléchargement du rapport officiel...')" class="text-xs font-bold text-pin hover:underline">Voir</button>
+                <button onclick="toast('Le rapport sera disponible dans votre espace dès l\'ouverture de votre dossier.')" class="text-xs font-bold text-pin hover:underline">Voir</button>
               </div>
 
               <div class="p-3.5 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-between">
@@ -1263,7 +1317,7 @@
                     <div class="text-[10px] text-neutral-500">Fonds consignés BNP</div>
                   </div>
                 </div>
-                <button onclick="alert('Téléchargement de l\'attestation séquestre bancaire...')" class="text-xs font-bold text-emerald-700 hover:underline">Voir</button>
+                <button onclick="toast('L\'attestation sera disponible dès le dépôt des fonds sur le compte séquestre.')" class="text-xs font-bold text-emerald-700 hover:underline">Voir</button>
               </div>
 
               <div class="p-3.5 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-between">
@@ -1274,7 +1328,7 @@
                     <div class="text-[10px] text-neutral-500">Bordereau fiscal 21 400 €</div>
                   </div>
                 </div>
-                <button onclick="alert('Téléchargement du bordereau fiscal...')" class="text-xs font-bold text-blue-700 hover:underline">Voir</button>
+                <button onclick="toast('Le bordereau fiscal sera généré à la clôture du chantier.')" class="text-xs font-bold text-blue-700 hover:underline">Voir</button>
               </div>
             </div>
 
@@ -1459,7 +1513,7 @@
             <p class="text-xs text-neutral-500">Jalon en cours : Validation fin de pose menuiseries double vitrage & contrôle étanchéité à l'air.</p>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <button onclick="alert('Rapport photo envoyé ! La tranche de 16 000 € sous séquestre est libérée vers les artisans.')" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all">
+            <button onclick="toast('Jalon validé : la tranche de 16 000 € est libérée vers les artisans (démonstration).')" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all">
               Valider Jalon & Libérer Tranche
             </button>
           </div>
@@ -1475,7 +1529,7 @@
             <p class="text-xs text-neutral-500">Souhaite une visite sur site pour montage MaPrimeRénov' 2026 et déficit foncier 21 400 €.</p>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <button onclick="alert('Visite programmée sous séquestre ! Client notifié.')" class="px-4 py-2 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs shadow-sm transition-all">
+            <button onclick="toast('Visite programmée, le client est notifié (démonstration).')" class="px-4 py-2 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs shadow-sm transition-all">
               Accepter & Programmer Visite
             </button>
           </div>
@@ -1506,7 +1560,7 @@
       renderArchiDashboard();
       renderMarketplace();
       renderSubHeader();
-      alert("✅ Profil et tarifs mis à jour avec succès ! Les modifications sont immédiatement visibles côté Particulier / Marketplace.");
+      toast("Profil et tarifs mis à jour. Les changements sont visibles côté particulier.");
     }
 
     function addNewProject(e) {
@@ -1534,7 +1588,7 @@
       document.getElementById("formAddProject").reset();
       renderArchiDashboard();
       renderMarketplace();
-      alert("🎉 Nouveau projet ajouté au portfolio avec succès ! Il apparaît maintenant dans la galerie du profil public.");
+      toast("Projet ajouté au portfolio : il apparaît dans votre profil public.");
     }
 
     function deleteProject(projId) {
@@ -1739,25 +1793,68 @@
     // --- 11. MODAL RÉSERVATION / DEVIS SÉQUESTRÉ ---
     let currentBookingArchiId = null;
 
+    const MAIL_ENDPOINT = "https://formsubmit.co/ajax/archisimple13@gmail.com";
+
     function openBookingModal(archiId) {
       currentBookingArchiId = archiId;
       const archi = architects.find(a => a.id === archiId);
       if (!archi) return;
 
       document.getElementById("bookingTargetName").textContent = `Audit MAR avec ${archi.name}`;
+      document.getElementById("bookingFormView").classList.remove("hidden");
+      document.getElementById("bookingSuccessView").classList.add("hidden");
+      document.getElementById("bookError").classList.add("hidden");
       document.getElementById("modalBooking").classList.remove("hidden");
       lucide.createIcons();
     }
 
-    function submitBooking(e) {
+    async function submitBooking(e) {
       e.preventDefault();
+      if (document.getElementById("bookHoney").value) return;
       const archi = architects.find(a => a.id === currentBookingArchiId);
-      const name = document.getElementById("bookName").value;
-      const addr = document.getElementById("bookAddress").value;
-      const dpe = document.getElementById("bookDpe").value;
+      const btn = document.getElementById("bookSubmit");
+      const err = document.getElementById("bookError");
+      const val = id => document.getElementById(id).value.trim();
+      err.classList.add("hidden");
 
-      alert(`✅ Demande transmise avec succès à ${archi ? archi.name : "l'architecte"} !\n\nUn compte séquestre bancaire provisoire a été pré-ouvert pour votre bien (${addr}, DPE ${dpe}). ${archi ? archi.name : "L'architecte"} vous contactera sous 2 heures.`);
-      closeModal("modalBooking");
+      const data = {
+        "Nom": val("bookName"),
+        "Email du client": val("bookEmail"),
+        "Téléphone du client": val("bookPhone"),
+        "Architecte choisi": archi ? `${archi.name} (${archi.location})` : "Non précisé",
+        "Adresse du bien": val("bookAddress"),
+        "Surface (m²)": val("bookSurface"),
+        "DPE actuel": val("bookDpe"),
+        "Origine": "Plateforme · demande de devis",
+        _subject: `ArchiSimple · Nouvelle demande de devis — ${val("bookName")} · ${val("bookPhone")} · ${val("bookEmail")}`,
+        _replyto: val("bookEmail"),
+        _template: "table",
+        _captcha: "false"
+      };
+
+      const label = btn.textContent;
+      btn.disabled = true; btn.textContent = "Envoi en cours…";
+      try {
+        const res = await fetch(MAIL_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || String(json.success) !== "true") throw new Error(json.message || "Erreur");
+        document.getElementById("bookingSuccessText").textContent =
+          `Votre demande pour ${archi ? archi.name : "un audit MAR"} a bien été transmise. Notre équipe vous recontacte rapidement par email ou téléphone.`;
+        asTrack("generate_lead", { form: "demande_devis", page: "plateforme", architecte: archi ? archi.name : "audit MAR" });
+        document.getElementById("bookingFormView").classList.add("hidden");
+        document.getElementById("bookingSuccessView").classList.remove("hidden");
+        document.getElementById("bookingForm").reset();
+        lucide.createIcons();
+      } catch (_) {
+        err.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
+        err.classList.remove("hidden");
+      } finally {
+        btn.disabled = false; btn.textContent = label;
+      }
     }
 
     function closeModal(modalId) {
@@ -1775,7 +1872,16 @@
     // Lancement au chargement
     window.addEventListener("DOMContentLoaded", () => {
       loadData();
+      const hash = location.hash.replace("#", "");
+      if (hash === "architecte" || hash === "particulier") currentRole = hash === "architecte" ? "archi" : "client";
       switchRole(currentRole);
+
+      ["modalArchiProfile", "modalBooking"].forEach(id => {
+        document.getElementById(id).addEventListener("click", e => { if (e.target.id === id) closeModal(id); });
+      });
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") ["modalArchiProfile", "modalBooking"].forEach(closeModal);
+      });
     });
   </script>
 </body>
