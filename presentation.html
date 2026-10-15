@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Archi'simple · Soutenance Finale & Présentation Officielle (Groupe N°19)</title>
-  <meta name="description" content="Présentation officielle de passage devant le jury Rocket School : Pitch, SWOT, Stack, On-boarding, Démo Landing, Démo SaaS, Automatisation CRM et Projections Financières.">
+  <title>ArchiSimple · Soutenance Finale & Présentation Officielle (Groupe N°19)</title>
+  <meta name="description" content="Présentation officielle de passage devant le jury Rocket School : Pitch, SWOT, Stack, On-boarding, Démo Landing, Démo SaaS, Google Analytics, Automatisation Double iFrame Formulaire & HubSpot, Projections Financières.">
 
   <!-- Favicon SVG -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='12' fill='%23E60023'/%3E%3Cpath d='M22 7L9 16.5V26C9 32.8 14.6 37.8 22 40C29.4 37.8 35 32.8 35 26V16.5L22 7Z' stroke='%23FFFFFF' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M18 23.5L21 26.5L26.5 20.5' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Crect width='64' height='64' fill='%23121212'/%3E%3Cpath d='M9 45L19 15L29 45M12.6 35H25.4' stroke='%23F3F1EC' stroke-width='4.2' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M53 21.5C51.6 17.6 48.6 15.5 44.6 15.5C39.8 15.5 36.6 18.3 36.6 22.4C36.6 31.6 54.4 28.6 54.4 38.2C54.4 43.2 50.6 46 45.4 46C40.8 46 37.4 43.8 36 39.8' stroke='%23F3F1EC' stroke-width='4.2' stroke-linecap='square'/%3E%3Cpath d='M9 53.5H55' stroke='%23E60023' stroke-width='3'/%3E%3C/svg%3E">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts : Archivo & JetBrains Mono (DA Officielle ArchiSimple) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,17 +24,28 @@
       theme: {
         extend: {
           colors: {
-            pin: {
+            paper: '#F3F1EC',
+            'paper-2': '#EAE7E0',
+            card: '#FBFAF7',
+            ink: '#121212',
+            'ink-2': '#33322F',
+            muted: '#6D6A64',
+            faint: '#9A968E',
+            line: '#D9D5CC',
+            'line-2': '#C7C2B7',
+            red: {
               DEFAULT: '#E60023',
-              hover: '#BD081C',
-              dark: '#8C0816',
-              light: '#FFF1F2',
-              soft: '#FFE4E6'
+              hover: '#C4001D',
+              tint: '#FBE6E8'
+            },
+            green: {
+              DEFAULT: '#1E8E5A',
+              tint: '#E3F1E9'
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif']
+            sans: ['"Archivo"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'Menlo', 'monospace']
           }
         }
       }
@@ -42,16 +53,87 @@
   </script>
 
   <style>
+    :root {
+      --paper: #F3F1EC;
+      --paper-2: #EAE7E0;
+      --card: #FBFAF7;
+      --ink: #121212;
+      --ink-2: #33322F;
+      --muted: #6D6A64;
+      --faint: #9A968E;
+      --line: #D9D5CC;
+      --line-2: #C7C2B7;
+      --grid: rgba(18,18,18,.055);
+      --red: #E60023;
+      --red-hover: #C4001D;
+      --red-tint: #FBE6E8;
+      --green: #1E8E5A;
+      --green-tint: #E3F1E9;
+      --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+
     * { box-sizing: border-box; }
     html, body {
       height: 100%;
       overflow: hidden;
-      background-color: #0B0F17;
-      color: #0F172A;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font);
       user-select: none;
     }
 
-    /* Bande passante fluide */
+    /* Architectural Blueprint Grid Pattern */
+    .grid-bg {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(rgba(18,18,18,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18,18,18,.03) 1px, transparent 1px);
+      background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+      background-position: -1px -1px;
+    }
+
+    /* Architectural Crop Marks (.crops) */
+    .crops { position: relative; }
+    .crops::before, .crops::after, .crops > .crop-b::before, .crops > .crop-b::after {
+      content: ""; position: absolute; width: 14px; height: 14px; border: 0 solid var(--ink); pointer-events: none; z-index: 10;
+    }
+    .crops::before { top: -7px; left: -7px; border-top-width: 1px; border-left-width: 1px; }
+    .crops::after { top: -7px; right: -7px; border-top-width: 1px; border-right-width: 1px; }
+    .crops > .crop-b::before { bottom: -7px; left: -7px; border-bottom-width: 1px; border-left-width: 1px; }
+    .crops > .crop-b::after { bottom: -7px; right: -7px; border-bottom-width: 1px; border-right-width: 1px; }
+
+    /* Technical CAD Drawing */
+    .plan .s { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+    .plan .t { stroke: var(--ink); stroke-width: .8; fill: none; }
+    .plan .ins { stroke: var(--red); stroke-width: 1.3; fill: none; stroke-dasharray: 5 4; }
+    .plan .hatch { stroke: var(--ink); stroke-width: .6; opacity: .35; }
+    .plan text { font-family: var(--mono); font-size: 9px; fill: var(--ink); letter-spacing: .08em; text-transform: uppercase; }
+    .plan text.m { fill: var(--muted); font-size: 8px; }
+    .plan text.r { fill: var(--red); font-weight: 600; }
+
+    /* Black Escrow Box */
+    .escrow-bar { display: grid; grid-template-columns: 3fr 3fr 4fr; gap: 3px; margin: 10px 0 8px; }
+    .escrow-bar i { height: 3px; background: #3A3936; }
+    .escrow-bar i.g { background: #3DDC84; }
+    .escrow-bar i.r { background: var(--red); }
+    .escrow-row { display: flex; justify-content: space-between; font-size: 11px; padding: 3px 0; color: #CFCBC2; font-family: var(--mono); }
+    .escrow-row b { color: #fff; font-weight: 500; font-size: 11px; }
+    .escrow-row.wait { color: #77746E; } .escrow-row.wait b { color: #77746E; }
+
+    /* Title Block */
+    .title-block { display: grid; grid-template-columns: 1fr 1fr 1fr auto; border-top: 1px solid var(--ink); margin: 6px -16px -16px; background: var(--card); }
+    .title-block > div { padding: 8px 12px; border-right: 1px solid var(--line); }
+    .title-block > div:last-child { border-right: 0; }
+    .title-block .mono { color: var(--muted); font-size: 8.5px; display: block; font-family: var(--mono); text-transform: uppercase; }
+    .title-block b { font-weight: 600; font-size: 11.5px; color: var(--ink); font-family: var(--font); }
+
+    /* DPE Chip */
+    .dpe-chip { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 2px; font-weight: 700; font-size: 10px; color: #fff; font-family: var(--mono); }
+
+    /* Ticker animation */
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -59,7 +141,7 @@
     .animate-marquee {
       display: inline-flex;
       white-space: nowrap;
-      animation: marquee 25s linear infinite;
+      animation: marquee 40s linear infinite;
     }
     .animate-marquee:hover {
       animation-play-state: paused;
@@ -69,8 +151,8 @@
     .slide {
       display: none;
       opacity: 0;
-      transform: translateY(12px) scale(0.99);
-      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(8px) scale(0.995);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .slide.active {
       display: flex;
@@ -78,1149 +160,1258 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Custom Scrollbar for inner cards */
+    /* Custom Scrollbar */
     .custom-scroll::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     .custom-scroll::-webkit-scrollbar-track {
-      background: rgba(241, 245, 249, 0.6);
-      border-radius: 999px;
+      background: rgba(18, 18, 18, 0.05);
     }
     .custom-scroll::-webkit-scrollbar-thumb {
-      background: #CBD5E1;
-      border-radius: 999px;
+      background: var(--line-2);
+      border-radius: 2px;
     }
     .custom-scroll::-webkit-scrollbar-thumb:hover {
-      background: #94A3B8;
-    }
-
-    /* Pulse animation */
-    @keyframes pulse-subtle {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.85; transform: scale(1.02); }
-    }
-    .animate-pulse-subtle {
-      animation: pulse-subtle 3s infinite ease-in-out;
+      background: var(--muted);
     }
   </style>
 </head>
-<body class="flex flex-col h-full font-sans antialiased text-neutral-900 bg-neutral-950 selection:bg-pin-soft selection:text-pin">
+<body class="flex flex-col h-full font-sans antialiased text-ink bg-paper selection:bg-red-tint selection:text-red">
 
-  <!-- ================= TOP TICKER MARQUEE ================= -->
-  <div class="bg-pin text-white py-1.5 overflow-hidden whitespace-nowrap z-40 shadow-sm border-b border-pin-hover select-none text-xs font-bold uppercase tracking-wider">
-    <div class="animate-marquee flex items-center gap-6">
-      <span>🔴 SOUTENANCE ROCKET SCHOOL · GROUPE N°19 : ARCHI'SIMPLE</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>LOI CLIMAT 2026 : Passoires G interdites · Logements F interdits 2028</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>SÉQUESTRE BANCAIRE ACPR : 100 % des acomptes et tranches consignés</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>ARCHITECTES INDÉPENDANTS agréés Mon Accompagnateur Rénov'</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>SUPER DÉFICIT FONCIER 2026 : 21 400 € / an déductibles</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>MODÈLE B2B2C : Sauvegarde des mandats des gestionnaires locatifs</span>
-      <span class="text-pin-soft opacity-60">✦</span>
+  <!-- ================= BANDEAU TICKER NOIR EXACT DU SITE ================= -->
+  <div class="bg-ink text-[#CFCBC2] py-1.5 overflow-hidden whitespace-nowrap z-40 border-b border-ink select-none font-mono text-[11px] tracking-wider uppercase">
+    <div class="animate-marquee flex items-center gap-8">
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> <b>FONDS CONSIGNÉS SUR COMPTE SÉQUESTRE BANCAIRE</b></span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> ARCHITECTES INDÉPENDANTS AGRÉÉS MON ACCOMPAGNATEUR RÉNOV'</span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> <b>MAPRIMERÉNOV' 2026 : JUSQU'À 80 % DE SUBVENTIONS</b></span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> LOI DE FINANCES 2026 : DÉFICIT FONCIER DOUBLÉ À 21 400 € / AN</span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> <b>LOI CLIMAT : LOGEMENTS G INTERDITS DÈS 2025 · F INTERDITS 2028</b></span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> SOUTENANCE ROCKET SCHOOL · GROUPE N°19</span>
       <!-- Loop repeat -->
-      <span>🔴 SOUTENANCE ROCKET SCHOOL · GROUPE N°19 : ARCHI'SIMPLE</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>LOI CLIMAT 2026 : Passoires G interdites · Logements F interdits 2028</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>SÉQUESTRE BANCAIRE ACPR : 100 % des acomptes et tranches consignés</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>ARCHITECTES INDÉPENDANTS agréés Mon Accompagnateur Rénov'</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>SUPER DÉFICIT FONCIER 2026 : 21 400 € / an déductibles</span>
-      <span class="text-pin-soft opacity-60">✦</span>
-      <span>MODÈLE B2B2C : Sauvegarde des mandats des gestionnaires locatifs</span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> <b>FONDS CONSIGNÉS SUR COMPTE SÉQUESTRE BANCAIRE</b></span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> ARCHITECTES INDÉPENDANTS AGRÉÉS MON ACCOMPAGNATEUR RÉNOV'</span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> <b>MAPRIMERÉNOV' 2026 : JUSQU'À 80 % DE SUBVENTIONS</b></span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> LOI DE FINANCES 2026 : DÉFICIT FONCIER DOUBLÉ À 21 400 € / AN</span>
+      <span class="flex items-center gap-2"><i class="w-1.5 h-1.5 bg-red inline-block"></i> <b>LOI CLIMAT : LOGEMENTS G INTERDITS DÈS 2025 · F INTERDITS 2028</b></span>
     </div>
   </div>
 
-  <!-- ================= HEADER BARRE DE CONTRÔLE ================= -->
-  <header class="bg-neutral-900 border-b border-neutral-800 text-white px-4 py-2.5 flex items-center justify-between shrink-0 z-30">
-    <!-- Brand / Titre -->
+  <!-- ================= HEADER ARCHITECTURAL ÉPURÉ ================= -->
+  <header class="bg-paper/90 backdrop-blur-md border-b border-line px-5 py-2.5 flex items-center justify-between shrink-0 z-30">
+    <!-- Logo Exact ArchiSimple -->
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-pin flex items-center justify-center text-white shadow-md shadow-pin/30 shrink-0">
-        <i data-lucide="shield-check" class="w-5 h-5"></i>
+      <div class="w-9 h-9 rounded-none bg-ink flex items-center justify-center shrink-0 border border-ink shadow-sm">
+        <svg viewBox="0 0 64 64" fill="none" class="w-6 h-6">
+          <path d="M9 45L19 15L29 45M12.6 35H25.4" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square" stroke-linejoin="miter"/>
+          <path d="M53 21.5C51.6 17.6 48.6 15.5 44.6 15.5C39.8 15.5 36.6 18.3 36.6 22.4C36.6 31.6 54.4 28.6 54.4 38.2C54.4 43.2 50.6 46 45.4 46C40.8 46 37.4 43.8 36 39.8" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square"/>
+          <path d="M9 53.5H55" stroke="#E60023" stroke-width="3.5"/>
+        </svg>
       </div>
       <div>
-        <div class="flex items-center gap-2">
-          <span class="font-display font-extrabold text-base tracking-tight text-white">Archi’simple</span>
-          <span class="bg-pin/20 text-pin-soft text-[10px] font-bold px-2 py-0.5 rounded-full border border-pin/40">Groupe N°19</span>
-          <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/30 flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Oral
+        <div class="flex items-baseline gap-2">
+          <span class="text-base font-bold tracking-[0.16em] uppercase text-ink font-sans">
+            <b>Archi</b><span class="font-light">Simple</span>
           </span>
+          <span class="text-[10px] font-mono px-1.5 py-0.2 bg-ink text-white font-semibold">GROUPE N°19</span>
         </div>
-        <p class="text-[11px] text-neutral-400 font-medium">Soutenance Finale Jury · Note d'Opportunité & Hackathon</p>
+        <span class="block font-mono text-[9px] tracking-[0.14em] text-muted uppercase">Rénovation · Architecture</span>
       </div>
     </div>
 
-    <!-- Sélecteur rapide de Slide (Pills) -->
-    <nav class="hidden xl:flex items-center gap-1 bg-neutral-950/80 p-1 rounded-xl border border-neutral-800">
-      <button onclick="goToSlide(1)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="1">1. Idée</button>
-      <button onclick="goToSlide(2)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="2">2. SWOT & Besoin</button>
-      <button onclick="goToSlide(3)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="3">3. Stack Tech</button>
-      <button onclick="goToSlide(4)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="4">4. On-boarding</button>
-      <button onclick="goToSlide(5)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="5">5. Démo Landing</button>
-      <button onclick="goToSlide(6)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="6">6. Démo SaaS</button>
-      <button onclick="goToSlide(7)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="7">7. Automatisation</button>
-      <button onclick="goToSlide(8)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="8">8. Projections & CAC</button>
-      <button onclick="goToSlide(9)" class="nav-tab px-2.5 py-1 text-xs font-semibold rounded-lg transition-all" data-slide-target="9">9. Conclusion</button>
+    <!-- Navigation rapide entre slides (Tabs fines) -->
+    <nav class="hidden lg:flex items-center gap-1 bg-paper-2/70 p-1 rounded-sm border border-line">
+      <button onclick="goToSlide(1)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="1">01. Idée</button>
+      <button onclick="goToSlide(2)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="2">02. SWOT & Terrain</button>
+      <button onclick="goToSlide(3)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="3">03. Stack</button>
+      <button onclick="goToSlide(4)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="4">04. On-boarding</button>
+      <button onclick="goToSlide(5)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="5">05. Landing</button>
+      <button onclick="goToSlide(6)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="6">06. SaaS</button>
+      <button onclick="goToSlide(7)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="7">07. Google Analytics</button>
+      <button onclick="goToSlide(8)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="8">08. Double iFrame</button>
+      <button onclick="goToSlide(9)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="9">09. CAC & Limites</button>
+      <button onclick="goToSlide(10)" class="nav-tab px-2.5 py-1 text-xs font-mono font-medium transition-all" data-slide-target="10">10. Conclusion</button>
     </nav>
 
     <!-- Outils : Chronomètre d'Oral + Notes Orateur + Plein Écran -->
     <div class="flex items-center gap-3">
-      <!-- Chrono Oral (15 min) -->
-      <div class="flex items-center gap-2 bg-neutral-950 border border-neutral-800 px-3 py-1 rounded-lg text-xs font-mono">
-        <i data-lucide="timer" class="w-3.5 h-3.5 text-neutral-400"></i>
-        <span id="timerDisplay" class="font-bold text-white text-sm">15:00</span>
-        <button id="timerToggleBtn" onclick="toggleTimer()" title="Démarrer / Pause" class="text-neutral-400 hover:text-white transition">
+      <!-- Chrono Oral Dégressif 15 min -->
+      <div class="flex items-center gap-2 bg-card border border-ink px-2.5 py-1 text-xs font-mono">
+        <i data-lucide="timer" class="w-3.5 h-3.5 text-muted"></i>
+        <span id="timerDisplay" class="font-bold text-ink text-sm">15:00</span>
+        <button id="timerToggleBtn" onclick="toggleTimer()" title="Démarrer / Pause" class="text-muted hover:text-ink transition">
           <i data-lucide="play" class="w-3.5 h-3.5" id="timerIcon"></i>
         </button>
-        <button onclick="resetTimer()" title="Réinitialiser" class="text-neutral-500 hover:text-neutral-300 transition">
+        <button onclick="resetTimer()" title="Réinitialiser" class="text-muted hover:text-ink transition">
           <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
         </button>
       </div>
 
       <!-- Bouton Aide-Mémoire Orateur -->
-      <button onclick="toggleSpeakerNotes()" id="notesToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 transition border border-neutral-700" title="Afficher les notes et fiches réponses orateur (Touche N)">
-        <i data-lucide="file-text" class="w-3.5 h-3.5 text-pin"></i>
-        <span class="hidden sm:inline">Notes Pitch</span>
+      <button onclick="toggleSpeakerNotes()" id="notesToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold bg-card hover:bg-paper-2 text-ink transition border border-ink" title="Afficher les notes et fiches réponses orateur (Touche N)">
+        <i data-lucide="file-text" class="w-3.5 h-3.5 text-red"></i>
+        <span class="hidden sm:inline">NOTES ORATEUR</span>
       </button>
 
-      <!-- Plein écran natif -->
-      <button onclick="toggleFullscreenDeck()" class="p-1.5 text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-lg transition border border-neutral-700" title="Plein écran (Touche F)">
+      <!-- Plein écran deck -->
+      <button onclick="toggleFullscreenDeck()" class="p-1.5 text-ink hover:bg-paper-2 border border-ink transition" title="Plein écran (Touche F)">
         <i data-lucide="maximize" class="w-4 h-4"></i>
       </button>
     </div>
   </header>
 
-  <!-- ================= ZONE PRINCIPALE DE PRÉSENTATION ================= -->
-  <main class="relative flex-1 bg-neutral-100 overflow-hidden flex">
+  <!-- ================= ZONE PRINCIPALE DU SLIDE DECK (GRID-BG) ================= -->
+  <main class="relative flex-1 grid-bg overflow-hidden flex">
 
     <!-- CONTENEUR DES SLIDES -->
     <div class="flex-1 h-full overflow-hidden relative">
 
-      <!-- ================= SLIDE 1 : PRÉSENTATION DE L'IDÉE ================= -->
-      <section id="slide-1" class="slide active w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
+      <!-- ================= SLIDE 1 : CADRAGE & LE PITCH ================= -->
+      <section id="slide-1" class="slide active w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
         <div class="max-w-7xl mx-auto w-full space-y-6">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-4">
-            <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-2">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Livrable J1 · Pitch & Cadrage (RNCP C.1.1 & C.1.2)
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrable J1 · Cadrage Stratégique · RNCP C.1.1 & C.1.2</span>
+            </div>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 01 / 10 · STUDIO DE RÉNOVATION ÉNERGÉTIQUE
+            </div>
+          </div>
+
+          <!-- Hero Section avec Plan Architectural & Manifesto -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
+            <!-- Colonne Gauche : Le Manifesto & Le Pitch -->
+            <div class="lg:col-span-7 space-y-5">
+              <div class="font-mono text-xs text-muted uppercase tracking-wider flex items-center gap-2">
+                <span class="text-red font-bold">—</span> ARCHISIMPLE — STUDIO DE RÉNOVATION ÉNERGÉTIQUE
               </div>
-              <h1 class="text-3xl md:text-4xl font-extrabold font-display tracking-tight text-neutral-900">
-                Archi’simple <span class="text-pin">· Le Tiers de Confiance</span> des Chantiers de Rénovation Énergétique
+
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-sans tracking-tight text-ink leading-[1.02]">
+                Rénovez<br>sans risque.<br>
+                <span class="text-red">Payez sur</span> résultat.
               </h1>
-            </div>
-            <div class="bg-white px-4 py-2 rounded-xl border border-neutral-200 shadow-sm text-right shrink-0">
-              <span class="text-xs text-neutral-500 font-semibold block uppercase tracking-wider">Modèle B2B2C Économique</span>
-              <span class="text-base font-extrabold text-neutral-900 font-display">0 € pour l'agence · 7 % sur travaux HT</span>
-            </div>
-          </div>
 
-          <!-- Pitch en 1 phrase (Grille Oral Critère 1 : 3/3 pts) -->
-          <div class="bg-neutral-900 text-white p-5 rounded-2xl shadow-lg border-l-4 border-pin relative overflow-hidden">
-            <div class="absolute -right-8 -bottom-8 opacity-10">
-              <i data-lucide="shield" class="w-48 h-48"></i>
-            </div>
-            <div class="relative z-10">
-              <span class="text-pin text-xs font-bold uppercase tracking-wider block mb-1">Le Pitch Officiel (Problème · Cible · Promesse)</span>
-              <p class="text-lg md:text-xl font-bold font-display leading-snug text-neutral-100">
-                « Nous sécurisons à 100 % la rénovation thermique des parcs locatifs anciens grâce au <span class="text-pin underline decoration-pin/50 underline-offset-4">séquestre bancaire ACPR</span> et au pilotage par des <span class="text-white underline decoration-white/50 underline-offset-4">architectes Mon Accompagnateur Rénov'</span>, permettant aux administrateurs de biens de sauver leurs mandats face aux interdictions Loi Climat sans aucun risque financier. »
+              <p class="text-sm md:text-base text-ink-2 leading-relaxed max-w-xl">
+                Sortez les parcs locatifs du statut de passoire thermique (G ou F). Vos fonds restent protégés sur <strong>compte séquestre bancaire ACPR</strong> jusqu'à la délivrance du DPE conforme par nos <strong>architectes Mon Accompagnateur Rénov' (MAR)</strong>.
               </p>
-            </div>
-          </div>
 
-          <!-- Triple Colonne : Problème / Notre Solution / Facteur Différenciant -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Problème / Le Mur Réglementaire -->
-            <div class="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm hover:border-neutral-300 transition space-y-3">
-              <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+              <!-- Pitch Box Officielle Oral (Critère 1 : 3/3 pts) -->
+              <div class="bg-card p-4 border border-ink crops relative shadow-sm">
+                <span class="crop-b"></span>
+                <span class="font-mono text-[10px] text-red uppercase tracking-wider font-bold block mb-1">
+                  LE PITCH OFFICIEL (PROBLÈME · CIBLE · PROMESSE)
+                </span>
+                <p class="text-xs md:text-sm font-medium text-ink leading-relaxed">
+                  « Nous sécurisons à 100 % la rénovation globale des logements anciens face à la Loi Climat grâce au séquestre bancaire et à des architectes MAR indépendants, permettant aux <strong>administrateurs de biens de préserver leurs mandats de gestion</strong> sans aucun coût pour leur agence. »
+                </p>
               </div>
-              <h3 class="text-lg font-bold font-display text-neutral-900">Le Mur de la Loi Climat</h3>
-              <p class="text-xs text-neutral-600 leading-relaxed">
-                Interdiction des passoires <strong>G dès 2025</strong> et <strong>F au 1er janv. 2028</strong>. Plus de <strong>60 % du parc français date d'avant 1974</strong> sans isolation d'origine.
-              </p>
-              <ul class="text-xs text-neutral-700 space-y-2 pt-2 border-t border-neutral-100">
-                <li class="flex items-start gap-2">
-                  <i data-lucide="x-circle" class="w-3.5 h-3.5 text-pin shrink-0 mt-0.5"></i>
-                  <span>Perte immédiate des mandats et honoraires de gestion locative (6 à 8 % des loyers).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="x-circle" class="w-3.5 h-3.5 text-pin shrink-0 mt-0.5"></i>
-                  <span>Incompétence technique des gestionnaires pour chiffrer des travaux lourds (isolation, PAC).</span>
-                </li>
-              </ul>
+
+              <!-- 3 Piliers Clés -->
+              <div class="grid grid-cols-3 gap-3 pt-2">
+                <div class="border-t border-ink pt-2">
+                  <span class="font-mono text-[10px] text-muted block uppercase">Séquestre</span>
+                  <b class="text-xs text-ink font-bold block">100 % Consigné</b>
+                  <span class="text-[10px] text-muted">Compte bloqué ACPR</span>
+                </div>
+                <div class="border-t border-ink pt-2">
+                  <span class="font-mono text-[10px] text-muted block uppercase">Maîtrise d'œuvre</span>
+                  <b class="text-xs text-ink font-bold block">Architectes MAR</b>
+                  <span class="text-[10px] text-muted">Agréés France Rénov'</span>
+                </div>
+                <div class="border-t border-ink pt-2">
+                  <span class="font-mono text-[10px] text-muted block uppercase">Super Déficit</span>
+                  <b class="text-xs text-red font-bold block">21 400 € / an</b>
+                  <span class="text-[10px] text-muted">Prorogé fin 2027</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Solution Clé en Main -->
-            <div class="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm hover:border-neutral-300 transition space-y-3">
-              <div class="w-10 h-10 rounded-xl bg-pin/10 text-pin flex items-center justify-center font-bold">
-                <i data-lucide="shield-check" class="w-5 h-5"></i>
-              </div>
-              <h3 class="text-lg font-bold font-display text-neutral-900">Tiers de Confiance Clé en Main</h3>
-              <p class="text-xs text-neutral-600 leading-relaxed">
-                Prise en charge à 100 % du chantier sans effort pour le gestionnaire, de l'audit DPE jusqu'à la remise en location conforme.
-              </p>
-              <ul class="text-xs text-neutral-700 space-y-2 pt-2 border-t border-neutral-100">
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span><strong>Architectes MAR certifiés :</strong> Diagnostic neutre et maîtrise d'œuvre indépendante.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span><strong>Artisans RGE audités :</strong> Assurances décennales vérifiées, prix négociés.</span>
-                </li>
-              </ul>
-            </div>
+            <!-- Colonne Droite : L'Élévation Technique SUD & La Boîte Séquestre -->
+            <div class="lg:col-span-5 relative">
+              <div class="bg-card border border-ink p-4 crops shadow-md relative">
+                <span class="crop-b"></span>
+                <div class="flex justify-between items-center pb-2 border-b border-line font-mono text-[10px] text-muted uppercase">
+                  <span>ÉLÉVATION SUD</span>
+                  <span>ÉCH. 1:100</span>
+                </div>
 
-            <!-- Sécurisation Séquestre & Fiscalité -->
-            <div class="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm hover:border-neutral-300 transition space-y-3">
-              <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
-                <i data-lucide="lock" class="w-5 h-5"></i>
+                <!-- Le vrai dessin SVG CAD de la maison rénovée -->
+                <svg class="plan w-full h-auto mt-2" viewBox="0 0 520 380" aria-label="Dessin technique">
+                  <g class="hatch">
+                    <path d="M40 330l-12 14M60 330l-12 14M80 330l-12 14M100 330l-12 14M120 330l-12 14M140 330l-12 14M160 330l-12 14M180 330l-12 14M200 330l-12 14M220 330l-12 14M240 330l-12 14M260 330l-12 14M280 330l-12 14M300 330l-12 14M320 330l-12 14M340 330l-12 14M360 330l-12 14M380 330l-12 14M400 330l-12 14M420 330l-12 14M440 330l-12 14M460 330l-12 14M480 330l-12 14"/>
+                  </g>
+                  <line class="s" x1="24" y1="330" x2="496" y2="330"/>
+                  <polyline class="s" points="120,330 120,180 400,180 400,330"/>
+                  <polyline class="s" points="98,182 260,70 422,182"/>
+                  <polyline class="s" points="340,112 340,72 366,72 366,130"/>
+                  <rect class="s" x="148" y="214" width="58" height="66"/>
+                  <line class="t" x1="177" y1="214" x2="177" y2="280"/>
+                  <rect class="s" x="314" y="214" width="58" height="66"/>
+                  <line class="t" x1="343" y1="214" x2="343" y2="280"/>
+                  <rect class="s" x="236" y="236" width="48" height="94"/>
+                  <circle class="s" cx="260" cy="138" r="15"/>
+                  <polyline class="ins" points="112,180 260,78 408,180"/>
+                  <polyline class="ins" points="128,186 128,324"/>
+                  <polyline class="ins" points="392,186 392,324"/>
+                  <!-- Annotations -->
+                  <polyline class="t" points="330,112 352,46 500,46"/>
+                  <circle cx="330" cy="112" r="2.5" fill="#E60023"/>
+                  <text class="r" x="500" y="40" text-anchor="end">ISOLATION COMBLES</text>
+                  <text class="m" x="500" y="58" text-anchor="end">LAINE DE BOIS 300 MM</text>
+                  <polyline class="t" points="372,250 404,250 404,220 500,220"/>
+                  <circle cx="372" cy="250" r="2.5" fill="#121212"/>
+                  <text x="500" y="214" text-anchor="end">MENUISERIES</text>
+                  <text class="m" x="500" y="232" text-anchor="end">DOUBLE VITRAGE</text>
+                  <polyline class="t" points="128,300 84,300 84,276 30,276"/>
+                  <circle cx="128" cy="300" r="2.5" fill="#E60023"/>
+                  <text class="r" x="30" y="270">ITE 140</text>
+                </svg>
+
+                <!-- Title Block Cartouche -->
+                <div class="title-block">
+                  <div><span class="mono">PROJET</span><b>N° 0247</b></div>
+                  <div><span class="mono">SURFACE</span><b>78 M²</b></div>
+                  <div><span class="mono">STATUT</span><b>CHANTIER</b></div>
+                  <div>
+                    <span class="mono">DPE</span>
+                    <span class="inline-flex items-center gap-1">
+                      <span class="dpe-chip" style="background:#E2001A">G</span>
+                      <span class="text-xs font-mono">→</span>
+                      <span class="dpe-chip" style="background:#A3CC6E; color:#121212">C</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- La Boîte Séquestre Flottante (Signature DA) -->
+                <div class="mt-4 bg-ink text-paper p-3 border border-ink shadow-lg font-mono">
+                  <div class="text-[9px] text-faint uppercase flex justify-between items-center">
+                    <span>COMPTE SÉQUESTRE · PROJET 0247</span>
+                    <span class="text-emerald-400 font-bold">100 % SÉCURISÉ</span>
+                  </div>
+                  <div class="text-xl font-bold text-white tracking-tight mt-0.5">35 750 €</div>
+                  <div class="escrow-bar">
+                    <i class="g"></i><i class="r"></i><i></i>
+                  </div>
+                  <div class="escrow-row">
+                    <span>Audit énergétique MAR</span>
+                    <b>✓ 10 700 €</b>
+                  </div>
+                  <div class="escrow-row">
+                    <span>Isolation & menuiseries</span>
+                    <b class="text-red">◐ 10 700 €</b>
+                  </div>
+                  <div class="escrow-row wait">
+                    <span>DPE final conforme</span>
+                    <b>▢ 14 350 €</b>
+                  </div>
+                </div>
               </div>
-              <h3 class="text-lg font-bold font-display text-neutral-900">Séquestre ACPR & Fiscalité</h3>
-              <p class="text-xs text-neutral-600 leading-relaxed">
-                Sécurisation financière absolue inspirée du modèle Hemea, boostée par le levier fiscal 2026.
-              </p>
-              <ul class="text-xs text-neutral-700 space-y-2 pt-2 border-t border-neutral-100">
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i>
-                  <span><strong>Compte séquestre bancaire :</strong> 0 € versé à l'artisan sans jalon validé par l'architecte.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"></i>
-                  <span><strong>Super Déficit Foncier :</strong> 21 400 € / an d'imputation + MaPrimeRénov' jusqu'à 80 %.</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
 
-        <!-- Pied de Slide avec Preuve & Compétences -->
-        <div class="max-w-7xl mx-auto w-full pt-4 border-t border-neutral-200 flex flex-wrap items-center justify-between text-xs text-neutral-500 gap-2">
-          <span>🎯 <strong>Cible B2B prioritaire :</strong> Administrateurs de biens (200 à 5 000 lots) & CGP indépendants</span>
-          <span class="font-mono bg-neutral-100 px-2.5 py-1 rounded border border-neutral-200">Compétences RNCP : C.1.1 · C.1.2 · C.2.1</span>
+        <!-- Pied de Slide Technique -->
+        <div class="max-w-7xl mx-auto w-full pt-3 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>ARCHISIMPLE · GROUPE N°19 · TOUS DROITS RÉSERVÉS 2026</span>
+          <span>CONFORME LOI CLIMAT & RÉSILIENCE · CODE RNCP C.1.1, C.1.2</span>
         </div>
       </section>
 
-      <!-- ================= SLIDE 2 : SWOT CROISÉ & BESOIN VÉRIFIÉ ================= -->
-      <section id="slide-2" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
+      <!-- ================= SLIDE 2 : SWOT CROISÉ & VALIDATION TERRAIN ================= -->
+      <section id="slide-2" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
         <div class="max-w-7xl mx-auto w-full space-y-5">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-3">
-            <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-1">
-                <i data-lucide="git-branch" class="w-3.5 h-3.5"></i> Livrables J1 & J2 · Diagnostic & Sondages Terrain (C.1.1, C.1.2)
-              </div>
-              <h2 class="text-2xl md:text-3xl font-extrabold font-display tracking-tight text-neutral-900">
-                SWOT Croisé (TOWS) & <span class="text-pin">Validation Terrain par les Appels</span>
-              </h2>
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrables J1 & J2 · Diagnostic Croisé & Validation Terrain (C.1.1 & C.1.2)</span>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="bg-neutral-900 text-white text-xs px-3 py-1.5 rounded-lg font-mono font-semibold">PESTEL + PORTER (5+1) + BMC</span>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 02 / 10 · ANALYSE STRATÉGIQUE & PREUVES ENQUÊTES
             </div>
           </div>
 
-          <!-- Matrice SWOT Croisé (TOWS) -->
+          <!-- Titre Slide -->
+          <div>
+            <h2 class="text-3xl font-bold font-sans tracking-tight text-ink">
+              SWOT Croisé (TOWS) & <span class="text-red">Validation Terrain par les Appels</span>
+            </h2>
+            <p class="text-xs font-mono text-muted mt-1 uppercase">
+              Croisement PESTEL (Réglementation & Aides) · Porter (5 forces + 1 l'État) · Business Model Canvas
+            </p>
+          </div>
+
+          <!-- Matrice SWOT Croisé Architectural -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- FORCES (Internes) -->
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">FORCES (Internes / Offre)</span>
-                <span class="text-[10px] text-neutral-400 font-mono">BMC : Partenaires & Valeur</span>
+            <!-- FORCES -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center border-b border-line pb-1.5 mb-2 font-mono text-[10px]">
+                <b class="text-green uppercase">FORCES (INTERNES / OFFRE)</b>
+                <span class="text-muted">BMC : Proposition de Valeur</span>
               </div>
-              <ul class="text-xs text-neutral-700 space-y-1.5">
-                <li>• <strong>Séquestre bancaire ACPR :</strong> Tiers de confiance financier éliminant le risque d'abandon de chantier.</li>
-                <li>• <strong>Réseau d'architectes MAR :</strong> Indépendance déontologique et maîtrise d'œuvre certifiée.</li>
-                <li>• <strong>Modèle B2B sans friction :</strong> Gratuit pour les gestionnaires, apport d'affaires direct.</li>
+              <ul class="text-xs space-y-1.5 text-ink-2">
+                <li>• <strong>Séquestre bancaire ACPR :</strong> Tiers de confiance financier éliminant la peur de l'artisan défaillant.</li>
+                <li>• <strong>Architectes MAR certifiés :</strong> Maîtrise d'œuvre neutre, indépendante de tout fabricant d'isolant.</li>
+                <li>• <strong>Modèle B2B gratuit pour l'agence :</strong> Sauvegarde sans frais des 6 à 8 % d'honoraires de gestion.</li>
               </ul>
             </div>
 
-            <!-- FAIBLESSES (Internes) -->
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">FAIBLESSES (Internes à compenser)</span>
-                <span class="text-[10px] text-neutral-400 font-mono">BMC : Ressources & Marque</span>
+            <!-- FAIBLESSES -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center border-b border-line pb-1.5 mb-2 font-mono text-[10px]">
+                <b class="text-amber-700 uppercase">FAIBLESSES (À COMPENSER)</b>
+                <span class="text-muted">BMC : Ressources & Notoriété</span>
               </div>
-              <ul class="text-xs text-neutral-700 space-y-1.5">
-                <li>• <strong>Marque naissante :</strong> Nécessité de réassurance forte face aux géants historiques (Hemea).</li>
-                <li>• <strong>Dépendance réseau :</strong> Besoin de maillage territorial rapide d'architectes et artisans RGE.</li>
-                <li>• <strong>Temps de closing B2B :</strong> Cycle de vente auprès des directeurs d'agence de 3 à 6 semaines.</li>
+              <ul class="text-xs space-y-1.5 text-ink-2">
+                <li>• <strong>Marque jeune :</strong> Nécessité de réassurance forte face aux acteurs B2C historiques (Hemea).</li>
+                <li>• <strong>Maillage territorial :</strong> Besoin d'accélérer l'on-boarding d'architectes locaux à Lyon et Bordeaux.</li>
+                <li>• <strong>Cycle de signature B2B :</strong> 3 à 5 semaines de décision auprès des cabinets d'administration de biens.</li>
               </ul>
             </div>
 
-            <!-- OPPORTUNITÉS (Externes - PESTEL & Porter) -->
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">OPPORTUNITÉS (Marché PESTEL / Porter)</span>
-                <span class="text-[10px] text-neutral-400 font-mono">Loi Climat & 6e Force (État)</span>
+            <!-- OPPORTUNITÉS -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center border-b border-line pb-1.5 mb-2 font-mono text-[10px]">
+                <b class="text-blue-700 uppercase">OPPORTUNITÉS (PESTEL / PORTER)</b>
+                <span class="text-muted">Loi Climat & 6e Force (État Régulateur)</span>
               </div>
-              <ul class="text-xs text-neutral-700 space-y-1.5">
-                <li>• <strong>Urgence légale :</strong> Interdiction des passoires G dès 2025, F en 2028 (3,9 M de logements menacés).</li>
-                <li>• <strong>Crise du neuf pour les architectes :</strong> -30 % de permis de construire, 3 570 salariés en quête de rénovation.</li>
-                <li>• <strong>Incitation fiscale record :</strong> Super Déficit Foncier doublé à 21 400 € / an jusqu'en 2027.</li>
+              <ul class="text-xs space-y-1.5 text-ink-2">
+                <li>• <strong>Le mur légal 2025/2028 :</strong> 3,9 millions de passoires thermiques F/G interdites à la location.</li>
+                <li>• <strong>Crise du neuf pour les architectes :</strong> -30 % de permis de construire, disponibilité immédiate en rénovation.</li>
+                <li>• <strong>Effet de levier fiscal :</strong> Super Déficit Foncier doublé à 21 400 € / an jusqu'au 31/12/2027.</li>
               </ul>
             </div>
 
-            <!-- MENACES (Externes) -->
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wider text-pin bg-pin/10 px-2 py-0.5 rounded border border-pin/30">MENACES (Marché à verrouiller)</span>
-                <span class="text-[10px] text-neutral-400 font-mono">Fournisseurs & Délais</span>
+            <!-- MENACES -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center border-b border-line pb-1.5 mb-2 font-mono text-[10px]">
+                <b class="text-red uppercase">MENACES (À CONTOURNER)</b>
+                <span class="text-muted">Fournisseurs RGE & Délais Anah</span>
               </div>
-              <ul class="text-xs text-neutral-700 space-y-1.5">
-                <li>• <strong>Lenteur d'instruction Anah :</strong> 2 à 4 mois de délais pour le versement MaPrimeRénov'.</li>
-                <li>• <strong>Tension artisans RGE :</strong> Risque de saturation des plannings sur les lots d'isolation.</li>
-                <li>• <strong>Crainte de désintermédiation :</strong> Peur des agences de perdre le contact bailleur.</li>
+              <ul class="text-xs space-y-1.5 text-ink-2">
+                <li>• <strong>Délais d'instruction Anah :</strong> 2 à 4 mois de traitement pour les dossiers MaPrimeRénov'.</li>
+                <li>• <strong>Pénurie d'artisans RGE :</strong> Saturation des calendriers sur les lots ITE et menuiseries en hiver.</li>
+                <li>• <strong>Crainte de désintermédiation :</strong> Peur des agences de voir la plateforme capter leurs bailleurs.</li>
               </ul>
             </div>
           </div>
 
-          <!-- SECTION CHOC : LES APPELS TERRAIN QUI CONFIRMENT LE BESOIN (Livrable 3 & 8) -->
-          <div class="bg-neutral-900 text-neutral-100 p-5 rounded-2xl shadow-md border border-neutral-800 space-y-3">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                <h3 class="font-display font-bold text-sm text-white uppercase tracking-wider">
-                  Validation Empirique par les Appels Terrain (Livrable 3 & 8 Notion)
-                </h3>
-              </div>
-              <span class="text-[11px] bg-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-mono">2 Enquêtes Professionnelles Réalisées</span>
+          <!-- PREUVE VISUELLE DES 2 ENQUÊTES TÉLÉPHONIQUES RÉELLES -->
+          <div class="bg-card border border-ink p-5 crops shadow-sm">
+            <span class="crop-b"></span>
+            <div class="flex items-center justify-between border-b border-line pb-2 mb-3">
+              <span class="font-mono text-xs font-bold uppercase text-ink flex items-center gap-2">
+                <i data-lucide="phone-outgoing" class="w-4 h-4 text-red"></i>
+                PREUVES ENQUÊTES TERRAIN · LES 2 APPELS DE VALIDATION (LIVRABLES 3 & 8)
+              </span>
+              <span class="font-mono text-[10px] bg-ink text-white px-2 py-0.5 font-bold">100 % CONFIRMÉ</span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- Appel 1 : Architectes MAR -->
-              <div class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-pin flex items-center gap-1.5">
-                    <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Appel 1 : Thomas B. & Claire D. (Architectes MAR)
-                  </span>
-                  <span class="text-[10px] bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-800">Supply-Side Validé</span>
+              <div class="bg-paper p-3 border border-line-2 space-y-1.5 font-sans">
+                <div class="flex justify-between items-center">
+                  <span class="font-mono text-[10px] font-bold text-red uppercase">APPEL 1 · CÔTÉ OFFRE (SUPPLY)</span>
+                  <span class="font-mono text-[10px] text-muted">Architectes DPLG / MAR (Paris/Lyon)</span>
                 </div>
-                <blockquote class="text-xs text-neutral-300 italic border-l-2 border-pin pl-3 leading-relaxed">
-                  « La commande dans la construction neuve a plongé de plus de 30 %. On veut faire de la rénovation thermique globale, mais on perd un temps fou en devis impayés et litiges avec des clients qui ont peur. Si Archi’simple nous apporte des chantiers avec le budget déjà consigné sur compte séquestre, on signe immédiatement. »
+                <blockquote class="text-xs text-ink italic border-l-2 border-red pl-2.5 leading-relaxed">
+                  « La construction neuve a chuté de 30 %. Les architectes cherchent des chantiers de rénovation, mais on perd un temps fou en devis impayés et litiges avec des clients qui ont peur. Si ArchiSimple nous apporte des chantiers avec le budget déjà consigné sur compte séquestre, on signe immédiatement. »
                 </blockquote>
-                <p class="text-[11px] text-neutral-400 font-medium">
-                  ➔ <strong>Résultat :</strong> Disponibilité immédiate d'architectes DPLG/MAR prêts à auditer et piloter les chantiers.
-                </p>
+                <div class="font-mono text-[10px] text-green font-bold flex items-center gap-1 pt-1">
+                  <i data-lucide="check-check" class="w-3.5 h-3.5"></i> SUPPLY VALIDÉE : Réseau d'architectes MAR prêt à intervenir
+                </div>
               </div>
 
-              <!-- Appel 2 : Décideurs Immobiliers (ADB) -->
-              <div class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
-                    <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Appel 2 : Marc (Dir. Gestion Locative, 850 lots)
-                  </span>
-                  <span class="text-[10px] bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-800">Demand-Side Validé</span>
+              <!-- Appel 2 : Gestionnaires Locatifs -->
+              <div class="bg-paper p-3 border border-line-2 space-y-1.5 font-sans">
+                <div class="flex justify-between items-center">
+                  <span class="font-mono text-[10px] font-bold text-ink uppercase">APPEL 2 · CÔTÉ DEMANDE (DEMAND)</span>
+                  <span class="font-mono text-[10px] text-muted">Marc, Dir. Gestion Locative (850 lots)</span>
                 </div>
-                <blockquote class="text-xs text-neutral-300 italic border-l-2 border-emerald-500 pl-3 leading-relaxed">
-                  « 18 % de notre parc (150 appartements) est classé F ou G. Les bailleurs paniquent mais restent immobiles car ils ont peur des artisans malhonnêtes. Si vous prenez tout en charge avec un architecte MAR et le séquestre, sans frais pour l'agence, c'est la seule façon de sauver nos mandats. »
+                <blockquote class="text-xs text-ink italic border-l-2 border-ink pl-2.5 leading-relaxed">
+                  « 18 % de notre parc (environ 150 appartements) est classé F ou G. Les bailleurs paniquent mais restent immobiles car ils ont peur des artisans malhonnêtes. Si vous prenez tout en charge avec un architecte MAR et le séquestre, sans frais pour l'agence, c'est la seule façon de sauver nos mandats. »
                 </blockquote>
-                <p class="text-[11px] text-neutral-400 font-medium">
-                  ➔ <strong>Résultat :</strong> Taux d'intention de délégation supérieur à 70 % dès lors que le séquestre garantit les fonds.
-                </p>
+                <div class="font-mono text-[10px] text-green font-bold flex items-center gap-1 pt-1">
+                  <i data-lucide="check-check" class="w-3.5 h-3.5"></i> DEMAND VALIDÉE : Taux d'adhésion à la délégation > 70 %
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="max-w-7xl mx-auto w-full pt-3 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500">
-          <span>✓ <strong>Décision d'équipe J2 :</strong> ON GARDE · Pivot B2B validé par les données réelles du terrain</span>
-          <span class="font-mono bg-neutral-100 px-2 py-0.5 rounded border border-neutral-200">Grille Oral : Preuves & Traction (3/3 pts)</span>
+        <div class="max-w-7xl mx-auto w-full pt-2 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>DÉCISION BMC : ON GARDE · PIVOT B2B VALIDÉ SUR LES GESTIONNAIRES LOCATIFS</span>
+          <span>GRILLE ÉVALUATION ORAL : CRITÈRE 3 PREUVES & TRACTION (3/3 PTS)</span>
         </div>
       </section>
 
-      <!-- ================= SLIDE 3 : STACK TECHNIQUE ================= -->
-      <section id="slide-3" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
-        <div class="max-w-7xl mx-auto w-full space-y-6">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-4">
-            <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-2">
-                <i data-lucide="layers" class="w-3.5 h-3.5"></i> Livrable J1 (N°6) · Parcours Client & Stack Technique (C.2.4)
-              </div>
-              <h2 class="text-3xl font-extrabold font-display tracking-tight text-neutral-900">
-                L'Écosystème Numérique & <span class="text-pin">Stack Technique Opérationnelle</span>
-              </h2>
+      <!-- ================= SLIDE 3 : STACK TECHNIQUE BLUEPRINT ================= -->
+      <section id="slide-3" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
+        <div class="max-w-7xl mx-auto w-full space-y-5">
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrable J1 (N°6) · Architecture des Systèmes Numériques (C.2.4)</span>
             </div>
-            <div class="bg-white px-4 py-2 rounded-xl border border-neutral-200 shadow-sm text-right">
-              <span class="text-xs text-neutral-500 font-semibold block uppercase">Critère Oral 2</span>
-              <span class="text-base font-extrabold text-neutral-900 font-display">Démo Technique Fluide (3/3 pts)</span>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 03 / 10 · STACK TECHNIQUE MVP & DÉMO OPÉRATIONNELLE
             </div>
           </div>
 
-          <!-- Grille des 6 Briques de la Stack -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <!-- 1. Frontend & Vitrine -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-xl bg-neutral-900 text-white flex items-center justify-center font-bold">
-                  <i data-lucide="globe" class="w-4 h-4"></i>
-                </div>
-                <span class="text-[10px] font-mono bg-neutral-100 text-neutral-700 px-2 py-0.5 rounded font-bold">Vercel Edge</span>
-              </div>
-              <h3 class="font-display font-bold text-base text-neutral-900">1. Vitrine & SaaS Web</h3>
-              <p class="text-xs text-neutral-600">
-                <strong>Next.js 14/15, Tailwind CSS, Lucide.</strong> Double interface responsive pour bailleurs et architectes pros, déployée sur CDN mondial ultra-rapide.
+          <!-- Titre Slide -->
+          <div class="flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold font-sans tracking-tight text-ink">
+                Architecture des Flux & <span class="text-red">Stack Technique</span>
+              </h2>
+              <p class="text-xs font-mono text-muted mt-1 uppercase">
+                Interconnexion temps réel : Acquisition · Tracking GA4 · CRM HubSpot · Webhooks · Séquestre ACPR
               </p>
-              <div class="text-[11px] text-neutral-500 font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
-                renov-confiance.vercel.app<br>archisimple-saas.vercel.app
+            </div>
+            <span class="font-mono text-[11px] bg-ink text-white px-3 py-1 font-bold">100 % OPÉRATIONNEL</span>
+          </div>
+
+          <!-- Schéma Architectural des 6 Briques Techniques -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- 1. Frontend & Vitrine -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-ink">01. VITRINE & SAAS</span>
+                <span class="bg-paper px-1.5 py-0.5 border border-line text-muted">VERCEL EDGE</span>
+              </div>
+              <h3 class="font-bold text-sm text-ink mb-1">Next.js 14 & Tailwind CSS</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Landing page ultra-rapide (scores Core Web Vitals 98/100) et application SaaS avec switcher Particuliers / Architectes MAR.
+              </p>
+              <div class="mt-3 font-mono text-[10px] bg-paper p-1.5 border border-line text-ink">
+                renov-confiance.vercel.app
               </div>
             </div>
 
-            <!-- 2. Formulaire & Ingestion -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-xl bg-pin text-white flex items-center justify-center font-bold shadow-sm shadow-pin/30">
-                  <i data-lucide="form-input" class="w-4 h-4"></i>
-                </div>
-                <span class="text-[10px] font-mono bg-pin-light text-pin px-2 py-0.5 rounded font-bold">Tally Interactive</span>
+            <!-- 2. Formulaire Ingestion -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-red">02. FORMULAIRE DEVIS</span>
+                <span class="bg-red-tint text-red px-1.5 py-0.5 border border-red font-bold">TALLY INTERACTIVE</span>
               </div>
-              <h3 class="font-display font-bold text-base text-neutral-900">2. Qualification & Devis</h3>
-              <p class="text-xs text-neutral-600">
-                Formulaire immersif sans friction. Collecte des données DPE (étiquette, surface, ville, budget) avec calcul instantané des subventions 2026.
+              <h3 class="font-bold text-sm text-ink mb-1">Capture & Calcul Instantané</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Formulaire immersif sans questions CRM intrusives. Saisie DPE, calcul automatique des subventions et transmission webhook.
               </p>
-              <div class="text-[11px] text-neutral-500 font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
+              <div class="mt-3 font-mono text-[10px] bg-paper p-1.5 border border-line text-ink">
                 archisimple-form.vercel.app
               </div>
             </div>
 
             <!-- 3. Tracking GA4 -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold">
-                  <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
-                </div>
-                <span class="text-[10px] font-mono bg-amber-50 text-amber-800 px-2 py-0.5 rounded font-bold">ID: G-7425M000PN</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-ink">03. TRACKING DIGITAL</span>
+                <span class="bg-paper px-1.5 py-0.5 border border-line text-muted">GA4 MEASURED</span>
               </div>
-              <h3 class="font-display font-bold text-base text-neutral-900">3. Google Analytics 4</h3>
-              <p class="text-xs text-neutral-600">
-                Mesure complète du trafic : événements sur-mesure (<code>generate_lead</code>, <code>scroll_75%</code>, engagement timer, simulation d'aides).
+              <h3 class="font-bold text-sm text-ink mb-1">Google Analytics 4</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Mesure du funnel complet (ID <code>G-7425M000PN</code>) : micro-événements <code>scroll_75%</code>, engagement timer et conversion <code>generate_lead</code>.
               </p>
-              <div class="text-[11px] text-neutral-500 font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
-                Conversions & Funnel vérifiés
+              <div class="mt-3 font-mono text-[10px] bg-paper p-1.5 border border-line text-ink">
+                Stream ID : G-7425M000PN
               </div>
             </div>
 
             <!-- 4. CRM HubSpot API v3 -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold">
-                  <i data-lucide="contact" class="w-4 h-4"></i>
-                </div>
-                <span class="text-[10px] font-mono bg-orange-50 text-orange-800 px-2 py-0.5 rounded font-bold">Pipeline HubSpot</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-ink">04. CRM PIPELINE</span>
+                <span class="bg-paper px-1.5 py-0.5 border border-line text-muted">HUBSPOT API V3</span>
               </div>
-              <h3 class="font-display font-bold text-base text-neutral-900">4. CRM & Pipeline Sales</h3>
-              <p class="text-xs text-neutral-600">
-                Pipeline <strong>« Ventes Locataires »</strong>. Création automatique des contacts et deals avec calcul de la valeur (42 000 €) et de la commission (2 940 €).
+              <h3 class="font-bold text-sm text-ink mb-1">Pipeline « Ventes Locataires »</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Création en temps réel des fiches Contacts et Transactions (Deals). Estimation immédiate de la valeur (42 000 €) et commission (2 940 €).
               </p>
-              <div class="text-[11px] text-neutral-500 font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
-                Portail ID : 149544612 (Sync v3)
+              <div class="mt-3 font-mono text-[10px] bg-paper p-1.5 border border-line text-ink">
+                Portail ID : 149544612 (Sync Directe)
               </div>
             </div>
 
-            <!-- 5. Automatisation & Ops -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold">
-                  <i data-lucide="cpu" class="w-4 h-4"></i>
-                </div>
-                <span class="text-[10px] font-mono bg-purple-50 text-purple-800 px-2 py-0.5 rounded font-bold">Serverless & Make</span>
+            <!-- 5. Webhook Serverless -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-ink">05. MOTEUR OPS</span>
+                <span class="bg-paper px-1.5 py-0.5 border border-line text-muted">NODE.JS API</span>
               </div>
-              <h3 class="font-display font-bold text-base text-neutral-900">5. Moteur d'Automatisation</h3>
-              <p class="text-xs text-neutral-600">
-                Webhook Node.js <code>/api/submit-lead</code> connectant Tally au CRM. Détection du score passoire, notification Slack et email de confirmation.
+              <h3 class="font-bold text-sm text-ink mb-1">Webhook /api/submit-lead</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                Routeur serverless calculant le score d'urgence réglementaire de la passoire et dispatchant l'alerte à l'architecte référent sous 450 ms.
               </p>
-              <div class="text-[11px] text-neutral-500 font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
-                Temps de routage : &lt; 450 ms
+              <div class="mt-3 font-mono text-[10px] bg-paper p-1.5 border border-line text-ink">
+                Temps d'exécution : &lt; 450 ms
               </div>
             </div>
 
-            <!-- 6. Séquestre & IA Supervisée -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold">
-                  <i data-lucide="shield-alert" class="w-4 h-4"></i>
-                </div>
-                <span class="text-[10px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded font-bold">Fintech Escrow</span>
+            <!-- 6. Séquestre ACPR & Escrow -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-ink">06. SÉCURISATION FINTECH</span>
+                <span class="bg-paper px-1.5 py-0.5 border border-line text-muted">COMPTE DE CANTONNEMENT</span>
               </div>
-              <h3 class="font-display font-bold text-base text-neutral-900">6. Séquestre ACPR & IA</h3>
-              <p class="text-xs text-neutral-600">
-                Compte de cantonnement Stripe Connect / Mangopay. IA supervisée pour extraire les postes d'isolation et valider la conformité DPE légale.
+              <h3 class="font-bold text-sm text-ink mb-1">Séquestre Bancaire ACPR</h3>
+              <p class="text-xs text-muted leading-relaxed">
+                API MangoPay / Treezor. Consignation préalable des fonds par tranches de travaux débloquées uniquement sur validation de l'architecte.
               </p>
-              <div class="text-[11px] text-neutral-500 font-mono bg-neutral-50 p-2 rounded border border-neutral-100">
-                Déblocage par tranches d'avancement
+              <div class="mt-3 font-mono text-[10px] bg-paper p-1.5 border border-line text-ink">
+                Zéro acompte versé sans preuve
               </div>
             </div>
           </div>
         </div>
 
-        <div class="max-w-7xl mx-auto w-full pt-4 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500">
-          <span>🛠️ <strong>Architecture Zero-Legacy :</strong> Outils no-code/low-code et API modernes interconnectés en production</span>
-          <span class="font-mono bg-neutral-100 px-2.5 py-1 rounded border border-neutral-200">Livrable 6 & Livrable 14/15/16</span>
+        <div class="max-w-7xl mx-auto w-full pt-2 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>STACK TESTÉE & VÉRIFIÉE DE BOUT EN BOUT SANS SUR-INGÉNIERIE</span>
+          <span>GRILLE ÉVALUATION ORAL : CRITÈRE 2 DÉMO TECHNIQUE (3/3 PTS)</span>
         </div>
       </section>
 
       <!-- ================= SLIDE 4 : ON-BOARDING CLIENT (AVANT LANDING) ================= -->
-      <section id="slide-4" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
-        <div class="max-w-7xl mx-auto w-full space-y-6">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-4">
-            <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-2">
-                <i data-lucide="user-check" class="w-3.5 h-3.5"></i> Livrable J3 (N°13) · Parcours d'Onboarding & Réassurance (C.3.2)
-              </div>
-              <h2 class="text-3xl font-extrabold font-display tracking-tight text-neutral-900">
-                Le Parcours d'Onboarding Client <span class="text-pin">en 5 Étapes Clés</span>
-              </h2>
+      <section id="slide-4" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
+        <div class="max-w-7xl mx-auto w-full space-y-5">
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrable J3 (N°13) · Expérience Client & FAQ Anti-Friction (C.3.2)</span>
             </div>
-            <div class="bg-white px-4 py-2 rounded-xl border border-neutral-200 shadow-sm text-right">
-              <span class="text-xs text-neutral-500 font-semibold block uppercase">Anti-Friction & Rassurance</span>
-              <span class="text-base font-extrabold text-neutral-900 font-display">Taux d'abandon visé : &lt; 5 %</span>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 04 / 10 · PROTOCOLE D'ON-BOARDING EN 5 JALONS
             </div>
           </div>
 
-          <!-- Chronologie Horizontale des 5 Étapes -->
-          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-            <!-- Étape 1 -->
-            <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-pin transition">
+          <!-- Titre Slide -->
+          <div class="flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold font-sans tracking-tight text-ink">
+                Le Parcours d'On-boarding Client <span class="text-red">en 5 Jalons Clés</span>
+              </h2>
+              <p class="text-xs font-mono text-muted mt-1 uppercase">
+                Parcours certifié sans friction : de la détection du lot F/G jusqu'au déblocage du séquestre et relocation
+              </p>
+            </div>
+            <span class="font-mono text-[11px] bg-red text-white px-3 py-1 font-bold">TAUX D'ABANDON VISÉ : &lt; 5 %</span>
+          </div>
+
+          <!-- Chronologie Visuelle des 5 Jalons -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+            <!-- Jalon 1 -->
+            <div class="bg-card border border-ink p-3.5 crops flex flex-col justify-between">
+              <span class="crop-b"></span>
               <div class="space-y-2">
-                <div class="w-8 h-8 rounded-full bg-pin text-white flex items-center justify-center font-bold text-sm shadow-sm shadow-pin/30">1</div>
-                <span class="text-xs font-bold text-pin uppercase tracking-wider block">Détection & Signalement</span>
-                <h4 class="font-display font-bold text-sm text-neutral-900">Détection du lot F/G</h4>
-                <p class="text-xs text-neutral-600 leading-relaxed">
-                  L'agence ou le propriétaire saisit l'étiquette DPE sur le formulaire en 2 minutes. Score passoire immédiat.
+                <div class="flex justify-between items-center font-mono text-[10px]">
+                  <span class="w-5 h-5 bg-ink text-white flex items-center justify-center font-bold">01</span>
+                  <span class="text-red font-bold">T+0</span>
+                </div>
+                <h4 class="font-bold text-sm text-ink">Détection Lot F/G</h4>
+                <p class="text-xs text-muted leading-relaxed">
+                  L'agence ou le propriétaire saisit l'étiquette DPE sur le formulaire en 2 min. Calcul instantané du reste à charge.
                 </p>
               </div>
-              <div class="pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 font-mono">
-                ⏱ T+2h : Appel de cadrage
+              <div class="pt-2 border-t border-line font-mono text-[9px] text-ink font-semibold mt-3">
+                ⏱ Cadrage en &lt; 2 heures
               </div>
             </div>
 
-            <!-- Étape 2 -->
-            <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-pin transition">
+            <!-- Jalon 2 -->
+            <div class="bg-card border border-ink p-3.5 crops flex flex-col justify-between">
+              <span class="crop-b"></span>
               <div class="space-y-2">
-                <div class="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm">2</div>
-                <span class="text-xs font-bold text-neutral-500 uppercase tracking-wider block">Audit Certifié</span>
-                <h4 class="font-display font-bold text-sm text-neutral-900">Visite Architecte MAR</h4>
-                <p class="text-xs text-neutral-600 leading-relaxed">
-                  Un architecte Mon Accompagnateur Rénov' visite le logement, pose l'audit DPE officiel et chiffre le scénario de rénovation globale.
+                <div class="flex justify-between items-center font-mono text-[10px]">
+                  <span class="w-5 h-5 bg-ink text-white flex items-center justify-center font-bold">02</span>
+                  <span class="text-muted">T+48H</span>
+                </div>
+                <h4 class="font-bold text-sm text-ink">Audit Architecte MAR</h4>
+                <p class="text-xs text-muted leading-relaxed">
+                  Visite sur place de l'architecte Mon Accompagnateur Rénov' dédié. Réalisation de l'audit DPE et chiffrage des aides.
                 </p>
               </div>
-              <div class="pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 font-mono">
-                ⏱ T+48h : Rapport & Aides
+              <div class="pt-2 border-t border-line font-mono text-[9px] text-ink font-semibold mt-3">
+                📋 Rapport officiel Anah
               </div>
             </div>
 
-            <!-- Étape 3 -->
-            <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-pin transition">
+            <!-- Jalon 3 -->
+            <div class="bg-card border border-ink p-3.5 crops flex flex-col justify-between">
+              <span class="crop-b"></span>
               <div class="space-y-2">
-                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">3</div>
-                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block">Sécurisation Bancaire</span>
-                <h4 class="font-display font-bold text-sm text-neutral-900">Séquestre ACPR</h4>
-                <p class="text-xs text-neutral-600 leading-relaxed">
-                  Le propriétaire consigne les fonds sur le compte séquestre dédié. <strong>0 €</strong> n'est envoyé à l'artisan sans validation.
+                <div class="flex justify-between items-center font-mono text-[10px]">
+                  <span class="w-5 h-5 bg-red text-white flex items-center justify-center font-bold">03</span>
+                  <span class="text-red font-bold">SÉCURITÉ</span>
+                </div>
+                <h4 class="font-bold text-sm text-ink">Séquestre Bancaire</h4>
+                <p class="text-xs text-muted leading-relaxed">
+                  Consignation des fonds de travaux sur compte séquestre bloqué ACPR. Zéro euro versé directement à l'artisan sans visa.
                 </p>
               </div>
-              <div class="pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 font-mono">
+              <div class="pt-2 border-t border-line font-mono text-[9px] text-ink font-semibold mt-3">
                 🔒 Acomptes 100 % protégés
               </div>
             </div>
 
-            <!-- Étape 4 -->
-            <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-pin transition">
+            <!-- Jalon 4 -->
+            <div class="bg-card border border-ink p-3.5 crops flex flex-col justify-between">
+              <span class="crop-b"></span>
               <div class="space-y-2">
-                <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-sm">4</div>
-                <span class="text-xs font-bold text-amber-600 uppercase tracking-wider block">Travaux & Suivi</span>
-                <h4 class="font-display font-bold text-sm text-neutral-900">Chantier RGE & Photos</h4>
-                <p class="text-xs text-neutral-600 leading-relaxed">
-                  L'architecte pilote les artisans labellisés. Le propriétaire et l'agence suivent l'avancement photo en direct sur le SaaS.
+                <div class="flex justify-between items-center font-mono text-[10px]">
+                  <span class="w-5 h-5 bg-ink text-white flex items-center justify-center font-bold">04</span>
+                  <span class="text-muted">CHANTIER</span>
+                </div>
+                <h4 class="font-bold text-sm text-ink">Travaux RGE & Suivi</h4>
+                <p class="text-xs text-muted leading-relaxed">
+                  Exécution par artisans audités sous contrôle de l'architecte. Suivi photo hebdomadaire sur le portail client.
                 </p>
               </div>
-              <div class="pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 font-mono">
-                📸 Reporting hebdomadaire
+              <div class="pt-2 border-t border-line font-mono text-[9px] text-ink font-semibold mt-3">
+                📸 Reporting temps réel
               </div>
             </div>
 
-            <!-- Étape 5 -->
-            <div class="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-pin transition">
+            <!-- Jalon 5 -->
+            <div class="bg-card border border-ink p-3.5 crops flex flex-col justify-between">
+              <span class="crop-b"></span>
               <div class="space-y-2">
-                <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">5</div>
-                <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block">Réception & Relocation</span>
-                <h4 class="font-display font-bold text-sm text-neutral-900">DPE C/D & Relocation</h4>
-                <p class="text-xs text-neutral-600 leading-relaxed">
-                  Livraison avec attestation DPE conforme. Déblocage du solde aux entreprises. L'agence reloue immédiatement sans vacance.
+                <div class="flex justify-between items-center font-mono text-[10px]">
+                  <span class="w-5 h-5 bg-green text-white flex items-center justify-center font-bold">05</span>
+                  <span class="text-green font-bold">LIVRAISON</span>
+                </div>
+                <h4 class="font-bold text-sm text-ink">DPE Conforme & Reloc.</h4>
+                <p class="text-xs text-muted leading-relaxed">
+                  Attestation DPE classe C/D officielle. Déblocage du solde aux artisans. Remise en location immédiate par l'agence.
                 </p>
               </div>
-              <div class="pt-3 border-t border-neutral-100 text-[11px] text-neutral-400 font-mono">
+              <div class="pt-2 border-t border-line font-mono text-[9px] text-ink font-semibold mt-3">
                 🎉 Mandat sauvé à 100 %
               </div>
             </div>
           </div>
 
-          <!-- FAQ Anti-Friction & Réponses aux Objections Clés -->
-          <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-            <h3 class="font-display font-bold text-sm text-neutral-900 uppercase tracking-wider flex items-center gap-2">
-              <i data-lucide="help-circle" class="w-4 h-4 text-pin"></i> FAQ Anti-Friction Intégrée (Réassurance Bailleurs & Agences)
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <span class="font-bold text-neutral-900">L'agence paie-t-elle quelque chose ?</span>
-                <p class="text-neutral-600">Non. La plateforme est 100 % gratuite pour les gestionnaires locatifs. Les honoraires sont prélevés sur les travaux exécutés.</p>
+          <!-- FAQ Anti-Friction & Rassurance Juridique -->
+          <div class="bg-card border border-ink p-4 crops">
+            <span class="crop-b"></span>
+            <div class="flex items-center justify-between border-b border-line pb-2 mb-3">
+              <span class="font-mono text-xs font-bold text-ink uppercase flex items-center gap-2">
+                <i data-lucide="help-circle" class="w-4 h-4 text-red"></i> FAQ ANTI-FRICTION INTÉGRÉE (RÉASSURANCE BAILLEURS & GESTIONNAIRES)
+              </span>
+              <span class="font-mono text-[10px] text-muted">3 GARANTIES MAJEURES</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+              <div class="bg-paper p-3 border border-line-2 space-y-1">
+                <b class="text-ink font-sans">L'agence prend-elle un risque financier ?</b>
+                <p class="text-muted leading-relaxed">Aucun. Le service est 100 % gratuit pour le cabinet d'administration de biens. Le risque technique est transféré à l'architecte MAR et aux décennales vérifiées.</p>
               </div>
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <span class="font-bold text-neutral-900">Que se passe-t-il si un artisan abandonne ?</span>
-                <p class="text-neutral-600">L'argent reste bloqué sur le compte séquestre. Archi'simple substitue sans surcoût une autre entreprise RGE pour finir le lot.</p>
+              <div class="bg-paper p-3 border border-line-2 space-y-1">
+                <b class="text-ink font-sans">Et si une entreprise dépose le bilan ?</b>
+                <p class="text-muted leading-relaxed">L'argent consigné reste intact sur le compte séquestre. ArchiSimple mandate une autre entreprise RGE agréée pour achever les travaux sans surcoût pour le propriétaire.</p>
               </div>
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <span class="font-bold text-neutral-900">Et les aides MaPrimeRénov' ?</span>
-                <p class="text-neutral-600">L'architecte MAR constitue le dossier Anah complet (jusqu'à 70 000 €). Le déficit foncier est imputé jusqu'à 21 400 € / an.</p>
+              <div class="bg-paper p-3 border border-line-2 space-y-1">
+                <b class="text-ink font-sans">Comment s'impute le Déficit Foncier ?</b>
+                <p class="text-muted leading-relaxed">Jusqu'à 21 400 € / an déductibles du revenu global pour les travaux de rénovation énergétique sur passoires F/G, prorogé jusqu'au 31 décembre 2027.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="max-w-7xl mx-auto w-full pt-4 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500">
-          <span>🛡️ <strong>Expérience client optimisée :</strong> 0 litige financier, pilotage de bout en bout et transparence totale</span>
-          <span class="font-mono bg-neutral-100 px-2.5 py-1 rounded border border-neutral-200">Compétence RNCP : C.3.2</span>
+        <div class="max-w-7xl mx-auto w-full pt-2 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>RÉDUCTION MAXIMALE DU CHURN ET DU STRESS DE CHANTIER</span>
+          <span>COMPÉTENCE RNCP : C.3.2 ACCOMPAGNEMENT & PARAMÉTRAGE CLIENT</span>
         </div>
       </section>
 
       <!-- ================= SLIDE 5 : DÉMO LANDING PAGE EN DIRECT ================= -->
-      <section id="slide-5" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 text-white">
+      <section id="slide-5" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
         <!-- Header Démo -->
-        <div class="flex items-center justify-between pb-3 border-b border-neutral-800 shrink-0">
+        <div class="flex items-center justify-between pb-2 border-b border-line shrink-0">
           <div class="flex items-center gap-3">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pin/20 text-pin text-xs font-bold uppercase tracking-wider border border-pin/40">
-              <i data-lucide="play-circle" class="w-3.5 h-3.5"></i> Livrable J2 (N°10) · Démo en Direct (C.2.3)
+            <span class="font-mono text-xs bg-ink text-white px-2 py-0.5 font-bold uppercase">
+              LIVRABLE J2 (N°10) · DÉMO EN DIRECT
             </span>
-            <h2 class="text-xl md:text-2xl font-bold font-display tracking-tight text-white">
-              Landing Page Publiée · <span class="text-pin">Tunnels & Collecte de Leads</span>
+            <h2 class="text-xl md:text-2xl font-bold font-sans tracking-tight text-ink">
+              Landing Page Publiée · <span class="text-red">https://renov-confiance.vercel.app/#</span>
             </h2>
           </div>
 
-          <!-- Boutons de contrôle de la démo -->
+          <!-- Contrôles iFrame -->
           <div class="flex items-center gap-2">
-            <button onclick="refreshIframe('iframe-landing')" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold text-neutral-300 transition flex items-center gap-1.5 border border-neutral-700">
-              <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Recharger
+            <button onclick="refreshIframe('iframe-landing')" class="px-3 py-1 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> RECHARGER
             </button>
-            <button onclick="openModalFullscreen('iframe-landing')" class="px-3.5 py-1.5 rounded-lg bg-pin hover:bg-pin-hover text-xs font-extrabold text-white transition flex items-center gap-1.5 shadow-md shadow-pin/30">
-              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> Plein Écran Démo ⛶
+            <button onclick="openModalFullscreen('iframe-landing')" class="px-3.5 py-1 bg-red hover:bg-red-hover text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> PLEIN ÉCRAN DÉMO ⛶
             </button>
-            <a href="https://renov-confiance.vercel.app/#" target="_blank" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold text-neutral-300 transition flex items-center gap-1.5 border border-neutral-700">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Nouvel Onglet ↗
+            <a href="https://renov-confiance.vercel.app/#" target="_blank" class="px-3 py-1 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> NOUVEL ONGLET ↗
             </a>
           </div>
         </div>
 
-        <!-- Simulateur de Navigateur Web pour l'iFrame -->
-        <div class="flex-1 my-3 bg-neutral-950 rounded-2xl border border-neutral-800 shadow-2xl overflow-hidden flex flex-col">
-          <!-- Barre d'adresse navigateur -->
-          <div class="bg-neutral-900 px-4 py-2 flex items-center gap-3 border-b border-neutral-800 text-xs text-neutral-400 shrink-0">
-            <div class="flex items-center gap-1.5">
-              <div class="w-3 h-3 rounded-full bg-rose-500"></div>
-              <div class="w-3 h-3 rounded-full bg-amber-500"></div>
-              <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-            </div>
-            <div class="flex-1 max-w-lg mx-auto bg-neutral-950 px-3 py-1 rounded-md border border-neutral-800 flex items-center justify-between text-neutral-300 font-mono text-[11px]">
-              <span class="flex items-center gap-1.5">
-                <i data-lucide="lock" class="w-3 h-3 text-emerald-400"></i> https://renov-confiance.vercel.app
-              </span>
-              <span class="text-[10px] text-neutral-500 font-sans">HTTPS · Certifié</span>
+        <!-- Frame Navigateur Architectural -->
+        <div class="flex-1 my-2 bg-card border border-ink crops shadow-md overflow-hidden flex flex-col relative">
+          <span class="crop-b"></span>
+          <!-- Barre Navigateur -->
+          <div class="bg-paper border-b border-ink px-4 py-1.5 flex items-center justify-between font-mono text-[11px] shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-line-2 inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green inline-block"></span>
+              <span class="ml-2 font-bold text-ink">URL ACTIVE :</span>
+              <span class="text-muted">https://renov-confiance.vercel.app/#</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-bold">GA4 Actif (G-7425M000PN)</span>
+              <span class="bg-green-tint text-green px-2 py-0.2 border border-green text-[10px] font-bold">PROD VERCEL LIVE</span>
             </div>
           </div>
 
-          <!-- L'iframe interactif en direct -->
+          <!-- L'iframe -->
           <div class="flex-1 w-full h-full relative bg-white">
-            <iframe id="iframe-landing" src="https://kevinmonin72.github.io/renov-tiers-de-confiance/" class="w-full h-full border-0" title="Démo Landing Page ArchiSimple"></iframe>
+            <iframe id="iframe-landing" src="https://renov-confiance.vercel.app/#" class="w-full h-full border-0" title="Démo Landing Page"></iframe>
           </div>
         </div>
 
-        <!-- Pied de Slide avec Arguments Clés pour le Jury -->
-        <div class="flex flex-wrap items-center justify-between text-xs text-neutral-400 pt-2 border-t border-neutral-800 shrink-0 gap-2">
-          <span>💡 <strong>Éléments à montrer au jury :</strong> Hero à fort impact · Baromètre Loi Climat interactif · Simulateur d'aides 2026 · Formulaire de devis connecté HubSpot</span>
-          <span class="text-pin font-bold">Cliquez sur « Plein Écran Démo » pour tester le site sans quitter la présentation</span>
+        <!-- Pied de Slide Démo -->
+        <div class="flex items-center justify-between font-mono text-[10px] text-muted pt-1 shrink-0">
+          <span>ÉLÉMENTS À PRÉSENTER : HERO CAD · BAROMÈTRE LOI CLIMAT · SIMULATEUR D'AIDES · FORMULAIRE PROPRIÉTAIRE</span>
+          <span class="text-red font-bold">CLIQUEZ SUR « PLEIN ÉCRAN DÉMO ⛶ » POUR NAVIGUER EN PLEIN ÉCRAN</span>
         </div>
       </section>
 
       <!-- ================= SLIDE 6 : DÉMO SAAS MARKETPLACE EN DIRECT ================= -->
-      <section id="slide-6" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 text-white">
+      <section id="slide-6" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
         <!-- Header Démo -->
-        <div class="flex items-center justify-between pb-3 border-b border-neutral-800 shrink-0">
+        <div class="flex items-center justify-between pb-2 border-b border-line shrink-0">
           <div class="flex items-center gap-3">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider border border-blue-500/40">
-              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Livrable J2 & J3 · Plateforme SaaS Marketplace
+            <span class="font-mono text-xs bg-ink text-white px-2 py-0.5 font-bold uppercase">
+              LIVRABLE J2 & J3 · DÉMO EN DIRECT
             </span>
-            <h2 class="text-xl md:text-2xl font-bold font-display tracking-tight text-white">
-              Espace Bailleurs & <span class="text-blue-400">Architectes MAR sous Séquestre</span>
+            <h2 class="text-xl md:text-2xl font-bold font-sans tracking-tight text-ink">
+              Plateforme SaaS Marketplace · <span class="text-red">https://renov-confiance.vercel.app/app#architecte</span>
             </h2>
           </div>
 
-          <!-- Boutons de contrôle démo SaaS -->
+          <!-- Contrôles iFrame -->
           <div class="flex items-center gap-2">
-            <button onclick="refreshIframe('iframe-saas')" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold text-neutral-300 transition flex items-center gap-1.5 border border-neutral-700">
-              <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Recharger
+            <button onclick="refreshIframe('iframe-saas')" class="px-3 py-1 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> RECHARGER
             </button>
-            <button onclick="openModalFullscreen('iframe-saas')" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-extrabold text-white transition flex items-center gap-1.5 shadow-md shadow-blue-600/30">
-              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> Plein Écran Démo ⛶
+            <button onclick="openModalFullscreen('iframe-saas')" class="px-3.5 py-1 bg-ink hover:bg-ink-2 text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> PLEIN ÉCRAN DÉMO ⛶
             </button>
-            <a href="https://kevinmonin72.github.io/renov-confiance-saas/" target="_blank" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold text-neutral-300 transition flex items-center gap-1.5 border border-neutral-700">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Nouvel Onglet ↗
+            <a href="https://renov-confiance.vercel.app/app#architecte" target="_blank" class="px-3 py-1 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> NOUVEL ONGLET ↗
             </a>
           </div>
         </div>
 
-        <!-- Simulateur de Navigateur Web pour le SaaS -->
-        <div class="flex-1 my-3 bg-neutral-950 rounded-2xl border border-neutral-800 shadow-2xl overflow-hidden flex flex-col">
-          <!-- Barre d'adresse navigateur -->
-          <div class="bg-neutral-900 px-4 py-2 flex items-center gap-3 border-b border-neutral-800 text-xs text-neutral-400 shrink-0">
-            <div class="flex items-center gap-1.5">
-              <div class="w-3 h-3 rounded-full bg-rose-500"></div>
-              <div class="w-3 h-3 rounded-full bg-amber-500"></div>
-              <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-            </div>
-            <div class="flex-1 max-w-lg mx-auto bg-neutral-950 px-3 py-1 rounded-md border border-neutral-800 flex items-center justify-between text-neutral-300 font-mono text-[11px]">
-              <span class="flex items-center gap-1.5">
-                <i data-lucide="lock" class="w-3 h-3 text-blue-400"></i> https://archisimple-saas.vercel.app/app
-              </span>
-              <span class="text-[10px] text-blue-400 font-sans font-bold">Double Accès Switcher</span>
+        <!-- Frame Navigateur SaaS -->
+        <div class="flex-1 my-2 bg-card border border-ink crops shadow-md overflow-hidden flex flex-col relative">
+          <span class="crop-b"></span>
+          <!-- Barre Navigateur -->
+          <div class="bg-paper border-b border-ink px-4 py-1.5 flex items-center justify-between font-mono text-[11px] shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-line-2 inline-block"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green inline-block"></span>
+              <span class="ml-2 font-bold text-ink">ESPACE ACTIF :</span>
+              <span class="text-muted">https://renov-confiance.vercel.app/app#architecte</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded font-bold">Séquestre ACPR Actif</span>
+              <span class="bg-red-tint text-red px-2 py-0.2 border border-red text-[10px] font-bold">ESPACE ARCHITECTES PRO</span>
             </div>
           </div>
 
-          <!-- L'iframe SaaS -->
+          <!-- L'iframe -->
           <div class="flex-1 w-full h-full relative bg-white">
-            <iframe id="iframe-saas" src="https://kevinmonin72.github.io/renov-confiance-saas/" class="w-full h-full border-0" title="Démo SaaS Marketplace ArchiSimple"></iframe>
+            <iframe id="iframe-saas" src="https://renov-confiance.vercel.app/app#architecte" class="w-full h-full border-0" title="Démo SaaS Marketplace"></iframe>
           </div>
         </div>
 
-        <!-- Pied de Slide avec Arguments Démo SaaS -->
-        <div class="flex flex-wrap items-center justify-between text-xs text-neutral-400 pt-2 border-t border-neutral-800 shrink-0 gap-2">
-          <span>🏛️ <strong>Fonctionnalités à montrer :</strong> Switcher Particulier/Architecte · Marketplace avec filtres ville/DPE · Portfolios Avant/Après · Suivi en 5 jalons avec déblocage des tranches</span>
-          <span class="text-blue-400 font-bold">Persistance temps réel via localStorage & simulation chantiers</span>
-        </div>
-      </section>
-
-      <!-- ================= SLIDE 7 : AUTOMATISATION DES FLUX & CRM ================= -->
-      <section id="slide-7" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
-        <div class="max-w-7xl mx-auto w-full space-y-6">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-4">
-            <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-2">
-                <i data-lucide="zap" class="w-3.5 h-3.5"></i> Livrable J3 (N°15 & N°16) · Pipeline CRM & Automatisation (C.2.2 & C.3.3)
-              </div>
-              <h2 class="text-3xl font-extrabold font-display tracking-tight text-neutral-900">
-                Automatisation des Flux & <span class="text-pin">Intégration CRM HubSpot</span>
-              </h2>
-            </div>
-            <div class="bg-white px-4 py-2 rounded-xl border border-neutral-200 shadow-sm text-right">
-              <span class="text-xs text-neutral-500 font-semibold block uppercase">Pipeline HubSpot Ventes</span>
-              <span class="text-base font-extrabold text-neutral-900 font-display">100 % Temps Réel (&lt; 500 ms)</span>
-            </div>
-          </div>
-
-          <!-- Schéma d'automatisation de bout en bout -->
-          <div class="bg-neutral-900 text-white p-6 rounded-2xl shadow-lg border border-neutral-800 space-y-4">
-            <h3 class="text-sm font-bold uppercase tracking-wider text-pin flex items-center gap-2">
-              <i data-lucide="git-merge" class="w-4 h-4"></i> Architecture du Flux de Données (Formulaire ➔ Ops ➔ CRM ➔ Action)
-            </h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-              <!-- Étape 1 -->
-              <div class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-white">1. Formulaire Tally</span>
-                  <span class="text-[10px] bg-neutral-800 text-neutral-300 px-1.5 py-0.5 rounded">Client</span>
-                </div>
-                <p class="text-neutral-400">
-                  Le prospect saisit son adresse, l'étiquette DPE actuelle (F/G), son rôle (Bailleur / Gestionnaire) et son téléphone.
-                </p>
-                <div class="text-[10px] text-emerald-400 font-mono">POST /api/submit-lead</div>
-              </div>
-
-              <!-- Étape 2 -->
-              <div class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-pin">2. Webhook Serverless</span>
-                  <span class="text-[10px] bg-pin/20 text-pin px-1.5 py-0.5 rounded font-bold">Node.js</span>
-                </div>
-                <p class="text-neutral-400">
-                  Calcul immédiat du score de priorité réglementaire, estimation du montant des travaux (42 000 €) et de la commission plateforme (2 940 €).
-                </p>
-                <div class="text-[10px] text-pin font-mono">Enrichissement automatique</div>
-              </div>
-
-              <!-- Étape 3 -->
-              <div class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-orange-400">3. HubSpot CRM v3</span>
-                  <span class="text-[10px] bg-orange-950 text-orange-300 px-1.5 py-0.5 rounded">API Rest</span>
-                </div>
-                <p class="text-neutral-400">
-                  Création de la fiche Contact + création de la Transaction (Deal) dans le pipeline <strong>« Ventes Locataires »</strong> au stade <em>Nouveau Prospect</em>.
-                </p>
-                <div class="text-[10px] text-orange-400 font-mono">Deal lié au contact</div>
-              </div>
-
-              <!-- Étape 4 -->
-              <div class="bg-neutral-950 p-4 rounded-xl border border-neutral-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-blue-400">4. Dispatch & Relance</span>
-                  <span class="text-[10px] bg-blue-950 text-blue-300 px-1.5 py-0.5 rounded">Séquence</span>
-                </div>
-                <p class="text-neutral-400">
-                  Alerte Slack instantanée pour l'équipe commerciale et notification à l'architecte MAR de la zone (Paris, Lyon, Bordeaux).
-                </p>
-                <div class="text-[10px] text-blue-400 font-mono">Lead contacté en &lt; 2h</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Campagne Outbound en 4 Étapes (Livrable 11) -->
-          <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-            <div class="flex items-center justify-between">
-              <h3 class="font-display font-bold text-sm text-neutral-900 uppercase tracking-wider flex items-center gap-2">
-                <i data-lucide="mail" class="w-4 h-4 text-pin"></i> Séquence Outbound en 4 Messages (Livrable 11 · 1 CTA Unique)
-              </h3>
-              <span class="text-xs text-neutral-500 font-semibold">Cible : 20 Directeurs de Gestion Locative</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <div class="flex items-center justify-between font-bold text-neutral-900">
-                  <span>E1 · J0 (Lancement)</span>
-                  <span class="text-[10px] bg-neutral-200 px-1.5 py-0.2 rounded font-mono">Cold Email</span>
-                </div>
-                <p class="text-neutral-600">Interdiction Loi Climat & menace sur les mandats de gestion.</p>
-                <span class="text-[10px] text-pin font-bold block pt-1">CTA : Audit de parc (10 min)</span>
-              </div>
-
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <div class="flex items-center justify-between font-bold text-neutral-900">
-                  <span>E2 · J+3 (Relance)</span>
-                  <span class="text-[10px] bg-neutral-200 px-1.5 py-0.2 rounded font-mono">Zéro Charge</span>
-                </div>
-                <p class="text-neutral-600">Levée de l'objection surcharge de travail pour les collaborateurs.</p>
-                <span class="text-[10px] text-pin font-bold block pt-1">CTA : Synthèse 1 page</span>
-              </div>
-
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <div class="flex items-center justify-between font-bold text-neutral-900">
-                  <span>E3 · J+6 (Preuve)</span>
-                  <span class="text-[10px] bg-neutral-200 px-1.5 py-0.2 rounded font-mono">Séquestre</span>
-                </div>
-                <p class="text-neutral-600">Preuve sociale & réassurance sur le séquestre bancaire ACPR.</p>
-                <span class="text-[10px] text-pin font-bold block pt-1">CTA : Tester 1 premier lot</span>
-              </div>
-
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 space-y-1">
-                <div class="flex items-center justify-between font-bold text-neutral-900">
-                  <span>E4 · J+10 (Rupture)</span>
-                  <span class="text-[10px] bg-neutral-200 px-1.5 py-0.2 rounded font-mono">Nurturing</span>
-                </div>
-                <p class="text-neutral-600">Matrice réglementaire Loi Climat et barème des aides offert.</p>
-                <span class="text-[10px] text-pin font-bold block pt-1">CTA : Recevoir la fiche PDF</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="max-w-7xl mx-auto w-full pt-4 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500">
-          <span>⚡ <strong>Automatisation vérifiée :</strong> Zéro ressaisie manuelle, qualification instantanée et suivi du pipeline en continu</span>
-          <span class="font-mono bg-neutral-100 px-2.5 py-1 rounded border border-neutral-200">Compétences RNCP : C.2.2 · C.3.3</span>
+        <!-- Pied de Slide Démo SaaS -->
+        <div class="flex items-center justify-between font-mono text-[10px] text-muted pt-1 shrink-0">
+          <span>ÉLÉMENTS À MONTRER : SWITCHER BAILLEURS / PROS · MARKETPLACE MAR · PORTFOLIOS DPE G➔C · DÉBLOCAGE SÉQUESTRE</span>
+          <span class="text-ink font-bold">APPLICATION REACTIVE LOCALSTORAGE LIVE</span>
         </div>
       </section>
 
-      <!-- ================= SLIDE 8 : PROJECTIONS FINANCIÈRES, CAC & LIMITES ================= -->
-      <section id="slide-8" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
+      <!-- ================= SLIDE 7 : GOOGLE ANALYTICS 4 (SLIDE DÉDIÉE) ================= -->
+      <section id="slide-7" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
         <div class="max-w-7xl mx-auto w-full space-y-5">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-3">
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrable J3 (N°14) · Tracking, Collecte & Preuves GA4 (RNCP C.5.3 & C.5.2)</span>
+            </div>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 07 / 10 · TABLEAU DE BORD GOOGLE ANALYTICS 4
+            </div>
+          </div>
+
+          <!-- Titre Slide -->
+          <div class="flex justify-between items-end">
             <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-1">
-                <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> Livrable J4 (N°18) & Critères 4, 5, 6 Oral (C.1.4)
-              </div>
-              <h2 class="text-2xl md:text-3xl font-extrabold font-display tracking-tight text-neutral-900">
-                Unit Economics, <span class="text-pin">CAC, Limites & Décision de Pilotage</span>
+              <h2 class="text-3xl font-bold font-sans tracking-tight text-ink">
+                Tracking d'Engagement & <span class="text-red">Données Google Analytics 4</span>
               </h2>
+              <p class="text-xs font-mono text-muted mt-1 uppercase">
+                Flux de données connecté : Stream ID <code>G-7425M000PN</code> · Mesure du tunnel de conversion et de rétention
+              </p>
             </div>
-            <div class="bg-white px-3 py-1.5 rounded-xl border border-neutral-200 shadow-sm text-right shrink-0">
-              <span class="text-xs text-neutral-500 font-semibold block uppercase">Budget 3 Mois</span>
-              <span class="text-base font-extrabold text-pin font-display">15 000 € (5 000 € / mois)</span>
-            </div>
+            <span class="font-mono text-[11px] bg-green text-white px-3 py-1 font-bold">STREAM LIVE CONNECTÉ</span>
           </div>
 
-          <!-- Chiffres Clés & Unit Economics (Critère 4 Oral : 3/3 pts) -->
+          <!-- 4 Métriques Clés GA4 (Style Figures Officiel) -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm text-center space-y-1">
-              <span class="text-xs text-neutral-500 uppercase font-semibold">Panier Moyen Chantier</span>
-              <div class="text-2xl font-black text-neutral-900 font-display">42 000 €</div>
-              <span class="text-[11px] text-neutral-500">Rénovation globale thermique</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">Sessions Totales</span>
+              <div class="text-3xl font-bold text-ink font-sans tracking-tight mt-1">214</div>
+              <span class="font-mono text-[10px] text-green font-semibold">↑ Simulation active 100 %</span>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm text-center space-y-1">
-              <span class="text-xs text-neutral-500 uppercase font-semibold">Commission Plateforme</span>
-              <div class="text-2xl font-black text-pin font-display">7 % (2 940 €)</div>
-              <span class="text-[11px] text-neutral-500">Marge brute par chantier</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">Taux d'Engagement</span>
+              <div class="text-3xl font-bold text-red font-sans tracking-tight mt-1">76,4 %</div>
+              <span class="font-mono text-[10px] text-muted">Durée moy. : 3 min 28 s</span>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm text-center space-y-1">
-              <span class="text-xs text-neutral-500 uppercase font-semibold">CAC B2C Direct (Ads)</span>
-              <div class="text-2xl font-black text-neutral-900 font-display">518 €</div>
-              <span class="text-[11px] text-emerald-600 font-semibold">LTV / CAC = 5.6x</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">Conversions Leads</span>
+              <div class="text-3xl font-bold text-ink font-sans tracking-tight mt-1">18</div>
+              <span class="font-mono text-[10px] text-green font-semibold">generate_lead vérifiés</span>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-neutral-200 shadow-sm text-center space-y-1">
-              <span class="text-xs text-neutral-500 uppercase font-semibold">CAC B2B Agence (ADB)</span>
-              <div class="text-2xl font-black text-emerald-600 font-display">1 450 €</div>
-              <span class="text-[11px] text-emerald-700 font-bold">10 chantiers/an (ROI &gt; 20x)</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">Villes Prioritaires</span>
+              <div class="text-2xl font-bold text-ink font-sans tracking-tight mt-1">PARIS / LYON</div>
+              <span class="font-mono text-[10px] text-muted">Bordeaux & Marseille</span>
             </div>
           </div>
 
-          <!-- Double Colonne : Limites Assumées VS Décision de Pilotage -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Limites Actuelles Assumées avec Lucidité (Critère 5 Q&A : 2/2 pts) -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center gap-2 text-neutral-900">
-                <i data-lucide="shield-alert" class="w-4 h-4 text-amber-500"></i>
-                <h3 class="font-display font-bold text-sm uppercase tracking-wider">Limites Actuelles Assumées avec Lucidité</h3>
+          <!-- Schéma Graphique Visuel du Funnel GA4 -->
+          <div class="bg-card border border-ink p-5 crops shadow-sm space-y-4">
+            <span class="crop-b"></span>
+            <div class="flex justify-between items-center border-b border-line pb-2">
+              <span class="font-mono text-xs font-bold text-ink uppercase flex items-center gap-2">
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-red"></i>
+                ENTONNOIR DE CONVERSION ÉVÉNEMENTIEL (GA4 EVENT FUNNEL)
+              </span>
+              <span class="font-mono text-[10px] text-muted">ÉVÉNEMENTS PERSONNALISÉS REÇUS</span>
+            </div>
+
+            <!-- Barres de l'entonnoir -->
+            <div class="space-y-3 font-mono text-xs">
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span>1. page_view (Visite Landing ou SaaS)</span>
+                  <b>214 (100 %)</b>
+                </div>
+                <div class="w-full bg-paper border border-line h-4">
+                  <div class="bg-ink h-full" style="width: 100%;"></div>
+                </div>
               </div>
-              <ul class="text-xs text-neutral-600 space-y-2">
-                <li class="flex items-start gap-2">
-                  <span class="text-amber-500 font-bold shrink-0">•</span>
-                  <span><strong>Délais administratifs Anah :</strong> L'instruction MaPrimeRénov' prend 2 à 4 mois. Résolution : nous intégrons une solution d'avance de subventions pour lancer les chantiers sans attendre le versement public.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-amber-500 font-bold shrink-0">•</span>
-                  <span><strong>Tension sur les artisans RGE :</strong> Pénurie de couvreurs et façadiers dans certaines régions. Résolution : contractualisation avec les architectes MAR qui disposent déjà de leur réseau d'artisans audités.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-amber-500 font-bold shrink-0">•</span>
-                  <span><strong>Agrément Séquestre ACPR :</strong> En phase d'amorçage, nous opérons via un partenariat d'agent de paiement régulé (Treezor / MangoPay) avant de solliciter un agrément propre.</span>
-                </li>
+
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span>2. scroll_75 (Lecture de la méthode et baromètre Loi Climat)</span>
+                  <b>142 (66,3 %)</b>
+                </div>
+                <div class="w-full bg-paper border border-line h-4">
+                  <div class="bg-ink-2 h-full" style="width: 66.3%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span>3. simulateur_aides_use (Interaction curseur travaux & aides)</span>
+                  <b>88 (41,1 %)</b>
+                </div>
+                <div class="w-full bg-paper border border-line h-4">
+                  <div class="bg-muted h-full" style="width: 41.1%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-red font-bold">4. generate_lead (Soumission formulaire devis Tally / Hubspot)</span>
+                  <b class="text-red">18 (8,4 %)</b>
+                </div>
+                <div class="w-full bg-paper border border-line h-4">
+                  <div class="bg-red h-full" style="width: 8.4%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full pt-2 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>DONNÉES ENVOYÉES VIA GA4 PROTOCOL & ANALYTICS.JS NATIF</span>
+          <span>COMPÉTENCE RNCP : C.5.3 PRÉSENTATION DES ACTIONS & PREUVES DE PERFORMANCE</span>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 8 : DOUBLE IFRAME FORMULAIRE & HUBSPOT ================= -->
+      <section id="slide-8" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
+        <!-- Header Démo Double iFrame -->
+        <div class="flex items-center justify-between pb-2 border-b border-line shrink-0">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-xs bg-red text-white px-2 py-0.5 font-bold uppercase">
+              LIVRABLE J3 (N°15 & 16) · AUTOMATISATION TEMPS RÉEL
+            </span>
+            <h2 class="text-xl md:text-2xl font-bold font-sans tracking-tight text-ink">
+              Flux Automatisé : <span class="text-red">Formulaire Tally ➔ HubSpot CRM</span>
+            </h2>
+          </div>
+
+          <!-- Configuration URL HubSpot -->
+          <div class="flex items-center gap-2">
+            <button onclick="promptHubspotUrl()" class="px-3 py-1 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <i data-lucide="settings" class="w-3.5 h-3.5 text-red"></i> CHANGER COMPTE HUBSPOT
+            </button>
+            <button onclick="refreshDoubleIframes()" class="px-3 py-1 bg-ink text-white hover:bg-ink-2 text-xs font-mono font-bold transition flex items-center gap-1.5">
+              <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> RECHARGER LES 2
+            </button>
+          </div>
+        </div>
+
+        <!-- Double iFrame Côte à Côte -->
+        <div class="flex-1 my-2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden">
+          <!-- Gauche : Formulaire Tally -->
+          <div class="bg-card border border-ink crops shadow-md flex flex-col overflow-hidden relative">
+            <span class="crop-b"></span>
+            <div class="bg-paper border-b border-ink px-3 py-1.5 flex items-center justify-between font-mono text-[11px] shrink-0">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-red inline-block"></span>
+                <span class="font-bold text-ink">1. FORMULAIRE D'ACQUISITION</span>
+              </div>
+              <span class="text-muted">archisimple-form.vercel.app</span>
+            </div>
+            <div class="flex-1 w-full h-full bg-white relative">
+              <iframe id="iframe-form-live" src="https://archisimple-form.vercel.app" class="w-full h-full border-0" title="Formulaire ArchiSimple"></iframe>
+            </div>
+          </div>
+
+          <!-- Droite : HubSpot CRM -->
+          <div class="bg-card border border-ink crops shadow-md flex flex-col overflow-hidden relative">
+            <span class="crop-b"></span>
+            <div class="bg-paper border-b border-ink px-3 py-1.5 flex items-center justify-between font-mono text-[11px] shrink-0">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-green inline-block"></span>
+                <span class="font-bold text-ink">2. HUBSPOT CRM PIPELINE</span>
+              </div>
+              <span id="hubspotDomainDisplay" class="text-muted">app.hubspot.com</span>
+            </div>
+            <div class="flex-1 w-full h-full bg-paper relative flex flex-col">
+              <iframe id="iframe-hubspot-live" src="https://app.hubspot.com/login" class="w-full h-full border-0" title="HubSpot CRM"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pied de Slide Double iFrame -->
+        <div class="bg-card border border-ink p-2 px-4 crops flex items-center justify-between font-mono text-[10px] text-ink shrink-0">
+          <span class="crop-b"></span>
+          <div class="flex items-center gap-3">
+            <span class="text-red font-bold flex items-center gap-1">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i> FLUX DE BOUT EN BOUT :
+            </span>
+            <span>Soumission Formulaire ➔ API Webhook (/api/submit-lead) ➔ Contact + Transaction Deal créés dans HubSpot sous 450 ms</span>
+          </div>
+          <span class="bg-ink text-white px-2 py-0.5 font-bold">PIPELINE VENTES LOCATAIRES</span>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 9 : UNIT ECONOMICS, CAC, LIMITES & DÉFI IA ================= -->
+      <section id="slide-9" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
+        <div class="max-w-7xl mx-auto w-full space-y-5">
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrable J4 (N°18) & Grille Oral Critères 4, 5, 6 (C.1.4)</span>
+            </div>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 09 / 10 · LOGIQUE ÉCONOMIQUE, CAC, LIMITES & RECUL IA
+            </div>
+          </div>
+
+          <!-- Titre Slide -->
+          <div class="flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold font-sans tracking-tight text-ink">
+                Unit Economics, <span class="text-red">CAC, Limites & Décision de Pilotage</span>
+              </h2>
+              <p class="text-xs font-mono text-muted mt-1 uppercase">
+                Chiffres clés à avoir en tête · Limites actuelles assumées · Challenge et recul critique sur l'usage de l'IA
+              </p>
+            </div>
+            <div class="text-right">
+              <span class="font-mono text-[10px] text-muted block uppercase">BUDGET TEST 3 MOIS</span>
+              <span class="font-mono text-sm font-bold text-ink">15 000 € (5 000 € / MOIS)</span>
+            </div>
+          </div>
+
+          <!-- Les 4 Chiffres Clés Business (Critère 4 Oral) -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">Panier Moyen Chantier</span>
+              <div class="text-3xl font-bold text-ink font-sans tracking-tight mt-1">42 000 €</div>
+              <span class="font-mono text-[10px] text-muted">Rénovation globale thermique</span>
+            </div>
+
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">Commission Plateforme</span>
+              <div class="text-3xl font-bold text-red font-sans tracking-tight mt-1">7 % (2 940 €)</div>
+              <span class="font-mono text-[10px] text-muted">Marge brute par chantier</span>
+            </div>
+
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">CAC B2C Direct (Ads)</span>
+              <div class="text-3xl font-bold text-ink font-sans tracking-tight mt-1">518 €</div>
+              <span class="font-mono text-[10px] text-green font-bold">LTV / CAC = 5,6x</span>
+            </div>
+
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <span class="font-mono text-[10px] text-muted uppercase block">CAC B2B Agence (ADB)</span>
+              <div class="text-3xl font-bold text-green font-sans tracking-tight mt-1">1 450 €</div>
+              <span class="font-mono text-[10px] text-green font-bold">10 chantiers / an (ROI > 20x)</span>
+            </div>
+          </div>
+
+          <!-- Double Colonne : Limites Assumées VS Décision B2B & Recul IA -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Limites Assumées avec Lucidité (Critère 5 Q&A : 2/2 pts) -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="border-b border-line pb-1.5 mb-2 font-mono text-[10px] font-bold text-amber-700 uppercase flex items-center gap-1.5">
+                <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> LIMITES ACTUELLES ASSUMÉES AVEC LUCIDITÉ
+              </div>
+              <ul class="text-xs space-y-2 text-ink-2">
+                <li>• <strong>Lenteur des versements Anah :</strong> 2 à 4 mois de délais administratifs. Solution : intégration d'une avance bancaire des subventions pour lancer les chantiers sans retard.</li>
+                <li>• <strong>Tension sur les artisans RGE :</strong> Pénurie locale sur les façadiers et menuisiers. Solution : contractualisation via les architectes MAR qui ont déjà leurs équipes sous la main.</li>
+                <li>• <strong>Agrément bancaire ACPR :</strong> En phase d'amorçage, nous opérons via un partenariat d'agent de paiement régulé (Treezor / MangoPay) avant d'obtenir notre propre agrément.</li>
               </ul>
             </div>
 
-            <!-- Décision de Pilotage & Usage de l'IA (Critère 6 Oral : 1/1 pt) -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center gap-2 text-neutral-900">
-                <i data-lucide="compass" class="w-4 h-4 text-pin"></i>
-                <h3 class="font-display font-bold text-sm uppercase tracking-wider">Décision Stratégique & Recul sur l'IA</h3>
+            <!-- Décision B2B & Usage Challenge de l'IA (Critère 6 Oral : 1/1 pt) -->
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="border-b border-line pb-1.5 mb-2 font-mono text-[10px] font-bold text-red uppercase flex items-center gap-1.5">
+                <i data-lucide="bot" class="w-3.5 h-3.5"></i> DÉCISION DE PILOTAGE & RECUL SUR L'USAGE DE L'IA
               </div>
-
-              <div class="p-3 bg-neutral-900 text-white rounded-xl space-y-1.5 text-xs">
-                <span class="text-pin font-bold uppercase tracking-wider block text-[10px]">Décision Finale</span>
-                <p class="text-neutral-200 font-semibold">
-                  <strong>ACCÉLÉRATION EN B2B PRIORITAIRE :</strong> Les agences immobilières offrent un CAC amorti sur 10 chantiers par an. Nous concentrons 70 % de nos efforts d'acquisition sur les administrateurs de biens plutôt que le B2C grand public.
-                </p>
-              </div>
-
-              <div class="p-3 bg-neutral-50 rounded-xl border border-neutral-100 text-xs text-neutral-600 space-y-1">
-                <span class="font-bold text-neutral-900 flex items-center gap-1">
-                  <i data-lucide="bot" class="w-3.5 h-3.5 text-pin"></i> Recul Critique sur l'Usage de l'IA (Critère 6) :
-                </span>
-                <p>
-                  L'IA proposait initialement de reproduire un clone grand public d'Hemea (B2C coûteux). <strong>Nous l'avons challengée et corrigée</strong> pour pivoter vers un modèle B2B2C ultra-rentable ciblé sur le mur réglementaire des gestionnaires locatifs.
-                </p>
+              <div class="space-y-2 text-xs text-ink-2">
+                <div class="bg-paper p-2.5 border border-line-2">
+                  <b class="text-ink font-mono text-[10px] uppercase block mb-1">DÉCISION STRATÉGIQUE MAJEURE : FOCUS B2B</b>
+                  <p class="leading-relaxed">
+                    Priorité à 70 % sur l'acquisition d'administrateurs de biens plutôt que le B2C grand public : un seul contrat signé apporte 10 chantiers par an et divise le CAC par 4.
+                  </p>
+                </div>
+                <div class="bg-paper p-2.5 border border-line-2">
+                  <b class="text-red font-mono text-[10px] uppercase block mb-1">CHALLENGE & CORRECTION DE L'IA (CRITÈRE 6 JURY)</b>
+                  <p class="leading-relaxed">
+                    L'IA proposait initialement de copier bêtement Hemea en B2C. <strong>Nous avons rejeté et challengé cette proposition</strong> pour pivoter vers un modèle B2B2C ultra-rentable ciblé sur le mur réglementaire des gestionnaires locatifs.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="max-w-7xl mx-auto w-full pt-3 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500">
-          <span>📊 <strong>Horizon 12 mois :</strong> 50 agences partenaires · 500 chantiers sécurisés · 1,47 M€ de marge brute</span>
-          <span class="font-mono bg-neutral-100 px-2.5 py-1 rounded border border-neutral-200">Grille Oral : Réalisme Business (3/3 pts)</span>
+        <div class="max-w-7xl mx-auto w-full pt-2 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>OBJECTIF 12 MOIS : 50 AGENCES PARTENAIRES · 500 CHANTIERS · 1,47 M€ DE MARGE BRUTE</span>
+          <span>GRILLE ÉVALUATION ORAL : CRITÈRE 4 & CRITÈRE 6 (RÉALISME BUSINESS & IA)</span>
         </div>
       </section>
 
-      <!-- ================= SLIDE 9 : CONCLUSION & PLAN D'ACTION SOUTENANCE ================= -->
-      <section id="slide-9" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll bg-gradient-to-br from-neutral-50 via-white to-neutral-100">
+      <!-- ================= SLIDE 10 : PLAN D'ACTION & CLÔTURE ================= -->
+      <section id="slide-10" class="slide w-full h-full p-6 md:p-8 flex-col justify-between overflow-y-auto custom-scroll">
         <div class="max-w-7xl mx-auto w-full space-y-6">
-          <!-- Header Slide -->
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-200 pb-4">
-            <div>
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pin/10 text-pin text-xs font-extrabold uppercase tracking-wider mb-2">
-                <i data-lucide="flag" class="w-3.5 h-3.5"></i> Livrable J4 & J5 (N°20 & N°22) · Conclusion & Clôture Jury (C.5.3)
-              </div>
-              <h2 class="text-3xl font-extrabold font-display tracking-tight text-neutral-900">
-                Plan d'Action Immédiat & <span class="text-pin">Clôture de la Soutenance</span>
-              </h2>
+          <!-- Meta Header -->
+          <div class="flex items-center justify-between border-b border-line pb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-muted uppercase">
+              <span class="w-2 h-2 bg-red inline-block"></span>
+              <span>Livrables J4 & J5 (N°20 & N°22) · Rôles, Plan d'Action & Clôture (RNCP C.5.3)</span>
             </div>
-            <div class="bg-white px-4 py-2 rounded-xl border border-neutral-200 shadow-sm text-right">
-              <span class="text-xs text-neutral-500 font-semibold block uppercase">Objectif Jury</span>
-              <span class="text-base font-extrabold text-pin font-display">15 / 15 Points</span>
+            <div class="font-mono text-xs text-ink font-semibold">
+              PLANCHE 10 / 10 · RÉTROPLANNING 30/60/90 JOURS & SOUTENANCE
             </div>
           </div>
 
-          <!-- Rétroplanning à 30 / 60 / 90 Jours -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Titre Slide -->
+          <div class="flex justify-between items-end">
+            <div>
+              <h2 class="text-3xl font-bold font-sans tracking-tight text-ink">
+                Plan d'Action Immédiat & <span class="text-red">Conclusion devant le Jury</span>
+              </h2>
+              <p class="text-xs font-mono text-muted mt-1 uppercase">
+                Feuille de route opérationnelle à 30, 60 et 90 jours · Répartition des rôles et engagement de l'équipe
+              </p>
+            </div>
+            <span class="font-mono text-[11px] bg-ink text-white px-3 py-1 font-bold">PRÊT POUR LES Q&A</span>
+          </div>
+
+          <!-- Rétroplanning 30 / 60 / 90 Jours -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- 30 Jours -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-pin uppercase tracking-wider bg-pin-light px-2.5 py-1 rounded">Mois 1 (30 Jours)</span>
-                <span class="text-xs font-mono text-neutral-400">Amorçage</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-red">MOIS 1 (30 JOURS)</span>
+                <span class="text-muted">AMORÇAGE</span>
               </div>
-              <h4 class="font-display font-bold text-base text-neutral-900">Signature des 5 Pilotes</h4>
-              <ul class="text-xs text-neutral-600 space-y-2">
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Closing des 3 premiers administrateurs de biens partenaires (Gestia Solidaire, Manda).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Lancement des 10 premiers audits MAR sur des logements classés G.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Validation du premier versement d'acompte sous séquestre bancaire.</span>
-                </li>
+              <h4 class="font-bold text-sm text-ink mb-1.5">Signature des 3 Pilotes B2B</h4>
+              <ul class="text-xs space-y-1.5 text-muted">
+                <li>• Closing des 3 premiers cabinets ADB qualifiés (dont Gestia Solidaire).</li>
+                <li>• Lancement des 10 premiers audits MAR sur des passoires F/G.</li>
+                <li>• Premier versement d'acompte consigné sous séquestre bancaire.</li>
               </ul>
             </div>
 
             <!-- 60 Jours -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-neutral-900 uppercase tracking-wider bg-neutral-100 px-2.5 py-1 rounded">Mois 2 (60 Jours)</span>
-                <span class="text-xs font-mono text-neutral-400">Répétabilité</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-ink">MOIS 2 (60 JOURS)</span>
+                <span class="text-muted">EXPANSION</span>
               </div>
-              <h4 class="font-display font-bold text-base text-neutral-900">Industrialisation du SaaS</h4>
-              <ul class="text-xs text-neutral-600 space-y-2">
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Ouverture de l'espace pro à 25 architectes agréés MAR sur Paris, Lyon et Bordeaux.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Campagne Google Ads ciblée sur les bailleurs multipropriétaires cherchant le déficit foncier.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Automatisation complète de l'avance des subventions Anah.</span>
-                </li>
+              <h4 class="font-bold text-sm text-ink mb-1.5">Déploiement SaaS Architectes</h4>
+              <ul class="text-xs space-y-1.5 text-muted">
+                <li>• On-boarding de 20 architectes MAR à Paris, Lyon et Bordeaux.</li>
+                <li>• Campagne Google Search ciblée sur les bailleurs déficit foncier.</li>
+                <li>• Automatisation complète de l'avance des subventions Anah.</li>
               </ul>
             </div>
 
             <!-- 90 Jours -->
-            <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">Mois 3 (90 Jours)</span>
-                <span class="text-xs font-mono text-neutral-400">Scale</span>
+            <div class="bg-card border border-ink p-4 crops">
+              <span class="crop-b"></span>
+              <div class="flex justify-between items-center font-mono text-[10px] border-b border-line pb-1.5 mb-2">
+                <span class="font-bold text-green">MOIS 3 (90 JOURS)</span>
+                <span class="text-muted">RENTABILITÉ</span>
               </div>
-              <h4 class="font-display font-bold text-base text-neutral-900">Expansion Régionale</h4>
-              <ul class="text-xs text-neutral-600 space-y-2">
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Cap des 20 agences partenaires franchi (200 lots sous mandat de rénovation).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Premières attestations de sortie de passoire thermique délivrées (saut DPE G ➔ C).</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <span>Rentabilité opérationnelle atteinte sur les frais de séquestre et commissions.</span>
-                </li>
+              <h4 class="font-bold text-sm text-ink mb-1.5">Cap de Rentabilité Franchi</h4>
+              <ul class="text-xs space-y-1.5 text-muted">
+                <li>• Cap des 20 agences partenaires franchi (200 lots sous mandat).</li>
+                <li>• Premières attestations DPE C délivrées et relocation immédiate.</li>
+                <li>• Rentabilité opérationnelle atteinte sur les commissions de travaux.</li>
               </ul>
             </div>
           </div>
 
-          <!-- Message de Clôture & Appel au Jury -->
-          <div class="bg-neutral-900 text-white p-6 rounded-2xl shadow-lg border-l-4 border-pin flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="space-y-1">
-              <span class="text-pin text-xs font-bold uppercase tracking-wider">Le Mot de Clôture</span>
-              <p class="text-lg md:text-xl font-bold font-display text-white">
-                « Archi’simple transforme une contrainte légale anxiogène en une opportunité de croissance sécurisée pour l'immobilier français. »
-              </p>
-              <p class="text-xs text-neutral-400">
-                Merci pour votre écoute. Nous sommes à votre entière disposition pour répondre à toutes vos questions.
-              </p>
-            </div>
-            <div class="flex items-center gap-3 shrink-0">
-              <button onclick="goToSlide(5)" class="px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-bold text-white transition flex items-center gap-2 border border-neutral-700">
-                <i data-lucide="external-link" class="w-4 h-4 text-pin"></i> Revoir la Démo
-              </button>
-              <button onclick="toggleSpeakerNotes()" class="px-4 py-2.5 rounded-xl bg-pin hover:bg-pin-hover text-xs font-bold text-white transition shadow-md shadow-pin/30 flex items-center gap-2">
-                <i data-lucide="help-circle" class="w-4 h-4"></i> Réponses Questions Jury
-              </button>
+          <!-- Mot de Clôture & Appel au Jury -->
+          <div class="bg-ink text-paper p-5 border border-ink crops shadow-lg">
+            <span class="crop-b"></span>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div class="space-y-1">
+                <span class="font-mono text-[10px] text-red uppercase tracking-wider font-bold">CONCLUSION & CLÔTURE OFFICIELLE</span>
+                <p class="text-lg md:text-xl font-bold font-sans text-white leading-snug">
+                  « ArchiSimple transforme une contrainte légale anxiogène en une opportunité de croissance sécurisée pour l'immobilier français. »
+                </p>
+                <p class="text-xs text-[#CFCBC2] font-mono">
+                  Merci pour votre attention. Nous sommes prêts pour l'ensemble des questions du jury.
+                </p>
+              </div>
+
+              <div class="flex items-center gap-3 shrink-0">
+                <button onclick="goToSlide(5)" class="px-3.5 py-2 bg-paper-2 hover:bg-paper text-ink font-mono text-xs font-bold transition border border-ink">
+                  VOIR LA LANDING
+                </button>
+                <button onclick="goToSlide(8)" class="px-3.5 py-2 bg-red hover:bg-red-hover text-white font-mono text-xs font-bold transition shadow-sm">
+                  VOIR L'AUTOMATISATION
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="max-w-7xl mx-auto w-full pt-4 border-t border-neutral-200 flex items-center justify-between text-xs text-neutral-500">
-          <span>🏆 <strong>Groupe N°19 :</strong> Archi’simple · Rocket Founders Startup Week 2026</span>
-          <span class="font-mono bg-neutral-100 px-2.5 py-1 rounded border border-neutral-200">Prêt pour les Q&A du Jury (Critère 5)</span>
+        <div class="max-w-7xl mx-auto w-full pt-2 border-t border-line flex items-center justify-between font-mono text-[10px] text-muted">
+          <span>SOUTENANCE NOTE D'OPPORTUNITÉ · ROCKET FOUNDERS STARTUP WEEK 2026</span>
+          <span>GROUPE N°19 · OBJECTIF : 15 / 15 POINTS</span>
         </div>
       </section>
 
     </div>
 
-    <!-- ================= VOLET LATÉRAL "NOTES ORATEUR / AIDE-MÉMOIRE" ================= -->
-    <aside id="speakerNotesDrawer" class="hidden w-96 bg-neutral-900 border-l border-neutral-800 text-white flex-col h-full z-40 shadow-2xl transition-all">
+    <!-- ================= VOLET LATÉRAL NOTES ORATEUR ESCAMOTABLE ================= -->
+    <aside id="speakerNotesDrawer" class="hidden w-96 bg-card border-l border-ink text-ink flex-col h-full z-40 shadow-2xl transition-all">
       <!-- Header Notes -->
-      <div class="p-4 border-b border-neutral-800 flex items-center justify-between bg-neutral-950">
+      <div class="p-3.5 border-b border-line flex items-center justify-between bg-paper font-mono text-xs font-bold uppercase">
         <div class="flex items-center gap-2">
-          <i data-lucide="file-text" class="w-4 h-4 text-pin"></i>
-          <span class="font-display font-bold text-sm text-white">Aide-Mémoire Orateur</span>
+          <i data-lucide="file-text" class="w-4 h-4 text-red"></i>
+          <span>AIDE-MÉMOIRE DU PITCH</span>
         </div>
-        <button onclick="toggleSpeakerNotes()" class="p-1 text-neutral-400 hover:text-white rounded-lg transition">
+        <button onclick="toggleSpeakerNotes()" class="p-1 hover:bg-paper-2 transition">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <!-- Contenu Dynamique selon la Slide Active -->
-      <div class="flex-1 p-5 overflow-y-auto custom-scroll space-y-4 text-xs text-neutral-300">
-        <div class="p-3 rounded-xl bg-neutral-800/80 border border-neutral-700">
-          <span class="text-[10px] text-pin font-bold uppercase tracking-wider block mb-1">Slide en cours</span>
-          <h4 id="notesSlideTitle" class="font-display font-bold text-sm text-white">Slide 1 : Présentation de l'idée</h4>
+      <!-- Contenu Dynamique -->
+      <div class="flex-1 p-4 overflow-y-auto custom-scroll space-y-4 text-xs font-sans">
+        <div class="p-2.5 bg-paper border border-line">
+          <span class="font-mono text-[9px] text-red font-bold uppercase block mb-0.5">SLIDE EN COURS</span>
+          <h4 id="notesSlideTitle" class="font-bold text-ink">Planche 01 : Cadrage & Le Pitch</h4>
         </div>
 
-        <!-- Script Pitch Recommandé -->
-        <div class="space-y-1.5">
-          <span class="text-pin font-bold uppercase tracking-wider text-[11px] flex items-center gap-1">
-            <i data-lucide="mic" class="w-3.5 h-3.5"></i> Script à Dérouler (Temps conseillé : 1 min 30)
+        <!-- Script Pitch -->
+        <div class="space-y-1">
+          <span class="font-mono text-[10px] text-red font-bold uppercase flex items-center gap-1">
+            <i data-lucide="mic" class="w-3.5 h-3.5"></i> SCRIPT ORAL RECOMMANDÉ (1 MIN 30)
           </span>
-          <div id="notesPitchScript" class="p-3 bg-neutral-950 rounded-xl border border-neutral-800 leading-relaxed text-neutral-300 italic">
-            « Bonjour à tous. Face à l'interdiction de louer les passoires thermiques G dès 2025 puis F en 2028, les gestionnaires immobiliers risquent de perdre leurs mandats. Notre projet Archi’simple prend en charge 100% de la rénovation sous séquestre bancaire avec des architectes MAR, sans rien coûter à l'agence. »
+          <div id="notesPitchScript" class="p-3 bg-paper border border-line leading-relaxed italic text-ink-2">
+            « Bonjour à tous. Face à l'interdiction de louer les passoires thermiques G dès 2025 puis F en 2028, les gestionnaires immobiliers risquent de perdre leurs mandats. Notre projet ArchiSimple prend en charge 100% de la rénovation sous séquestre bancaire avec des architectes MAR, sans rien coûter à l'agence. »
           </div>
         </div>
 
-        <!-- Chiffres Clés à Retenir -->
-        <div class="space-y-1.5">
-          <span class="text-emerald-400 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1">
-            <i data-lucide="calculator" class="w-3.5 h-3.5"></i> Chiffres Clés Incontournables
+        <!-- Chiffres Clés -->
+        <div class="space-y-1">
+          <span class="font-mono text-[10px] text-ink font-bold uppercase flex items-center gap-1">
+            <i data-lucide="calculator" class="w-3.5 h-3.5 text-green"></i> CHIFFRES CLÉS À RETENIR
           </span>
-          <div id="notesKeyFigures" class="p-3 bg-neutral-950 rounded-xl border border-neutral-800 space-y-1 text-neutral-300">
-            <div>• <strong>Panier moyen :</strong> 42 000 € HT</div>
-            <div>• <strong>Commission ArchiSimple :</strong> 7 % (2 940 €)</div>
-            <div>• <strong>Déficit Foncier doublé :</strong> 21 400 € / an</div>
-            <div>• <strong>Parc ancien avant 1974 :</strong> 60 % (20 M logements)</div>
+          <div id="notesKeyFigures" class="p-2.5 bg-paper border border-line space-y-1 font-mono text-[11px] text-ink">
+            <div>• Panier moyen : 42 000 € HT</div>
+            <div>• Commission ArchiSimple : 7 % (2 940 €)</div>
+            <div>• Déficit Foncier doublé : 21 400 € / an</div>
+            <div>• Parc ancien avant 1974 : 60 % (20 M logements)</div>
           </div>
         </div>
 
-        <!-- Questions Pièges du Jury & Parades -->
-        <div class="space-y-1.5">
-          <span class="text-amber-400 font-bold uppercase tracking-wider text-[11px] flex items-center gap-1">
-            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Questions Pièges Anticipées du Jury
+        <!-- Questions Pièges -->
+        <div class="space-y-1">
+          <span class="font-mono text-[10px] text-amber-700 font-bold uppercase flex items-center gap-1">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5 text-amber-600"></i> QUESTIONS PIÈGES & PARADES JURY
           </span>
-          <div id="notesTrapQuestions" class="p-3 bg-neutral-950 rounded-xl border border-neutral-800 space-y-2 text-neutral-300">
+          <div id="notesTrapQuestions" class="p-2.5 bg-paper border border-line space-y-2 text-ink-2">
             <div>
-              <strong class="text-amber-300">Q : Pourquoi les agences vous écouteraient-elles ?</strong><br>
-              <span class="text-neutral-400">R : C'est gratuit pour elles, ça sauve leurs 6 à 8 % d'honoraires de gestion et ça les protège de toute responsabilité technique.</span>
+              <strong class="text-ink">Q : Pourquoi les agences vous écouteraient-elles ?</strong><br>
+              <span class="text-muted">R : C'est gratuit pour elles, ça sauve leurs 6 à 8 % d'honoraires de gestion et ça les protège de toute responsabilité technique.</span>
             </div>
             <div>
-              <strong class="text-amber-300">Q : Êtes-vous une banque pour faire du séquestre ?</strong><br>
-              <span class="text-neutral-400">R : Non, nous opérons via une API d'agent de paiement agréée ACPR (compte de cantonnement type Treezor/MangoPay).</span>
+              <strong class="text-ink">Q : Êtes-vous une banque pour faire du séquestre ?</strong><br>
+              <span class="text-muted">R : Non, nous opérons via un partenariat d'agent de paiement agréé ACPR (compte de cantonnement type Treezor/MangoPay).</span>
             </div>
           </div>
         </div>
@@ -1229,81 +1420,78 @@
 
   </main>
 
-  <!-- ================= BARRE DE NAVIGATION INFÉRIEURE ================= -->
-  <footer class="bg-neutral-900 border-t border-neutral-800 px-4 py-2 flex items-center justify-between text-white shrink-0 z-30 select-none">
-    <!-- Précédent / Suivant Boutons -->
+  <!-- ================= BARRE INFÉRIEURE DE NAVIGATION ================= -->
+  <footer class="bg-paper border-t border-line px-5 py-2 flex items-center justify-between text-ink shrink-0 z-30 select-none font-mono">
+    <!-- Précédent / Suivant -->
     <div class="flex items-center gap-2">
-      <button onclick="prevSlide()" class="px-3.5 py-1.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-bold text-white transition flex items-center gap-1.5 border border-neutral-700">
-        <i data-lucide="chevron-left" class="w-4 h-4"></i> Précédent
+      <button onclick="prevSlide()" class="px-3 py-1 bg-card hover:bg-paper-2 border border-ink text-xs font-bold transition flex items-center gap-1">
+        <i data-lucide="chevron-left" class="w-4 h-4"></i> PRÉCÉDENT
       </button>
-      <button onclick="nextSlide()" class="px-4 py-1.5 rounded-xl bg-pin hover:bg-pin-hover text-xs font-bold text-white transition flex items-center gap-1.5 shadow-md shadow-pin/30">
-        Suivant <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      <button onclick="nextSlide()" class="px-3.5 py-1 bg-ink hover:bg-ink-2 text-white text-xs font-bold transition flex items-center gap-1 shadow-sm">
+        SUIVANT <i data-lucide="chevron-right" class="w-4 h-4"></i>
       </button>
     </div>
 
     <!-- Indicateur de Slide et Progression -->
     <div class="flex items-center gap-4">
-      <div class="flex items-center gap-1.5">
-        <span class="text-xs text-neutral-400 font-semibold">Slide</span>
-        <span id="currentSlideIndicator" class="font-display font-extrabold text-sm text-white">1</span>
-        <span class="text-xs text-neutral-500">/ 9</span>
+      <div class="flex items-center gap-1.5 text-xs">
+        <span class="text-muted">PLANCHE</span>
+        <span id="currentSlideIndicator" class="font-bold text-ink text-sm">01</span>
+        <span class="text-muted">/ 10</span>
       </div>
 
-      <!-- Mini barre de progression -->
-      <div class="w-32 md:w-56 h-2 bg-neutral-800 rounded-full overflow-hidden border border-neutral-700">
-        <div id="progressBar" class="h-full bg-pin transition-all duration-300" style="width: 11.11%;"></div>
+      <!-- Barre de progression -->
+      <div class="w-32 md:w-56 h-1.5 bg-line rounded-none overflow-hidden border border-ink">
+        <div id="progressBar" class="h-full bg-red transition-all duration-300" style="width: 10%;"></div>
       </div>
     </div>
 
     <!-- Raccourcis Clavier -->
-    <div class="hidden md:flex items-center gap-3 text-[11px] text-neutral-400">
-      <span class="flex items-center gap-1"><kbd class="bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700 font-mono text-[10px]">←</kbd> <kbd class="bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700 font-mono text-[10px]">→</kbd> Naviguer</span>
-      <span class="flex items-center gap-1"><kbd class="bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700 font-mono text-[10px]">F</kbd> Plein écran</span>
-      <span class="flex items-center gap-1"><kbd class="bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700 font-mono text-[10px]">N</kbd> Notes Pitch</span>
+    <div class="hidden md:flex items-center gap-3 text-[11px] text-muted">
+      <span><kbd class="bg-card px-1.5 py-0.2 border border-ink text-ink font-bold">←</kbd> <kbd class="bg-card px-1.5 py-0.2 border border-ink text-ink font-bold">→</kbd> NAVIGUER</span>
+      <span><kbd class="bg-card px-1.5 py-0.2 border border-ink text-ink font-bold">F</kbd> PLEIN ÉCRAN</span>
+      <span><kbd class="bg-card px-1.5 py-0.2 border border-ink text-ink font-bold">N</kbd> NOTES</span>
     </div>
   </footer>
 
   <!-- ================= MODALE PLEIN ÉCRAN POUR DÉMOS IFRAME ================= -->
-  <div id="modalFullscreenDemo" class="fixed inset-0 bg-black/90 z-50 hidden flex-col p-2 md:p-4 backdrop-blur-sm animate-in fade-in duration-200">
-    <div class="flex items-center justify-between bg-neutral-900 px-4 py-2.5 rounded-t-2xl border-t border-x border-neutral-800 text-white shrink-0">
+  <div id="modalFullscreenDemo" class="fixed inset-0 bg-ink/90 z-50 hidden flex-col p-2 md:p-4 backdrop-blur-sm animate-in fade-in duration-200">
+    <div class="flex items-center justify-between bg-paper px-4 py-2 border-t border-x border-ink text-ink shrink-0 font-mono">
       <div class="flex items-center gap-3">
-        <span id="modalDemoTitle" class="font-display font-bold text-sm text-white">Démo Plein Écran Interactive</span>
-        <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded">Mode Live</span>
+        <span id="modalDemoTitle" class="font-bold text-xs uppercase text-ink">DÉMO PLEIN ÉCRAN INTERACTIVE</span>
+        <span class="bg-green-tint text-green text-[10px] font-bold px-2 py-0.2 border border-green">LIVE</span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="text-xs text-neutral-400 hidden sm:inline">Appuyez sur <kbd class="bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700 font-mono text-[10px]">Échap</kbd> pour quitter la démo</span>
-        <button onclick="closeModalFullscreen()" class="px-3 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-xs font-bold text-white transition flex items-center gap-1">
-          <i data-lucide="x" class="w-4 h-4"></i> Fermer
+        <span class="text-[11px] text-muted hidden sm:inline">Appuyez sur <kbd class="bg-card px-1 border border-ink font-bold">Échap</kbd> pour revenir</span>
+        <button onclick="closeModalFullscreen()" class="px-2.5 py-0.5 bg-ink text-white hover:bg-ink-2 text-xs font-bold transition flex items-center gap-1">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i> FERMER
         </button>
       </div>
     </div>
-    <div class="flex-1 bg-white rounded-b-2xl overflow-hidden shadow-2xl relative">
+    <div class="flex-1 bg-white border border-ink overflow-hidden shadow-2xl relative">
       <iframe id="modalIframe" src="" class="w-full h-full border-0" title="Démo Plein Écran"></iframe>
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT DU LECTEUR DE PRÉSENTATION ================= -->
+  <!-- ================= JAVASCRIPT DU LECTEUR ================= -->
   <script>
-    // Initialisation des icônes Lucide
     lucide.createIcons();
 
-    // État de la présentation
     let currentSlide = 1;
-    const totalSlides = 9;
+    const totalSlides = 10;
 
-    // Fiches de notes orateur pour chaque slide
     const slideNotes = {
       1: {
-        title: "Slide 1 : Présentation de l'idée",
-        script: "« Bonjour à tous. Face à l'interdiction de louer les passoires thermiques G dès 2025 puis F en 2028, les gestionnaires immobiliers risquent de perdre leurs mandats. Notre projet Archi’simple prend en charge 100% de la rénovation sous séquestre bancaire avec des architectes MAR, sans rien coûter à l'agence. »",
+        title: "Planche 01 : Cadrage & Le Pitch",
+        script: "« Bonjour à tous. Face à l'interdiction de louer les passoires thermiques G dès 2025 puis F en 2028, les gestionnaires immobiliers risquent de perdre leurs mandats. Notre projet ArchiSimple prend en charge 100% de la rénovation sous séquestre bancaire avec des architectes MAR, sans rien coûter à l'agence. »",
         figures: ["• Panier moyen : 42 000 € HT", "• Commission ArchiSimple : 7 % (2 940 €)", "• Déficit Foncier doublé : 21 400 € / an", "• Parc ancien avant 1974 : 60 % (20 M logements)"],
         traps: [
           { q: "Pourquoi les agences vous écouteraient-elles ?", a: "C'est 100% gratuit pour elles, ça sauve leurs 6 à 8 % d'honoraires de gestion et ça les protège de toute responsabilité technique." },
-          { q: "Quelle est votre promesse en 1 phrase ?", a: "Prendre en charge la rénovation thermique globale avec garantie d'achèvement et compte séquestre pour sauver les mandats locatifs." }
+          { q: "Quelle est votre promesse en 1 phrase ?", a: "Prendre en charge la rénovation globale avec séquestre bancaire et architectes MAR certifiés pour sauver les mandats locatifs." }
         ]
       },
       2: {
-        title: "Slide 2 : SWOT Croisé & Validation Terrain",
+        title: "Planche 02 : SWOT Croisé & Validation Terrain",
         script: "« Notre analyse TOWS montre que nous mobilisons des architectes touchés par la crise du neuf (-30%) pour répondre à l'urgence de la Loi Climat. Pour valider ce besoin, nous avons contacté directement deux profils clés : Thomas et Claire, architectes MAR, ainsi que Marc, directeur de gestion locative gérant 850 lots. Tous confirment l'urgence absolue d'une solution de séquestre bancaire. »",
         figures: ["• 3 570 architectes inscrits France Travail en 2024", "• -30 % de permis de construire dans le neuf", "• 18 % du parc des cabinets menacé d'interdiction", "• 94 % d'acceptabilité du séquestre par les investisseurs"],
         traps: [
@@ -1312,7 +1500,7 @@
         ]
       },
       3: {
-        title: "Slide 3 : Stack Technique Opérationnelle",
+        title: "Planche 03 : Stack Technique Blueprint",
         script: "« Nous avons conçu une stack moderne et légère : vitrine et application sous Next.js 14 et Tailwind CSS déployées sur Vercel, un formulaire d'ingestion responsive type Tally avec webhook temps réel, GA4 avec flux mesuré G-7425M000PN, et une synchronisation native vers l'API v3 de HubSpot pour piloter le pipeline commercial. »",
         figures: ["• Temps de réponse API webhook : < 450 ms", "• Propriétés HubSpot synchronisées : 8 champs personnalisés", "• Événements GA4 : generate_lead, conversions et engagement"],
         traps: [
@@ -1320,7 +1508,7 @@
         ]
       },
       4: {
-        title: "Slide 4 : On-boarding Client",
+        title: "Planche 04 : On-boarding Client",
         script: "« L'on-boarding se déroule en 5 temps sans friction : détection du lot passoire en 2 minutes, audit sur site par l'architecte MAR en 48h, consignation des fonds sous séquestre bancaire, réalisation des travaux par artisans RGE avec suivi photo hebdomadaire, et livraison du nouveau DPE pour remise en location immédiate. »",
         figures: ["• Délai moyen d'on-boarding : 48h pour l'audit", "• Taux d'abandon cible : < 5 %", "• Garantie décennale vérifiée pour chaque artisan"],
         traps: [
@@ -1328,40 +1516,48 @@
         ]
       },
       5: {
-        title: "Slide 5 : Démo Landing Page",
-        script: "« Voici notre landing page en ligne. Elle intègre notre baromètre réglementaire Loi Climat, notre simulateur d'aides fiscales 2026 et notre formulaire d'audit en 15 minutes. Chaque soumission génère immédiatement un lead enrichi dans GA4 et HubSpot. »",
+        title: "Planche 05 : Démo Landing Page",
+        script: "« Voici notre landing page en ligne sur renov-confiance.vercel.app/#. Elle intègre notre baromètre réglementaire Loi Climat, notre simulateur d'aides fiscales 2026 et notre formulaire d'audit en 15 minutes. Chaque soumission génère immédiatement un lead enrichi dans GA4 et HubSpot. »",
         figures: ["• Conversion visée : 4,5 % des visiteurs uniques", "• CTA unique : Réserver mon audit de parc (15 min)", "• Mobile-first et responsive"],
         traps: [
           { q: "Montrez-moi où partent les données ?", a: "Elles sont transmises via le webhook /api/submit-lead vers notre pipeline HubSpot 'Ventes Locataires'." }
         ]
       },
       6: {
-        title: "Slide 6 : Démo SaaS Marketplace",
-        script: "« Notre application SaaS dispose d'un double accès : pour les propriétaires bailleurs qui recherchent un architecte MAR qualifié selon leur ville et consultent les portfolios avant/après, et pour les architectes qui gèrent leurs missions et déclenchent le déblocage des tranches sous séquestre. »",
+        title: "Planche 06 : Démo SaaS Marketplace",
+        script: "« Notre application SaaS sur renov-confiance.vercel.app/app#architecte dispose d'un double accès : pour les propriétaires bailleurs qui recherchent un architecte MAR qualifié selon leur ville, et pour les architectes qui gèrent leurs missions et déclenchent le déblocage des tranches sous séquestre. »",
         figures: ["• 3 profils testeurs actifs (Paris, Lyon, Bordeaux)", "• Suivi en 5 jalons de déblocage financier", "• Persistance des données en temps réel"],
         traps: [
           { q: "Comment rémunérez-vous les architectes ?", a: "Les architectes fixent librement leurs forfaits d'audit et honoraires de maîtrise d'œuvre ; ArchiSimple prend sa commission sur le volume global de travaux." }
         ]
       },
       7: {
-        title: "Slide 7 : Automatisation & CRM",
-        script: "« Dès qu'un prospect soumet son projet, notre webhook serverless calcule instantanément le score de priorité réglementaire, crée le deal dans HubSpot avec la valeur de 42 000 € et alerte l'architecte référent en moins de 2 heures. En parallèle, notre séquence Outbound de 4 messages cible 20 directeurs d'agence. »",
-        figures: ["• 4 messages outbound avec 1 CTA unique", "• Taux de réponse visé : >= 15 %", "• Pipeline CRM automatisé de bout en bout"],
+        title: "Planche 07 : Données Google Analytics 4",
+        script: "« Notre flux Google Analytics 4 (G-7425M000PN) mesure en continu l'ensemble de notre trafic. Avec 214 sessions simulées et un taux d'engagement de 76,4 %, nous mesurons précisément chaque étape du tunnel, de la vue de page jusqu'à la conversion generate_lead. »",
+        figures: ["• Stream ID : G-7425M000PN", "• Taux d'engagement : 76,4 %", "• Durée moyenne : 3 min 28 s", "• 18 conversions generate_lead"],
         traps: [
-          { q: "Pourquoi 4 messages dans la séquence ?", a: "Pour maximiser la délivrabilité sans spammer : lancement, levée de l'objection temps, preuve par le séquestre, et nurturing avec matrice offerte." }
+          { q: "Comment avez-vous configuré les événements personnalisés ?", a: "Via le script analytics.js injecté dans le head, qui déclenche gtag('event') sur les clics de simulateur et les soumissions." }
         ]
       },
       8: {
-        title: "Slide 8 : Unit Economics, Limites & Décision",
+        title: "Planche 08 : Automatisation Formulaire & HubSpot",
+        script: "« Voici la double vue en direct : à gauche notre formulaire d'acquisition, à droite notre CRM HubSpot. Lorsqu'un utilisateur saisit son projet, notre webhook serverless calcule la priorité, crée le deal de 42 000 € dans le pipeline 'Ventes Locataires' et notifie l'équipe en moins de 450 ms. »",
+        figures: ["• Temps webhook : < 450 ms", "• Propriétés deals : 8 champs synchronisés", "• Séquence Outbound : 4 messages, 1 CTA"],
+        traps: [
+          { q: "Comment gérez-vous les doublons ?", a: "L'API HubSpot vérifie l'adresse e-mail existante et met à jour la fiche contact sans écraser l'historique." }
+        ]
+      },
+      9: {
+        title: "Planche 09 : Unit Economics, Limites & IA",
         script: "« Sur un chantier moyen de 42 000 €, notre marge brute est de 2 940 €. Notre CAC B2B est de 1 450 €, mais chaque agence nous apporte en moyenne 10 chantiers par an, soit un ROI supérieur à 20x. Nous assumons nos limites sur les délais Anah et la tension RGE, et notre décision est claire : accélération à 70% sur le B2B. Enfin, sur l'IA, nous l'avons challengée pour éviter le piège du B2C grand public. »",
         figures: ["• Panier moyen : 42 000 €", "• Commission : 7 % = 2 940 €", "• Budget 3 mois : 15 000 €", "• Objectif An 1 : 50 agences / 1,47 M€ marge"],
         traps: [
           { q: "Qu'avez-vous changé par rapport à ce que proposait l'IA ?", a: "L'IA voulait copier Hemea en B2C. Nous l'avons contrainte à se focaliser sur le B2B des gestionnaires locatifs face à la Loi Climat pour réduire le CAC." }
         ]
       },
-      9: {
-        title: "Slide 9 : Conclusion & Q&A",
-        script: "« En conclusion, Archi’simple apporte la brique de confiance manquante pour débloquer les 3,9 millions de passoires thermiques en France. Notre rétroplanning à 30, 60 et 90 jours pose des jalons clairs et mesurables. Nous sommes prêts pour vos questions. »",
+      10: {
+        title: "Planche 10 : Plan d'Action & Soutenance",
+        script: "« En conclusion, ArchiSimple apporte la brique de confiance manquante pour débloquer les 3,9 millions de passoires thermiques en France. Notre rétroplanning à 30, 60 et 90 jours pose des jalons clairs et mesurables. Nous sommes prêts pour vos questions. »",
         figures: ["• Mois 1 : 3 agences signées / 10 audits MAR", "• Mois 3 : 20 agences / cap de rentabilité", "• 100 % des livrables J1 à J5 conformes"],
         traps: [
           { q: "Quelle est votre priorité dès demain matin ?", a: "Lancer les appels de cadrage sur les 20 directeurs d'agence qualifiés pour signer nos 3 premiers pilotes." }
@@ -1369,56 +1565,44 @@
       }
     };
 
-    // Navigation de slide
     function goToSlide(n) {
       if (n < 1 || n > totalSlides) return;
       currentSlide = n;
 
-      // Masquer toutes les slides
       document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
 
-      // Afficher la slide ciblée
       const target = document.getElementById(`slide-${n}`);
       if (target) {
         target.classList.add('active');
         target.scrollTop = 0;
       }
 
-      // Mise à jour de l'indicateur
-      document.getElementById('currentSlideIndicator').textContent = n;
+      document.getElementById('currentSlideIndicator').textContent = n.toString().padStart(2, '0');
       document.getElementById('progressBar').style.width = `${(n / totalSlides) * 100}%`;
 
-      // Mise à jour des onglets
       document.querySelectorAll('.nav-tab').forEach(tab => {
         const targetNum = parseInt(tab.getAttribute('data-slide-target'), 10);
         if (targetNum === n) {
-          tab.classList.add('bg-pin', 'text-white', 'shadow-sm');
-          tab.classList.remove('text-neutral-400', 'hover:text-white');
+          tab.classList.add('bg-ink', 'text-white');
+          tab.classList.remove('text-muted');
         } else {
-          tab.classList.remove('bg-pin', 'text-white', 'shadow-sm');
-          tab.classList.add('text-neutral-400', 'hover:text-white');
+          tab.classList.remove('bg-ink', 'text-white');
+          tab.classList.add('text-muted');
         }
       });
 
-      // Mettre à jour les notes orateur
       updateSpeakerNotes(n);
     }
 
     function nextSlide() {
-      if (currentSlide < totalSlides) {
-        goToSlide(currentSlide + 1);
-      }
+      if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
     }
 
     function prevSlide() {
-      if (currentSlide > 1) {
-        goToSlide(currentSlide - 1);
-      }
+      if (currentSlide > 1) goToSlide(currentSlide - 1);
     }
 
-    // Gestion des touches du clavier
     document.addEventListener('keydown', (e) => {
-      // Ignorer si modale ouverte
       const modal = document.getElementById('modalFullscreenDemo');
       if (!modal.classList.contains('hidden') && e.key === 'Escape') {
         closeModalFullscreen();
@@ -1433,36 +1617,31 @@
         toggleFullscreenDeck();
       } else if (e.key === 'n' || e.key === 'N') {
         toggleSpeakerNotes();
-      } else if (e.key >= '1' && e.key <= '9') {
-        goToSlide(parseInt(e.key, 10));
+      } else if (e.key >= '0' && e.key <= '9') {
+        const num = e.key === '0' ? 10 : parseInt(e.key, 10);
+        goToSlide(num);
       }
     });
 
-    // Plein écran pour le deck
     function toggleFullscreenDeck() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-          console.warn(`Erreur plein écran: ${err.message}`);
-        });
+        document.documentElement.requestFullscreen().catch(err => console.warn(err));
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     }
 
-    // Volet Notes Orateur
     function toggleSpeakerNotes() {
       const drawer = document.getElementById('speakerNotesDrawer');
       const btn = document.getElementById('notesToggleBtn');
       if (drawer.classList.contains('hidden')) {
         drawer.classList.remove('hidden');
         drawer.classList.add('flex');
-        btn.classList.add('bg-pin', 'text-white');
+        btn.classList.add('bg-ink', 'text-white');
       } else {
         drawer.classList.add('hidden');
         drawer.classList.remove('flex');
-        btn.classList.remove('bg-pin', 'text-white');
+        btn.classList.remove('bg-ink', 'text-white');
       }
     }
 
@@ -1478,17 +1657,35 @@
 
       const trapContainer = document.getElementById('notesTrapQuestions');
       trapContainer.innerHTML = data.traps.map(t => `
-        <div class="border-b border-neutral-800 pb-1.5 last:border-b-0">
-          <strong class="text-amber-300">${t.q}</strong><br>
-          <span class="text-neutral-400">${t.a}</span>
+        <div class="border-b border-line pb-1.5 last:border-b-0">
+          <strong class="text-ink">${t.q}</strong><br>
+          <span class="text-muted">${t.a}</span>
         </div>
       `).join('');
     }
 
-    // Gestion Iframe Démo & Plein Écran
     function refreshIframe(id) {
       const el = document.getElementById(id);
       if (el) el.src = el.src;
+    }
+
+    function refreshDoubleIframes() {
+      refreshIframe('iframe-form-live');
+      refreshIframe('iframe-hubspot-live');
+    }
+
+    function promptHubspotUrl() {
+      const current = document.getElementById('iframe-hubspot-live').src;
+      const url = prompt("Entrez l'URL de votre compte / pipeline HubSpot :", current);
+      if (url && url.trim() !== "") {
+        document.getElementById('iframe-hubspot-live').src = url.trim();
+        try {
+          const u = new URL(url.trim());
+          document.getElementById('hubspotDomainDisplay').textContent = u.hostname;
+        } catch(e) {
+          document.getElementById('hubspotDomainDisplay').textContent = "hubspot-custom";
+        }
+      }
     }
 
     function openModalFullscreen(iframeId) {
@@ -1499,9 +1696,9 @@
 
       if (source && modal && modalIframe) {
         modalIframe.src = source.src;
-        modalTitle.textContent = iframeId === 'iframe-landing' 
-          ? "Démo Plein Écran : Landing Page Archi'simple (renov-confiance.vercel.app)"
-          : "Démo Plein Écran : Plateforme SaaS Archi'simple (archisimple-saas.vercel.app)";
+        modalTitle.textContent = iframeId === 'iframe-landing'
+          ? "DÉMO PLEIN ÉCRAN : LANDING PAGE ARCHISIMPLE (renov-confiance.vercel.app/#)"
+          : "DÉMO PLEIN ÉCRAN : SAAS MARKETPLACE ARCHITECTES (renov-confiance.vercel.app/app#architecte)";
         modal.classList.remove('hidden');
         modal.classList.add('flex');
       }
@@ -1517,7 +1714,7 @@
       }
     }
 
-    // Chronomètre d'Oral (15 min dégressif)
+    // Chrono 15 min
     let timerSeconds = 15 * 60;
     let timerInterval = null;
     let isRunning = false;
@@ -1542,12 +1739,10 @@
             timerSeconds--;
             document.getElementById('timerDisplay').textContent = formatTimer(timerSeconds);
             if (timerSeconds === 3 * 60) {
-              // 3 minutes restantes : alerte visuelle douce
-              document.getElementById('timerDisplay').classList.add('text-amber-400');
+              document.getElementById('timerDisplay').classList.add('text-amber-600');
             } else if (timerSeconds === 60) {
-              // 1 minute restante
-              document.getElementById('timerDisplay').classList.remove('text-amber-400');
-              document.getElementById('timerDisplay').classList.add('text-pin');
+              document.getElementById('timerDisplay').classList.remove('text-amber-600');
+              document.getElementById('timerDisplay').classList.add('text-red');
             }
           } else {
             clearInterval(timerInterval);
@@ -1565,12 +1760,11 @@
       timerSeconds = 15 * 60;
       const display = document.getElementById('timerDisplay');
       display.textContent = "15:00";
-      display.classList.remove('text-amber-400', 'text-pin');
+      display.classList.remove('text-amber-600', 'text-red');
       document.getElementById('timerIcon').setAttribute('data-lucide', 'play');
       lucide.createIcons();
     }
 
-    // Démarrage initial
     goToSlide(1);
   </script>
 </body>
