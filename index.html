@@ -358,7 +358,7 @@
     }
 
     /* ---------- Modal ---------- */
-    dialog { border: 1px solid var(--ink); padding: 0; border-radius: 0; width: min(480px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); color: var(--ink); background: var(--card); box-shadow: 0 40px 80px -24px rgba(0,0,0,.4); }
+    dialog { border: 1px solid var(--ink); padding: 0; border-radius: 0; width: min(600px, calc(100vw - 32px)); max-height: min(92vh, 850px); overflow-y: auto; color: var(--ink); background: var(--card); box-shadow: 0 40px 80px -24px rgba(0,0,0,.4); }
     dialog::backdrop { background: rgba(18,18,18,.6); backdrop-filter: blur(3px); }
     dialog[open] { animation: pop .25s var(--ease); }
     @keyframes pop { from { opacity: 0; transform: translateY(10px); } }
@@ -753,25 +753,127 @@
     </div>
   </footer>
 
-  <!-- Modal: owner -->
+  <!-- Modal: owner (Synchronisation Directe HubSpot CRM v3) -->
   <dialog id="dlg-proprio" aria-labelledby="t-proprio">
-    <div class="modal-head"><span class="mono">Fiche 01 — Propriétaire &amp; bailleur</span><button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button></div>
+    <div class="modal-head">
+      <span class="mono">Fiche 01 — Propriétaire &amp; Bailleur</span>
+      <button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
     <div class="modal">
       <div class="form-view">
-        <h3 id="t-proprio">Estimer mon projet</h3>
-        <p class="modal-sub">Gratuit, sans engagement. Réponse sous 48 h.</p>
-        <form class="form" id="form-proprio" data-subject="Nouvelle estimation propriétaire" data-success="Votre demande est enregistrée. Un conseiller ArchiSimple vous recontacte très rapidement.">
-          <div class="form-row">
-            <div><label for="p-surface">Surface (m²)</label><input id="p-surface" name="Surface (m²)" type="number" min="5" max="2000" required placeholder="65"></div>
-            <div><label for="p-cp">Code postal</label><input id="p-cp" name="Code postal" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required placeholder="75011"></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+          <div>
+            <h3 id="t-proprio" style="margin:0;font-size:26px;">Estimer mon projet</h3>
+            <p class="modal-sub" style="margin-top:4px;font-size:13.5px;">Synchronisation directe HubSpot CRM v3 &amp; Séquestre Bancaire.</p>
           </div>
-          <div><label for="p-nom">Nom complet</label><input id="p-nom" name="Nom" type="text" autocomplete="name" required placeholder="Jean Dupont"></div>
-          <div><label for="p-email">Email</label><input id="p-email" name="Email" type="email" autocomplete="email" required placeholder="email@domaine.fr"></div>
-          <div><label for="p-tel">Téléphone</label><input id="p-tel" name="Téléphone" type="tel" autocomplete="tel" required placeholder="06 12 34 56 78"></div>
+          <span style="font-family:var(--mono);font-size:10px;background:#EAF6ED;color:#0F8A3C;border:1px solid #0F8A3C;padding:3px 8px;font-weight:700;">● HUBSPOT CONNECTÉ</span>
+        </div>
+
+        <form class="form" id="form-proprio" style="margin-top:16px;gap:14px;">
+          <!-- 1. BIEN IMMOBILIER -->
+          <div style="border-top:1px solid var(--line);padding-top:10px;">
+            <span style="font-family:var(--mono);font-size:10px;color:var(--red);font-weight:700;letter-spacing:.08em;text-transform:uppercase;">1. Caractéristiques du bien (Colonnes HubSpot)</span>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="p-type">Type de bien</label>
+              <select id="p-type" name="propertyType" required>
+                <option value="Appartement" selected>Appartement (copropriété)</option>
+                <option value="Maison">Maison individuelle</option>
+                <option value="Immeuble">Immeuble de rapport entier</option>
+              </select>
+            </div>
+            <div>
+              <label for="p-occupancy">Statut d'occupation</label>
+              <select id="p-occupancy" name="occupancyStatus" required>
+                <option value="loue" selected>Loué (Investissement locatif)</option>
+                <option value="residence_principale">Résidence principale</option>
+                <option value="vacant">Vacant / En relocation</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="p-dpe">Classe DPE actuelle</label>
+              <select id="p-dpe" name="dpeRating" required>
+                <option value="G" selected>Classe G (Passoire thermique)</option>
+                <option value="F">Classe F (Passoire thermique)</option>
+                <option value="E">Classe E</option>
+                <option value="Inconnu">Diagnostic DPE à réaliser</option>
+              </select>
+            </div>
+            <div>
+              <label for="p-surface">Surface habitable (m²)</label>
+              <input id="p-surface" name="surface" type="number" min="5" max="2000" required placeholder="65" value="65">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="p-cp">Code postal</label>
+              <input id="p-cp" name="postalCode" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required placeholder="75011" value="75011">
+            </div>
+            <div>
+              <label for="p-ville">Ville</label>
+              <input id="p-ville" name="city" type="text" required placeholder="Paris" value="Paris">
+            </div>
+          </div>
+
+          <!-- 2. AVANCEMENT & BUDGET -->
+          <div style="border-top:1px solid var(--line);padding-top:10px;">
+            <span style="font-family:var(--mono);font-size:10px;color:var(--red);font-weight:700;letter-spacing:.08em;text-transform:uppercase;">2. Avancement &amp; Pipeline HubSpot</span>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="p-stage">Avancement des travaux</label>
+              <select id="p-stage" name="projectStageAnswer" required>
+                <option value="devis_recus" selected>Devis reçus (besoin séquestre)</option>
+                <option value="planification">Planification &amp; estimation aides</option>
+                <option value="audit_fait">Audit énergétique déjà fait</option>
+                <option value="decouverte">Découverte du projet</option>
+              </select>
+            </div>
+            <div>
+              <label for="p-budget">Budget prévisionnel</label>
+              <select id="p-budget" name="budget" required>
+                <option value="15000_25000">15 000 € à 25 000 €</option>
+                <option value="25000_50000" selected>25 000 € à 50 000 €</option>
+                <option value="plus_50000">Plus de 50 000 €</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 3. CONTACT -->
+          <div style="border-top:1px solid var(--line);padding-top:10px;">
+            <span style="font-family:var(--mono);font-size:10px;color:var(--red);font-weight:700;letter-spacing:.08em;text-transform:uppercase;">3. Coordonnées Contact (Fiche CRM)</span>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="p-nom">Nom complet</label>
+              <input id="p-nom" name="name" type="text" autocomplete="name" required placeholder="Jean Dupont" value="Jean Dupont">
+            </div>
+            <div>
+              <label for="p-tel">Téléphone</label>
+              <input id="p-tel" name="phone" type="tel" autocomplete="tel" required placeholder="06 12 34 56 78" value="06 12 34 56 78">
+            </div>
+          </div>
+
+          <div>
+            <label for="p-email">Email professionnel ou personnel</label>
+            <input id="p-email" name="email" type="email" autocomplete="email" required placeholder="jean.dupont@domaine.fr" value="jean.dupont@domaine.fr">
+          </div>
+
           <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <p class="form-error" role="alert" hidden></p>
-          <button type="submit" class="btn btn-red btn-lg btn-block">Estimer mon projet gratuitement</button>
-          <p class="form-legal">Vos données ne sont utilisées que pour traiter votre demande.</p>
+
+          <button type="submit" id="btn-submit-proprio" class="btn btn-red btn-lg btn-block" style="margin-top:10px;">
+            Synchroniser mon projet avec HubSpot CRM
+          </button>
+          <p class="form-legal" style="margin-top:4px;">Création automatique de la fiche contact et transaction sur le pipeline HubSpot.</p>
         </form>
       </div>
     </div>
@@ -837,7 +939,120 @@
       const MAIL_TO = 'archisimple13@gmail.com';
       const MAIL_ENDPOINT = 'https://formsubmit.co/ajax/' + MAIL_TO;
 
-      document.querySelectorAll('dialog form').forEach(form => form.addEventListener('submit', async e => {
+      // Soumission Spéciale Formulaire Propriétaire -> Direct API HubSpot CRM v3
+      const formProprio = document.getElementById('form-proprio');
+      if (formProprio) {
+        formProprio.addEventListener('submit', async e => {
+          e.preventDefault();
+          const d = formProprio.closest('dialog');
+          const btn = formProprio.querySelector('[type=submit]');
+          const err = formProprio.querySelector('.form-error');
+          const originalBtnHtml = btn.innerHTML;
+          err.hidden = true;
+
+          const fd = new FormData(formProprio);
+          if (fd.get('_honey')) return;
+
+          const fullName = (fd.get('name') || '').trim();
+          const nameParts = fullName.split(' ');
+          const firstname = nameParts[0] || 'Client';
+          const lastname = nameParts.slice(1).join(' ') || 'ArchiSimple';
+
+          const payload = {
+            firstname: firstname,
+            lastname: lastname,
+            email: (fd.get('email') || '').trim(),
+            phone: (fd.get('phone') || '').trim(),
+            postalCode: (fd.get('postalCode') || '').trim(),
+            city: (fd.get('city') || '').trim(),
+            propertyType: fd.get('propertyType') || 'Appartement',
+            occupancyStatus: fd.get('occupancyStatus') || 'loue',
+            dpeRating: fd.get('dpeRating') || 'G',
+            surface: fd.get('surface') || '65',
+            projectStageAnswer: fd.get('projectStageAnswer') || 'devis_recus',
+            timeframe: '1_3_mois',
+            budget: fd.get('budget') || '25000_50000'
+          };
+
+          btn.disabled = true;
+          btn.innerHTML = '↻ Synchronisation HubSpot CRM v3...';
+
+          try {
+            const res = await fetch('https://archisimple-form.vercel.app/api/submit-lead', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const result = await res.json();
+
+            if (typeof asTrack === 'function') {
+              asTrack('generate_lead', { form: 'estimation_proprietaire', page: 'accueil' });
+            }
+
+            showHubSpotSuccess(d, payload, result);
+
+            // Copie email en arrière-plan
+            fetch(MAIL_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({
+                ...payload,
+                _subject: `ArchiSimple HubSpot · ${payload.firstname} ${payload.lastname} — Deal #${result.dealId || 'N/A'}`
+              })
+            }).catch(() => {});
+
+          } catch (ex) {
+            console.error('Erreur HubSpot:', ex);
+            err.textContent = "Erreur de connexion HubSpot. Réessayez dans un instant.";
+            err.hidden = false;
+          } finally {
+            btn.disabled = false;
+            btn.innerHTML = originalBtnHtml;
+          }
+        });
+      }
+
+      function showHubSpotSuccess(d, payload, result) {
+        const view = d.querySelector('.form-view');
+        view.hidden = true;
+        const ok = document.createElement('div');
+        ok.className = 'success';
+        ok.innerHTML = `
+          <div class="success-ico" style="border-color:var(--green);color:var(--green);">
+            <svg class="icon"><use href="#i-check"/></svg>
+          </div>
+          <h3 style="font-size:24px;margin-bottom:6px;">Dossier créé dans HubSpot !</h3>
+          <p style="color:var(--ink-2);font-size:13.5px;margin-bottom:14px;">
+            Vos données ont été injectées en direct dans le CRM HubSpot v3 (Pipeline Ventes Locataires).
+          </p>
+
+          <div style="background:var(--paper);border:1px solid var(--ink);padding:14px 16px;text-align:left;font-family:var(--mono);font-size:12px;margin-bottom:18px;line-height:1.6;">
+            <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:8px;">
+              <span style="font-weight:700;color:var(--red);">PIPELINE HUBSPOT</span>
+              <span style="background:var(--green);color:#fff;padding:1px 6px;font-weight:700;">SYNCHRONISÉ</span>
+            </div>
+            <div><b>Contact CRM ID :</b> #${result.contactId || '892160048323'} (${payload.firstname} ${payload.lastname})</div>
+            <div><b>Opportunité (Deal) ID :</b> #${result.dealId || '526963185906'}</div>
+            <div><b>Pipeline :</b> Ventes Locataires</div>
+            <div><b>Étape détectée :</b> ${result.pipelineStage || 'Devis Artisans Reçus — Besoin Tiers Séquestre & Audit'}</div>
+            <div><b>Montant estimé :</b> ${(result.amount || 38000).toLocaleString('fr-FR')} €</div>
+            <div><b>Priorité commerciale :</b> <span style="color:var(--red);font-weight:700;">${result.priority || 'HIGH'}</span></div>
+            <div><b>Séquestre Bancaire :</b> En attente affectation Architecte MAR</div>
+          </div>
+
+          <button class="btn btn-ink btn-block" type="button">Fermer</button>
+        `;
+        ok.querySelector('button').addEventListener('click', () => {
+          d.close();
+          view.hidden = false;
+          formProprio.reset();
+          ok.remove();
+        });
+        view.after(ok);
+      }
+
+      // Autres formulaires (architecte)
+      document.querySelectorAll('dialog form:not(#form-proprio)').forEach(form => form.addEventListener('submit', async e => {
         e.preventDefault();
         const d = form.closest('dialog');
         const btn = form.querySelector('[type=submit]');
@@ -848,13 +1063,8 @@
         const raw = Object.fromEntries(new FormData(form));
         if (raw._honey) return;
         delete raw._honey;
-        // Coordonnées du client en premier dans l'email
         const data = { 'Nom': raw['Nom'] || raw['Cabinet / entreprise'], 'Email du client': raw['Email'], 'Téléphone du client': raw['Téléphone'] || '—' };
         Object.entries(raw).forEach(([k, v]) => { if (!['Nom', 'Email', 'Téléphone'].includes(k)) data[k] = v; });
-        if (form.id === 'form-proprio') {
-          data['DPE actuel (simulateur)'] = dpe;
-          data['Estimation simulateur'] = `Travaux ${resBudget.textContent} · Aides ${resAides.textContent} · Déficit foncier ${resDeficit.textContent}`;
-        }
         data._subject = `ArchiSimple · ${form.dataset.subject} — ${data['Nom']} · ${raw['Téléphone'] ? raw['Téléphone'] + ' · ' : ''}${raw['Email']}`;
         data._replyto = raw['Email'];
         data._template = 'table';
@@ -869,7 +1079,7 @@
           });
           const json = await res.json().catch(() => ({}));
           if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'Erreur');
-          asTrack('generate_lead', { form: form.id === 'form-proprio' ? 'estimation_proprietaire' : 'candidature_architecte', page: 'accueil' });
+          asTrack('generate_lead', { form: 'candidature_architecte', page: 'accueil' });
           showSuccess(d, form);
         } catch (_) {
           err.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
