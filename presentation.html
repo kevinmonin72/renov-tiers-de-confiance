@@ -163,11 +163,12 @@
       <button onclick="goToSlide(1)" class="nav-tab px-2.5 py-1 transition-all font-bold" data-slide-target="1">01. Idée</button>
       <button onclick="goToSlide(2)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="2">02. Enquêtes</button>
       <button onclick="goToSlide(3)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="3">03. Stack</button>
-      <button onclick="goToSlide(4)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="4">04. Landing</button>
-      <button onclick="goToSlide(5)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="5">05. SaaS</button>
-      <button onclick="goToSlide(6)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="6">06. Automatisation</button>
-      <button onclick="goToSlide(7)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="7">07. Chiffres &amp; CAC</button>
-      <button onclick="goToSlide(8)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="8">08. Action 90j</button>
+      <button onclick="goToSlide(4)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="4">04. On-Boarding</button>
+      <button onclick="goToSlide(5)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="5">05. Landing</button>
+      <button onclick="goToSlide(6)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="6">06. SaaS</button>
+      <button onclick="goToSlide(7)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="7">07. Automatisation</button>
+      <button onclick="goToSlide(8)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="8">08. Chiffres &amp; CAC</button>
+      <button onclick="goToSlide(9)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="9">09. Action 90j</button>
     </nav>
 
     <!-- Droite : Bouton PLEIN ÉCRAN NATIF Seul -->
@@ -518,8 +519,97 @@
         </div>
       </section>
 
-      <!-- ================= SLIDE 4 : DÉMO LANDING PAGE EN DIRECT ================= -->
-      <section id="slide-4" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
+            <!-- ================= SLIDE 4 : PARCOURS CLIENT & ON-BOARDING (5 ÉTAPES) ================= -->
+      <section id="slide-4" class="slide w-full h-full p-6 md:p-10 flex-col justify-center overflow-y-auto">
+        <div class="max-w-7xl mx-auto w-full space-y-6 my-auto">
+          <!-- Titre Slide -->
+          <div class="flex justify-between items-end border-b border-line pb-3">
+            <div>
+              <span class="font-mono text-xs text-red font-bold uppercase tracking-wider block">04 · FLUX D'ACCOMPAGNEMENT</span>
+              <h2 class="text-3xl md:text-4xl font-black font-sans tracking-tight text-ink">
+                Parcours Client &amp; <span class="text-red">On-Boarding en 5 Étapes</span>
+              </h2>
+            </div>
+            <span class="font-mono text-xs bg-ink text-white px-2.5 py-1 font-bold">100 % FLUIDE</span>
+          </div>
+
+          <!-- 5 Étapes Horizontales du Parcours Client (Sans les 3 chiffres du bas) -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 pt-4">
+            <!-- 01 -->
+            <div class="bg-card border border-ink p-5 crops text-center space-y-3 shadow-sm hover:border-red transition">
+              <span class="crop-b"></span>
+              <div class="w-12 h-12 mx-auto bg-paper-2 border border-ink font-mono font-bold text-lg flex items-center justify-center text-ink">
+                01
+              </div>
+              <span class="font-mono text-xs text-red uppercase block font-bold">SIGNALEMENT</span>
+              <h4 class="font-bold text-base text-ink">L'Agence Alerte</h4>
+              <p class="text-xs font-mono text-muted">Passoire thermique F ou G identifiée</p>
+              <span class="inline-block font-mono text-[10px] bg-paper-2 text-ink px-2 py-0.5 border border-line">
+                Formulaire en 2 min
+              </span>
+            </div>
+
+            <!-- 02 -->
+            <div class="bg-card border border-ink p-5 crops text-center space-y-3 shadow-sm hover:border-red transition">
+              <span class="crop-b"></span>
+              <div class="w-12 h-12 mx-auto bg-paper-2 border border-ink font-mono font-bold text-lg flex items-center justify-center text-ink">
+                02
+              </div>
+              <span class="font-mono text-xs text-red uppercase block font-bold">CADRAGE</span>
+              <h4 class="font-bold text-base text-ink">Visite &amp; MAR</h4>
+              <p class="text-xs font-mono text-muted">Audit énergétique officiel</p>
+              <span class="inline-block font-mono text-[10px] bg-paper-2 text-ink px-2 py-0.5 border border-line">
+                Chiffrage garanti
+              </span>
+            </div>
+
+            <!-- 03 -->
+            <div class="bg-card border border-ink p-5 crops text-center space-y-3 shadow-sm hover:border-red transition">
+              <span class="crop-b"></span>
+              <div class="w-12 h-12 mx-auto bg-red text-white font-mono font-bold text-lg flex items-center justify-center shadow-sm">
+                03
+              </div>
+              <span class="font-mono text-xs text-red uppercase block font-bold">SÉCURISATION</span>
+              <h4 class="font-bold text-base text-ink">Séquestre Ouvert</h4>
+              <p class="text-xs font-mono text-muted">Fonds bloqués chez notaire/banque</p>
+              <span class="inline-block font-mono text-[10px] bg-red-tint text-red px-2 py-0.5 border border-red font-bold">
+                0 litige possible
+              </span>
+            </div>
+
+            <!-- 04 -->
+            <div class="bg-card border border-ink p-5 crops text-center space-y-3 shadow-sm hover:border-red transition">
+              <span class="crop-b"></span>
+              <div class="w-12 h-12 mx-auto bg-paper-2 border border-ink font-mono font-bold text-lg flex items-center justify-center text-ink">
+                04
+              </div>
+              <span class="font-mono text-xs text-red uppercase block font-bold">RÉALISATION</span>
+              <h4 class="font-bold text-base text-ink">Chantier Piloté</h4>
+              <p class="text-xs font-mono text-muted">Artisans certifiés RGE</p>
+              <span class="inline-block font-mono text-[10px] bg-paper-2 text-ink px-2 py-0.5 border border-line">
+                Suivi hebdomadaire
+              </span>
+            </div>
+
+            <!-- 05 -->
+            <div class="bg-card border border-ink p-5 crops text-center space-y-3 shadow-sm hover:border-red transition">
+              <span class="crop-b"></span>
+              <div class="w-12 h-12 mx-auto bg-green text-white font-mono font-bold text-lg flex items-center justify-center shadow-sm">
+                05
+              </div>
+              <span class="font-mono text-xs text-green uppercase block font-bold">SUCCÈS</span>
+              <h4 class="font-bold text-base text-ink">Nouveau DPE</h4>
+              <p class="text-xs font-mono text-muted">Attestation classe C/D</p>
+              <span class="inline-block font-mono text-[10px] bg-green-tint text-green px-2 py-0.5 border border-green font-bold">
+                Mandat sauvé
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- ================= SLIDE 5 : DÉMO LANDING PAGE EN DIRECT ================= -->
+      <section id="slide-5" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
         <!-- Header Démo -->
         <div class="flex items-center justify-between pb-2 border-b border-line shrink-0">
           <div class="flex items-center gap-3">
@@ -563,8 +653,8 @@
         </div>
       </section>
 
-      <!-- ================= SLIDE 5 : DÉMO SAAS MARKETPLACE EN DIRECT ================= -->
-      <section id="slide-5" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
+      <!-- ================= SLIDE 6 : DÉMO SAAS MARKETPLACE EN DIRECT ================= -->
+      <section id="slide-6" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
         <!-- Header Démo -->
         <div class="flex items-center justify-between pb-2 border-b border-line shrink-0">
           <div class="flex items-center gap-3">
@@ -608,8 +698,8 @@
         </div>
       </section>
 
-      <!-- ================= SLIDE 6 : AUTOMATISATION DOUBLE VUE ================= -->
-      <section id="slide-6" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
+      <!-- ================= SLIDE 7 : AUTOMATISATION DOUBLE VUE ================= -->
+      <section id="slide-7" class="slide w-full h-full p-4 md:p-6 flex-col justify-between overflow-hidden">
         <!-- Header Démo Double iFrame -->
         <div class="flex items-center justify-between pb-2 border-b border-line shrink-0">
           <div class="flex items-center gap-3">
@@ -926,13 +1016,13 @@
 
         </section>
 
-      <!-- ================= SLIDE 7 : CHIFFRES CLÉS, CAC, LIMITES & DÉFI IA ================= -->
-      <section id="slide-7" class="slide w-full h-full p-6 md:p-10 flex-col justify-center overflow-y-auto">
+      <!-- ================= SLIDE 8 : CHIFFRES CLÉS, CAC, LIMITES & DÉFI IA ================= -->
+      <section id="slide-8" class="slide w-full h-full p-6 md:p-10 flex-col justify-center overflow-y-auto">
         <div class="max-w-7xl mx-auto w-full space-y-6 my-auto">
           <!-- Titre Slide -->
           <div class="flex justify-between items-end border-b border-line pb-3">
             <div>
-              <span class="font-mono text-xs text-red font-bold uppercase tracking-wider block">07 · RENTABILITÉ & ÉCONOMIE</span>
+              <span class="font-mono text-xs text-red font-bold uppercase tracking-wider block">08 · RENTABILITÉ & ÉCONOMIE</span>
               <h2 class="text-3xl md:text-4xl font-black font-sans tracking-tight text-ink">
                 Modèle Économique, <span class="text-red">CAC & Défi de l'IA</span>
               </h2>
@@ -942,34 +1032,34 @@
             </div>
           </div>
 
-          <!-- 4 CHIFFRES CLÉS GÉANTS (ZÉRO TEXTE SUPERFLU !) -->
+          <!-- 4 CHIFFRES CLÉS GÉANTS (MARGE CALIBRÉE À 2 %) -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="bg-card border border-ink p-4 crops text-center">
               <span class="crop-b"></span>
               <div class="text-4xl font-black text-ink font-mono">42 000 €</div>
               <span class="text-sm font-bold text-ink block mt-1">Panier Moyen Chantier</span>
-              <span class="font-mono text-[10px] text-muted uppercase">Rénovation complète</span>
+              <span class="font-mono text-[10px] text-muted uppercase">Rénovation complète F/G</span>
             </div>
 
             <div class="bg-card border border-ink p-4 crops text-center">
               <span class="crop-b"></span>
-              <div class="text-4xl font-black text-red font-mono">2 940 €</div>
-              <span class="text-sm font-bold text-ink block mt-1">Marge Brute (7 %)</span>
-              <span class="font-mono text-[10px] text-muted uppercase">Commission par chantier</span>
+              <div class="text-4xl font-black text-red font-mono">840 €</div>
+              <span class="text-sm font-bold text-ink block mt-1">Marge Brute (2 %)</span>
+              <span class="font-mono text-[10px] text-muted uppercase">Commission par chantier (séquestre)</span>
             </div>
 
             <div class="bg-card border border-ink p-4 crops text-center">
               <span class="crop-b"></span>
-              <div class="text-4xl font-black text-ink font-mono">518 €</div>
+              <div class="text-4xl font-black text-ink font-mono">280 €</div>
               <span class="text-sm font-bold text-ink block mt-1">CAC Direct Publicité</span>
-              <span class="font-mono text-[10px] text-green uppercase font-bold">Rentabilité x 5,6</span>
+              <span class="font-mono text-[10px] text-muted uppercase">B2C · Rentabilité x 3</span>
             </div>
 
             <div class="bg-card border border-ink p-4 crops text-center">
               <span class="crop-b"></span>
-              <div class="text-4xl font-black text-green font-mono">1 450 €</div>
+              <div class="text-4xl font-black text-green font-mono">1 400 €</div>
               <span class="text-sm font-bold text-ink block mt-1">CAC Agence Immobilière</span>
-              <span class="font-mono text-[10px] text-green uppercase font-bold">10 chantiers / an (x20 ROI)</span>
+              <span class="font-mono text-[10px] text-green uppercase font-bold">10 chantiers / an (x 6 ROI)</span>
             </div>
           </div>
 
@@ -1008,12 +1098,12 @@
               </div>
               <div class="space-y-2 text-xs font-mono">
                 <div class="p-2.5 bg-paper border border-line">
-                  <b class="text-ink uppercase block">DÉCISION : 70 % SUR LES AGENCES IMMOBILIÈRES</b>
-                  <span>1 agence = 10 chantiers par an. Coût d'acquisition divisé par 4.</span>
+                  <b class="text-ink uppercase block">DÉCISION : 80 % SUR LES AGENCES IMMOBILIÈRES (B2B)</b>
+                  <span>À 2 % de commission (840 €/chantier), 1 agence partenaire apporte 10 chantiers = 8 400 €/an de marge. Le B2B est indispensable pour être rentable.</span>
                 </div>
                 <div class="p-2.5 bg-paper border border-line">
                   <b class="text-red uppercase block">CHALLENGE APPORTÉ À L'IA :</b>
-                  <span>L'IA voulait copier un modèle grand public coûteux. <strong>Nous avons refusé pour cibler les gestionnaires</strong>.</span>
+                  <span>L'IA proposait 7 % de marge en régie B2C (inapplicable face aux artisans). <strong>Nous avons imposé 2 % de commission séquestre et le pivot B2B agences.</strong></span>
                 </div>
               </div>
             </div>
@@ -1032,16 +1122,16 @@
             </h2>
           </div>
 
-          <!-- 3 Blocs Visuels 30 / 60 / 90 Jours -->
+          <!-- 3 Blocs Visuels 30 / 60 / 90 Jours (Marge 2 % = 840 € / chantier) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
             <!-- 30 Jours -->
             <div class="bg-card border border-ink p-5 crops text-center space-y-3">
               <span class="crop-b"></span>
               <span class="font-mono text-xs text-red font-bold uppercase block">MOIS 1 · AMORÇAGE</span>
               <div class="text-4xl font-black text-ink font-mono">3 AGENCES</div>
-              <p class="text-xs font-mono text-muted">Signature des premiers pilotes</p>
+              <p class="text-xs font-mono text-muted">Signature des premiers pilotes gestionnaires</p>
               <div class="pt-2 border-t border-line font-mono text-xs text-ink font-bold">
-                10 premiers audits MAR lancés
+                10 audits MAR · 8 400 € de marge engagée
               </div>
             </div>
 
@@ -1050,20 +1140,20 @@
               <span class="crop-b"></span>
               <span class="font-mono text-xs text-ink font-bold uppercase block">MOIS 2 · EXPANSION</span>
               <div class="text-4xl font-black text-ink font-mono">20 ARCHIS</div>
-              <p class="text-xs font-mono text-muted">Réseau Paris / Lyon / Bordeaux</p>
+              <p class="text-xs font-mono text-muted">Réseau Paris / Île-de-France agréé</p>
               <div class="pt-2 border-t border-line font-mono text-xs text-ink font-bold">
-                Avance des aides opérationnelle
+                Avance des aides &amp; 12 chantiers en cours
               </div>
             </div>
 
             <!-- 90 Jours -->
             <div class="bg-card border border-ink p-5 crops text-center space-y-3">
               <span class="crop-b"></span>
-              <span class="font-mono text-xs text-green font-bold uppercase block">MOIS 3 · RENTABILITÉ</span>
-              <div class="text-4xl font-black text-green font-mono">20 AGENCES</div>
-              <p class="text-xs font-mono text-muted">200 lots sous mandat</p>
+              <span class="font-mono text-xs text-green font-bold uppercase block">MOIS 3 · RENTABILITÉ (90J)</span>
+              <div class="text-4xl font-black text-green font-mono">25 CHANTIERS</div>
+              <p class="text-xs font-mono text-muted">20 agences partenaires signées</p>
               <div class="pt-2 border-t border-line font-mono text-xs text-green font-bold">
-                Cap de rentabilité franchi
+                21 000 € commissions (2 %) · Seuil franchi
               </div>
             </div>
           </div>
@@ -1078,15 +1168,15 @@
                   « ArchiSimple sécurise les travaux de rénovation et sauve les mandats des gestionnaires locatifs face à la Loi Climat. »
                 </p>
                 <p class="text-xs text-[#CFCBC2] font-mono">
-                  Merci pour votre attention. Nous sommes prêts pour vos questions.
+                  Volume An 1 : 200 chantiers via 20 agences = 168 000 € de commissions (2 %) 100 % sécurisées par séquestre bancaire.
                 </p>
               </div>
 
               <div class="flex items-center gap-3 shrink-0">
-                <button onclick="goToSlide(4)" class="px-4 py-2 bg-paper-2 hover:bg-paper text-ink font-mono text-xs font-bold transition border border-ink">
+                <button onclick="goToSlide(5)" class="px-4 py-2 bg-paper-2 hover:bg-paper text-ink font-mono text-xs font-bold transition border border-ink">
                   LANDING
                 </button>
-                <button onclick="goToSlide(6)" class="px-4 py-2 bg-red hover:bg-red-hover text-white font-mono text-xs font-bold transition shadow-sm">
+                <button onclick="goToSlide(7)" class="px-4 py-2 bg-red hover:bg-red-hover text-white font-mono text-xs font-bold transition shadow-sm">
                   AUTOMATISATION
                 </button>
               </div>
@@ -1117,7 +1207,7 @@
     if (window.lucide) lucide.createIcons();
 
     let currentSlide = 1;
-    const totalSlides = 8;
+    const totalSlides = 9;
 
     function goToSlide(n) {
       if (n < 1 || n > totalSlides) return;
@@ -1130,21 +1220,21 @@
         target.classList.add('active');
         target.scrollTop = 0;
       }
-      if (n === 4) {
+      if (n === 5) {
         const ifLanding = document.getElementById('iframe-landing');
         const tplLanding = document.getElementById('template-landing');
         if (ifLanding && tplLanding && (!ifLanding.srcdoc || ifLanding.srcdoc.length < 100)) {
           ifLanding.srcdoc = tplLanding.innerHTML;
         }
       }
-      if (n === 5) {
+      if (n === 6) {
         const ifSaas = document.getElementById('iframe-saas');
         const tplSaas = document.getElementById('template-saas');
         if (ifSaas && tplSaas && (!ifSaas.srcdoc || ifSaas.srcdoc.length < 100)) {
           ifSaas.srcdoc = tplSaas.innerHTML;
         }
       }
-      if (n === 6) {
+      if (n === 7) {
         loadRealHubspotDeals();
       }
 
@@ -2414,7 +2504,7 @@
           if (window.parent && window.parent !== window) {
             try {
               if (typeof window.parent.goToSlide === 'function') {
-                window.parent.goToSlide(5); // Slide 5 = Démo SaaS
+                window.parent.goToSlide(6); // Slide 6 = Démo SaaS
                 setTimeout(() => {
                   try {
                     const ifSaas = window.parent.document.getElementById('iframe-saas');
