@@ -159,21 +159,33 @@
     </div>
 
     <!-- Onglets de slides au centre -->
-    <nav class="flex items-center gap-1 bg-paper-2/70 p-1 rounded-sm border border-line text-xs font-mono">
-      <button onclick="goToSlide(1)" class="nav-tab px-2.5 py-1 transition-all font-bold" data-slide-target="1">01. Idée</button>
-      <button onclick="goToSlide(2)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="2">02. Enquêtes</button>
-      <button onclick="goToSlide(3)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="3">03. Stack</button>
-      <button onclick="goToSlide(4)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="4">04. On-Boarding</button>
-      <button onclick="goToSlide(5)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="5">05. Landing</button>
-      <button onclick="goToSlide(6)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="6">06. SaaS</button>
-      <button onclick="goToSlide(7)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="7">07. Automatisation</button>
-      <button onclick="goToSlide(8)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="8">08. Chiffres &amp; CAC</button>
-      <button onclick="goToSlide(9)" class="nav-tab px-2.5 py-1 transition-all" data-slide-target="9">09. Action 90j</button>
+    <nav class="flex items-center gap-1 bg-paper-2/70 p-1 rounded-sm border border-line text-xs font-mono overflow-x-auto">
+      <button onclick="goToSlide(1)" class="nav-tab px-2.5 py-1 transition-all font-bold cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="1">01. Idée</button>
+      <button onclick="goToSlide(2)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="2">02. Enquêtes</button>
+      <button onclick="goToSlide(3)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="3">03. Stack</button>
+      <button onclick="goToSlide(4)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="4">04. On-Boarding</button>
+      <button onclick="goToSlide(5)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="5">05. Landing</button>
+      <button onclick="goToSlide(6)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="6">06. SaaS</button>
+      <button onclick="goToSlide(7)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="7">07. Automatisation</button>
+      <button onclick="goToSlide(8)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="8">08. Chiffres &amp; CAC</button>
+      <button onclick="goToSlide(9)" class="nav-tab px-2.5 py-1 transition-all cursor-pointer hover:bg-paper hover:text-ink rounded-xs shrink-0" data-slide-target="9">09. Action 90j</button>
     </nav>
 
-    <!-- Droite : Bouton PLEIN ÉCRAN NATIF Seul -->
-    <div class="flex items-center">
-      <button onclick="toggleFullscreenDeck()" id="btnFullscreenDeck" class="w-8 h-8 flex items-center justify-center bg-card hover:bg-paper-2 border border-ink transition shadow-sm text-ink" title="Mettre en Plein Écran (Touche F)">
+    <!-- Droite : Navigation Rapide Précédent / Suivant + Plein Écran -->
+    <div class="flex items-center gap-2 shrink-0">
+      <div class="flex items-center gap-1 font-mono text-xs bg-paper-2/70 p-1 rounded-sm border border-line">
+        <button onclick="prevSlide()" class="px-2 py-0.5 hover:bg-paper active:bg-paper-2 border border-line hover:border-ink transition cursor-pointer text-ink font-bold flex items-center gap-1" title="Slide précédente (Flèche Gauche)">
+          <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Préc.</span>
+        </button>
+        <span class="px-1.5 font-bold text-ink"><span id="headerSlideNum">01</span> / 09</span>
+        <button onclick="nextSlide()" class="px-2 py-0.5 hover:bg-paper active:bg-paper-2 border border-line hover:border-ink transition cursor-pointer text-ink font-bold flex items-center gap-1" title="Slide suivante (Flèche Droite ou Espace)">
+          <span class="hidden md:inline">Suiv.</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <button onclick="toggleFullscreenDeck()" id="btnFullscreenDeck" class="w-8 h-8 flex items-center justify-center bg-card hover:bg-paper-2 border border-ink transition shadow-sm text-ink cursor-pointer" title="Mettre en Plein Écran (Touche F)">
         <i data-lucide="maximize" class="w-4 h-4" id="fullscreenIcon"></i>
       </button>
     </div>
@@ -834,8 +846,9 @@
                   <p id="slide7-form-error" class="text-red font-mono text-[11px] hidden"></p>
 
                   <div class="pt-1">
-                    <button type="submit" id="slide7-btn-submit" class="w-full py-2 bg-red text-white hover:bg-red-hover font-mono font-bold text-xs uppercase tracking-wider transition shadow-sm">
-                      Envoyer
+                    <button type="submit" id="slide7-btn-submit" class="w-full py-2 bg-red text-white hover:bg-red-hover active:bg-red-dark font-mono font-bold text-xs uppercase tracking-wider transition shadow-sm cursor-pointer flex items-center justify-center gap-1.5">
+                      <span>Envoyer au CRM HubSpot</span>
+                      <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 stroke-white fill-none stroke-2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
                     <p class="text-center font-mono text-[9px] text-muted mt-1">Vos données restent strictement confidentielles · Sans engagement</p>
                   </div>
@@ -853,7 +866,7 @@
                 <div id="slide7-result-card" class="bg-paper border border-ink p-2.5 text-left font-mono text-[11px] space-y-1 mb-3">
                 </div>
 
-                <button onclick="resetSlide7Form()" type="button" class="px-3 py-1 bg-ink text-white font-mono text-xs font-bold hover:bg-ink-2 transition">
+                <button onclick="resetSlide7Form()" type="button" class="px-3 py-1 bg-ink text-white font-mono text-xs font-bold hover:bg-ink-2 active:bg-black transition cursor-pointer">
                   Nouvelle estimation
                 </button>
               </div>
@@ -1243,11 +1256,13 @@
               </div>
 
               <div class="flex items-center gap-3 shrink-0">
-                <button onclick="goToSlide(5)" class="px-4 py-2 bg-paper-2 hover:bg-paper text-ink font-mono text-xs font-bold transition border border-ink">
-                  LANDING
+                <button onclick="goToSlide(5)" class="px-4 py-2 bg-paper-2 hover:bg-paper active:bg-paper-2 text-ink font-mono text-xs font-bold transition border border-ink cursor-pointer flex items-center gap-1.5 shadow-xs" title="Aller à la Démo Landing Page (Slide 5)">
+                  <span>05. DÉMO LANDING</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 </button>
-                <button onclick="goToSlide(7)" class="px-4 py-2 bg-red hover:bg-red-hover text-white font-mono text-xs font-bold transition shadow-sm">
-                  AUTOMATISATION
+                <button onclick="goToSlide(7)" class="px-4 py-2 bg-red hover:bg-red-hover active:bg-red-dark text-white font-mono text-xs font-bold transition shadow-sm cursor-pointer flex items-center gap-1.5" title="Aller au Flux HubSpot (Slide 7)">
+                  <span>07. HUBSPOT LIVE</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
             </div>
@@ -1257,6 +1272,19 @@
 </div>
 
   </main>
+
+  <!-- Navigation Flottante Bas de Page (Précédent / Suivant) -->
+  <aside class="fixed bottom-3 right-4 z-40 flex items-center gap-1.5 bg-paper/95 backdrop-blur-md border border-ink p-1.5 shadow-lg font-mono text-xs">
+    <button onclick="prevSlide()" class="px-2.5 py-1 bg-card hover:bg-paper-2 active:bg-paper border border-line hover:border-ink transition cursor-pointer font-bold flex items-center gap-1 text-ink" title="Slide précédente (Flèche Gauche)">
+      <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+      <span>Précédent</span>
+    </button>
+    <span class="px-2 font-bold text-ink text-xs"><span id="bottomSlideNum">01</span> / 09</span>
+    <button onclick="nextSlide()" class="px-2.5 py-1 bg-ink hover:bg-ink-2 active:bg-black text-white transition cursor-pointer font-bold flex items-center gap-1 shadow-xs" title="Slide suivante (Flèche Droite ou Espace)">
+      <span>Suivant</span>
+      <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+    </button>
+  </aside>
 
   <!-- ================= MODALE GRAND ÉCRAN DÉMOS ================= -->
   <div id="modalFullscreenDemo" class="fixed inset-0 bg-ink/90 z-50 hidden flex-col p-2 md:p-4 backdrop-blur-sm">
@@ -1311,6 +1339,9 @@
       const hNum = document.getElementById('headerSlideNum');
       if (hNum) hNum.textContent = n.toString().padStart(2, '0');
 
+      const bNum = document.getElementById('bottomSlideNum');
+      if (bNum) bNum.textContent = n.toString().padStart(2, '0');
+
       document.querySelectorAll('.nav-tab').forEach(tab => {
         const targetNum = parseInt(tab.getAttribute('data-slide-target'), 10);
         if (targetNum === n) {
@@ -1321,6 +1352,7 @@
           tab.classList.add('text-muted');
         }
       });
+      if (window.lucide) lucide.createIcons();
     }
 
     function nextSlide() {
