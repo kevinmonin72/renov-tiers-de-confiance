@@ -911,6 +911,40 @@
       menuBtn.addEventListener('click', () => setMenu(!mobileNav.classList.contains('open')));
       mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
+            // Navigation Espace Architectes / Plateforme SaaS
+      document.querySelectorAll('a[href^="/app"], a[href*="app.html"]').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const href = a.getAttribute('href') || '';
+          const isArchi = href.includes('architecte');
+
+          // Si on est dans l'iframe de la présentation
+          if (window.parent && window.parent !== window) {
+            try {
+              if (typeof window.parent.goToSlide === 'function') {
+                window.parent.goToSlide(6); // Slide 6 = Démo SaaS
+                setTimeout(() => {
+                  try {
+                    const ifSaas = window.parent.document.getElementById('iframe-saas');
+                    if (ifSaas && ifSaas.contentWindow && typeof ifSaas.contentWindow.switchRole === 'function') {
+                      ifSaas.contentWindow.switchRole(isArchi ? 'archi' : 'client');
+                    }
+                  } catch(ex) {}
+                }, 400);
+                return;
+              }
+            } catch(ex) {}
+          }
+
+          // Standalone file:// ou Vercel
+          if (window.location.protocol === 'file:') {
+            window.location.href = isArchi ? 'app.html#architecte' : 'app.html';
+          } else {
+            window.location.href = href;
+          }
+        });
+      });
+
       // Modals
       const dialogs = { proprio: document.getElementById('dlg-proprio'), archi: document.getElementById('dlg-archi') };
       document.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', e => {
