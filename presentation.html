@@ -616,14 +616,14 @@
               DÉMO 01 · SITE WEB
             </span>
             <h2 class="text-xl md:text-2xl font-black font-sans tracking-tight text-ink">
-              Landing Page · <span class="text-red">renov-confiance.vercel.app/#</span>
+              Landing Page · <span class="text-red">archisimple-app.vercel.app/#</span>
             </h2>
           </div>
 
           <!-- Bouton d'ouverture direct -->
           <div class="flex items-center gap-2">
-            <a href="https://renov-confiance.vercel.app/#" target="_blank" class="px-4 py-1.5 bg-red hover:bg-red-hover text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-sm">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> OUVRIR RENOV-CONFIANCE.VERCEL.APP ↗
+            <a href="https://archisimple-app.vercel.app/#" target="_blank" class="px-4 py-1.5 bg-red hover:bg-red-hover text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> OUVRIR ARCHISIMPLE-APP.VERCEL.APP ↗
             </a>
             <button onclick="openModalFullscreen('iframe-landing')" class="px-3 py-1.5 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1">
               <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> GRAND ÉCRAN
@@ -638,16 +638,16 @@
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-green inline-block"></span>
               <span class="font-bold text-ink">CADRE INTÉGRÉ</span>
-              <span class="text-muted">https://renov-confiance.vercel.app/#</span>
+              <span class="text-muted">https://archisimple-app.vercel.app/#</span>
             </div>
-            <a href="https://renov-confiance.vercel.app/#" target="_blank" class="text-red font-bold underline">
+            <a href="https://archisimple-app.vercel.app/#" target="_blank" class="text-red font-bold underline">
               Ouvrir dans un nouvel onglet ↗
             </a>
           </div>
 
           <!-- L'iframe connectée en direct -->
           <div class="flex-1 w-full h-full relative bg-white">
-            <iframe id="iframe-landing" src="https://renov-confiance.vercel.app/#" class="w-full h-full border-0" title="Démo Landing Page"></iframe>
+            <iframe id="iframe-landing" src="https://archisimple-app.vercel.app/#" class="w-full h-full border-0" title="Démo Landing Page"></iframe>
           </div>
         </div>
       </section>
@@ -661,14 +661,14 @@
               DÉMO 02 · APPLICATION SAAS
             </span>
             <h2 class="text-xl md:text-2xl font-black font-sans tracking-tight text-ink">
-              Espace Architectes & Bailleurs · <span class="text-red">/app#architecte</span>
+              Espace Architectes & Bailleurs · <span class="text-red">archisimple-saas.vercel.app/app#architecte</span>
             </h2>
           </div>
 
           <!-- Bouton d'ouverture direct -->
           <div class="flex items-center gap-2">
-            <a href="https://renov-confiance.vercel.app/app#architecte" target="_blank" class="px-4 py-1.5 bg-ink hover:bg-ink-2 text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-sm">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> OUVRIR RENOV-CONFIANCE.VERCEL.APP/APP ↗
+            <a href="https://archisimple-saas.vercel.app/app#architecte" target="_blank" class="px-4 py-1.5 bg-ink hover:bg-ink-2 text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> OUVRIR ARCHISIMPLE-SAAS.VERCEL.APP ↗
             </a>
             <button onclick="openModalFullscreen('iframe-saas')" class="px-3 py-1.5 bg-card hover:bg-paper-2 border border-ink text-xs font-mono font-bold transition flex items-center gap-1">
               <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> GRAND ÉCRAN
@@ -683,16 +683,16 @@
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-green inline-block"></span>
               <span class="font-bold text-ink">CADRE INTÉGRÉ</span>
-              <span class="text-muted">https://renov-confiance.vercel.app/app#architecte</span>
+              <span class="text-muted">https://archisimple-saas.vercel.app/app#architecte</span>
             </div>
-            <a href="https://renov-confiance.vercel.app/app#architecte" target="_blank" class="text-red font-bold underline">
+            <a href="https://archisimple-saas.vercel.app/app#architecte" target="_blank" class="text-red font-bold underline">
               Ouvrir dans un nouvel onglet ↗
             </a>
           </div>
 
           <!-- L'iframe connectée en direct -->
           <div class="flex-1 w-full h-full relative bg-white">
-            <iframe id="iframe-saas" src="https://renov-confiance.vercel.app/app#architecte" class="w-full h-full border-0" title="Démo SaaS"></iframe>
+            <iframe id="iframe-saas" src="https://archisimple-saas.vercel.app/app#architecte" class="w-full h-full border-0" title="Démo SaaS"></iframe>
           </div>
         </div>
       </section>
@@ -1077,8 +1077,8 @@
       if (source && modal && modalIframe) {
         modalIframe.src = source.src;
         modalTitle.textContent = iframeId === 'iframe-landing'
-          ? "DÉMO LANDING PAGE : RENOV-CONFIANCE.VERCEL.APP/#"
-          : "DÉMO SAAS : RENOV-CONFIANCE.VERCEL.APP/APP#ARCHITECTE";
+          ? "DÉMO LANDING PAGE : ARCHISIMPLE-APP.VERCEL.APP/#"
+          : "DÉMO SAAS : ARCHISIMPLE-SAAS.VERCEL.APP/APP#ARCHITECTE";
         modal.classList.remove('hidden');
         modal.classList.add('flex');
       }
