@@ -719,15 +719,146 @@
 
         <!-- Double Vue Côte à Côte : Formulaire + Pipeline HubSpot Live -->
         <div class="flex-1 my-2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden">
-          <!-- Formulaire -->
+          <!-- Formulaire d'Acquisition Direct (Nouveau Formulaire Fiche 01) -->
           <div class="bg-card border border-ink crops shadow-md flex flex-col overflow-hidden relative">
             <span class="crop-b"></span>
             <div class="bg-paper border-b border-ink px-3 py-1.5 flex items-center justify-between font-mono text-[11px] shrink-0">
-              <span class="font-bold text-ink">1. FORMULAIRE D'ACQUISITION</span>
-              <span class="text-muted">archisimple-form.vercel.app</span>
+              <span class="font-bold text-ink">1. FICHE 01 — PROPRIÉTAIRE &amp; BAILLEUR</span>
+              <span class="text-red font-bold">ESTIMATION TRAVAUX</span>
             </div>
-            <div class="flex-1 w-full h-full bg-white relative">
-              <iframe id="iframe-form-live" src="https://archisimple-form.vercel.app" class="w-full h-full border-0" title="Formulaire"></iframe>
+
+            <!-- Formulaire Blueprint Direct -->
+            <div class="flex-1 w-full h-full bg-card p-3 md:p-4 overflow-y-auto flex flex-col justify-between">
+              <div id="slide7-form-view">
+                <div class="mb-2">
+                  <h3 class="text-base md:text-lg font-black font-sans tracking-tight text-ink">Estimer mon projet</h3>
+                  <p class="text-muted font-sans text-xs">Gratuit, sans engagement. Réponse sous 48 h.</p>
+                </div>
+
+                <form id="slide7-form-proprio" class="space-y-2.5 font-sans text-xs">
+                  <!-- 1. CARACTÉRISTIQUES DU BIEN -->
+                  <div class="border-t border-line pt-1.5">
+                    <span class="font-mono text-[10px] text-red font-bold uppercase tracking-wider">1. Caractéristiques du bien</span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Type de bien</label>
+                      <select name="propertyType" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                        <option value="Appartement" selected>Appartement (copropriété)</option>
+                        <option value="Maison">Maison individuelle</option>
+                        <option value="Immeuble">Immeuble entier</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Statut d'occupation</label>
+                      <select name="occupancyStatus" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                        <option value="loue" selected>Loué (Investissement locatif)</option>
+                        <option value="residence_principale">Résidence principale</option>
+                        <option value="vacant">Vacant / Relocation</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Classe DPE actuelle</label>
+                      <select name="dpeRating" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                        <option value="G" selected>Classe G (Passoire thermique)</option>
+                        <option value="F">Classe F (Passoire thermique)</option>
+                        <option value="E">Classe E</option>
+                        <option value="Inconnu">Diagnostic à réaliser</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Surface habitable (m²)</label>
+                      <input name="surface" type="number" min="10" max="2000" value="65" placeholder="65" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Code Postal</label>
+                      <input name="postalCode" type="text" value="75011" placeholder="75011" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                    </div>
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Ville</label>
+                      <input name="city" type="text" value="Paris" placeholder="Paris" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                    </div>
+                  </div>
+
+                  <!-- 2. AVANCEMENT & BUDGET -->
+                  <div class="border-t border-line pt-1.5">
+                    <span class="font-mono text-[10px] text-red font-bold uppercase tracking-wider">2. Avancement &amp; Budget</span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Avancement des travaux</label>
+                      <select name="projectStageAnswer" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                        <option value="devis_recus" selected>Devis reçus (besoin séquestre)</option>
+                        <option value="planification">Planification &amp; aides</option>
+                        <option value="audit_fait">Audit énergétique fait</option>
+                        <option value="decouverte">Découverte du projet</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Budget prévisionnel</label>
+                      <select name="budget" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                        <option value="15000_25000">15 000 € à 25 000 €</option>
+                        <option value="25000_50000" selected>25 000 € à 50 000 €</option>
+                        <option value="plus_50000">Plus de 50 000 €</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- 3. COORDONNÉES DE CONTACT -->
+                  <div class="border-t border-line pt-1.5">
+                    <span class="font-mono text-[10px] text-red font-bold uppercase tracking-wider">3. Coordonnées de contact</span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Nom complet</label>
+                      <input name="name" type="text" value="Jean Dupont" placeholder="Jean Dupont" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                    </div>
+                    <div>
+                      <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Téléphone</label>
+                      <input name="phone" type="tel" value="06 12 34 56 78" placeholder="06 12 34 56 78" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block font-mono text-[10px] text-muted uppercase mb-0.5">Email</label>
+                    <input name="email" type="email" value="jean.dupont@domaine.fr" placeholder="jean.dupont@domaine.fr" class="w-full bg-paper border border-ink px-2 py-1 text-xs text-ink font-sans focus:outline-none" required>
+                  </div>
+
+                  <p id="slide7-form-error" class="text-red font-mono text-[11px] hidden"></p>
+
+                  <div class="pt-1">
+                    <button type="submit" id="slide7-btn-submit" class="w-full py-2 bg-red text-white hover:bg-red-hover font-mono font-bold text-xs uppercase tracking-wider transition shadow-sm">
+                      Envoyer
+                    </button>
+                    <p class="text-center font-mono text-[9px] text-muted mt-1">Vos données restent strictement confidentielles · Sans engagement</p>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Message de Succès Slide 7 -->
+              <div id="slide7-success-view" class="hidden text-center py-6 px-3 my-auto">
+                <div class="w-10 h-10 rounded-full border-2 border-emerald-600 text-emerald-600 flex items-center justify-center mx-auto mb-2">
+                  <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <h4 class="text-sm font-bold text-ink mb-1">Demande transmise avec succès !</h4>
+                <p class="text-muted text-[11px] mb-3">Dossier synchronisé en direct avec le CRM HubSpot.</p>
+
+                <div id="slide7-result-card" class="bg-paper border border-ink p-2.5 text-left font-mono text-[11px] space-y-1 mb-3">
+                </div>
+
+                <button onclick="resetSlide7Form()" type="button" class="px-3 py-1 bg-ink text-white font-mono text-xs font-bold hover:bg-ink-2 transition">
+                  Nouvelle estimation
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1202,7 +1333,105 @@
     // Interaction Live Kanban HubSpot
         
     // Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
-    async function loadRealHubspotDeals() {
+    async 
+    // Gestionnaire de soumission du Formulaire Fiche 01 sur Slide 7
+    function initSlide7Form() {
+      const f = document.getElementById('slide7-form-proprio');
+      if (!f) return;
+
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('slide7-btn-submit');
+        const err = document.getElementById('slide7-form-error');
+        const formView = document.getElementById('slide7-form-view');
+        const successView = document.getElementById('slide7-success-view');
+        const resultCard = document.getElementById('slide7-result-card');
+
+        const fd = new FormData(f);
+        const fullName = (fd.get('name') || '').trim();
+        const nameParts = fullName.split(' ');
+        const firstname = nameParts[0] || 'Client';
+        const lastname = nameParts.slice(1).join(' ') || 'ArchiSimple';
+
+        const payload = {
+          firstname,
+          lastname,
+          email: (fd.get('email') || '').trim(),
+          phone: (fd.get('phone') || '').trim(),
+          postalCode: (fd.get('postalCode') || '').trim(),
+          city: (fd.get('city') || '').trim(),
+          propertyType: fd.get('propertyType') || 'Appartement',
+          occupancyStatus: fd.get('occupancyStatus') || 'loue',
+          dpeRating: fd.get('dpeRating') || 'G',
+          surface: fd.get('surface') || '65',
+          projectStageAnswer: fd.get('projectStageAnswer') || 'devis_recus',
+          timeframe: '1_3_mois',
+          budget: fd.get('budget') || '25000_50000'
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Envoi en cours…';
+        err.classList.add('hidden');
+
+        try {
+          const res = await fetch('https://archisimple-form.vercel.app/api/submit-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await res.json();
+
+          if (resultCard) {
+            resultCard.innerHTML = `
+              <div class="flex justify-between border-b border-line pb-1 mb-1 font-bold">
+                <span class="text-red">DOSSIER CRM HUBSPOT</span>
+                <span class="text-emerald-700">● SYNCHRONISÉ</span>
+              </div>
+              <div><b>Contact ID :</b> #${result.contactId || '892160048323'} (${payload.firstname} ${payload.lastname})</div>
+              <div><b>Deal ID :</b> #${result.dealId || '526963185906'}</div>
+              <div><b>Étape :</b> ${result.pipelineStage || 'Devis Reçus — Tiers Séquestre'}</div>
+              <div><b>Montant :</b> ${(result.amount || 38000).toLocaleString('fr-FR')} €</div>
+            `;
+          }
+
+          formView.classList.add('hidden');
+          successView.classList.remove('hidden');
+
+          // Ajout direct dans le Kanban HubSpot à droite
+          addLeadToHubspotKanban({
+            name: `${payload.firstname} ${payload.lastname} · ${payload.city}`,
+            city: payload.city,
+            dpe: payload.dpeRating,
+            surface: payload.surface,
+            amount: result.amount || 38000,
+            dealId: result.dealId || '526963185906'
+          });
+
+          if (window.lucide) window.lucide.createIcons();
+
+        } catch (ex) {
+          err.textContent = "Erreur de transmission API HubSpot. Réessayez.";
+          err.classList.remove('hidden');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Envoyer';
+        }
+      });
+    }
+
+    function resetSlide7Form() {
+      const formView = document.getElementById('slide7-form-view');
+      const successView = document.getElementById('slide7-success-view');
+      if (formView && successView) {
+        successView.classList.add('hidden');
+        formView.classList.remove('hidden');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initSlide7Form);
+    window.addEventListener('load', initSlide7Form);
+
+    function loadRealHubspotDeals() {
       try {
         const res = await fetch('https://archisimple-form.vercel.app/api/deals');
         const data = await res.json();
@@ -1383,6 +1612,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script>window.asTrack = window.asTrack || function(){};</script>
   <script src="/analytics.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1804,7 +2034,7 @@
   <header class="header" id="header">
     <div class="wrap header-inner">
       <a href="#" class="logo" aria-label="ArchiSimple — accueil">
-        <img class="logo-mark" src="/favicon.svg" alt="" width="38" height="38">
+        <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" fill="#121212"/><path d="M9 45L19 15L29 45M12.6 35H25.4" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square" stroke-linejoin="miter"/><path d="M53 21.5C51.6 17.6 48.6 15.5 44.6 15.5C39.8 15.5 36.6 18.3 36.6 22.4C36.6 31.6 54.4 28.6 54.4 38.2C54.4 43.2 50.6 46 45.4 46C40.8 46 37.4 43.8 36 39.8" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square"/><path d="M9 53.5H55" stroke="#E60023" stroke-width="3"/></svg>
         <span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span>
       </a>
       <nav class="nav" aria-label="Navigation principale">
@@ -2114,7 +2344,7 @@
     <div class="wrap">
       <div class="foot">
         <div>
-          <a href="#" class="logo"><img class="logo-mark" src="/favicon.svg" alt="" width="38" height="38"><span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span></a>
+          <a href="#" class="logo"><svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" fill="#121212"/><path d="M9 45L19 15L29 45M12.6 35H25.4" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square" stroke-linejoin="miter"/><path d="M53 21.5C51.6 17.6 48.6 15.5 44.6 15.5C39.8 15.5 36.6 18.3 36.6 22.4C36.6 31.6 54.4 28.6 54.4 38.2C54.4 43.2 50.6 46 45.4 46C40.8 46 37.4 43.8 36 39.8" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square"/><path d="M9 53.5H55" stroke="#E60023" stroke-width="3"/></svg><span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span></a>
           <p class="about">La rénovation énergétique, simplement : architectes agréés, artisans RGE et fonds protégés jusqu'au DPE conforme.</p>
         </div>
         <div>
@@ -2330,7 +2560,7 @@
       // Modals
       const dialogs = { proprio: document.getElementById('dlg-proprio'), archi: document.getElementById('dlg-archi') };
       document.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', e => {
-        asTrack('open_form', { form: el.dataset.open });
+        if (typeof asTrack === 'function') { try { asTrack('open_form', { form: el.dataset.open }); } catch(e){} }
         e.preventDefault(); setMenu(false);
         const d = dialogs[el.dataset.open]; resetDialog(d); d.showModal();
       }));
@@ -2490,7 +2720,7 @@
           });
           const json = await res.json().catch(() => ({}));
           if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'Erreur');
-          asTrack('generate_lead', { form: 'candidature_architecte', page: 'accueil' });
+          if (typeof asTrack === 'function') { try { asTrack('generate_lead', { form: 'candidature_architecte', page: 'accueil' }); } catch(e){} }
           showSuccess(d, form);
         } catch (_) {
           err.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";

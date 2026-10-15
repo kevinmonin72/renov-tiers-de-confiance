@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script>window.asTrack = window.asTrack || function(){};</script>
   <script src="/analytics.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -422,7 +423,7 @@
   <header class="header" id="header">
     <div class="wrap header-inner">
       <a href="#" class="logo" aria-label="ArchiSimple — accueil">
-        <img class="logo-mark" src="/favicon.svg" alt="" width="38" height="38">
+        <svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" fill="#121212"/><path d="M9 45L19 15L29 45M12.6 35H25.4" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square" stroke-linejoin="miter"/><path d="M53 21.5C51.6 17.6 48.6 15.5 44.6 15.5C39.8 15.5 36.6 18.3 36.6 22.4C36.6 31.6 54.4 28.6 54.4 38.2C54.4 43.2 50.6 46 45.4 46C40.8 46 37.4 43.8 36 39.8" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square"/><path d="M9 53.5H55" stroke="#E60023" stroke-width="3"/></svg>
         <span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span>
       </a>
       <nav class="nav" aria-label="Navigation principale">
@@ -732,7 +733,7 @@
     <div class="wrap">
       <div class="foot">
         <div>
-          <a href="#" class="logo"><img class="logo-mark" src="/favicon.svg" alt="" width="38" height="38"><span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span></a>
+          <a href="#" class="logo"><svg class="logo-mark" width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" fill="#121212"/><path d="M9 45L19 15L29 45M12.6 35H25.4" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square" stroke-linejoin="miter"/><path d="M53 21.5C51.6 17.6 48.6 15.5 44.6 15.5C39.8 15.5 36.6 18.3 36.6 22.4C36.6 31.6 54.4 28.6 54.4 38.2C54.4 43.2 50.6 46 45.4 46C40.8 46 37.4 43.8 36 39.8" stroke="#F3F1EC" stroke-width="4.2" stroke-linecap="square"/><path d="M9 53.5H55" stroke="#E60023" stroke-width="3"/></svg><span class="logo-txt"><b>Archi</b><span>Simple</span><small class="logo-sub">Rénovation · Architecture</small></span></a>
           <p class="about">La rénovation énergétique, simplement : architectes agréés, artisans RGE et fonds protégés jusqu'au DPE conforme.</p>
         </div>
         <div>
@@ -948,7 +949,7 @@
       // Modals
       const dialogs = { proprio: document.getElementById('dlg-proprio'), archi: document.getElementById('dlg-archi') };
       document.querySelectorAll('[data-open]').forEach(el => el.addEventListener('click', e => {
-        asTrack('open_form', { form: el.dataset.open });
+        if (typeof asTrack === 'function') { try { asTrack('open_form', { form: el.dataset.open }); } catch(e){} }
         e.preventDefault(); setMenu(false);
         const d = dialogs[el.dataset.open]; resetDialog(d); d.showModal();
       }));
@@ -1108,7 +1109,7 @@
           });
           const json = await res.json().catch(() => ({}));
           if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'Erreur');
-          asTrack('generate_lead', { form: 'candidature_architecte', page: 'accueil' });
+          if (typeof asTrack === 'function') { try { asTrack('generate_lead', { form: 'candidature_architecte', page: 'accueil' }); } catch(e){} }
           showSuccess(d, form);
         } catch (_) {
           err.textContent = "L'envoi a échoué. Vérifiez votre connexion et réessayez.";
