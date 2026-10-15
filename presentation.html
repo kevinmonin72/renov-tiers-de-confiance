@@ -896,8 +896,12 @@
                     <span class="font-bold text-slate-800 text-xs">Pipeline Ventes Locataires</span>
                     <span id="hubspotTransactionsCount" class="text-emerald-700 font-bold text-[11px]">(11 transactions réelles API · 227 160 €)</span>
                   </div>
-                  <div class="flex items-center gap-2 text-slate-500 font-mono text-[10px]">
-                    <span class="text-emerald-700 font-bold">● VRAIE DATA HUBSPOT CRM</span>
+                  <div class="flex items-center gap-2 font-mono text-[11px]">
+                    <button type="button" id="btnRefreshHubspot" onclick="refreshHubspotDealsNow()" class="px-2.5 py-1 bg-white hover:bg-slate-50 active:bg-slate-100 text-[#2E3F50] border border-[#CBD6E2] hover:border-[#FF7A59] rounded flex items-center gap-1.5 shadow-xs transition font-bold cursor-pointer text-[10px]" title="Actualiser les transactions depuis HubSpot CRM">
+                      <svg id="refreshIconSvg" viewBox="0 0 24 24" class="w-3.5 h-3.5 stroke-[#FF7A59] fill-none stroke-2 transition"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-1.19"/></svg>
+                      <span id="refreshBtnLabel">ACTUALISER</span>
+                    </button>
+                    <span class="text-emerald-700 font-bold text-[10px] hidden sm:inline">● SYNC EN DIRECT</span>
                   </div>
                 </div>
 
@@ -1270,7 +1274,7 @@
   <!-- ================= JAVASCRIPT ULTRA-ROBUSTE DU LECTEUR ================= -->
   <script>
     if (window.lucide) lucide.createIcons();
-    window.addEventListener(DOMContentLoaded, () => { loadRealHubspotDeals(); });
+    window.addEventListener('DOMContentLoaded', () => { loadRealHubspotDeals(); });
 
     let currentSlide = 1;
     const totalSlides = 9;
@@ -1301,7 +1305,7 @@
         }
       }
       if (n === 7) {
-        loadRealHubspotDeals();
+        loadRealHubspotDeals(true);
       }
 
       const hNum = document.getElementById('headerSlideNum');
@@ -1375,7 +1379,11 @@
     });
 
 // Interaction Live Pipeline Kanban HubSpot
+    window.recentLocalLeads = window.recentLocalLeads || [];
     function addLeadToHubspotKanban(lead) {
+      if (lead) {
+        window.recentLocalLeads.unshift(lead);
+      }
       const container = document.getElementById("kanban-nouveau");
       const counter = document.getElementById("colCount-nouveau");
       const toast = document.getElementById("hubspotLiveToast");
@@ -1421,6 +1429,9 @@
       }
 
       if (window.lucide) lucide.createIcons();
+
+      // Programmer un rechargement API pour récupérer le deal indexé par HubSpot
+      setTimeout(() => { loadRealHubspotDeals(true); }, 2500);
     }
 
     // Gestionnaire de soumission du Formulaire Fiche 01 sur Slide 6
@@ -1518,7 +1529,34 @@
       }
     }
 
-// Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
+    // Actualisation Manuelle au Clic sur le Bouton ACTUALISER
+    async function refreshHubspotDealsNow() {
+      const btn = document.getElementById("btnRefreshHubspot");
+      const icon = document.getElementById("refreshIconSvg");
+      const label = document.getElementById("refreshBtnLabel");
+      if (icon) icon.classList.add("animate-spin");
+      if (label) label.textContent = "Actualisation…";
+      if (btn) btn.disabled = true;
+
+      try {
+        await loadRealHubspotDeals(true);
+        if (label) label.textContent = "✓ Synchronisé";
+        setTimeout(() => {
+          if (label) label.textContent = "ACTUALISER";
+        }, 1500);
+      } catch (e) {
+        console.error("Erreur actualisation HubSpot:", e);
+        if (label) label.textContent = "Erreur";
+        setTimeout(() => {
+          if (label) label.textContent = "ACTUALISER";
+        }, 2000);
+      } finally {
+        if (icon) icon.classList.remove("animate-spin");
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    // Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
     let dealsLoadedOnce = false;
     async function loadRealHubspotDeals(force = false) {
       if (dealsLoadedOnce && !force) return;
@@ -1562,17 +1600,26 @@
         // Filtrer les deals techniques de sample HubSpot
         const validDeals = data.deals.filter(d => !d.name.includes("Sample Deal") && !d.name.includes("New Deal"));
 
+        // Trier par date décroissante (plus récent en premier)
+        validDeals.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+        const renderedDealIds = new Set();
+
         validDeals.forEach((deal) => {
+          renderedDealIds.add(String(deal.id));
           let targetCol = colNouveau;
           let key = "nouveau";
           let borderCol = "border-l-[#FF7A59]";
 
-          if (deal.stage === "6224517361") {
+          if (deal.stage === "6224517361" || deal.stage === "qualifiedtobuy") {
             targetCol = colRdv; key = "rdv"; borderCol = "border-l-blue-500";
-          } else if (deal.stage === "6224517362") {
+          } else if (deal.stage === "6224517362" || deal.stage === "presentationscheduled") {
             targetCol = colDecision; key = "decision"; borderCol = "border-l-amber-500";
-          } else if (deal.stage === "6224517363") {
+          } else if (deal.stage === "6224517363" || deal.stage === "closedwon") {
             targetCol = colGagne; key = "gagne"; borderCol = "border-l-emerald-500";
+          } else {
+            // "6224517360" ou appointmentscheduled -> 1. Nouveau Biz
+            targetCol = colNouveau; key = "nouveau"; borderCol = "border-l-[#FF7A59]";
           }
 
           counts[key]++;
@@ -1592,10 +1639,15 @@
           let dealAmount = (deal.amount && deal.amount > 5000) ? deal.amount : 38000;
           totalAmount += dealAmount;
 
+          const isRecent = deal.createdAt && (Date.now() - new Date(deal.createdAt).getTime() < 1000 * 60 * 60 * 6);
+
           const card = document.createElement("div");
           card.className = `bg-white border-l-4 ${borderCol} border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px] hover:shadow transition`;
           card.innerHTML = `
-            <div class="font-bold text-slate-900 truncate" title="${displayHeader}">${displayHeader}</div>
+            <div class="flex items-center justify-between gap-1">
+              <div class="font-bold text-slate-900 truncate" title="${displayHeader}">${displayHeader}</div>
+              ${isRecent ? '<span class="text-[8px] bg-emerald-100 text-emerald-800 font-mono font-bold px-1 rounded shrink-0">RÉCENT</span>' : ''}
+            </div>
             <div class="text-[10px] text-slate-500">${projectDesc}</div>
             <div class="mt-1 flex items-center justify-between">
               <span class="font-mono font-bold text-slate-800">${dealAmount.toLocaleString("fr-FR")} €</span>
@@ -1604,6 +1656,31 @@
           `;
           targetCol.appendChild(card);
         });
+
+        // Conserver les leads locaux récemment soumis non encore indexés par l'API HubSpot
+        if (window.recentLocalLeads && window.recentLocalLeads.length > 0) {
+          window.recentLocalLeads.forEach(loc => {
+            if (loc.dealId && !renderedDealIds.has(String(loc.dealId))) {
+              counts.nouveau++;
+              const dpe = loc.dpe || "G";
+              const surf = loc.surface || "65";
+              const card = document.createElement("div");
+              card.className = "bg-white border-l-4 border-l-[#0F8A3C] border border-[#0F8A3C] p-2 rounded shadow-md text-[11px]";
+              card.innerHTML = `
+                <div class="flex items-center justify-between">
+                  <div class="font-bold text-slate-900 truncate">${loc.name || "Nouveau Prospect"}</div>
+                  <span class="text-[8px] bg-emerald-100 text-emerald-800 font-mono font-bold px-1 rounded">LIVE NOW</span>
+                </div>
+                <div class="text-[10px] text-slate-500">Appartement ${surf} m² · Passoire ${dpe}</div>
+                <div class="mt-1 flex items-center justify-between">
+                  <span class="font-mono font-bold text-[#0F8A3C]">${(loc.amount || 38000).toLocaleString("fr-FR")} €</span>
+                  <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">Deal #${String(loc.dealId).slice(-6)}</span>
+                </div>
+              `;
+              colNouveau.prepend(card);
+            }
+          });
+        }
 
         // Ajouter les chantiers gagnés (Colonne 4)
         WON_DEALS.forEach(won => {
@@ -1641,6 +1718,13 @@
         console.warn("Erreur chargement deals réels HubSpot:", e);
       }
     }
+
+    // Polling automatique en direct toutes les 8 secondes quand la slide 7 est active
+    setInterval(() => {
+      if (typeof currentSlide !== "undefined" && currentSlide === 7) {
+        loadRealHubspotDeals(true);
+      }
+    }, 8000);
 
     function initDemoIframes() {
       const tplLanding = document.getElementById('template-landing');
