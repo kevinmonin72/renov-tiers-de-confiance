@@ -751,7 +751,7 @@
                 <div class="flex items-center gap-2">
                   <span class="w-2.5 h-2.5 rounded-full bg-[#FF7A59]"></span>
                   <span class="font-bold text-slate-800 text-xs">Pipeline Ventes Locataires</span>
-                  <span class="text-slate-400 text-[11px]">(8 transactions · 321 000 €)</span>
+                  <span id="hubspotTransactionsCount" class="text-emerald-700 font-bold text-[11px]">(11 transactions réelles API HubSpot · 227 160 €)</span>
                 </div>
                 <div class="flex items-center gap-2 font-mono text-[10px]">
                   <button onclick="simulerNouveauLead()" class="px-2 py-0.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded text-[10px] flex items-center gap-1 shadow-xs transition">
@@ -806,9 +806,9 @@
                 <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
                   <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
                     <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">RDV / Cadrage MAR</span>
-                    <span class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">2</span>
+                    <span id="colCount-rdv" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">4</span>
                   </div>
-                  <div class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                  <div id="kanban-rdv" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
                     <div class="bg-white border-l-4 border-l-blue-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
                       <div class="font-bold text-slate-900 truncate">Julien Lefebvre · Lille</div>
                       <div class="text-[10px] text-slate-500">Maison · DPE G · 110 m²</div>
@@ -832,9 +832,9 @@
                 <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
                   <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
                     <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">En Décision</span>
-                    <span class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">1</span>
+                    <span id="colCount-decision" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">4</span>
                   </div>
-                  <div class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                  <div id="kanban-decision" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
                     <div class="bg-white border-l-4 border-l-amber-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
                       <div class="font-bold text-slate-900 truncate">Marc Vallet · Bordeaux</div>
                       <div class="text-[10px] text-slate-500">Rénovation Globale · 75 m²</div>
@@ -850,9 +850,9 @@
                 <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
                   <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
                     <span class="font-bold text-[10px] text-emerald-800 uppercase tracking-wider">Gagné (Séquestré)</span>
-                    <span class="bg-white text-emerald-800 px-1.5 py-0.2 rounded-full text-[9px] font-bold">2</span>
+                    <span id="colCount-gagne" class="bg-white text-emerald-800 px-1.5 py-0.2 rounded-full text-[9px] font-bold">0</span>
                   </div>
-                  <div class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                  <div id="kanban-gagne" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
                     <div class="bg-white border-l-4 border-l-emerald-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
                       <div class="font-bold text-slate-900 truncate">Sophie Bernard · Paris 15e</div>
                       <div class="text-[10px] text-slate-500">Passoire G · 80 m²</div>
@@ -1200,7 +1200,77 @@
 
     
     // Interaction Live Kanban HubSpot
-        function simulerNouveauLead() {
+        
+    // Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
+    async function loadRealHubspotDeals() {
+      try {
+        const res = await fetch('https://archisimple-form.vercel.app/api/deals');
+        const data = await res.json();
+        if (!data.connected || !data.deals || !data.deals.length) return;
+
+        const colNouveau = document.getElementById('kanban-nouveau');
+        const colRdv = document.getElementById('kanban-rdv');
+        const colDecision = document.getElementById('kanban-decision');
+        const colGagne = document.getElementById('kanban-gagne');
+        if (!colNouveau || !colRdv || !colDecision || !colGagne) return;
+
+        colNouveau.innerHTML = '';
+        colRdv.innerHTML = '';
+        colDecision.innerHTML = '';
+        colGagne.innerHTML = '';
+
+        let totalAmount = 0;
+        const counts = { nouveau: 0, rdv: 0, decision: 0, gagne: 0 };
+
+        data.deals.forEach(deal => {
+          totalAmount += deal.amount || 0;
+          let targetCol = colNouveau;
+          let key = 'nouveau';
+          let borderCol = 'border-l-[#FF7A59]';
+          let tag = 'Prospect';
+
+          if (deal.stage === '6224517361') {
+            targetCol = colRdv; key = 'rdv'; borderCol = 'border-l-blue-500'; tag = 'RDV / MAR';
+          } else if (deal.stage === '6224517362') {
+            targetCol = colDecision; key = 'decision'; borderCol = 'border-l-amber-500'; tag = 'En Décision';
+          } else if (deal.stage === '6224517363') {
+            targetCol = colGagne; key = 'gagne'; borderCol = 'border-l-emerald-500'; tag = 'Gagné (Séquestré)';
+          }
+
+          counts[key]++;
+
+          const card = document.createElement('div');
+          card.className = `bg-white border-l-4 ${borderCol} border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px] hover:shadow transition`;
+          card.innerHTML = `
+            <div class="font-bold text-slate-900 truncate" title="${deal.name}">${deal.name}</div>
+            <div class="text-[10px] text-slate-500 font-mono">Deal #${deal.id}</div>
+            <div class="mt-1 flex items-center justify-between">
+              <span class="font-mono font-bold text-slate-800">${(deal.amount || 0).toLocaleString('fr-FR')} €</span>
+              <span class="text-[9px] bg-slate-100 text-slate-700 px-1 rounded font-mono font-bold">${tag}</span>
+            </div>
+          `;
+          targetCol.appendChild(card);
+        });
+
+        ['nouveau', 'rdv', 'decision', 'gagne'].forEach(k => {
+          const el = document.getElementById(`colCount-${k}`);
+          if (el) el.textContent = counts[k];
+        });
+
+        const summary = document.getElementById('hubspotTransactionsCount');
+        if (summary) {
+          summary.textContent = `(${data.total} transactions réelles API HubSpot · ${totalAmount.toLocaleString('fr-FR')} €)`;
+        }
+      } catch(e) {
+        console.warn('Erreur chargement deals réels HubSpot:', e);
+      }
+    }
+
+    // Chargement au démarrage et à l'affichage de la slide 7
+    document.addEventListener('DOMContentLoaded', loadRealHubspotDeals);
+    window.addEventListener('load', loadRealHubspotDeals);
+
+    function simulerNouveauLead() {
       const names = ['Jean Dupont (Passoire G)', 'Laurent Mercier', 'Sophie Marchand', 'Antoine Bernard', 'Élodie Petit'];
       const cities = ['Paris 11e', 'Lyon 6e', 'Bordeaux', 'Nantes', 'Marseille 8e'];
       const dpes = ['G', 'F', 'E'];
