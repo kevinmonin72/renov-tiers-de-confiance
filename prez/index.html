@@ -876,12 +876,12 @@
                 <!-- Sprocket HubSpot -->
                 <svg viewBox="0 0 24 24" class="w-4 h-4 fill-[#FF7A59]"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.978v-.067A2.2 2.2 0 0017.238.845h-.067a2.2 2.2 0 00-2.193 2.193v.067a2.196 2.196 0 001.252 1.973l.013.006v2.852a6.22 6.22 0 00-2.969 1.31l.012-.01-7.828-6.14a2.2 2.2 0 10-1.493 1.764l7.632 5.986a6.224 6.224 0 00-.77 2.998 6.22 6.22 0 00.77 2.998l-7.632 5.986a2.2 2.2 0 101.493 1.764l7.828-6.14a6.22 6.22 0 002.957 1.3l-.013 2.853a2.196 2.196 0 00-1.252 1.973v.067a2.2 2.2 0 002.193 2.193h.067a2.2 2.2 0 002.193-2.193v-.067a2.198 2.198 0 00-1.267-1.978V16.07a6.222 6.222 0 004.288-5.918 6.223 6.223 0 00-4.288-5.918v-.304h.001zm-.993 6.294a2.224 2.224 0 112.224-2.224 2.224 2.224 0 01-2.224 2.224z"/></svg>
                 <span class="font-bold tracking-wide">HubSpot CRM</span>
-                <span class="text-[10px] text-slate-300 font-mono hidden sm:inline">Portail #149544612</span>
-                <span class="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-mono text-[9px] font-bold rounded">● LIVE API</span>
+                <span class="text-[10px] text-slate-300 font-mono hidden sm:inline" id="hubspotUserBadge">Non connecté</span>
+                <span id="hubspotApiStatusBadge" class="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-mono text-[9px] font-bold rounded">● LIVE API</span>
               </div>
               <div class="flex items-center gap-2">
-                <a href="https://app.hubspot.com/contacts/149544612/deals" target="_blank" class="text-[11px] text-[#FF7A59] hover:text-white font-bold flex items-center gap-1 transition">
-                  Lancer mon portail en direct ↗
+                <a href="https://app.hubspot.com/login" target="_blank" class="text-[11px] text-[#FF7A59] hover:text-white font-bold flex items-center gap-1 transition">
+                  Ouvrir app.hubspot.com ↗
                 </a>
               </div>
             </div>
@@ -904,17 +904,22 @@
                 <!-- Formulaire de Connexion Interactif -->
                 <form onsubmit="handleHubspotLogin(event)" class="space-y-2.5 text-left font-sans text-xs">
                   <div>
-                    <label class="block font-bold text-slate-700 text-[11px] mb-0.5">Compte / Email</label>
-                    <input type="email" id="hubspot-login-email" value="kevinmonin72@gmail.com" class="w-full px-2.5 py-1.5 border border-[#CBD6E2] rounded text-slate-800 text-xs focus:outline-none focus:border-[#FF7A59]" required>
+                    <label class="block font-bold text-slate-700 text-[11px] mb-0.5">Votre Nom ou Email</label>
+                    <input type="text" id="hubspot-login-email" value="Kevin Monin" placeholder="Ex: Kevin Monin ou votre email" class="w-full px-2.5 py-1.5 border border-[#CBD6E2] rounded text-slate-800 text-xs focus:outline-none focus:border-[#FF7A59]" required>
                   </div>
+
                   <div>
-                    <label class="block font-bold text-slate-700 text-[11px] mb-0.5">Mot de passe</label>
-                    <input type="password" value="••••••••••••" class="w-full px-2.5 py-1.5 border border-[#CBD6E2] rounded text-slate-800 text-xs focus:outline-none focus:border-[#FF7A59]" required>
+                    <div class="flex justify-between items-center mb-0.5">
+                      <label class="font-bold text-slate-700 text-[11px]">Jeton d'accès de votre compte (Optionnel)</label>
+                      <span class="text-[9px] text-slate-400 font-mono">pat-eu1-...</span>
+                    </div>
+                    <input type="password" id="hubspot-token-input" placeholder="Collez votre jeton Private App HubSpot ici" class="w-full px-2.5 py-1.5 border border-[#CBD6E2] rounded text-slate-800 text-xs focus:outline-none focus:border-[#FF7A59]">
+                    <span class="text-[9.5px] text-slate-400 block mt-0.5">Si laissé vide, utilise le flux de démonstration connecté en direct.</span>
                   </div>
 
                   <!-- Bouton Connexion Principal -->
                   <button type="submit" id="btn-hubspot-login" class="w-full py-2 bg-[#FF7A59] hover:bg-[#E66240] text-white font-bold rounded text-xs transition shadow-sm flex items-center justify-center gap-1.5 cursor-pointer">
-                    <span>Se connecter au CRM</span>
+                    <span>Se connecter au CRM en direct</span>
                     <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                   </button>
                 </form>
@@ -922,14 +927,14 @@
                 <!-- Séparateur -->
                 <div class="relative flex py-0.5 items-center">
                   <div class="flex-grow border-t border-slate-200"></div>
-                  <span class="flex-shrink mx-2 text-[10px] text-slate-400 font-mono uppercase">ou accès direct</span>
+                  <span class="flex-shrink mx-2 text-[10px] text-slate-400 font-mono uppercase">ou</span>
                   <div class="flex-grow border-t border-slate-200"></div>
                 </div>
 
                 <!-- Bouton Connexion Rapide Compte Validé -->
                 <button type="button" onclick="handleHubspotQuickLogin()" class="w-full py-1.5 bg-[#2E3F50] hover:bg-[#1F2937] text-white font-mono text-[11px] font-bold rounded transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs">
                   <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Ouvrir Portail Connecté #149544612</span>
+                  <span>Accès Direct Immédiat (1 Clic)</span>
                 </button>
 
                 <!-- Lien Officiel Web -->
@@ -1413,28 +1418,54 @@
     });
 
     // Gestion de la Connexion / Déconnexion HubSpot dans Slide 7
-    function handleHubspotLogin(e) {
+    async function handleHubspotLogin(e) {
       if (e) e.preventDefault();
       const loginView = document.getElementById('hubspot-login-view');
       const dashboardView = document.getElementById('hubspot-dashboard-view');
       const btn = document.getElementById('btn-hubspot-login');
+      const userBadge = document.getElementById('hubspotUserBadge');
+      const emailInput = document.getElementById('hubspot-login-email');
+      const tokenInput = document.getElementById('hubspot-token-input');
+      
+      const userName = (emailInput && emailInput.value.trim()) ? emailInput.value.trim() : 'Kevin Monin';
+      const customToken = tokenInput ? tokenInput.value.trim() : '';
+
       if (btn) {
-        btn.innerHTML = `<span class="animate-spin mr-1">⏳</span> Authentification...`;
+        btn.innerHTML = `<span class="animate-spin mr-1">⏳</span> Authentification HubSpot...`;
         btn.disabled = true;
       }
+
+      // Si l'utilisateur a entré son propre token privé HubSpot
+      if (customToken && customToken.length > 10) {
+        try {
+          await fetch('https://archisimple-form.vercel.app/api/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: customToken })
+          });
+        } catch (err) {
+          console.warn("Erreur mise à jour token:", err);
+        }
+      }
+
       setTimeout(() => {
         if (loginView) loginView.classList.add('hidden');
         if (dashboardView) {
           dashboardView.classList.remove('hidden');
           dashboardView.classList.add('flex');
         }
+        if (userBadge) {
+          userBadge.textContent = `Connecté : ${userName}`;
+          userBadge.classList.remove('text-slate-300');
+          userBadge.classList.add('text-emerald-400');
+        }
         loadRealHubspotDeals();
         if (btn) {
-          btn.innerHTML = `<span>Se connecter au CRM</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>`;
+          btn.innerHTML = `<span>Se connecter au CRM en direct</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>`;
           btn.disabled = false;
         }
         if (window.lucide) lucide.createIcons();
-      }, 500);
+      }, 600);
     }
 
     function handleHubspotQuickLogin() {
