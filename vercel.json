@@ -1,7 +1,10 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/app", "destination": "/app.html" }
+    { "source": "/app", "destination": "/app.html" },
+    { "source": "/presentation", "destination": "/presentation.html" },
+    { "source": "/prez", "destination": "/presentation.html" },
+    { "source": "/slides", "destination": "/presentation.html" }
   ],
   "headers": [
     {
