@@ -1089,7 +1089,7 @@
 
   <!-- ================= JAVASCRIPT ULTRA-ROBUSTE DU LECTEUR ================= -->
   <script>
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
 
     let currentSlide = 1;
     const totalSlides = 8;
@@ -1119,6 +1119,9 @@
           ifSaas.srcdoc = tplSaas.innerHTML;
         }
       }
+      if (n === 6) {
+        loadRealHubspotDeals();
+      }
 
       const hNum = document.getElementById('headerSlideNum');
       if (hNum) hNum.textContent = n.toString().padStart(2, '0');
@@ -1143,31 +1146,20 @@
       if (currentSlide > 1) goToSlide(currentSlide - 1);
     }
 
-    // PLEIN ÉCRAN NATIF ROBUSTE POUR MAC (CAPTURE 3)
     function toggleFullscreenDeck() {
       const docEl = document.documentElement;
       const isFull = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
 
       if (!isFull) {
-        if (docEl.requestFullscreen) {
-          docEl.requestFullscreen();
-        } else if (docEl.webkitRequestFullscreen) {
-          docEl.webkitRequestFullscreen();
-        } else if (docEl.mozRequestFullScreen) {
-          docEl.mozRequestFullScreen();
-        } else if (docEl.msRequestFullscreen) {
-          docEl.msRequestFullscreen();
-        }
+        if (docEl.requestFullscreen) docEl.requestFullscreen();
+        else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
+        else if (docEl.mozRequestFullScreen) docEl.mozRequestFullScreen();
+        else if (docEl.msRequestFullscreen) docEl.msRequestFullscreen();
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
       }
     }
 
@@ -1176,7 +1168,7 @@
       const icon = document.getElementById('fullscreenIcon');
       if (icon) {
         icon.setAttribute('data-lucide', isFull ? 'minimize' : 'maximize');
-        lucide.createIcons();
+        if (window.lucide) lucide.createIcons();
       }
     }
 
@@ -1185,7 +1177,7 @@
 
     document.addEventListener('keydown', (e) => {
       const modal = document.getElementById('modalFullscreenDemo');
-      if (!modal.classList.contains('hidden') && e.key === 'Escape') {
+      if (modal && !modal.classList.contains('hidden') && e.key === 'Escape') {
         closeModalFullscreen();
         return;
       }
@@ -1196,31 +1188,59 @@
         prevSlide();
       } else if (e.key === 'f' || e.key === 'F') {
         toggleFullscreenDeck();
-      } else if (e.key >= '1' && e.key <= '9') {
+      } else if (e.key >= '1' && e.key <= '8') {
         goToSlide(parseInt(e.key, 10));
       }
     });
 
-    function promptHubspotUrl() {
-      const current = document.getElementById('iframe-hubspot-live').src;
-      const url = prompt("Entrez l'URL de votre pipeline HubSpot :", current);
-      if (url && url.trim() !== "") {
-        document.getElementById('iframe-hubspot-live').src = url.trim();
-        try {
-          const u = new URL(url.trim());
-          document.getElementById('hubspotDomainDisplay').textContent = u.hostname;
-        } catch(e) {
-          document.getElementById('hubspotDomainDisplay').textContent = "hubspot-custom";
-        }
+    // Interaction Live Kanban HubSpot
+    function addLeadToHubspotKanban(lead) {
+      const container = document.getElementById('kanban-nouveau');
+      const counter = document.getElementById('colCount-nouveau');
+      if (!container) return;
+
+      const card = document.createElement('div');
+      card.className = 'bg-white border-l-4 border-l-[#0F8A3C] border border-[#0F8A3C] p-2 rounded shadow-md text-[11px] animate-pulse';
+      card.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="font-bold text-slate-900 truncate">${lead.name || 'Nouveau Prospect'}</div>
+          <span class="text-[8px] bg-emerald-100 text-emerald-800 font-mono font-bold px-1 rounded">LIVE NOW</span>
+        </div>
+        <div class="text-[10px] text-slate-500">${lead.city || 'Paris'} · DPE ${lead.dpe || 'G'} · ${lead.surface || 65} m²</div>
+        <div class="mt-1 flex items-center justify-between">
+          <span class="font-mono font-bold text-[#0F8A3C]">${(lead.amount || 38000).toLocaleString('fr-FR')} €</span>
+          <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">ID #${lead.dealId || 'Nouveau'}</span>
+        </div>
+      `;
+      container.prepend(card);
+      if (counter) {
+        const count = parseInt(counter.textContent || '3', 10) + 1;
+        counter.textContent = count;
       }
+      setTimeout(() => card.classList.remove('animate-pulse'), 4000);
     }
 
-    
-    // Interaction Live Kanban HubSpot
-        
-    // Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
-    async 
-    // Gestionnaire de soumission du Formulaire Fiche 01 sur Slide 7
+    function simulerNouveauLead() {
+      const names = ['Jean Dupont (Passoire G)', 'Laurent Mercier', 'Sophie Marchand', 'Antoine Bernard', 'Élodie Petit'];
+      const cities = ['Paris 11e', 'Lyon 6e', 'Bordeaux', 'Nantes', 'Marseille 8e'];
+      const dpes = ['G', 'F', 'E'];
+      const name = names[Math.floor(Math.random() * names.length)];
+      const city = cities[Math.floor(Math.random() * cities.length)];
+      const dpe = dpes[Math.floor(Math.random() * dpes.length)];
+      const amount = Math.floor(Math.random() * 30000) + 25000;
+      const dealId = '526' + Math.floor(Math.random() * 900000 + 100000);
+      addLeadToHubspotKanban({
+        name: name,
+        city: city,
+        dpe: dpe,
+        surface: 65,
+        amount: amount,
+        dealId: dealId
+      });
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Gestionnaire de soumission du Formulaire Fiche 01 sur Slide 6
     function initSlide7Form() {
       const f = document.getElementById('slide7-form-proprio');
       if (!f) return;
@@ -1257,7 +1277,7 @@
 
         btn.disabled = true;
         btn.textContent = 'Envoi en cours…';
-        err.classList.add('hidden');
+        if (err) err.classList.add('hidden');
 
         try {
           const res = await fetch('https://archisimple-form.vercel.app/api/submit-lead', {
@@ -1280,10 +1300,9 @@
             `;
           }
 
-          formView.classList.add('hidden');
-          successView.classList.remove('hidden');
+          if (formView) formView.classList.add('hidden');
+          if (successView) successView.classList.remove('hidden');
 
-          // Ajout direct dans le Kanban HubSpot à droite
           addLeadToHubspotKanban({
             name: `${payload.firstname} ${payload.lastname} · ${payload.city}`,
             city: payload.city,
@@ -1293,11 +1312,13 @@
             dealId: result.dealId || '526963185906'
           });
 
-          if (window.lucide) window.lucide.createIcons();
+          if (window.lucide) lucide.createIcons();
 
         } catch (ex) {
-          err.textContent = "Erreur de transmission API HubSpot. Réessayez.";
-          err.classList.remove('hidden');
+          if (err) {
+            err.textContent = "Erreur de transmission API HubSpot. Réessayez.";
+            err.classList.remove('hidden');
+          }
         } finally {
           btn.disabled = false;
           btn.textContent = 'Envoyer';
@@ -1314,10 +1335,8 @@
       }
     }
 
-    document.addEventListener('DOMContentLoaded', initSlide7Form);
-    window.addEventListener('load', initSlide7Form);
-
-    function loadRealHubspotDeals() {
+    // Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
+    async function loadRealHubspotDeals() {
       try {
         const res = await fetch('https://archisimple-form.vercel.app/api/deals');
         const data = await res.json();
@@ -1381,62 +1400,6 @@
       }
     }
 
-    // Chargement au démarrage et à l'affichage de la slide 7
-    document.addEventListener('DOMContentLoaded', loadRealHubspotDeals);
-    window.addEventListener('load', loadRealHubspotDeals);
-
-    function simulerNouveauLead() {
-      const names = ['Jean Dupont (Passoire G)', 'Laurent Mercier', 'Sophie Marchand', 'Antoine Bernard', 'Élodie Petit'];
-      const cities = ['Paris 11e', 'Lyon 6e', 'Bordeaux', 'Nantes', 'Marseille 8e'];
-      const dpes = ['G', 'F', 'E'];
-      const name = names[Math.floor(Math.random() * names.length)];
-      const city = cities[Math.floor(Math.random() * cities.length)];
-      const dpe = dpes[Math.floor(Math.random() * dpes.length)];
-      const amount = Math.floor(Math.random() * 30000) + 25000;
-      const dealId = '526' + Math.floor(Math.random() * 900000 + 100000);
-      addLeadToHubspotKanban({
-        name: name,
-        city: city,
-        dpe: dpe,
-        surface: 65,
-        amount: amount,
-        dealId: dealId
-      });
-      if (window.lucide) window.lucide.createIcons();
-    }
-
-    function addLeadToHubspotKanban(lead) {
-      const container = document.getElementById('kanban-nouveau');
-      const counter = document.getElementById('colCount-nouveau');
-      if (!container) return;
-
-      const card = document.createElement('div');
-      card.className = 'bg-white border-l-4 border-l-[#0F8A3C] border border-[#0F8A3C] p-2 rounded shadow-md text-[11px] animate-pulse';
-      card.innerHTML = `
-        <div class="flex items-center justify-between">
-          <div class="font-bold text-slate-900 truncate">${lead.name || 'Nouveau Prospect'}</div>
-          <span class="text-[8px] bg-emerald-100 text-emerald-800 font-mono font-bold px-1 rounded">LIVE NOW</span>
-        </div>
-        <div class="text-[10px] text-slate-500">${lead.city || 'Paris'} · DPE ${lead.dpe || 'G'} · ${lead.surface || 65} m²</div>
-        <div class="mt-1 flex items-center justify-between">
-          <span class="font-mono font-bold text-[#0F8A3C]">${(lead.amount || 38000).toLocaleString('fr-FR')} €</span>
-          <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">ID #${lead.dealId || 'Nouveau'}</span>
-        </div>
-      `;
-      container.prepend(card);
-      if (counter) {
-        const count = parseInt(counter.textContent || '3', 10) + 1;
-        counter.textContent = count;
-      }
-      setTimeout(() => card.classList.remove('animate-pulse'), 4000);
-    }
-
-    window.addEventListener('message', (e) => {
-      if (e.data && e.data.type === 'HUBSPOT_LEAD_SUBMITTED') {
-        addLeadToHubspotKanban(e.data.lead || {});
-      }
-    });
-
     function initDemoIframes() {
       const tplLanding = document.getElementById('template-landing');
       const ifLanding = document.getElementById('iframe-landing');
@@ -1448,12 +1411,6 @@
       const ifSaas = document.getElementById('iframe-saas');
       if (tplSaas && ifSaas) {
         ifSaas.srcdoc = tplSaas.innerHTML;
-      }
-
-      const tplForm = document.getElementById('template-form');
-      const ifForm = document.getElementById('iframe-form-live');
-      if (tplForm && ifForm && location.protocol === 'file:') {
-        ifForm.srcdoc = tplForm.innerHTML;
       }
     }
 
@@ -1487,10 +1444,22 @@
       }
     }
 
-    goToSlide(1);
-    initDemoIframes();
-    document.addEventListener("DOMContentLoaded", initDemoIframes);
-    window.addEventListener("load", initDemoIframes);
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'HUBSPOT_LEAD_SUBMITTED') {
+        addLeadToHubspotKanban(e.data.lead || {});
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      goToSlide(1);
+      initDemoIframes();
+      initSlide7Form();
+    });
+
+    window.addEventListener("load", () => {
+      goToSlide(1);
+      initDemoIframes();
+    });
   </script>
 
   <!-- ================= TEMPLATES DIRECTS POUR DÉMOS SANS BLOCAGE CHROME ================= -->
