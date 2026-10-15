@@ -1393,6 +1393,17 @@
     document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
 
     document.addEventListener('keydown', (e) => {
+      // Ignorer complètement les raccourcis clavier de navigation si l'utilisateur est en train d'écrire dans un champ
+      const target = e.target;
+      const isInputField = target && (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.tagName === 'SELECT' ||
+        target.isContentEditable ||
+        (target.closest && target.closest('form'))
+      );
+      if (isInputField) return;
+
       const modal = document.getElementById('modalFullscreenDemo');
       if (modal && !modal.classList.contains('hidden') && e.key === 'Escape') {
         closeModalFullscreen();
