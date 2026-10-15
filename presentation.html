@@ -867,229 +867,232 @@
             </div>
           </div>
 
-          <!-- HubSpot CRM Pipeline Live (Zéro blocage iframe) -->
+          <!-- HubSpot CRM Pipeline Live : Contacts & Nouveau Biz Temps Réel -->
           <div class="bg-card border border-ink crops shadow-md flex flex-col overflow-hidden relative">
             <span class="crop-b"></span>
-            <!-- Header HubSpot Réplique Officielle (Navigation Dark Navy #2E3F50) -->
+            <!-- Top Bar Officielle Style HubSpot CRM (#2E3F50) -->
             <div class="bg-[#2E3F50] text-white px-3 py-1.5 flex items-center justify-between font-sans text-xs shrink-0 border-b border-[#1F2937]">
               <div class="flex items-center gap-2.5">
                 <!-- Sprocket HubSpot -->
                 <svg viewBox="0 0 24 24" class="w-4 h-4 fill-[#FF7A59]"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.978v-.067A2.2 2.2 0 0017.238.845h-.067a2.2 2.2 0 00-2.193 2.193v.067a2.196 2.196 0 001.252 1.973l.013.006v2.852a6.22 6.22 0 00-2.969 1.31l.012-.01-7.828-6.14a2.2 2.2 0 10-1.493 1.764l7.632 5.986a6.224 6.224 0 00-.77 2.998 6.22 6.22 0 00.77 2.998l-7.632 5.986a2.2 2.2 0 101.493 1.764l7.828-6.14a6.22 6.22 0 002.957 1.3l-.013 2.853a2.196 2.196 0 00-1.252 1.973v.067a2.2 2.2 0 002.193 2.193h.067a2.2 2.2 0 002.193-2.193v-.067a2.198 2.198 0 00-1.267-1.978V16.07a6.222 6.222 0 004.288-5.918 6.223 6.223 0 00-4.288-5.918v-.304h.001zm-.993 6.294a2.224 2.224 0 112.224-2.224 2.224 2.224 0 01-2.224 2.224z"/></svg>
-                <span class="font-bold tracking-wide">HubSpot CRM</span>
-                <span class="text-[10px] text-slate-300 font-mono hidden sm:inline" id="hubspotUserBadge">Non connecté</span>
-                <span id="hubspotApiStatusBadge" class="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-mono text-[9px] font-bold rounded">● LIVE API</span>
+                <span class="font-bold tracking-wide">HubSpot CRM ArchiSimple</span>
+                <span class="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-mono text-[9px] font-bold rounded flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> FLUX TEMPS RÉEL
+                </span>
               </div>
-              <div class="flex items-center gap-2">
-                <a href="https://app.hubspot.com/login" target="_blank" class="text-[11px] text-[#FF7A59] hover:text-white font-bold flex items-center gap-1 transition">
-                  Ouvrir app.hubspot.com ↗
-                </a>
-              </div>
-            </div>
-
-            <!-- 1. ÉCRAN DE CONNEXION HUBSPOT CRM (LOGIN VIEW) -->
-            <div id="hubspot-login-view" class="flex-1 w-full h-full bg-[#F5F8FA] p-3 md:p-4 flex flex-col items-center justify-center text-center overflow-y-auto">
-              <div class="max-w-sm w-full bg-white border border-[#CBD6E2] p-5 rounded-md shadow-md space-y-3.5 my-auto">
-                <!-- Logo Sprocket HubSpot -->
-                <div class="w-12 h-12 mx-auto bg-[#FF7A59]/10 rounded-full flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" class="w-7 h-7 fill-[#FF7A59]">
-                    <path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.978v-.067A2.2 2.2 0 0017.238.845h-.067a2.2 2.2 0 00-2.193 2.193v.067a2.196 2.196 0 001.252 1.973l.013.006v2.852a6.22 6.22 0 00-2.969 1.31l.012-.01-7.828-6.14a2.2 2.2 0 10-1.493 1.764l7.632 5.986a6.224 6.224 0 00-.77 2.998 6.22 6.22 0 00.77 2.998l-7.632 5.986a2.2 2.2 0 101.493 1.764l7.828-6.14a6.22 6.22 0 002.957 1.3l-.013 2.853a2.196 2.196 0 00-1.252 1.973v.067a2.2 2.2 0 002.193 2.193h.067a2.2 2.2 0 002.193-2.193v-.067a2.198 2.198 0 00-1.267-1.978V16.07a6.222 6.222 0 004.288-5.918 6.223 6.223 0 00-4.288-5.918v-.304h.001zm-.993 6.294a2.224 2.224 0 112.224-2.224 2.224 2.224 0 01-2.224 2.224z"/>
-                  </svg>
-                </div>
-
-                <div>
-                  <h3 class="text-base font-bold text-slate-800">Connectez-vous à HubSpot</h3>
-                  <p class="text-xs text-slate-500 font-sans mt-0.5">Accédez à votre CRM et visualisez vos transactions en temps réel</p>
-                </div>
-
-                <!-- Formulaire de Connexion Interactif -->
-                <form onsubmit="handleHubspotLogin(event)" class="space-y-2.5 text-left font-sans text-xs">
-                  <div>
-                    <label class="block font-bold text-slate-700 text-[11px] mb-0.5">Votre Nom ou Email</label>
-                    <input type="text" id="hubspot-login-email" placeholder="Nom, Prénom ou Email" class="w-full px-2.5 py-1.5 border border-[#CBD6E2] rounded text-slate-800 text-xs focus:outline-none focus:border-[#FF7A59]" required>
-                  </div>
-
-                  <div>
-                    <div class="flex justify-between items-center mb-0.5">
-                      <label class="font-bold text-slate-700 text-[11px]">Jeton d'accès de votre compte (Optionnel)</label>
-                      <span class="text-[9px] text-slate-400 font-mono">pat-eu1-...</span>
-                    </div>
-                    <input type="password" id="hubspot-token-input" placeholder="Collez votre jeton pat-eu1-... ici" class="w-full px-2.5 py-1.5 border border-[#CBD6E2] rounded text-slate-800 text-xs focus:outline-none focus:border-[#FF7A59]">
-                    <span class="text-[9.5px] text-slate-500 block mt-0.5">💡 Collez la clé Private App (pat-...) de votre compte pour que les chantiers s'y créent en direct.</span>
-                  </div>
-
-                  <!-- Bouton Connexion Principal -->
-                  <button type="submit" id="btn-hubspot-login" class="w-full py-2 bg-[#FF7A59] hover:bg-[#E66240] text-white font-bold rounded text-xs transition shadow-sm flex items-center justify-center gap-1.5 cursor-pointer">
-                    <span>Se connecter au CRM en direct</span>
-                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                  </button>
-                </form>
-
-                <!-- Séparateur -->
-                <div class="relative flex py-0.5 items-center">
-                  <div class="flex-grow border-t border-slate-200"></div>
-                  <span class="flex-shrink mx-2 text-[10px] text-slate-400 font-mono uppercase">ou</span>
-                  <div class="flex-grow border-t border-slate-200"></div>
-                </div>
-
-                <!-- Bouton Connexion Rapide Compte Validé -->
-                <button type="button" onclick="handleHubspotQuickLogin()" class="w-full py-1.5 bg-[#2E3F50] hover:bg-[#1F2937] text-white font-mono text-[11px] font-bold rounded transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Accès Direct Immédiat (1 Clic)</span>
+              <!-- Onglets de Vue : Pipeline vs Contacts -->
+              <div class="flex items-center gap-1 font-mono text-[11px]">
+                <button type="button" onclick="switchHubspotTab('deals')" id="tabBtnDeals" class="px-2 py-0.5 bg-[#FF7A59] text-white font-bold rounded text-[10px] transition cursor-pointer">
+                  ☷ Pipeline Nouveau Biz
                 </button>
-
-                <!-- Lien Officiel Web -->
-                <div class="pt-1 text-[11px] font-mono">
-                  <a href="https://app.hubspot.com/login" target="_blank" class="text-slate-500 hover:text-[#FF7A59] transition flex items-center justify-center gap-1">
-                    <span>Ouvrir la page officielle app.hubspot.com/login</span>
-                    <span>↗</span>
-                  </a>
-                </div>
+                <button type="button" onclick="switchHubspotTab('contacts')" id="tabBtnContacts" class="px-2 py-0.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold rounded text-[10px] transition cursor-pointer">
+                  👥 Contacts (<span id="contactsCountBadge">5</span>)
+                </button>
               </div>
             </div>
 
-            <!-- 2. PIPELINE KANBAN HUBSPOT EN DIRECT (DASHBOARD VIEW) -->
-            <div id="hubspot-dashboard-view" class="hidden flex-1 w-full h-full bg-[#F5F8FA] p-2 flex-col overflow-hidden text-ink font-sans text-xs">
-              <!-- Top bar HubSpot -->
-              <div class="flex items-center justify-between bg-white border border-[#CBD6E2] px-3 py-1.5 mb-2 shadow-sm rounded-sm shrink-0">
-                <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-[#FF7A59]"></span>
-                  <span class="font-bold text-slate-800 text-xs">Pipeline Ventes Locataires</span>
-                  <span id="hubspotTransactionsCount" class="text-emerald-700 font-bold text-[11px]">(11 transactions réelles API HubSpot · 227 160 €)</span>
+            <!-- CONTENEUR PRINCIPAL DES VUES HUBSPOT -->
+            <div class="flex-1 w-full h-full bg-[#F5F8FA] p-2 flex flex-col overflow-hidden text-ink font-sans text-xs relative">
+              
+              <!-- Notification Toast Flottante Temps Réel -->
+              <div id="hubspotLiveToast" class="hidden absolute top-2 right-2 z-20 bg-emerald-900 border border-emerald-500 text-white px-3 py-1.5 rounded shadow-lg font-mono text-[11px] items-center gap-2 transition animate-bounce">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span id="hubspotToastText">Nouveau lead synchronisé !</span>
+              </div>
+
+              <!-- ================= VUE 1 : PIPELINE KANBAN (NOUVEAU BIZ) ================= -->
+              <div id="hubspotDealsView" class="flex-1 flex flex-col overflow-hidden">
+                <!-- Sub-bar HubSpot Transactions -->
+                <div class="flex items-center justify-between bg-white border border-[#CBD6E2] px-3 py-1.5 mb-2 shadow-sm rounded-sm shrink-0">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#FF7A59]"></span>
+                    <span class="font-bold text-slate-800 text-xs">Pipeline Ventes Locataires</span>
+                    <span id="hubspotTransactionsCount" class="text-emerald-700 font-bold text-[11px]">(11 transactions réelles API · 227 160 €)</span>
+                  </div>
+                  <div class="flex items-center gap-2 font-mono text-[10px]">
+                    <button type="button" onclick="simulerNouveauLead()" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded text-[10px] flex items-center gap-1 shadow-xs transition cursor-pointer">
+                      <i data-lucide="zap" class="w-3 h-3"></i> + SIMULER NOUVEAU BIZ
+                    </button>
+                  </div>
                 </div>
-                <div class="flex items-center gap-2 font-mono text-[10px]">
-                  <button type="button" onclick="simulerNouveauLead()" class="px-2 py-0.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded text-[10px] flex items-center gap-1 shadow-xs transition">
-                    <i data-lucide="zap" class="w-3 h-3"></i> + SIMULER FLUX LIVE
-                  </button>
-                  <button type="button" onclick="logoutHubspot()" class="px-2 py-0.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded text-[10px] transition" title="Revenir à l'écran de connexion">
-                    Déconnexion
-                  </button>
-                  <a href="https://app.hubspot.com/contacts/149544612/deals" target="_blank" class="px-2 py-0.5 bg-[#FF7A59] text-white font-bold hover:bg-[#E66240] rounded text-[10px] flex items-center gap-1">
-                    HubSpot Direct ↗
-                  </a>
+
+                <!-- 4 Colonnes Pipeline HubSpot Kanban -->
+                <div class="flex-1 grid grid-cols-4 gap-2 overflow-y-auto">
+                  <!-- Col 1: Nouveau Biz / Prospect -->
+                  <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
+                    <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
+                      <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">1. Nouveau Biz</span>
+                      <span id="colCount-nouveau" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">3</span>
+                    </div>
+                    <div id="kanban-nouveau" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                      <!-- Deals initiaux -->
+                      <div class="bg-white border-l-4 border-l-[#FF7A59] border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Marc L. · Paris 11e</div>
+                        <div class="text-[10px] text-slate-500">Appartement · DPE G · 65 m²</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-slate-800">42 000 €</span>
+                          <span class="text-[9px] bg-red-50 text-red-700 border border-red-200 px-1 rounded font-mono">PRIORITÉ HAUTE</span>
+                        </div>
+                      </div>
+                      <div class="bg-white border-l-4 border-l-slate-400 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Alexandre M. · Lyon 6e</div>
+                        <div class="text-[10px] text-slate-500">Immeuble entier · DPE F · 180 m²</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-slate-800">52 000 €</span>
+                          <span class="text-[9px] bg-slate-100 text-slate-700 px-1 rounded font-mono">NORMAL</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Col 2: Cadrage & MAR -->
+                  <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
+                    <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
+                      <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">2. Cadrage MAR</span>
+                      <span id="colCount-rdv" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">3</span>
+                    </div>
+                    <div id="kanban-rdv" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                      <div class="bg-white border-l-4 border-l-blue-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Cabinet Foncia Mandat</div>
+                        <div class="text-[10px] text-slate-500">Lot 4 appartements · DPE F</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-slate-800">68 000 €</span>
+                          <span class="text-[9px] bg-blue-50 text-blue-700 px-1 rounded font-mono">AUDIT EN COURS</span>
+                        </div>
+                      </div>
+                      <div class="bg-white border-l-4 border-l-blue-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Pierre V. · Bordeaux</div>
+                        <div class="text-[10px] text-slate-500">Maison · DPE G · 110 m²</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-slate-800">35 000 €</span>
+                          <span class="text-[9px] bg-blue-50 text-blue-700 px-1 rounded font-mono">DEVIS REÇUS</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Col 3: Séquestre Envoyé -->
+                  <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
+                    <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
+                      <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">3. Séquestre</span>
+                      <span id="colCount-decision" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">3</span>
+                    </div>
+                    <div id="kanban-decision" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                      <div class="bg-white border-l-4 border-l-amber-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Sébastien K. · Nantes</div>
+                        <div class="text-[10px] text-slate-500">Appartement · DPE G · 72 m²</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-slate-800">45 000 €</span>
+                          <span class="text-[9px] bg-amber-50 text-amber-700 px-1 rounded font-mono">SÉQUESTRE 100%</span>
+                        </div>
+                      </div>
+                      <div class="bg-white border-l-4 border-l-amber-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Gestion Immobilière IDF</div>
+                        <div class="text-[10px] text-slate-500">2 Lots locatifs · DPE F</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-slate-800">28 000 €</span>
+                          <span class="text-[9px] bg-amber-50 text-amber-700 px-1 rounded font-mono">EN SIGNATURE</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Col 4: Chantier Gagné -->
+                  <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
+                    <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
+                      <span class="font-bold text-[10px] text-emerald-800 uppercase tracking-wider">4. Chantier Gagné</span>
+                      <span id="colCount-gagne" class="bg-emerald-600 text-white px-1.5 py-0.2 rounded-full text-[9px] font-bold">2</span>
+                    </div>
+                    <div id="kanban-gagne" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
+                      <div class="bg-white border-l-4 border-l-emerald-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Copropriété Raspail</div>
+                        <div class="text-[10px] text-slate-500">DPE G → C certifié · Clés remises</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-emerald-700">58 000 €</span>
+                          <span class="text-[9px] bg-emerald-50 text-emerald-700 px-1 rounded font-mono font-bold">✓ DPE VALORISÉ</span>
+                        </div>
+                      </div>
+                      <div class="bg-white border-l-4 border-l-emerald-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
+                        <div class="font-bold text-slate-900 truncate">Julien T. · Paris 15e</div>
+                        <div class="text-[10px] text-slate-500">Rénovation globale achevée</div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="font-mono font-bold text-emerald-700">32 000 €</span>
+                          <span class="text-[9px] bg-emerald-50 text-emerald-700 px-1 rounded font-mono font-bold">✓ COMMISSION 2%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- 4 Colonnes Pipeline HubSpot -->
-              <div class="flex-1 grid grid-cols-4 gap-2 overflow-y-auto">
-                <!-- Col 1: Nouveau Prospect -->
-                <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
-                  <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
-                    <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">Nouveau Prospect</span>
-                    <span id="colCount-nouveau" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">3</span>
+              <!-- ================= VUE 2 : TABLE DES CONTACTS CRM (TEMPS RÉEL) ================= -->
+              <div id="hubspotContactsView" class="hidden flex-1 flex flex-col bg-white border border-[#CBD6E2] rounded overflow-hidden">
+                <div class="bg-[#DFE3EB] px-3 py-1.5 flex items-center justify-between border-b border-[#CBD6E2] shrink-0">
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-800 text-xs">Tous les Contacts Qualifiés</span>
+                    <span class="text-[10px] text-slate-500 font-mono">Synchronisation formulaire temps réel</span>
                   </div>
-                  <div id="kanban-nouveau" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
-                    <!-- Deal Carte 1 -->
-                    <div class="bg-white border-l-4 border-l-[#FF7A59] border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Jean Dupont · Paris 11e</div>
-                      <div class="text-[10px] text-slate-500">Appartement · DPE G · 65 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">38 000 €</span>
-                        <span class="text-[9px] bg-red-50 text-red-700 border border-red-200 px-1 rounded font-mono">HIGH</span>
-                      </div>
-                    </div>
-                    <!-- Deal Carte 2 -->
-                    <div class="bg-white border-l-4 border-l-slate-400 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Alexandre M. · Lyon</div>
-                      <div class="text-[10px] text-slate-500">Immeuble · DPE F · 180 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">52 000 €</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-700 px-1 rounded font-mono">MED</span>
-                      </div>
-                    </div>
-                    <!-- Deal Carte 3 -->
-                    <div class="bg-white border-l-4 border-l-slate-400 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Hélène Robert · Nantes</div>
-                      <div class="text-[10px] text-slate-500">Appartement · DPE E · 48 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">25 000 €</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-700 px-1 rounded font-mono">MED</span>
-                      </div>
-                    </div>
-                  </div>
+                  <span class="font-mono text-[10px] text-emerald-700 font-bold">● VUE CRM DIRECTE</span>
                 </div>
-
-                <!-- Col 2: RDV & Audit MAR -->
-                <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
-                  <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
-                    <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">RDV / Cadrage MAR</span>
-                    <span id="colCount-rdv" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">4</span>
-                  </div>
-                  <div id="kanban-rdv" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
-                    <div class="bg-white border-l-4 border-l-blue-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Julien Lefebvre · Lille</div>
-                      <div class="text-[10px] text-slate-500">Maison · DPE G · 110 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">45 000 €</span>
-                        <span class="text-[9px] bg-blue-50 text-blue-700 border border-blue-200 px-1 rounded font-mono">MAR Assigné</span>
-                      </div>
-                    </div>
-                    <div class="bg-white border-l-4 border-l-blue-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Camille Morel · Paris 18e</div>
-                      <div class="text-[10px] text-slate-500">Appartement · DPE F · 55 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">32 000 €</span>
-                        <span class="text-[9px] bg-blue-50 text-blue-700 border border-blue-200 px-1 rounded font-mono">Audit en cours</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Col 3: En Attente Décision -->
-                <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
-                  <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
-                    <span class="font-bold text-[10px] text-slate-700 uppercase tracking-wider">En Décision</span>
-                    <span id="colCount-decision" class="bg-white text-slate-700 px-1.5 py-0.2 rounded-full text-[9px] font-bold">4</span>
-                  </div>
-                  <div id="kanban-decision" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
-                    <div class="bg-white border-l-4 border-l-amber-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Marc Vallet · Bordeaux</div>
-                      <div class="text-[10px] text-slate-500">Rénovation Globale · 75 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">42 000 €</span>
-                        <span class="text-[9px] bg-amber-50 text-amber-800 border border-amber-200 px-1 rounded font-mono">Devis validé</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Col 4: Gagné / Séquestre Actif -->
-                <div class="bg-[#F0F4F8] border border-[#CBD6E2] rounded flex flex-col overflow-hidden">
-                  <div class="bg-[#DFE3EB] px-2 py-1 flex items-center justify-between border-b border-[#CBD6E2]">
-                    <span class="font-bold text-[10px] text-emerald-800 uppercase tracking-wider">Gagné (Séquestré)</span>
-                    <span id="colCount-gagne" class="bg-white text-emerald-800 px-1.5 py-0.2 rounded-full text-[9px] font-bold">0</span>
-                  </div>
-                  <div id="kanban-gagne" class="p-1.5 flex flex-col gap-1.5 overflow-y-auto flex-1">
-                    <div class="bg-white border-l-4 border-l-emerald-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Sophie Bernard · Paris 15e</div>
-                      <div class="text-[10px] text-slate-500">Passoire G · 80 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">49 000 €</span>
-                        <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">Séquestre 100%</span>
-                      </div>
-                    </div>
-                    <div class="bg-white border-l-4 border-l-emerald-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px]">
-                      <div class="font-bold text-slate-900 truncate">Nicolas Roux · Rennes</div>
-                      <div class="text-[10px] text-slate-500">Maison · 95 m²</div>
-                      <div class="mt-1 flex items-center justify-between">
-                        <span class="font-mono font-bold text-slate-800">38 000 €</span>
-                        <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">Séquestre 100%</span>
-                      </div>
-                    </div>
-                  </div>
+                <div class="flex-1 overflow-y-auto p-2">
+                  <table class="w-full text-left font-sans text-xs">
+                    <thead>
+                      <tr class="border-b border-[#CBD6E2] text-[10px] text-slate-400 font-mono uppercase">
+                        <th class="py-1">Contact</th>
+                        <th class="py-1">Email</th>
+                        <th class="py-1">Téléphone</th>
+                        <th class="py-1">Projet &amp; DPE</th>
+                        <th class="py-1 text-right">Statut</th>
+                      </tr>
+                    </thead>
+                    <tbody id="hubspotContactsTableBody" class="divide-y divide-slate-100 font-mono text-[11px]">
+                      <tr>
+                        <td class="py-2 font-bold text-slate-800 flex items-center gap-1.5">
+                          <span class="w-5 h-5 rounded-full bg-[#FF7A59] text-white flex items-center justify-center text-[9px] font-bold">ML</span>
+                          <span>Marc L.</span>
+                        </td>
+                        <td class="py-2 text-slate-600">marc.locataire@agence.fr</td>
+                        <td class="py-2 text-slate-600">06 45 12 89 33</td>
+                        <td class="py-2 text-slate-700 font-sans">Appartement Paris 11e · DPE G</td>
+                        <td class="py-2 text-right"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-bold">NOUVEAU BIZ</span></td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 font-bold text-slate-800 flex items-center gap-1.5">
+                          <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[9px] font-bold">AM</span>
+                          <span>Alexandre M.</span>
+                        </td>
+                        <td class="py-2 text-slate-600">alex.marchand@immo-lyon.fr</td>
+                        <td class="py-2 text-slate-600">06 88 14 20 91</td>
+                        <td class="py-2 text-slate-700 font-sans">Immeuble Lyon 6e · DPE F</td>
+                        <td class="py-2 text-right"><span class="bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded text-[10px] font-bold">AUDIT MAR</span></td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 font-bold text-slate-800 flex items-center gap-1.5">
+                          <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-[9px] font-bold">SK</span>
+                          <span>Sébastien K.</span>
+                        </td>
+                        <td class="py-2 text-slate-600">seb.k@bailleur-nantes.com</td>
+                        <td class="py-2 text-slate-600">07 60 41 23 99</td>
+                        <td class="py-2 text-slate-700 font-sans">Appartement Nantes · DPE G</td>
+                        <td class="py-2 text-right"><span class="bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded text-[10px] font-bold">SÉQUESTRE 100%</span></td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 font-bold text-slate-800 flex items-center gap-1.5">
+                          <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-bold">JT</span>
+                          <span>Julien T.</span>
+                        </td>
+                        <td class="py-2 text-slate-600">julien.t@gestion-paris.fr</td>
+                        <td class="py-2 text-slate-600">06 19 82 44 02</td>
+                        <td class="py-2 text-slate-700 font-sans">Appartement Paris 15e · DPE C</td>
+                        <td class="py-2 text-right"><span class="bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded text-[10px] font-bold">GAGNÉ &amp; CLOS</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
-              <!-- Footer info anti clickjacking -->
-              <div class="mt-1.5 pt-1 border-t border-[#CBD6E2] flex items-center justify-between font-mono text-[10px] text-slate-500">
-                <span>Sécurité bancaire ACPR : SSO HubSpot isolé hors-iframe</span>
-                <span class="text-emerald-700 font-bold">● Vercel Serverless Hook : 200 OK</span>
-              </div>
             </div>
           </div>
-        </div>
-
-        </section>
-
       <!-- ================= SLIDE 8 : CHIFFRES CLÉS, CAC, LIMITES & DÉFI IA ================= -->
       <section id="slide-8" class="slide w-full h-full p-6 md:p-10 flex-col justify-center overflow-y-auto">
         <div class="max-w-7xl mx-auto w-full space-y-6 my-auto">
@@ -1417,127 +1420,126 @@
       }
     });
 
-    // Gestion de la Connexion / Déconnexion HubSpot dans Slide 7
-    async function handleHubspotLogin(e) {
-      if (e) e.preventDefault();
-      const loginView = document.getElementById('hubspot-login-view');
-      const dashboardView = document.getElementById('hubspot-dashboard-view');
-      const btn = document.getElementById('btn-hubspot-login');
-      const userBadge = document.getElementById('hubspotUserBadge');
-      const emailInput = document.getElementById('hubspot-login-email');
-      const tokenInput = document.getElementById('hubspot-token-input');
-      
-      const userName = (emailInput && emailInput.value.trim()) ? emailInput.value.trim() : 'Kevin Monin';
-      const customToken = tokenInput ? tokenInput.value.trim() : '';
-
-      if (btn) {
-        btn.innerHTML = `<span class="animate-spin mr-1">⏳</span> Authentification HubSpot...`;
-        btn.disabled = true;
+// Gestion des Vues HubSpot : Pipeline vs Contacts
+    function switchHubspotTab(tab) {
+      const dealsView = document.getElementById("hubspotDealsView");
+      const contactsView = document.getElementById("hubspotContactsView");
+      const btnDeals = document.getElementById("tabBtnDeals");
+      const btnContacts = document.getElementById("tabBtnContacts");
+      if (tab === "deals") {
+        if (dealsView) dealsView.classList.remove("hidden");
+        if (contactsView) contactsView.classList.add("hidden");
+        if (btnDeals) btnDeals.className = "px-2 py-0.5 bg-[#FF7A59] text-white font-bold rounded text-[10px] transition cursor-pointer";
+        if (btnContacts) btnContacts.className = "px-2 py-0.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold rounded text-[10px] transition cursor-pointer";
+      } else {
+        if (dealsView) dealsView.classList.add("hidden");
+        if (contactsView) contactsView.classList.remove("hidden");
+        if (btnContacts) btnContacts.className = "px-2 py-0.5 bg-[#FF7A59] text-white font-bold rounded text-[10px] transition cursor-pointer";
+        if (btnDeals) btnDeals.className = "px-2 py-0.5 bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold rounded text-[10px] transition cursor-pointer";
       }
-
-      // Si l'utilisateur a entré son propre token privé HubSpot
-      if (customToken && customToken.length > 10) {
-        try {
-          await fetch('https://archisimple-form.vercel.app/api/config', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: customToken })
-          });
-        } catch (err) {
-          console.warn("Erreur mise à jour token:", err);
-        }
-      }
-
-      setTimeout(() => {
-        if (loginView) loginView.classList.add('hidden');
-        if (dashboardView) {
-          dashboardView.classList.remove('hidden');
-          dashboardView.classList.add('flex');
-        }
-        if (userBadge) {
-          userBadge.textContent = `Connecté : ${userName}`;
-          userBadge.classList.remove('text-slate-300');
-          userBadge.classList.add('text-emerald-400');
-        }
-        loadRealHubspotDeals();
-        if (btn) {
-          btn.innerHTML = `<span>Se connecter au CRM en direct</span><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>`;
-          btn.disabled = false;
-        }
-        if (window.lucide) lucide.createIcons();
-      }, 600);
-    }
-
-    function handleHubspotQuickLogin() {
-      handleHubspotLogin(null);
-    }
-
-    function logoutHubspot() {
-      const loginView = document.getElementById('hubspot-login-view');
-      const dashboardView = document.getElementById('hubspot-dashboard-view');
-      if (dashboardView) {
-        dashboardView.classList.add('hidden');
-        dashboardView.classList.remove('flex');
-      }
-      if (loginView) loginView.classList.remove('hidden');
       if (window.lucide) lucide.createIcons();
     }
 
-    // Interaction Live Kanban HubSpot
+    // Interaction Live Pipeline Kanban & Contacts HubSpot
     function addLeadToHubspotKanban(lead) {
-      // Si l'écran de connexion est actif, basculer automatiquement sur le dashboard pour voir le deal en live !
-      const loginView = document.getElementById('hubspot-login-view');
-      const dashboardView = document.getElementById('hubspot-dashboard-view');
-      if (loginView && !loginView.classList.contains('hidden')) {
-        loginView.classList.add('hidden');
-        if (dashboardView) {
-          dashboardView.classList.remove('hidden');
-          dashboardView.classList.add('flex');
-        }
-      }
-      const container = document.getElementById('kanban-nouveau');
-      const counter = document.getElementById('colCount-nouveau');
-      if (!container) return;
+      const container = document.getElementById("kanban-nouveau");
+      const counter = document.getElementById("colCount-nouveau");
+      const contactsTable = document.getElementById("hubspotContactsTableBody");
+      const contactsBadge = document.getElementById("contactsCountBadge");
+      const toast = document.getElementById("hubspotLiveToast");
+      const toastText = document.getElementById("hubspotToastText");
 
-      const card = document.createElement('div');
-      card.className = 'bg-white border-l-4 border-l-[#0F8A3C] border border-[#0F8A3C] p-2 rounded shadow-md text-[11px] animate-pulse';
-      card.innerHTML = `
-        <div class="flex items-center justify-between">
-          <div class="font-bold text-slate-900 truncate">${lead.name || 'Nouveau Prospect'}</div>
-          <span class="text-[8px] bg-emerald-100 text-emerald-800 font-mono font-bold px-1 rounded">LIVE NOW</span>
-        </div>
-        <div class="text-[10px] text-slate-500">${lead.city || 'Paris'} · DPE ${lead.dpe || 'G'} · ${lead.surface || 65} m²</div>
-        <div class="mt-1 flex items-center justify-between">
-          <span class="font-mono font-bold text-[#0F8A3C]">${(lead.amount || 38000).toLocaleString('fr-FR')} €</span>
-          <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">ID #${lead.dealId || 'Nouveau'}</span>
-        </div>
-      `;
-      container.prepend(card);
+      // 1. Ajouter la carte dans le Pipeline Kanban (Colonne 1 : Nouveau Biz)
+      if (container) {
+        const card = document.createElement("div");
+        card.className = "bg-white border-l-4 border-l-[#0F8A3C] border border-[#0F8A3C] p-2 rounded shadow-md text-[11px] animate-pulse";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-slate-900 truncate">${lead.name || "Nouveau Prospect"}</div>
+            <span class="text-[8px] bg-emerald-100 text-emerald-800 font-mono font-bold px-1 rounded">LIVE NOW</span>
+          </div>
+          <div class="text-[10px] text-slate-500">${lead.city || "Paris"} · DPE ${lead.dpe || "G"} · ${lead.surface || 65} m²</div>
+          <div class="mt-1 flex items-center justify-between">
+            <span class="font-mono font-bold text-[#0F8A3C]">${(lead.amount || 38000).toLocaleString("fr-FR")} €</span>
+            <span class="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-1 rounded font-mono">ID #${lead.dealId || "Nouveau"}</span>
+          </div>
+        `;
+        container.prepend(card);
+        setTimeout(() => card.classList.remove("animate-pulse"), 4000);
+      }
+
       if (counter) {
-        const count = parseInt(counter.textContent || '3', 10) + 1;
+        const count = parseInt(counter.textContent || "3", 10) + 1;
         counter.textContent = count;
       }
-      setTimeout(() => card.classList.remove('animate-pulse'), 4000);
+
+      // 2. Ajouter la ligne dans la table des Contacts HubSpot
+      if (contactsTable) {
+        const tr = document.createElement("tr");
+        tr.className = "bg-emerald-50/80 transition";
+        const cleanName = (lead.name || "Nouveau Contact").split("·")[0].trim();
+        const parts = cleanName.split(" ");
+        const initials = ((parts[0]?.[0] || "N") + (parts[1]?.[0] || "B")).toUpperCase();
+        const contactEmail = lead.email || (cleanName.toLowerCase().replace(/[^a-z0-9]/g, ".") + "@client-immo.fr");
+        const contactPhone = lead.phone || ("06 " + Math.floor(10 + Math.random() * 89) + " " + Math.floor(10 + Math.random() * 89) + " " + Math.floor(10 + Math.random() * 89) + " " + Math.floor(10 + Math.random() * 89));
+
+        tr.innerHTML = `
+          <td class="py-2 font-bold text-slate-800 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-bold">${initials}</span>
+            <span>${cleanName}</span>
+          </td>
+          <td class="py-2 text-slate-600">${contactEmail}</td>
+          <td class="py-2 text-slate-600">${contactPhone}</td>
+          <td class="py-2 text-slate-700 font-sans">${lead.city || "Paris"} · DPE ${lead.dpe || "G"}</td>
+          <td class="py-2 text-right"><span class="bg-red-50 text-red-700 px-1.5 py-0.5 rounded text-[10px] font-bold">NOUVEAU BIZ</span></td>
+        `;
+        contactsTable.prepend(tr);
+        setTimeout(() => tr.classList.remove("bg-emerald-50/80"), 3000);
+      }
+
+      if (contactsBadge) {
+        const countC = parseInt(contactsBadge.textContent || "4", 10) + 1;
+        contactsBadge.textContent = countC;
+      }
+
+      // 3. Notification Toast Temps Réel
+      if (toast) {
+        if (toastText) {
+          toastText.textContent = `Nouveau Biz capté : ${lead.name || "Prospect"} (${(lead.amount || 38000).toLocaleString("fr-FR")} €)`;
+        }
+        toast.classList.remove("hidden");
+        toast.classList.add("flex");
+        setTimeout(() => {
+          toast.classList.add("hidden");
+          toast.classList.remove("flex");
+        }, 4000);
+      }
+
+      if (window.lucide) lucide.createIcons();
     }
 
     function simulerNouveauLead() {
-      const names = ['Jean Dupont (Passoire G)', 'Laurent Mercier', 'Sophie Marchand', 'Antoine Bernard', 'Élodie Petit'];
-      const cities = ['Paris 11e', 'Lyon 6e', 'Bordeaux', 'Nantes', 'Marseille 8e'];
-      const dpes = ['G', 'F', 'E'];
+      const names = ["Jean Dupont (Passoire G)", "Laurent Mercier (Agence Nexity)", "Sophie Marchand (Foncia)", "Antoine Bernard (Syndic)", "Élodie Petit (SCI Haussmann)"];
+      const cities = ["Paris 11e", "Lyon 6e", "Bordeaux", "Nantes", "Marseille 8e"];
+      const dpes = ["G", "F", "E"];
       const name = names[Math.floor(Math.random() * names.length)];
       const city = cities[Math.floor(Math.random() * cities.length)];
       const dpe = dpes[Math.floor(Math.random() * dpes.length)];
       const amount = Math.floor(Math.random() * 30000) + 25000;
-      const dealId = '526' + Math.floor(Math.random() * 900000 + 100000);
+      const dealId = "526" + Math.floor(Math.random() * 900000 + 100000);
+      const email = name.split(" ")[0].toLowerCase() + "." + name.split(" ")[1].toLowerCase() + "@bailleur-immo.fr";
+      const phone = "06 " + Math.floor(10 + Math.random() * 89) + " " + Math.floor(10 + Math.random() * 89) + " " + Math.floor(10 + Math.random() * 89) + " " + Math.floor(10 + Math.random() * 89);
+      
       addLeadToHubspotKanban({
-        name: name,
+        name: `${name} · ${city}`,
+        email: email,
+        phone: phone,
         city: city,
         dpe: dpe,
         surface: 65,
         amount: amount,
         dealId: dealId
       });
-      if (window.lucide) lucide.createIcons();
     }
 
     // Gestionnaire de soumission du Formulaire Fiche 01 sur Slide 6
@@ -1636,7 +1638,9 @@
     }
 
     // Chargement dynamique des VRAIS Deals depuis HubSpot API CRM v3
-    async function loadRealHubspotDeals() {
+    let dealsLoadedOnce = false;
+    async function loadRealHubspotDeals(force = false) {
+      if (dealsLoadedOnce && !force) return;
       try {
         const res = await fetch('https://archisimple-form.vercel.app/api/deals');
         const data = await res.json();
@@ -1695,6 +1699,7 @@
         if (summary) {
           summary.textContent = `(${data.total} transactions réelles API HubSpot · ${totalAmount.toLocaleString('fr-FR')} €)`;
         }
+        dealsLoadedOnce = true;
       } catch(e) {
         console.warn('Erreur chargement deals réels HubSpot:', e);
       }
