@@ -1393,6 +1393,17 @@
     document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
 
     document.addEventListener('keydown', (e) => {
+      // Ignorer complètement les raccourcis clavier de navigation si l'utilisateur est en train d'écrire dans un champ
+      const target = e.target;
+      const isInputField = target && (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.tagName === 'SELECT' ||
+        target.isContentEditable ||
+        (target.closest && target.closest('form'))
+      );
+      if (isInputField) return;
+
       const modal = document.getElementById('modalFullscreenDemo');
       if (modal && !modal.classList.contains('hidden') && e.key === 'Escape') {
         closeModalFullscreen();
@@ -1608,24 +1619,6 @@
         colDecision.innerHTML = "";
         colGagne.innerHTML = "";
 
-        // Chantiers Gagnés Réalisés (Validation du Business Model et Marge 2%)
-        const WON_DEALS = [
-          {
-            client: "Kevin Test Pret A Demarrer · Paris",
-            desc: "Projet Financé 95 m² · DPE G → C",
-            amount: 38000,
-            tag: "✓ COM 2% : 760 €",
-            dealId: "526470034640"
-          },
-          {
-            client: "Olivier Duverdier · Kaliz (Paris)",
-            desc: "Mandat Locatif · Audit & Travaux Validés",
-            amount: 42000,
-            tag: "✓ COM 2% : 840 €",
-            dealId: "890591283397"
-          }
-        ];
-
         let totalAmount = 0;
         const counts = { nouveau: 0, rdv: 0, decision: 0, gagne: 0 };
 
@@ -1683,7 +1676,7 @@
             <div class="text-[10px] text-slate-500">${projectDesc}</div>
             <div class="mt-1 flex items-center justify-between">
               <span class="font-mono font-bold text-slate-800">${dealAmount.toLocaleString("fr-FR")} €</span>
-              <span class="text-[9px] bg-slate-100 text-slate-700 px-1 rounded font-mono font-bold">Deal #${deal.id.slice(-6)}</span>
+              ${key === 'gagne' ? `<span class="text-[9px] bg-emerald-50 text-emerald-800 px-1 rounded font-mono font-bold">✓ COM 2% : ${Math.round(dealAmount * 0.02).toLocaleString("fr-FR")} €</span>` : `<span class="text-[9px] bg-slate-100 text-slate-700 px-1 rounded font-mono font-bold">Deal #${deal.id.slice(-6)}</span>`}
             </div>
           `;
           targetCol.appendChild(card);
@@ -1712,25 +1705,10 @@
               colNouveau.prepend(card);
             }
           });
+        // Si la colonne des chantiers gagnés n'a pas de deal réel dans HubSpot
+        if (counts.gagne === 0) {
+          colGagne.innerHTML = '<div class="text-[10px] text-slate-400 italic text-center py-4">0 chantier à cette étape</div>';
         }
-
-        // Ajouter les chantiers gagnés (Colonne 4)
-        WON_DEALS.forEach(won => {
-          counts.gagne++;
-          totalAmount += won.amount;
-
-          const card = document.createElement("div");
-          card.className = "bg-white border-l-4 border-l-emerald-500 border border-[#CBD6E2] p-2 rounded shadow-xs text-[11px] hover:shadow transition";
-          card.innerHTML = `
-            <div class="font-bold text-slate-900 truncate" title="${won.client}">${won.client}</div>
-            <div class="text-[10px] text-slate-500">${won.desc}</div>
-            <div class="mt-1 flex items-center justify-between">
-              <span class="font-mono font-bold text-emerald-700">${won.amount.toLocaleString("fr-FR")} €</span>
-              <span class="text-[9px] bg-emerald-50 text-emerald-800 px-1 rounded font-mono font-bold">${won.tag}</span>
-            </div>
-          `;
-          colGagne.appendChild(card);
-        });
 
         // Mettre à jour les badges de colonnes
         ["nouveau", "rdv", "decision", "gagne"].forEach(k => {
